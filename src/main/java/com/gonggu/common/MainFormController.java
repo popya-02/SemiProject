@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/form/*")
-public class FormController extends HttpServlet {
+public class MainFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public FormController() {
+    public MainFormController() {
         super();
     }
 
@@ -31,6 +31,10 @@ public class FormController extends HttpServlet {
 			nextPage = "/views/member/signupUser.jsp";
 		}else if(action.equals("/signupcopyForm.do")) {
 			nextPage = "/views/member/signupCopy.jsp";
+		}else if(action.equals("/constructlist.do")) {
+			nextPage = "/views/constructExam/constructList.jsp";
+		}else if(action.equals("/copylist.do")) {
+			nextPage = "/views/copy/copyList.jsp";
 		}
 		
 		if(nextPage != null && !nextPage.isEmpty()) {

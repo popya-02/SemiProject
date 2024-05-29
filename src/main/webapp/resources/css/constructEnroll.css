@@ -1,0 +1,94 @@
+.newimg{
+    position:relative;
+    width: 800px;
+/* height: 500px; */
+}
+
+/* 이미지 업로드 준비창 */
+.tlrhd-img{
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 500px;
+    height: 300px;
+    border: 1px solid black;
+}
+.image-upload {  
+    margin-top: 75px;
+}
+    
+.tlrhd-se{
+    display:block;
+    margin: 0 auto;
+    margin-top: 20px; 
+    
+    
+}
+
+
+.container {
+    margin: 0;
+}
+
+
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+label {
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#chooseFile {
+    visibility: hidden;
+}
+
+.fileContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fileInput {
+    display: flex;
+    align-items: center;
+    border-bottom: solid 2px black;
+    width: 60%;
+    height: 30px;
+}
+
+#fileName {
+    margin-left: 5px;
+}
+
+.buttonContainer {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    padding: 10px;
+    font-size: 0.8em;
+
+    cursor: pointer;
+}
+
+.image-show {
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.img {
+    position: absolute;
+}
