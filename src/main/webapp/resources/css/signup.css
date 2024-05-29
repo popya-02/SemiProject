@@ -1,0 +1,84 @@
+/* 선택 */
+.signup-chose-box{
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.chose-box{
+    width: 250px;
+    height: 250px;
+}
+
+.chose-box a{
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.rounded-chose{
+    border-radius: 200px !important;
+}
+
+/* 개인 */
+
+.signup-margin{
+    margin-top: 120px;
+}
+
+.signup-right{
+    overflow: auto;
+    height: 680px;
+}
+
+.signup-h{
+    height: 680px;
+}
+
+.signup-center{
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.signup-title{
+    position: absolute;
+    font-size: 90px;
+    color: #fff;
+    left: 5%;
+    top: 15%;
+    text-shadow: 3px 3px 3px #00000034;
+}
+
+.id-check, .phonnum-check{
+    display: flex;
+    align-items: center;
+}
+
+.id-check-btn, .phonnum-check-btn{
+    position: absolute;
+    height: 40px;
+    right: 2.5%;
+    border-color: #ced4da;
+    background-color: #223455;
+    color: #fff;
+    font-weight: 100 !important;
+}
+
+.id-check-btn:hover, .phonnum-check-btn:hover{
+    color: #fff;
+    background-color: #5b73a0;
+}
+
+/* 업체 */
+.copy-id-check{
+    display: flex;
+    align-items: center;
+}
+
