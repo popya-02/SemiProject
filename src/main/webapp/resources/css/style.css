@@ -83,7 +83,7 @@
 }
 
 .btn.border-secondary:hover {
-    background: var(--bs-secondary) !important;
+    background: #223455 !important;
     color: var(--bs-white) !important;
 }
 
@@ -441,16 +441,16 @@
     position: absolute;
     top: -8px;
     right: 0;
-    color: var(--bs-primary);
+    color: #223455;
     padding: 5px 25px;
-    border: 1px solid var(--bs-secondary);
+    border: 2px solid #223455;
     border-radius: 20px;
     transition: 0.5s;
 
 }
 
 .vesitable .owl-nav .owl-prev:hover {
-    background: var(--bs-secondary);
+    background: #223455;
     color: var(--bs-white);
 }
 
@@ -458,15 +458,15 @@
     position: absolute;
     top: -8px;
     right: 88px;
-    color: var(--bs-primary);
+    color: #223455;
     padding: 5px 25px;
-    border: 1px solid var(--bs-secondary);
+    border: 2px solid #223455;
     border-radius: 20px;
     transition: 0.5s;
 }
 
 .vesitable .owl-nav .owl-next:hover {
-    background: var(--bs-secondary);
+    background: #223455;
     color: var(--bs-white);
 }
 /*** vesitable End ***/

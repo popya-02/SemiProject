@@ -34,7 +34,7 @@
     <!-- 시공예시 메인 이미지 -->
 
     <div class="tlrhd">
-        <img class="tlrhd-img img-border rounded" src="./img/세미이미지1.jpeg">
+        <img class="tlrhd-img img-border rounded" src="/resources/img/업체이미지1.jpeg">
     </div>
     <div class="tlrhddjqcpaud">
         <p>업체명</p>

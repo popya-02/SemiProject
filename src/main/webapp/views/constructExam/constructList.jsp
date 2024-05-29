@@ -19,7 +19,7 @@
 
 		<div class="container-fluid page-header py-5" style="background-color: #223455;">
         <h1 class="text-center text-white display-6">시공예시</h1>
-        <a href="./construction-enroll.html"> <button class="tlrhd-btn tlrhd-border btn-sm btn-outline-secondary">
+        <a href="/form/constructEnroll.do"> <button class="tlrhd-btn tlrhd-border btn-sm btn-outline-secondary">
             등록</button>  </a>
     </div>
 
@@ -32,9 +32,9 @@
 
                     <div class="col">
                         <div class="card shadow-sm">
-                            <a href="./construction-detail.html">
+                            <a href="/form/constructDetail.do">
                                 <img class="bd-placeholder-img card-img-top" width="100%" height="225" img
-                                    src="/main/img/세미이미지1.jpeg" width="100%" height="100%" fill="#55595c" />
+                                    src="/resources/img/업체이미지1.jpeg" width="100%" height="100%" fill="#55595c" />
                             </a>
                             <p class="djqcpaud">(주)그린인테리어</p>
                             <div class="card-body">
