@@ -28,11 +28,11 @@
                         <h2 class="mb-3">회원 검색</h2>
                         <div class="input-group search-wid d-flex box-right" style="margin-left: 15%;">
                             <select name="" id="">
-                                <option value="">옵션</option>
-                                <option value="">옵션</option>
-                                <option value="">옵션</option>
+                                <option value="">전체</option>
+                                <option value="">번호</option>
+                                <option value="">이름</option>
                             </select>
-                            <input type="search" class=" inputSize form-control py-2 " placeholder="asdasd" aria-describedby="search-icon-1" >
+                            <input type="search" class=" inputSize form-control py-2 "  aria-describedby="search-icon-1" >
                             <span id="search-icon-1" class="input-group-text search-i">
                             <i class="fa fa-search"></i></span>
                         </div>
@@ -41,19 +41,33 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>번호</th>
+                                    <th>회원 번호</th>
                                     <th>이름</th>
                                     <th>주소</th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>홍길동</td>
-                                    <td>서울특별시 강남구</td>
-                                </tr>
-                            </tbody>
-                        </table>
+	                            </thead>
+							<tbody>
+								<c:choose>
+									<c:when test="${empty list}">
+										<tr>
+											<td colspan="5" style="text-align: center; padding: 30px">등록된 회원이 없습니다.</td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:forEach var="item" items="${list}">
+											<tr>
+												<th scope="row">${row}</th>
+												<td>${item.boardTitle}</td>
+												<td>${item.memberName}</td>
+												<td>${item.boardIndate}</td>
+												<td>${item.boardViews}</td>
+											</tr>
+											<c:set var="row" value="${row-1}" />
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
+							</tbody>
+						</table>
                     </div>
                 </div>
             </div>
@@ -63,17 +77,62 @@
         <!-- 페이지네이션 -->
         <div class="col-12">
             <div class="pagination d-flex justify-content-center mt-5">
-                <a href="#" class="rounded">&laquo;</a>
-                <a href="#" class="active rounded">1</a>
-                <a href="#" class="rounded">2</a>
-                <a href="#" class="rounded">3</a>
-                <a href="#" class="rounded">4</a>
-                <a href="#" class="rounded">5</a>
-                <a href="#" class="rounded">6</a>
-                <a href="#" class="rounded">&raquo;</a>
+                <a href="#" class="rounded page-n">&laquo;</a>
+                <a href="#" class="rounded page-n">1</a>
+                <a href="#" class="rounded page-n">2</a>
+                <a href="#" class="rounded page-n">3</a>
+                <a href="#" class="rounded page-n">4</a>
+                <a href="#" class="rounded page-n">5</a>
+                <a href="#" class="rounded page-n">6</a>
+                <a href="#" class="rounded page-n">&raquo;</a>
             </div>
         </div>
+        <div class="col-12">
+            <div class="pagination d-flex justify-content-center mt-5">
+        
+				<!-- 왼쪽 버튼  -->
+				<c:choose>
+					<c:when test="${pi.cpage == 1}">
+						<li class="page-item" style="margin-right: 0px"><a
+							class="rounded page-n" href="#" aria-label="Previous"> <span
+								aria-hidden="true">&laquo;</span>
+						</a></li>
+					</c:when>
 
+					<c:otherwise>
+						<li class="page-item" style="margin-right: 0px"><a
+							class="rounded page-n" href="/freeBoard/List.do?cpage=${pi.cpage-1}"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a></li>
+					</c:otherwise>
+
+				</c:choose>
+
+				<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+					<li class="page-item" style="margin-right: 0px"><a
+						class="rounded page-n" href="/freeBoard/List.do?cpage=${page}">${page}</a></li>
+				</c:forEach>
+
+
+
+				<c:choose>
+					<c:when test="${pi.cpage == pi.maxPage}">
+						<li class="page-item" style="margin-right: 0px"><a
+							class="rounded page-n" href="#" aria-label="Next"> <span
+								aria-hidden="true">&raquo;</span>
+						</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item" style="margin-right: 0px"><a
+							class="rounded page-n" href="/freeBoard/List.do?cpage=${pi.cpage+1}"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a></li>
+					</c:otherwise>
+				</c:choose>
+
+
+</div>
+        </div>	
         <!-- Footer Start -->
        	<%@ include file="/views/common/footer.jsp"%>
         <!-- Copyright End -->
