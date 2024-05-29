@@ -1,0 +1,94 @@
+
+.search-section{
+    margin-top: 120px;
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.example-div{
+    display: inline-flex;
+    flex-direction: row;
+    margin: 20px 0;
+}
+
+.search-box{
+    width: 70%;
+    height: 70%;
+}
+
+.search-img{
+    position: relative;
+    width: 15%;
+    height: 15%;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+
+.search-result{
+    width: 100%;
+    max-width: 1200px;
+    border: solid 1.5px #d4d4d48d;
+    border-radius: 7px;
+    padding: 10px 20px;
+    margin-top: 5px;
+    margin-bottom: 35px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: auto;
+}
+
+.copy-search{
+    cursor: pointer;
+}
+
+.example-result{
+    width: 100%;
+    max-width: 1200px;
+    min-width: 670px;
+    border: solid 1.5px #d4d4d48d;
+    border-radius: 7px;
+    padding: 40px;
+    margin-top: 5px;
+    margin-bottom: 35px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hr{
+    margin-bottom: 30px;
+    border: solid 2px #d4d4d48d;
+}
+
+.example-hr{
+    margin: 30px 0 ;
+}
+
+.example-box{
+    width: 100%;
+    display: inline-flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.example-content{
+    white-space: nomal;
+    margin-top: 5px5px
+}
+
+.example-obj{
+    margin: 12px 5px;
+}
+
+.example-obj h5, p{
+    cursor: pointer;
+}
+
+.example-obj h5:hover, p:hover{
+    text-decoration: underline;
+}
