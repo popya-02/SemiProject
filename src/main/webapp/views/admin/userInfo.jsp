@@ -5,20 +5,23 @@
 <html lang="en">
 
     <head>
+    	<link href="/resources/css/userInfo.css" rel="stylesheet">
 	    <%@ include file="/views/common/head.jsp"%>
         <title>GONGGU</title>
+        
         <!-- Template Stylesheet -->
         <link href="/resources/css/style.css" rel="stylesheet">
-        <link href="/resources/css/signup.css" rel="stylesheet">
-        <link href="/resources/css/userInfo.css" rel="stylesheet">
+        <!-- <link href="/resources/css/signup.css" rel="stylesheet"> -->
+        
         
     </head>
     <body>
         <!-- Navbar start -->
 	    <%@ include file="/views/common/header.jsp"%>        
         <!-- Navbar End -->
+        
 
-		        <div class="container-fluid py-5 mb-5 " style="margin-top: 100px;">
+		<div class="container-fluid py-5 mb-5 " style="margin-top: 100px;">
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-md-12 col-lg-7">
@@ -29,8 +32,9 @@
                                 <option value="">옵션</option>
                                 <option value="">옵션</option>
                             </select>
-                            <input type="search" class="form-control py-2 " placeholder="" aria-describedby="search-icon-1" >
-                            <span id="search-icon-1" class="input-group-text search-i"><i class="fa fa-search"></i></span>
+                            <input type="search" class=" inputSize form-control py-2 " placeholder="asdasd" aria-describedby="search-icon-1" >
+                            <span id="search-icon-1" class="input-group-text search-i">
+                            <i class="fa fa-search"></i></span>
                         </div>
                     </div>
                     <div>

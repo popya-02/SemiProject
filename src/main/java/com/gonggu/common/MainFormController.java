@@ -35,17 +35,19 @@ public class MainFormController extends HttpServlet {
 			nextPage = "/views/constructExam/constructList.jsp";
 		}else if(action.equals("/copylist.do")) {
 			nextPage = "/views/copy/copyList.jsp";
+		}else if(action.equals("/userInfo.do")) {
+			nextPage = "/views/admin/userInfo.jsp";
 		}
-		
+		 
 		if(nextPage != null && !nextPage.isEmpty()) {
 			RequestDispatcher view = request.getRequestDispatcher(nextPage);
 			view.forward(request, response);
 		}else {
 			response.sendRedirect("/views/errors.jsp");
 		}
-		
-		RequestDispatcher view = request.getRequestDispatcher(nextPage);
-		view.forward(request, response);
+//		
+//		RequestDispatcher view = request.getRequestDispatcher(nextPage);
+//		view.forward(request, response);
 	
 	}
 
