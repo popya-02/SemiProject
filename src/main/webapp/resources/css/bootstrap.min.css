@@ -4384,7 +4384,7 @@ fieldset:disabled .btn {
 .nav-link {
     display: block;
     padding: .5rem 1rem;
-    color: #81c408;
+    color: #223455;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out
 }
 
@@ -7366,11 +7366,11 @@ fieldset:disabled .btn {
 }
 
 .border-primary {
-    border-color: #81c408 !important
+    border-color: #223455 !important
 }
 
 .border-secondary {
-    border-color: #ffb524 !important
+    border-color: #223455 !important
 }
 
 .border-success {
@@ -8343,7 +8343,7 @@ fieldset:disabled .btn {
 }
 
 .text-primary {
-    color: #81c408 !important
+    color: #223455 !important
 }
 
 .text-secondary {

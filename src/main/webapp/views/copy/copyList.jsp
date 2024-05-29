@@ -36,9 +36,9 @@
 
                     <div class="col">
                         <div class="card shadow-sm">
-                            <a href="./shop-detail.html">
+                            <a href="/form/copyDetail.do">
                                 <img class="bd-placeholder-img card-img-top" width="100%" height="225" img
-                                    src="/main/img/세미이미지1.jpeg" width="100%" height="100%" fill="#55595c" />
+                                    src="/resources/img/업체이미지1.jpeg" width="100%" height="100%" fill="#55595c" />
                             </a>
                             <p class="djqcpaud">(주)그린인테리어</p>
                             <div class="card-body">
@@ -62,14 +62,14 @@
     <!-- ---------------------------------페이지네이션------------------------------------------ -->
     <div class="col-12">
         <div class="pagination d-flex justify-content-center mt-5">
-            <a href="#" class="rounded">&laquo;</a>
-            <a href="#" class="active rounded">1</a>
-            <a href="#" class="rounded">2</a>
-            <a href="#" class="rounded">3</a>
-            <a href="#" class="rounded">4</a>
-            <a href="#" class="rounded">5</a>
-            <a href="#" class="rounded">6</a>
-            <a href="#" class="rounded">&raquo;</a>
+            <a href="#" class="page-n rounded">&laquo;</a>
+            <a href="#" class="page-n rounded">1</a>
+            <a href="#" class="page-n rounded">2</a>
+            <a href="#" class="page-n rounded">3</a>
+            <a href="#" class="page-n rounded">4</a>
+            <a href="#" class="page-n rounded">5</a>
+            <a href="#" class="page-n rounded">6</a>
+            <a href="#" class="page-n rounded">&raquo;</a>
         </div>
     </div>
         
