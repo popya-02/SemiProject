@@ -20,8 +20,8 @@
             </button>
             <div class="collapse navbar-collapse nav-menu" id="navbarCollapse">
                 <div class="navbar-nav bg-white">
-                    <a href="" class="nav-item nav-link point-text">시공예시</a>
-                    <a href="shop.html" class="nav-item nav-link point-text">시공업체</a>
+                    <a href="/form/constructlist.do" class="nav-item nav-link point-text">시공예시</a>
+                    <a href="/form/copylist.do" class="nav-item nav-link point-text">시공업체</a>
                     <a href="/form/loginForm.do" class="nav-item nav-link point-text">로그인</a>
                     <!-- <a href="shop-detail.html" class="nav-item nav-link point-text"><i class="fas fa-user useri-font"></i><p class="nav-item nav-link my-none">마이페이지</p></a> -->
                 </div>
