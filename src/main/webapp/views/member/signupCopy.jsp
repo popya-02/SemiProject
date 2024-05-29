@@ -23,7 +23,7 @@
                             <div class="row g-0">
                                 <div class="col-12 col-md-6">
                                     <h4 class="signup-title">SIGNUP</h4>
-                                    <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy" src="/resources/img/login_background.jpg" alt="login page">
+                                    <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" src="/resources/img/login_background.jpg" alt="login page">
                                 </div>
                             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center signup-right">
                                 <div class="col-12 col-lg-11 col-xl-10">
@@ -102,12 +102,7 @@
 
         
     <!-- JavaScript Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/resources/lib/easing/easing.min.js"></script>
-    <script src="/resources/lib/waypoints/waypoints.min.js"></script>
-    <script src="/resources/lib/lightbox/js/lightbox.min.js"></script>
-    <script src="/resources/lib/owlcarousel/owl.carousel.min.js"></script>
+    <%@ include file="/views/common/jsLib.jsp"%>
 
     <!-- Template Javascript -->
     <script src="/resources/js/main.js"></script>
