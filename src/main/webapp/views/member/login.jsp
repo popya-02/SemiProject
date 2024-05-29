@@ -24,7 +24,7 @@
                     <div class="row g-0">
                         <div class="col-12 col-md-6">
                             <h4 class="login-title">LOGIN</h4>
-                            <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy" src="/resources/img/login_background.jpg" alt="login page">
+                            <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" src="/resources/img/login_background.jpg" alt="login page">
                         </div>
                         <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
                             <div class="col-12 col-lg-11 col-xl-10">

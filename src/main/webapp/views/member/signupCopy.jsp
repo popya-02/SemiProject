@@ -42,9 +42,9 @@
                                             <div class="row gy-3 overflow-hidden">
                                                 <div class="col-12">
                                                     <div class="form-floating mb-2 copy-id-check">
-                                                        <input type="copy-id" class="form-control" name="copy-id" id="copy-id" required>
+                                                        <input type="text" class="form-control" name="copy-id" id="copy-id" required>
                                                         <label for="copy-id" class="form-label">사업자등록번호(ID)</label>
-                                                        <button for="copy-id" type="button" class="btn id-check-btn">사업장 확인</button>
+                                                        <button type="button" class="btn id-check-btn">사업장 확인</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -55,25 +55,25 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-floating mb-2">
-                                                        <input type="name" class="form-control" name="name" id="name"required>
+                                                        <input type="text" class="form-control" name="name" id="name"required>
                                                         <label for="name" class="form-label">업체명</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-floating mb-2">
-                                                        <input type="addr" class="form-control" name="addr" id="addr"required>
+                                                        <input type="text" class="form-control" name="addr" id="addr"required>
                                                         <label for="addr" class="form-label">사업장 주소 (도/시/구/동)</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-floating mb-2">
-                                                        <input type="area" class="form-control" name="area" id="area"required>
+                                                        <input type="text" class="form-control" name="area" id="area"required>
                                                         <label for="area" class="form-label">시공지역</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-floating mb-2">
-                                                        <input type="phonnum" class="form-control" name="phonnum" id="phonnum"required>
+                                                        <input type="text" class="form-control" name="phonnum" id="phonnum"required>
                                                         <label for="phonnum" class="form-label">업체 전화번호</label>
                                                     </div>
                                                 </div>
@@ -91,6 +91,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </section>
         <!-- Footer Start -->
        	<%@ include file="/views/common/footer.jsp"%>

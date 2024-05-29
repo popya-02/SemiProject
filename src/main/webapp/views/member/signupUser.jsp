@@ -24,7 +24,7 @@
                             <div class="row g-0">
                                 <div class="col-12 col-md-6">
                                     <h4 class="signup-title">SIGNUP</h4>
-                                    <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy" src="/resources/img/login_background.jpg" alt="login page">
+                                    <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" src="/resources/img/login_background.jpg" alt="login page">
                                 </div>
                             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center signup-right">
                                 <div class="col-12 col-lg-11 col-xl-10">
@@ -43,9 +43,9 @@
                                             <div class="row gy-3 overflow-hidden">
                                                 <div class="col-12">
                                                     <div class="form-floating mb-2 id-check">
-                                                        <input type="id" class="form-control" name="id" id="email" required>
+                                                        <input type="text" class="form-control" name="id" id="email" required>
                                                         <label for="id" class="form-label">ID</label>
-                                                        <button for="id" type="button" class="btn id-check-btn">중복확인</button>
+                                                        <button type="button" class="btn id-check-btn">중복확인</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -56,30 +56,30 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-floating mb-2">
-                                                        <input type="name" class="form-control" name="name" id="name"required>
+                                                        <input type="text" class="form-control" name="name" id="name"required>
                                                         <label for="name" class="form-label">이름</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-floating mb-2">
-                                                        <input type="addr" class="form-control" name="addr" id="addr"required>
+                                                        <input type="text" class="form-control" name="addr" id="addr"required>
                                                         <label for="addr" class="form-label">주소 (도/시/구/동)</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-floating mb-2">
-                                                        <input type="nickname" class="form-control" name="nickname" id="nickname"required>
+                                                        <input type="text" class="form-control" name="nickname" id="nickname"required>
                                                         <label for="nickname" class="form-label">별명</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-floating mb-2 phonnum-check">
-                                                        <input type="phonnum" class="form-control" name="phonnum" id="phonnum"required>
+                                                        <input type="text" class="form-control" name="phonnum" id="phonnum"required>
                                                         <label for="phonnum" class="form-label">전화번호</label>
                                                         <button for="phonnum" type="button" class="btn phonnum-check-btn">문자 발송</button>
                                                     </div>
                                                     <div class="form-floating mb-2">
-                                                        <input type="phoncheck" class="form-control" name="phoncheck" id="phoncheck" required>
+                                                        <input type="text" class="form-control" name="phoncheck" id="phoncheck" required>
                                                         <label for="phoncheck" class="form-label">확인 번호 입력</label>
                                                     </div>
                                                 </div>
@@ -96,6 +96,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
 
