@@ -1,0 +1,28 @@
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+td {
+    border-bottom: 1px solid black !important;
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+
+select {
+    width: 80px;
+    height: 42px;
+    border-radius: 40px;
+    border: solid 1px #ced4da;
+    margin-top: 100px;
+    color: #747d88;
+    
+}
+.form-control::placeholder {
+    color: #6c757d;
+    opacity: 1
+}
