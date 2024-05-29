@@ -39,7 +39,7 @@
                                     <!-- 이미지 업로드 -->
                                     <div class="container">
                                         <div  class="image-upload" id="image-upload"  >
-                                            <img class="img-border rounded" src="./img/세미이미지1.jpeg">
+                                            <img class="img-border rounded" src="/resources/img/업체이미지1.jpeg">
                                 
                                         </div>
                                         
@@ -90,7 +90,7 @@
                         <!-- ---------------------------------------------------------------------------------------------------------------------------- -->
                         <div class="border border-primary rounded position-relative vesitable-item">
                             <div class="vesitable-img">
-                                <img src="img/세미이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
+                                <img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
                             </div>
                             
                             <div class="p-4 pb-0 rounded-bottom">
@@ -105,7 +105,7 @@
                         <!-- ---------------------------------------------------------------------------------------------------------------------------- -->
                         <div class="border border-primary rounded position-relative vesitable-item">
                             <div class="vesitable-img">
-                                <img src="img/세미이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
+                                <img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
                             </div>
                             
                             <div class="p-4 pb-0 rounded-bottom">
@@ -120,7 +120,7 @@
                         <!-- ---------------------------------------------------------------------------------------------------------------------------- -->
                         <div class="border border-primary rounded position-relative vesitable-item">
                             <div class="vesitable-img">
-                                <img src="img/세미이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
+                                <img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
                             </div>
                             
                             <div class="p-4 pb-0 rounded-bottom">
@@ -135,7 +135,7 @@
                         <!-- ---------------------------------------------------------------------------------------------------------------------------- -->
                         <div class="border border-primary rounded position-relative vesitable-item">
                             <div class="vesitable-img">
-                                <img src="img/세미이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
+                                <img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
                             </div>
                             
                             <div class="p-4 pb-0 rounded-bottom">
@@ -150,7 +150,7 @@
                         <!-- ---------------------------------------------------------------------------------------------------------------------------- -->
                         <div class="border border-primary rounded position-relative vesitable-item">
                             <div class="vesitable-img">
-                                <img src="img/세미이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
+                                <img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
                             </div>
                             
                             <div class="p-4 pb-0 rounded-bottom">
@@ -172,7 +172,7 @@
             <nav class="repl">
                 <div class="nav nav-tabs mb-3" style="width: 1100px;">
                    
-                    <div class="nav-link border-white border-bottom-0" type="button" role="tab"
+                    <div class="nav-link border-white border-bottom-0" role="tab"
                         id="nav-mission-tab" data-bs-toggle="tab" data-bs-target="#nav-mission"
                         aria-controls="nav-mission" aria-selected="false">Reviews</div>
                 </div>
@@ -225,7 +225,7 @@
                         <!-- <div class="d-flex align-items-center">
                             
                         </div> -->
-                        <a href="#" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> 후기 남기기</a>
+                        <a href="#" class="page-n border border-secondary text-primary rounded-pill px-4 py-3"> 후기 남기기</a>
                     </div>
                 </div>
             </div>
