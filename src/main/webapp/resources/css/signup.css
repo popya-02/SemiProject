@@ -82,3 +82,9 @@
     align-items: center;
 }
 
+.duplicate-msg{
+	margin: 0 5px;
+	font-size: 14px;
+	height: 19px;
+}
+
