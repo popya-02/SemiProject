@@ -1,5 +1,7 @@
 function duplicateId(){
-		const id = document.getElementById("id").value;
+		const idInput = document.getElementById("id");
+		const id = idInput.value;
+		const checkBtn = document.getElementById("id-check");
 		const idMsg = document.getElementById("duplicate-msg");
 		const duplicateCheck = document.getElementById("duplicateCheck");
 		
@@ -14,7 +16,10 @@ function duplicateId(){
 					duplicateCheck.value = "available";
 					idMsg.style.color = "blue";
 					idMsg.innerHTML = "사용 가능한 아이디입니다.";
-	                
+					
+					idInput.readOnly = true;
+	                checkBtn.disabled = true;
+
             	}else if(data === 'isDuplicate'){
 					duplicateCheck.value = "unavailable";
 					idMsg.style.color = "red";

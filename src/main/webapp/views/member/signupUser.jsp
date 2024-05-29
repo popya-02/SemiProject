@@ -86,7 +86,7 @@
                                                     <div class="form-floating mb-2 phonnum-check">
                                                         <input type="text" class="form-control" name="phonnum" id="phonnum" required>
                                                         <label for="phonnum" class="form-label">전화번호</label>
-                                                        <button type="button" class="btn phonnum-check-btn" onclick="messageSend()">문자 발송</button>
+                                                        <button type="button" class="btn phonnum-check-btn" id="message-send" onclick="messageSend()">문자 발송</button>
                                                     </div>
                                                     <div class="form-floating mb-2 phonnum-check" id="pheonCheckbox" style="display: none;">
                                                         <input type="text" class="form-control" name="phoncheck" id="phoncheck" required>
