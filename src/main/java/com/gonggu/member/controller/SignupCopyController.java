@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/LoginController")
+@WebServlet("/signupCopy/*")
 public class SignupCopyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
