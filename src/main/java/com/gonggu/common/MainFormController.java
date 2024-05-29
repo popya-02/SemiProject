@@ -35,6 +35,10 @@ public class MainFormController extends HttpServlet {
 			nextPage = "/views/constructExam/constructList.jsp";
 		}else if(action.equals("/copylist.do")) {
 			nextPage = "/views/copy/copyList.jsp";
+		}else if(action.equals("/userMyPage.do")) {
+			nextPage = "/views/myPage/userMyPageEstimate.jsp";
+		}else if(action.equals("/copyMyPage.do")) {
+			nextPage = "/views/myPage/copyMyPageEstimate.jsp";
 		}
 		
 		if(nextPage != null && !nextPage.isEmpty()) {
@@ -44,9 +48,9 @@ public class MainFormController extends HttpServlet {
 			response.sendRedirect("/views/errors.jsp");
 		}
 		
-		RequestDispatcher view = request.getRequestDispatcher(nextPage);
-		view.forward(request, response);
-	
+//		RequestDispatcher view = request.getRequestDispatcher(nextPage);
+//		view.forward(request, response);
+//	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
