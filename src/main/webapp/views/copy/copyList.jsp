@@ -36,7 +36,7 @@
 
                     <div class="col">
                         <div class="card shadow-sm">
-                            <a href="./shop-detail.html">
+                            <a href="/form/copyDetail.do">
                                 <img class="bd-placeholder-img card-img-top" width="100%" height="225" img
                                     src="/main/img/세미이미지1.jpeg" width="100%" height="100%" fill="#55595c" />
                             </a>
