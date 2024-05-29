@@ -44,8 +44,6 @@ public class MainFormController extends HttpServlet {
 			response.sendRedirect("/views/errors.jsp");
 		}
 		
-		RequestDispatcher view = request.getRequestDispatcher(nextPage);
-		view.forward(request, response);
 	
 	}
 
