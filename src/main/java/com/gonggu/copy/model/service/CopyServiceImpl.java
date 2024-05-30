@@ -13,4 +13,10 @@ public class CopyServiceImpl implements CopyService{
 	    public List<CopyDto> getCompanyList() {
 	        return copyDao.getCompanyList();
 	    }
-}
+	 
+	 @Override
+	    public CopyDto getCopyDetail(int copyNo) {
+	        return copyDao.getCopyDetail(copyNo);
+	    }
+	}
+

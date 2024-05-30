@@ -22,7 +22,7 @@ public class CopyDao {
 		con = dc.connDB();
 	}
 	public List<CopyDto> getCompanyList() {
-        String query = "SELECT COPY_NAME, cd.COPY_NO, NAME, PATH FROM COPY_DETAIL cd"
+        String query = "SELECT COPY_NAME, cd.COPY_NO, PATH FROM COPY_DETAIL cd"
         		+"      JOIN COPY_PHOTO cp ON cd.COPY_NO = cp.COPY_NO";
         List<CopyDto> list = new ArrayList<>();
         try {
@@ -42,6 +42,32 @@ public class CopyDao {
         return list;
     }
 
-
+	public CopyDto getCopyDetail(int copyNo) {
+        String query = "SELECT cd.COPY_NO, PATH , COPY_NAME , CONTENT , COPY_ADDR , TEL_NUM FROM COPY_DETAIL cd"
+        		+ "     JOIN COPY_PHOTO cp"
+        		+ "     ON cd.COPY_NO = cp.COPY_NO"
+        		+ "     WHERE cd.COPY_NO = ?";
+        CopyDto dto = null;
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, copyNo);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                dto = new CopyDto();
+                dto.setCopyName(rs.getString("COPY_NAME"));
+                dto.setCopyNo(rs.getInt("COPY_NO"));
+                dto.setCopyPhoto(rs.getString("PATH"));
+                dto.setCopyContent(rs.getString("CONTENT"));
+                dto.setCopyAddress(rs.getString("COPY_ADDR"));
+                dto.setCopyNumber(rs.getString("TEL_NUM"));
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dto;
+    }
 }
+
+
 

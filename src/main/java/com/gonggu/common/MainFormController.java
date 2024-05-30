@@ -40,15 +40,13 @@ public class MainFormController extends HttpServlet {
 		}else if(action.equals("/copylist.do")) {
 			CopyServiceImpl copyService = new CopyServiceImpl();
 			List<CopyDto> companyList = copyService.getCompanyList();
-
-			System.out.println(companyList);
-			System.out.println("aaaaaaa");
 	        request.setAttribute("companyList", companyList);
-	       
 			nextPage = "/views/copy/copyList.jsp";
 		}else if(action.equals("/copyDetail.do")) {
-			
-			
+//			CopyServiceImpl copyService = new CopyServiceImpl();
+//			List<CopyDto> companyList = copyService.getCompanyList();
+//	        request.setAttribute("companyList", companyList);
+//			
 			nextPage = "/views/copy/copyDetail.jsp";
 		}else if(action.equals("/constructEnroll.do")) {
 			nextPage = "/views/constructExam/constructEnroll.jsp";

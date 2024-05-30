@@ -44,7 +44,7 @@
 							<c:forEach var="companyList" items="${companyList}">
 								<div class="col">
 									<div class="card shadow-sm">
-										<a href="/form/copyDetail.do?copyNo=${companyList.copyNo}">
+										<a href="/copyDetail.do?copyNo=${companyList.copyNo}">
 											<img class="bd-placeholder-img card-img-top" width="100%"
 											height="225" img
 											src="/resources/img/${companyList.copyPhoto}" width="100%"

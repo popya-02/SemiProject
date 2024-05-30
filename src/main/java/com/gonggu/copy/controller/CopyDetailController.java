@@ -1,7 +1,6 @@
 package com.gonggu.copy.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,14 @@ public class CopyDetailController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		System.out.println("aaaa");
+		 int copyNo = Integer.parseInt(request.getParameter("copyNo"));
+		 CopyService copyService = new CopyServiceImpl();
+	     CopyDto copyDetail = copyService.getCopyDetail(copyNo);
+	     System.out.println("aaaa");
+	     System.out.println(copyDetail);
+	        request.setAttribute("copyDetail", copyDetail);
+	        request.getRequestDispatcher("/views/copy/copyDetail.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -6,5 +6,5 @@ import com.gonggu.copy.model.dto.CopyDto;
 
 public interface CopyService {
 	List<CopyDto> getCompanyList();
-	
+	CopyDto getCopyDetail(int copyNo);
 }

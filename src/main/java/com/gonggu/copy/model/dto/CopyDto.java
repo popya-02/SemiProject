@@ -7,6 +7,29 @@ public class CopyDto {
 	private int copyNo;
 	private String copyPhoto;
 	
+	private String copyContent;
+	private String copyAddress;
+	private String copyNumber;
+	
+	
+	public String getCopyContent() {
+		return copyContent;
+	}
+	public void setCopyContent(String copyContent) {
+		this.copyContent = copyContent;
+	}
+	public String getCopyAddress() {
+		return copyAddress;
+	}
+	public void setCopyAddress(String copyAddress) {
+		this.copyAddress = copyAddress;
+	}
+	public String getCopyNumber() {
+		return copyNumber;
+	}
+	public void setCopyNumber(String copyNumber) {
+		this.copyNumber = copyNumber;
+	}
 	public String getCopyName() {
 		return copyName;
 	}
