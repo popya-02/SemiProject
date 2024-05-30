@@ -5,20 +5,19 @@
 <html lang="en">
 
 <head>
-<%@ include file="/views/common/head.jsp"%>
-<title>GONGGU</title>
-<!-- Template Stylesheet -->
-<link href="/resources/css/style.css" rel="stylesheet">
-<link href="/resources/css/login.css" rel="stylesheet">
-<link href="/resources/css/copyList.css" rel="stylesheet">
+	<%@ include file="/views/common/head.jsp"%>
+	<title>GONGGU</title>
+	<!-- Template Stylesheet -->
+	<link href="/resources/css/style.css" rel="stylesheet">
+	<link href="/resources/css/login.css" rel="stylesheet">
+	<link href="/resources/css/copyList.css" rel="stylesheet">
 </head>
 <body>
 	<!-- Navbar start -->
 	<%@ include file="/views/common/header.jsp"%>
 	<!-- Navbar End -->
 
-	<div class="container-fluid page-header py-5"
-		style="background-color: #223455;">
+	<div class="container-fluid py-5" style="background-color: #223455; margin-top: 120px">
 		<h1 class="text-center text-white display-6">업체 목록</h1>
 		<!-- <ol class="breadcrumb justify-content-center mb-0">
                 

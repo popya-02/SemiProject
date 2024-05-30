@@ -17,7 +17,7 @@
 	    <%@ include file="/views/common/header.jsp"%>        
         <!-- Navbar End -->
 
-		<div class="container-fluid page-header py-5" style="background-color: #223455;">
+		<div class="container-fluid py-5" style="background-color: #223455; margin-top: 120px">
         <h1 class="text-center text-white display-6">시공예시</h1>
         <a href="/form/constructEnroll.do"> <button class="tlrhd-btn tlrhd-border btn-sm btn-outline-secondary">
             등록</button>  </a>
