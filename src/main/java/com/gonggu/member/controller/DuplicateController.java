@@ -31,8 +31,8 @@ public class DuplicateController extends HttpServlet {
 		
 		String userId = request.getParameter("id");
 		
-		// id 유효성 검사 영문자로 시작하는 영문자 또는 숫자 8~20자
-		String idPattern = "^[a-z][a-z0-9]{7,19}$";
+		// id 유효성 검사 영문자로 시작하는 영문자 또는 숫자 6~20자
+		String idPattern = "^[a-z][a-z0-9]{5,19}$";
 		Pattern pattern = Pattern.compile(idPattern);
 		Matcher idMatcher = pattern.matcher(userId);
 		if(idMatcher.matches()) {

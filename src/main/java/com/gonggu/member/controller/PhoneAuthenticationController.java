@@ -16,7 +16,7 @@ import net.nurigo.sdk.message.model.Message;
 import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
 import net.nurigo.sdk.message.service.DefaultMessageService;
 
-@WebServlet("/signupUser/phoneAute/*")
+@WebServlet("/signupUser/messageSend.do")
 public class PhoneAuthenticationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,22 +38,20 @@ public class PhoneAuthenticationController extends HttpServlet {
 		String action = request.getPathInfo();
 		String checknum = "";
 		
-		if(action.equals("/messageSend.do")) {
-			String userPhone = request.getParameter("userPhone");
-			
-//			Message message = new Message();
-			checknum = randomNum();
-			
-//			message.setFrom("01032445958");
-//			message.setTo(userPhone);
-//			message.setText("GONGGU 인증번호 [" + checknum + "]");
-			
-//			this.messageService.sendOne(new SingleMessageSendingRequest(message));
-			
-			response.getWriter().print(checknum);
-			
-			System.out.println(checknum);
-		}
+		String userPhone = request.getParameter("userPhone");
+		
+		checknum = randomNum();
+//		Message message = new Message();
+//		
+//		message.setFrom("01032445958");
+//		message.setTo(userPhone);
+//		message.setText("GONGGU 인증번호 [" + checknum + "]");
+//		
+//		this.messageService.sendOne(new SingleMessageSendingRequest(message));
+		
+		response.getWriter().print(checknum);
+		
+		System.out.println(checknum);
 		
 	}
 	
