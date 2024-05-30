@@ -38,20 +38,31 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <form action="#!">
+                                        <form action="/signupCopy/signupResult.do" method="post">
+											<input type="hidden" id="businessRegistorCheck" name="businessRegistorCheck"/>
+											<input type="hidden" id="confirmCheck" name="confirmCheck"/>
                                             <div class="row gy-3 overflow-hidden">
                                                 <div class="col-12">
-                                                    <div class="form-floating mb-2 copy-id-check">
-                                                        <input type="text" class="form-control" name="copy-id" id="copy-id" required>
+                                                    <div class="form-floating mb-0 copy-id-check">
+                                                        <input type="number" class="form-control" name="copy-id" id="copy-id" required>
                                                         <label for="copy-id" class="form-label">사업자등록번호(ID)</label>
-                                                        <button type="button" class="btn id-check-btn">사업장 확인</button>
+                                                        <button type="button" class="btn id-check-btn" id="businessRegistorBtn" onclick="businessRegistor()">사업장 확인</button>
                                                     </div>
+                                                    <span id="copy-id-msg" class="duplicate-msg"></span>
                                                 </div>
                                                 <div class="col-12">
-                                                    <div class="form-floating mb-2">
-                                                        <input type="password" class="form-control" name="password" id="password" required>
-                                                        <label for="password" class="form-label">Password</label>
+                                                    <div class="form-floating mb-0">
+                                                        <input type="password" class="form-control" name="password" id="password" onkeyup="effectivePwd()" required>
+                                                        <label for="password" class="form-label">비밀번호</label>
                                                     </div>
+                                                    <span id="password-msg" class="duplicate-msg"></span>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-floating mb-0">
+                                                        <input type="password" class="form-control" name="confirmPwd" id="confirmPwd" onkeyup="confirmPwdFunc()" required>
+                                                        <label for="confirmPwd" class="form-label">비밀번호 확인</label>
+                                                    </div>
+                                                    	<span id="confirmPwd-msg" class="duplicate-msg"></span>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-floating mb-2">
@@ -60,20 +71,26 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <div class="form-floating mb-2">
+                                                    <div class="form-floating mb-0">
+                                                        <input type="text" class="form-control" name="ceo-name" id="ceo-name"required>
+                                                        <label for="ceo-name" class="form-label">대표자명</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-floating mb-0">
                                                         <input type="text" class="form-control" name="addr" id="addr"required>
                                                         <label for="addr" class="form-label">사업장 주소 (도/시/구/동)</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <div class="form-floating mb-2">
+                                                    <div class="form-floating mb-0">
                                                         <input type="text" class="form-control" name="area" id="area"required>
                                                         <label for="area" class="form-label">시공지역</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-floating mb-2">
-                                                        <input type="text" class="form-control" name="phonnum" id="phonnum"required>
+                                                        <input type="text" class="form-control" name="tel" id="phonnum"required>
                                                         <label for="phonnum" class="form-label">업체 전화번호</label>
                                                     </div>
                                                 </div>
@@ -106,6 +123,8 @@
 
     <!-- Template Javascript -->
     <script src="/resources/js/main.js"></script>
+    <script src="/resources/js/businessRegistor.js"></script>
+    <script src="/resources/js/effectiveness.js"></script>
     </body>
 
 </html>
