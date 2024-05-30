@@ -1,6 +1,7 @@
 package com.gonggu.common;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,9 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 import com.gonggu.mypage.model.service.MyPageServiceImpl;
+import com.gonggu.copy.model.dto.CopyDto;
+import com.gonggu.copy.model.service.CopyServiceImpl;
 
 @WebServlet("/form/*")
 public class MainFormController extends HttpServlet {
@@ -37,6 +39,9 @@ public class MainFormController extends HttpServlet {
 		}else if(action.equals("/constructlist.do")) {
 			nextPage = "/views/constructExam/constructList.jsp";
 		}else if(action.equals("/copylist.do")) {
+			CopyServiceImpl copyService = new CopyServiceImpl();
+			List<CopyDto> companyList = copyService.getCompanyList();
+	        request.setAttribute("companyList", companyList);
 			nextPage = "/views/copy/copyList.jsp";
 		}else if(action.equals("/userMyPage.do")) {
 			nextPage = "/views/myPage/userMyPageEstimate.jsp";
@@ -52,6 +57,10 @@ public class MainFormController extends HttpServlet {
 		}else if(action.equals("/copyMyPage.do")) {
 			nextPage = "/views/myPage/copyMyPageEstimate.jsp";
 		}else if(action.equals("/copyDetail.do")) {
+//			CopyServiceImpl copyService = new CopyServiceImpl();
+//			List<CopyDto> companyList = copyService.getCompanyList();
+//	        request.setAttribute("companyList", companyList);
+//			
 			nextPage = "/views/copy/copyDetail.jsp";
 		}else if(action.equals("/constructEnroll.do")) {
 			nextPage = "/views/constructExam/constructEnroll.jsp";
