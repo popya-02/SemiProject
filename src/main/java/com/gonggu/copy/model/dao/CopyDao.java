@@ -22,12 +22,15 @@ public class CopyDao {
 		con = dc.connDB();
 	}
 	public List<CopyDto> getCompanyList() {
-        String query = "SELECT COPY_NAME, cd.COPY_NO, PATH FROM COPY_DETAIL cd"
-        		+"      JOIN COPY_PHOTO cp ON cd.COPY_NO = cp.COPY_NO";
+        String query = "SELECT COPY_NAME, cu.COPY_NO, PATH FROM COPY_USER cu"
+        		+"      JOIN COPY_PHOTO cp ON cu.COPY_NO = cp.COPY_NO"
+        		+"      WHERE APPROVE = ?";
         List<CopyDto> list = new ArrayList<>();
         try {
-            pstmt = con.prepareStatement(query);
-            rs = pstmt.executeQuery();
+        	pstmt = con.prepareStatement(query);
+        	pstmt.setString(1, "Y");
+        	rs = pstmt.executeQuery();
+            
             while (rs.next()) {
                 CopyDto dto = new CopyDto();
                 dto.setCopyName(rs.getString("COPY_Name"));
