@@ -12,6 +12,8 @@
         <link href="/resources/css/login.css" rel="stylesheet">
         <link href="/resources/css/copyDetail.css" rel="stylesheet">
     </head>
+    
+    
     <body>
         <!-- Navbar start -->
 	    <%@ include file="/views/common/header.jsp"%>        
@@ -19,15 +21,8 @@
         
         <div class="container-fluid page-header py-5" style="background-color: #223455;">
             <h1 class="text-center text-white display-6">업체 소개</h1>
-            <!-- <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active text-white">Shop Detail</li>
-            </ol> -->
         </div>
-        <!-- Single Page Header End -->
 
-        <!-- Single Product Start -->
         <div class="container-fluid py-5 mt-5">
             <div class="container py-5">
                 <div class="row g-4 mb-5">
@@ -167,7 +162,7 @@
             </div>
         </div>
 
-        <!-- 댓글 -->
+        <!-- 후기 게시판 -->
         <div class="col-lg-12">
             <nav class="repl">
                 <div class="nav nav-tabs mb-3" style="width: 1100px;">
@@ -209,8 +204,8 @@
                 
             </div>
         </div>
-        <!-- 댓글 쓰기 -->
-        <form action="#" class="repl">
+        <!-- 후기 쓰기 -->
+        <form action="/reviwEnroll.do" class="repl">
             <h4 class="mb-5 fw-bold">후기를 남겨주세요.</h4>
             <div class="row g-4" style="width: 1100px;">
                 
@@ -222,10 +217,9 @@
                 </div>
                 <div class="col-lg-12">
                     <div class="d-flex justify-content-between py-3 mb-5">
-                        <!-- <div class="d-flex align-items-center">
-                            
-                        </div> -->
-                        <a href="#" class="page-n border border-secondary text-primary rounded-pill px-4 py-3"> 후기 남기기</a>
+                     
+                      <button class="page-n border border-secondary text-primary rounded-pill px-4 py-3" type="submit">
+                      후기 남기기</button>
                     </div>
                 </div>
             </div>

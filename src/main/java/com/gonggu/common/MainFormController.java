@@ -1,6 +1,7 @@
 package com.gonggu.common;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.gonggu.copy.model.dto.CopyDto;
+import com.gonggu.copy.model.service.CopyServiceImpl;
 
 @WebServlet("/form/*")
 public class MainFormController extends HttpServlet {
@@ -34,8 +38,17 @@ public class MainFormController extends HttpServlet {
 		}else if(action.equals("/constructlist.do")) {
 			nextPage = "/views/constructExam/constructList.jsp";
 		}else if(action.equals("/copylist.do")) {
+			CopyServiceImpl copyService = new CopyServiceImpl();
+			List<CopyDto> companyList = copyService.getCompanyList();
+
+			System.out.println(companyList);
+			System.out.println("aaaaaaa");
+	        request.setAttribute("companyList", companyList);
+	       
 			nextPage = "/views/copy/copyList.jsp";
 		}else if(action.equals("/copyDetail.do")) {
+			
+			
 			nextPage = "/views/copy/copyDetail.jsp";
 		}else if(action.equals("/constructEnroll.do")) {
 			nextPage = "/views/constructExam/constructEnroll.jsp";
