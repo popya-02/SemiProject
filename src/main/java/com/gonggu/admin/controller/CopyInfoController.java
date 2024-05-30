@@ -3,7 +3,6 @@ package com.gonggu.admin.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,26 +14,22 @@ import com.gonggu.admin.model.service.InformationImpl;
 import com.gonggu.common.PageInfo;
 import com.gonggu.common.Pagnation;
 
-
-@WebServlet("/userForm.do")
-public class UserInfoContorller extends HttpServlet {
+@WebServlet("/copyInfo.do")
+public class CopyInfoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public UserInfoContorller() {
-    
+    public CopyInfoController() {
         super();
     }
 
-    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		
 		InformationImpl infoService = new InformationImpl();
 		
 		int cpage = Integer.parseInt(request.getParameter("cpage"));
 		
 		String category = request.getParameter("category");
-		String searchText = request.getParameter("searchText");
+		String searchText = request.getParameter("search-text");
 		
 		// 전체 게시글 수
 		int listCount = infoService.getListCount(category, searchText);
@@ -64,9 +59,6 @@ public class UserInfoContorller extends HttpServlet {
 		request.setAttribute("list" , list);
 		request.setAttribute("row", row);
 		request.setAttribute("pi", pi);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/userInfo.jsp");
-		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

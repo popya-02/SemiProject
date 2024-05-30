@@ -57,10 +57,9 @@
 										<c:forEach var="item" items="${list}">
 											<tr>
 												<th scope="row">${row}</th>
-												<td>${item.boardTitle}</td>
-												<td>${item.memberName}</td>
-												<td>${item.boardIndate}</td>
-												<td>${item.boardViews}</td>
+												<td>${itme.userNo}</td>
+												<td>${userName}</td>
+												<td>${addr}</td>
 											</tr>
 											<c:set var="row" value="${row-1}" />
 										</c:forEach>
@@ -87,7 +86,7 @@
                 <a href="#" class="rounded page-n">&raquo;</a>
             </div>
         </div>
-        <div class="col-12">
+        <%-- <div class="col-12s">
             <div class="pagination d-flex justify-content-center mt-5">
         
 				<!-- 왼쪽 버튼  -->
@@ -131,8 +130,8 @@
 				</c:choose>
 
 
-</div>
-        </div>	
+			</div>
+        </div>	 --%>
         <!-- Footer Start -->
        	<%@ include file="/views/common/footer.jsp"%>
         <!-- Copyright End -->

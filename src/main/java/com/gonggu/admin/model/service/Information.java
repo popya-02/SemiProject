@@ -16,4 +16,13 @@ public interface Information {
 	public int getListCount(String category, String searchText);
 	
 	
+	
+	public ArrayList<InformationDto> copyApproveList(PageInfo pi);
+	
+	
+	
+	public int copyApproveStatus(InformationDto infoDto);
+	
+	
+	
 }

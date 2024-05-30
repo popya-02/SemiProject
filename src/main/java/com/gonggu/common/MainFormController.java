@@ -36,14 +36,19 @@ public class MainFormController extends HttpServlet {
 		}else if(action.equals("/copylist.do")) {
 			nextPage = "/views/copy/copyList.jsp";
 		}else if(action.equals("/userInfo.do")) {
-			nextPage = "/views/admin/userInfo.jsp";
+			nextPage = "/userForm.do";
 		}else if(action.equals("/copyDetail.do")) {
 			nextPage = "/views/copy/copyDetail.jsp";
 		}else if(action.equals("/constructEnroll.do")) {
 			nextPage = "/views/constructExam/constructEnroll.jsp";
 		}else if(action.equals("/constructDetail.do")) {
 			nextPage = "/views/constructExam/constructDetail.jsp";
+		}else if(action.equals("/copyInfo.do")) {
+			nextPage = "/views/admin/copyInfo.jsp";
+		}else if(action.equals("/copyCheck.do")) {
+			nextPage = "/views/admin/copyCheck.jsp";
 		}
+		
 		
 		if(nextPage != null && !nextPage.isEmpty()) {
 			RequestDispatcher view = request.getRequestDispatcher(nextPage);

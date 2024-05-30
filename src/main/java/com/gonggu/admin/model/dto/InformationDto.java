@@ -8,6 +8,13 @@ public class InformationDto {
 	private String addr;
 	private String indate;
 	private String phoneNum;
+	
+	private int constructNo;
+	private int copyNo;
+	private String copyName;
+	private String copyStartDate;
+	private String copyAddr;
+	
 	public int getUserNo() {
 		return userNo;
 	}
@@ -38,7 +45,40 @@ public class InformationDto {
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
+	public int getConstructNo() {
+		return constructNo;
+	}
+	public void setConstructNo(int constructNo) {
+		this.constructNo = constructNo;
+	}
+	
+	public String getCopyName() {
+		return copyName;
+	}
+	public void setCopyName(String copyName) {
+		this.copyName = copyName;
+	}
+	public int getCopyNo() {
+		return copyNo;
+	}
+	public void setCopyNo(int copyNo) {
+		this.copyNo = copyNo;
+	}
+	public String getCopyStartDate() {
+		return copyStartDate;
+	}
+	public void setCopyStartDate(String copyStartDate) {
+		this.copyStartDate = copyStartDate;
+	}
+	public String getCopyAddr() {
+		return copyAddr;
+	}
+	public void setCopyAddr(String copyAddr) {
+		this.copyAddr = copyAddr;
+	}
 
+	
+	
 	
 	 
 }

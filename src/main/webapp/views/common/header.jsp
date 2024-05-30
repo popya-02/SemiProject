@@ -54,9 +54,9 @@
 							<div class="nav-item dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">회원관리</a>
 								<div class="dropdown-menu m-0">
-									<a href="/form/userInfo.do" class="dropdown-item">회원 조회</a> 
-									<a href="companyInfo.html" class="dropdown-item">업체 조회</a> 
-									<a href="checkComp" class="dropdown-item">업체 승인</a>
+									<a href="/userForm.do?cpage=1&category=name&searchText=" class="dropdown-item">회원 조회</a> 
+									<a href="/form/copyInfo.do" class="dropdown-item">업체 조회</a> 
+									<a href="/form/copyCheck.do" class="dropdown-item">업체 승인</a>
 								</div>
 							</div>
 						</c:otherwise>
