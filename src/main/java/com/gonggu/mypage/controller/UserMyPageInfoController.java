@@ -1,6 +1,8 @@
 package com.gonggu.mypage.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +24,8 @@ public class UserMyPageInfoController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
 		int userNo = Integer.parseInt(request.getParameter("userno"));
 		String userId = request.getParameter("userid");
 		String name = request.getParameter("name");
@@ -38,8 +42,13 @@ public class UserMyPageInfoController extends HttpServlet {
 		MyPageServiceImpl myService = new MyPageServiceImpl();
 		int result = myService.setEdit(myDto);
 		
-		if(result == 1 ) {
-			response.sendRedirect("/");
+		//request.setAttribute("result", result);
+//		
+//		RequestDispatcher view = request.getRequestDispatcher("/mypage/usermypageinfo.do?userNo="+userNo);
+//		view.forward(request, response);
+//		
+		if(result == 1) {
+			response.sendRedirect("/form/usermypageinfo.do?userNo="+userNo);
 		}
 	}
 

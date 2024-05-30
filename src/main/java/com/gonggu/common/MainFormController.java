@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.gonggu.mypage.model.dto.MyPageDtoImpl;
+import com.gonggu.mypage.model.service.MyPageServiceImpl;
+
 @WebServlet("/form/*")
 public class MainFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,6 +40,15 @@ public class MainFormController extends HttpServlet {
 			nextPage = "/views/copy/copyList.jsp";
 		}else if(action.equals("/userMyPage.do")) {
 			nextPage = "/views/myPage/userMyPageEstimate.jsp";
+		} else if(action.equals("/usermypageinfo.do")) {
+			int userNo = Integer.parseInt(request.getParameter("userNo"));
+			
+			MyPageServiceImpl myService = new MyPageServiceImpl();
+			MyPageDtoImpl result = myService.getEditForm(userNo);
+			
+			request.setAttribute("result", result);
+			nextPage = "/views/myPage/userMyPageInfo.jsp";
+				
 		}else if(action.equals("/copyMyPage.do")) {
 			nextPage = "/views/myPage/copyMyPageEstimate.jsp";
 		}else if(action.equals("/copyDetail.do")) {

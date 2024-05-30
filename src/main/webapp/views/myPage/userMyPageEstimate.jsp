@@ -19,10 +19,12 @@
 
 		        <h2 class="mypage_1">마이페이지</h2>
         <nav class="mypage_list">
+        <input type="hidden" name="userno" value="${result.userNo }">
             <ul>
                 <li class="mypage_list_1"><a href="/views/myPage/userMyPageEstimate.jsp">견적/공사 내역</a></li>
                 <li class="mypage_list_2"><a href="/view/myPage/userMyPageLikeCopy.jsp">관심 업체</a></li>
-                <li class="mypage_list_3"><a href="/view/myPage/userMyPageInfo.jsp">정보 수정</a></li>
+                <li class="mypage_list_3"><a href="/form/usermypageinfo.do?userNo=1">정보 수정</a></li>
+                                                                  <!--  sessionScope.userNo -->
             </ul>
         </nav>
         <div class="mypage_list_1_detail"> 
@@ -74,8 +76,7 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="item" items="${list}">
-								<tr
-									onclick="location.href='/freeBoard/detail.do?boardNo=${item.boardNo}'">
+								<tr>
 									<!-- 어떤 게시글에 들어가는지 알수있음 -->
 									<td scope="row">${row}</td>
 									<td>${item.boardTitle}</td>
@@ -87,6 +88,7 @@
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
+					
                 <div class="col-12">
                     <div class="pagination d-flex justify-content-center mt-5">
                         <a href="#" class="rounded">&laquo;</a>

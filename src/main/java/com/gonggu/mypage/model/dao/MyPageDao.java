@@ -2,6 +2,7 @@ package com.gonggu.mypage.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.gonggu.common.DatabaseConnection;
@@ -19,15 +20,14 @@ public class MyPageDao {
 	}
 
 	public int setEdit(MyPageDtoImpl myDto) {
-		String query = "UPDATE USER SET USER_NAME = ?,"
-				                    + " USER_ID = ?,"
+		String query = "UPDATE BASIC_USER SET NICKNAME = ?,"
 				                    + " ADDR = ? "
 				                    + " WHERE USER_NO = ?";
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, myDto.getName());
-			pstmt.setNString(2, myDto.getUserId());
-			pstmt.setString(3, myDto.getAddress());
+			pstmt.setString(1, myDto.getNickName());
+			pstmt.setString(2, myDto.getAddress());
+			pstmt.setInt(3, myDto.getUserNo());
 			
 			int result = pstmt.executeUpdate();
 			
@@ -40,4 +40,53 @@ public class MyPageDao {
 		return 0;
 	}
 
+	public MyPageDtoImpl getDetail(int userNo) {
+		String query = "SELECT * FROM BASIC_USER"
+				+ "     WHERE USER_NO = ?";
+				
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String userId = rs.getString("USER_ID");
+				String name = rs.getString("NAME");
+				String nickname = rs.getString("NICKNAME");
+				String addr = rs.getString("ADDR");
+				
+				MyPageDtoImpl myDto = new MyPageDtoImpl();
+				myDto.setUserNo(userNo);
+				myDto.setUserId(userId);
+				myDto.setName(name);
+				myDto.setNickName(nickname);
+				myDto.setAddress(addr);
+				
+				return myDto;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+				
+		return null;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
