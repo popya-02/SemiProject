@@ -6,19 +6,30 @@ public class MyPageDto {
 	private String name;
 	private String address;
 	private String nickName;
+	
 	private String CopyNo;
 	private String CopyName;
 	private String TelNum;
 	private String CopyAddr;
 	private String Content;
 	private String ConstructArea;
+	private int ConstructNo;
+	
+	public int getConstructNo() {
+		return ConstructNo;
+	}
+	public void setConstructNo(int constructNo) {
+		ConstructNo = constructNo;
+	}
 	
 	public int getUserNo() {
 		return UserNo;
 	}
+	
 	public void setUserNo(int userNo) {
 		UserNo = userNo;
 	}
+
 	public String getUserId() {
 		return UserId;
 	}

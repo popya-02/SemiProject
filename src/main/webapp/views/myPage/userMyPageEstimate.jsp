@@ -23,7 +23,7 @@
             <ul>
                 <li class="mypage_list_1"><a href="/views/myPage/userMyPageEstimate.jsp">견적/공사 내역</a></li>
                 <li class="mypage_list_2"><a href="/view/myPage/userMyPageLikeCopy.jsp">관심 업체</a></li>
-                <li class="mypage_list_3"><a href="/form/usermypageinfo.do?userNo=1">정보 수정</a></li>
+                <li class="mypage_list_3"><a href="/MypageInfo/userInfo.do?userNo=${sessionScope.userNum}">정보 수정</a></li>
                                                                   <!--  sessionScope.userNo -->
             </ul>
         </nav>
@@ -68,10 +68,11 @@
 
        <!--      </div>
         </div> -->
+        <table>
         		<c:choose>
 						<c:when test="${empty list}">
 							<tr>
-								<td colspan="5" style="text-align: center !important; padding: 30px;" >등록된 글이 없습니다.</td>
+								<td colspan="5" style="text-align: center !important; padding: 30px;" >등록된 글이 없습니다</td>
 							</tr>
 						</c:when>
 						<c:otherwise>
@@ -88,6 +89,7 @@
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
+        </table>
 					
                 <div class="col-12">
                     <div class="pagination d-flex justify-content-center mt-5">

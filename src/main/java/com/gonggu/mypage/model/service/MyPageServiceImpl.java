@@ -16,10 +16,29 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 	@Override
-	public MyPageDtoImpl getEditForm(int userNo) {
+	public MyPageDtoImpl getEditForm(String userNo) {
 		MyPageDtoImpl result = myPageDao.getDetail(userNo);
 		
 		return result;
+	}
+
+	@Override
+	public MyPageDtoImpl getMypageEstimate(int userNo) {
+		MyPageDtoImpl result = myPageDao.getUserMyPage(userNo);
+		
+		return result;
+	}
+
+	@Override
+	public MyPageDtoImpl getMyCopyEstimate(String copyNo) {
+		MyPageDtoImpl result = myPageDao.getCopyPage(copyNo);
+		
+		return result;
+	}
+
+	@Override
+	public int setCopyEdit(MyPageDtoImpl myDto) {
+		return myPageDao.setCopyEdit(myDto);
 	}
 
 }

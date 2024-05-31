@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,11 +20,12 @@
 		    <h2 class="companypage_1">업체페이지</h2>
     <nav class="mypage_list">
         <ul>
-            <li class="mypage_list_1"><a href="/views/myPage/userMyPageEstimate.jsp">견적/공사 내역</a></li>
-            <li class="mypage_list_2"><a href="/view/myPage/userMyPageInfo.jsp">정보 수정</a></li>
+            <li class="mypage_list_1"><a href="/views/myPage/copyMyPageEstimate.jsp">견적/공사 내역</a></li>
+            <li class="mypage_list_2"><a href="/MypageInfo/copyInfo.do?copyNo="${sessionScope.copyNum}>정보 수정</a></li>
         </ul>
     </nav>
     <div class="mypage_list_3_detail">
+     <form action="/Mypage/copyInfo.do" method="Post">
         <div class="mypage_list_3_detail_picture" method="post" enctype="multipart/form-data"> <!-- 이미지 파일 데이터에 알맞는 enctype 설정 -->
             <div class="picture_box" id="image-show"> <!-- 이미지 띄울 공간 -->
             </div>
@@ -36,31 +37,32 @@
         </div> -->
         <div class="mypage_list_3_detail_c_id">
             <label for="">사업자등록번호</label><br>
-            <input class="c_id_box" type="id" name="" id="" placeholder="">
+            <input class="c_id_box" type="text" name="copyno" id="" placeholder="" value="${result.copyNo }">
         </div>
         <div class="mypage_list_3_detail_c_name">
             <label for="">업체 이름</label><br>
-            <input class="c_name_box" type="name" name="" id="" placeholder="">
+            <input class="c_name_box" type="text" name="copyname" id="" placeholder="" value="${result.copyName }">
         </div>
         <div class="mypage_list_3_detail_c_number">
             <label for="">업체 번호</label><br>
-            <input class="c_number_box" type="name" name="" id="" placeholder="">
+            <input class="c_number_box" type="text" name="telnum" id="" placeholder="" value="${result.telNum }">
         </div>
         <div class="mypage_list_3_detail_c_address">
             <label for="">업체 주소</label><br>
-            <input class="c_address_box" type="name" name="" id="" placeholder="">
+            <input class="c_address_box" type="text" name="copyaddr" id="" placeholder="" value="${result.copyAddr }">
         </div>
         <div class="mypage_list_3_detail_construction_area">
             <label for="">시공 지역</label><br>
-            <input class="construction_area_box" type="name" name="" id="" placeholder="">
+            <input class="construction_area_box" type="text" name="constructarea" id="" placeholder="" value="${result.costructArea }">
         </div>
         <div class="mypage_list_3_detail_introduce">
             <label for="">소개글</label><br>
-            <textarea class="introduce_box" type="text" name="" id="" placeholder=""></textarea>
+            <textarea class="introduce_box" type="text" name="content" id="" placeholder="" value="${result.content }"></textarea>
         </div>
         <div class="mypage_list_3_detail_complete">
-            <a href="">저장</a>
+            <button type="submit">저장</button>
         </div>
+      </form>
     </div>
 
         <!-- Footer Start -->

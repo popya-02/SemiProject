@@ -20,9 +20,8 @@
 		        <h2 class="mypage_1">업체페이지</h2>
         <nav class="mypage_list">
             <ul>
-                <li class="mypage_list_1"><a href="/views/myPage/userMyPageEstimate.jsp">견적/공사 내역</a></li>
-                <li class="mypage_list_2"><a href="view/myPage/userMyPageLikeCopy.jsp">관심 업체</a></li>
-                <li class="mypage_list_3"><a href="/view/myPage/userMyPageInfo.jsp">정보 수정</a></li>
+                <li class="mypage_list_1"><a href="/views/myPage/copyMyPageEstimate.jsp">견적/공사 내역</a></li>
+                <li class="mypage_list_2"><a href="/MypageInfo/copyInfo.do?copyNo="${sessionScope.copyNum}>정보 수정</a></li>
             </ul>
         </nav>
         <div class="mypage_list_1_detail"> 

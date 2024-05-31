@@ -1,4 +1,4 @@
-package com.gonggu.mypage.controller;
+ package com.gonggu.mypage.controller;
 
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ public class UserMyPageInfoController extends HttpServlet {
 		String addr = request.getParameter("addr");
 		
 		MyPageDtoImpl myDto = new MyPageDtoImpl();
-		myDto.setUserNo(userNo);
+		myDto.setUserNo(userNo);;
 		myDto.setUserId(userId);
 		myDto.setName(name);
 		myDto.setNickName(nickname);
@@ -47,8 +47,9 @@ public class UserMyPageInfoController extends HttpServlet {
 //		RequestDispatcher view = request.getRequestDispatcher("/mypage/usermypageinfo.do?userNo="+userNo);
 //		view.forward(request, response);
 //		
+		System.out.println(userNo);
 		if(result == 1) {
-			response.sendRedirect("/form/usermypageinfo.do?userNo="+userNo);
+			response.sendRedirect("/MypageInfo/userInfodo?userNo=");
 		}
 	}
 

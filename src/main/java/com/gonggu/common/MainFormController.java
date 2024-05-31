@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 import com.gonggu.mypage.model.service.MyPageServiceImpl;
 import com.gonggu.copy.model.dto.CopyDto;
@@ -28,6 +30,8 @@ public class MainFormController extends HttpServlet {
 		String action = request.getPathInfo();
 		String nextPage = "";
 		
+		HttpSession session = request.getSession();
+		
 		if(action.equals("/loginForm.do")) {
 			nextPage = "/views/member/login.jsp";
 		}else if(action.equals("/signup.do")) {
@@ -43,19 +47,6 @@ public class MainFormController extends HttpServlet {
 			List<CopyDto> companyList = copyService.getCompanyList();
 	        request.setAttribute("companyList", companyList);
 			nextPage = "/views/copy/copyList.jsp";
-		}else if(action.equals("/userMyPage.do")) {
-			nextPage = "/views/myPage/userMyPageEstimate.jsp";
-		} else if(action.equals("/usermypageinfo.do")) {
-			int userNo = Integer.parseInt(request.getParameter("userNo"));
-			
-			MyPageServiceImpl myService = new MyPageServiceImpl();
-			MyPageDtoImpl result = myService.getEditForm(userNo);
-			
-			request.setAttribute("result", result);
-			nextPage = "/views/myPage/userMyPageInfo.jsp";
-				
-		}else if(action.equals("/copyMyPage.do")) {
-			nextPage = "/views/myPage/copyMyPageEstimate.jsp";
 		}else if(action.equals("/copyDetail.do")) {
 //			CopyServiceImpl copyService = new CopyServiceImpl();
 //			List<CopyDto> companyList = copyService.getCompanyList();
