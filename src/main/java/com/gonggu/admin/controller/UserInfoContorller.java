@@ -37,7 +37,7 @@ public class UserInfoContorller extends HttpServlet {
 		String searchText = request.getParameter("searchText");
 		
 		// 전체 게시글 수
-		int listCount = infoService.getListCount(category, searchText);
+		int listCount = infoService.getUserListCount(category, searchText);
 				
 		// 보여줄 수
 		int pageLimit = 5;
@@ -48,7 +48,7 @@ public class UserInfoContorller extends HttpServlet {
 		
 		PageInfo pi = Pagnation.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		
-		ArrayList<InformationDto> list = infoService.getList(pi, category, searchText);
+		ArrayList<InformationDto> list = infoService.getUserList(pi, category, searchText);
 		
 		
 		// 게시글 번호 구하기 

@@ -3,6 +3,7 @@ package com.gonggu.admin.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +33,7 @@ public class CopyInfoController extends HttpServlet {
 		String searchText = request.getParameter("search-text");
 		
 		// 전체 게시글 수
-		int listCount = infoService.getListCount(category, searchText);
+		int listCount = infoService.getCopyListCount(category, searchText);
 				
 		// 보여줄 수
 		int pageLimit = 5;
@@ -43,7 +44,7 @@ public class CopyInfoController extends HttpServlet {
 		
 		PageInfo pi = Pagnation.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		
-		ArrayList<InformationDto> list = infoService.getList(pi, category, searchText);
+		ArrayList<InformationDto> list = infoService.getCopyList(pi, category, searchText);
 		
 		
 		// 게시글 번호 구하기 
@@ -59,6 +60,9 @@ public class CopyInfoController extends HttpServlet {
 		request.setAttribute("list" , list);
 		request.setAttribute("row", row);
 		request.setAttribute("pi", pi);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/copyInfo.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

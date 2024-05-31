@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.gonggu.admin.model.dto.InformationDto;
 import com.gonggu.admin.model.service.InformationImpl;
 
-@WebServlet("/CopyApproveController")
+@WebServlet("/copyApprove.do")
 public class CopyApproveController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,6 +27,7 @@ public class CopyApproveController extends HttpServlet {
 		InformationDto infoDto = new InformationDto();
 		
         int copyNo = Integer.parseInt(request.getParameter("copyNo"));
+        String approve = request.getParameter("approve");
         
         InformationImpl infoService = new InformationImpl();
         

@@ -69,10 +69,57 @@ public class InformationDao {
 		}
 		return result;
 	}
+	public ArrayList<InformationDto> getCopyList(PageInfo pi, String category, String searchText) {
+		
+		ArrayList<InformationDto> result = new ArrayList<>();
+		String query = "SELECT cu.COPY_NO, cu.COPY_NAME, cd.CEO_NAME, cd.COPY_ADDR, cu.APPROVE FROM COPY_USER cu "
+				+ "		JOIN COPY_DETAIL cd ON cu.COPY_NO = cd.COPY_NO"
+				+ "	 	where " + category + " Like '%' || ? || '%' "
+				+ " 	ORDER BY cu.INDATE desc"
+				+ " 	offset ? rows fetch first ? rows only";
+		
+		
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, searchText);
+			pstmt.setInt(2, pi.getOffset());
+			pstmt.setInt(3, pi.getBoardLimit());
+			System.out.println("Aaaaaaaaaaaa");
+			ResultSet rs = pstmt.executeQuery();
+			System.out.println("bbbbbbbbbbbbbb");
+			while(rs.next()) {
+				int no = rs.getInt("COPY_NO");
+				String copyName = rs.getString("COPY_NAME");
+				String ceo = rs.getString("CEO_NAME");
+				String addr = rs.getString("COPY_ADDR");
+				String approve = rs.getString("APPROVE");
+				
+				InformationDto infoDto = new InformationDto();
+				infoDto.setCopyNo(no);
+				infoDto.setCopyName(copyName);
+				infoDto.setCeoName(ceo);
+				infoDto.setCopyAddr(addr);
+				infoDto.setApprove(approve);
+				
+				
+				result.add(infoDto);
+				System.out.println(infoDto.getCopyNo());
+				System.out.println(infoDto.getCopyName());
+				System.out.println(infoDto.getCopyAddr());
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	
 	
-	public int getListCount(String category, String searchText) {
+	public int getUserListCount(String category, String searchText) {
 		
 		String query = "SELECT COUNT(*) as cnt FROM basic_user"
 				+ "		where " + category + " like '%' || ? || '%' ";
@@ -92,10 +139,35 @@ public class InformationDao {
 		return 0;
 		
 	}
-
-	public ArrayList<InformationDto> copyApproveList(PageInfo pi) {
+	public int getCopyListCount(String category, String searchText) {
 		
-		String query = "SELECT cu.COPY_NO, cu.COPY_NAME, COPY_ADDR from COPY_USER cu"
+		String query = "SELECT COUNT(*) as cnt FROM copy_user cu"
+				+ "		JOIN copy_detail cd ON cu.copy_no = cd.copy_no"
+				+ "		where " + category + " like '%' || ? || '%' ";
+		
+	System.out.println(query);
+	
+	
+	
+		try	{
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, searchText);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int result = rs.getInt("CNT");
+				return result;
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+		
+	}
+
+	public ArrayList<InformationDto> copyApproveList(PageInfo pi, String category, String searchText) {
+		
+		String query = "SELECT cu.COPY_NO, cu.COPY_NAME, cd.COPY_ADDR from COPY_USER cu"
 				+ "		JOIN COPY_DETAIL cd ON cu.COPY_NO = cd.COPY_NO";
 		
 		ArrayList<InformationDto>  result = new ArrayList<InformationDto>();
@@ -121,6 +193,34 @@ public class InformationDao {
 		}
 		return result;
 	}
+	
+public int copyApproveListCount(String category, String searchText) {
+		
+		String query = "SELECT COUNT(*) as cnt FROM copy_user cu"
+				+ "		JOIN copy_detail cd ON cu.copy_no = cd.copy_no"
+				+ "		where " + category + " like '%' || ? || '%' ";
+		
+	System.out.println(query);
+	
+	
+	
+		try	{
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, searchText);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int result = rs.getInt("CNT");
+				return result;
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+		
+	}
+
+// TODO : 업체 정보 불러오기 ApproveList 
 
 	public int copyApproveStatus(InformationDto infoDto) {
 		

@@ -3,6 +3,7 @@ package com.gonggu.admin.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +16,7 @@ import com.gonggu.common.PageInfo;
 import com.gonggu.common.Pagnation;
 
 
-@WebServlet("/CopyCheckController")
+@WebServlet("/copyCheck.do")
 public class CopyCheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,43 +28,42 @@ public class CopyCheckController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
+InformationImpl infoService = new InformationImpl();
+		
 		int cpage = Integer.parseInt(request.getParameter("cpage"));
 		
 		String category = request.getParameter("category");
 		String searchText = request.getParameter("search-text");
 		
-		
-		InformationImpl infoService = new InformationImpl();
-		
-		int listCount = infoService.getListCount(category, searchText);
-		
+		// 전체 게시글 수
+		int listCount = infoService.copyApproveListCount(category, searchText);
+				
 		// 보여줄 수
 		int pageLimit = 5;
-		
-		
+				
+				
 		// 한페이지에 보여질 게시글 
-		int boardLimit = 5;
-		
+		int boardLimit = 8;
 		
 		PageInfo pi = Pagnation.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		
-		ArrayList<InformationDto> list = infoService.copyApproveList(pi);
+		ArrayList<InformationDto> list = infoService.copyApproveList(pi, category, searchText);
 		
 		
-		infoService.copyApproveList(pi);
+		// 게시글 번호 구하기 
+		int row = listCount - (cpage-1) * boardLimit; 
+		
+		// 게시물 목록 jsp에게 전달해주기
+				request.setAttribute("list" , list);
+				request.setAttribute("row", row);
+				request.setAttribute("pi", pi);
+		
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/copyCheck.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String approve = request.getParameter("approve");
-		String cancle = request.getParameter("cancle");
-		
-		
-		
-		InformationDto infoDto = new InformationDto();
-
-		InformationImpl infoService = new InformationImpl();
-		infoService.copyApprove(infoDto);
 		
 	}
 

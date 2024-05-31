@@ -51,14 +51,14 @@
                                    				<td>
                                         			<!-- <div class="check" onclick="cancle()" name="cancle" id="cancle" style="background-color: red; float: right;" >취소</div>
                                         			<div class="check" onclick="check()" name="approve" id="check" style="float: right;">승인</div> -->
-                                        			<form action="companyServlet" method="post" style="display:inline;">
-                                                    	<input type="hidden" name="companyId" value="${company.id}" />
-                                                    	<input type="hidden" name="action" value="approve" />
+                                        			<form action="/copyApprove.do" method="post" style="display:inline;">
+                                                    	<input type="hidden" name="copyNo" value="${item.copyNo}" />
+                                                    	<input type="hidden" name="approve" value="approve" />
                                                     	<button type="submit" class="check" style="float: right;">승인</button>
                                                 	</form>
                                                 	<form action="companyServlet" method="post" style="display:inline;">
                                                     	<input type="hidden" name="companyId" value="${company.id}" />
-                                                    	<input type="hidden" name="action" value="cancle" />
+                                                    	<input type="hidden" name="cancle" value="cancle" />
                                                     	<button type="submit" class="check" style="background-color: red; float: right;">취소</button>
                                                 	</form>
                                     			</td>

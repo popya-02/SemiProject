@@ -39,10 +39,11 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>번호</th>
                                     <th>업체명</th>
+                                    <th>대표자명</th>
                                     <th>주소</th>
                                     <th>업체 번호</th>
+                                    <th>승인 여부 </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,11 +56,11 @@
 									<c:otherwise>
 										<c:forEach var="item" items="${list}">
 											<tr>
-												<th scope="row">${row}</th>
-												<td>${item.boardTitle}</td>
-												<td>${item.memberName}</td>
-												<td>${item.boardIndate}</td>
-												<td>${item.boardViews}</td>
+												<td>${item.copyName}</td>
+												<td>${item.ceoName}</td>
+												<td>${item.copyAddr}</td>
+												<td>${item.copyNo}</td>
+												<td>${item.approve}</td>
 											</tr>
 											<c:set var="row" value="${row-1}" />
 										</c:forEach>
@@ -76,18 +77,7 @@
 
         
         <!-- 페이지네이션 -->
-        <div class="col-12">
-            <div class="pagination d-flex justify-content-center mt-5">
-                <a href="#" class="rounded page-n">&laquo;</a>
-                <a href="#" class="rounded page-n">1</a>
-                <a href="#" class="rounded page-n">2</a>
-                <a href="#" class="rounded page-n">3</a>
-                <a href="#" class="rounded page-n">4</a>
-                <a href="#" class="rounded page-n">5</a>
-                <a href="#" class="rounded page-n">6</a>
-                <a href="#" class="rounded page-n">&raquo;</a>
-            </div>
-        </div>		
+        		
         <div class="col-12">
             <div class="pagination d-flex justify-content-center mt-5">
         
@@ -102,7 +92,7 @@
 
 					<c:otherwise>
 						<li class="page-item" style="margin-right: 0px"><a
-							class="rounded page-n" href="/freeBoard/List.do?cpage=${pi.cpage-1}"
+							class="rounded page-n" href="/copyInfo.do?cpage=${pi.cpage-1}"
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
 					</c:otherwise>
@@ -111,7 +101,7 @@
 
 				<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
 					<li class="page-item" style="margin-right: 0px"><a
-						class="rounded page-n" href="/freeBoard/List.do?cpage=${page}">${page}</a></li>
+						class="rounded page-n" href="/copyInfo.do?cpage=${page}">${page}</a></li>
 				</c:forEach>
 
 
@@ -125,7 +115,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item" style="margin-right: 0px"><a
-							class="rounded page-n" href="/freeBoard/List.do?cpage=${pi.cpage+1}"
+							class="rounded page-n" href="/copyInfo.do?cpage=${pi.cpage+1}"
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 						</a></li>
 					</c:otherwise>

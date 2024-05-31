@@ -17,22 +17,38 @@ public class InformationImpl implements Information {
 	
 	
 	@Override
-	public ArrayList<InformationDto> getList(PageInfo pi, String category, String searchText) {
+	public ArrayList<InformationDto> getUserList(PageInfo pi, String category, String searchText) {
 	
 		System.out.println(infoDao);
 		return infoDao.getUserList(pi, category, searchText);
 	}
 	
+	@Override
+	public ArrayList<InformationDto> getCopyList(PageInfo pi, String category, String searchText) {
+		
+		System.out.println(infoDao);
+		return infoDao.getCopyList(pi, category, searchText);
+	}
+	
 	
 	@Override
-	public int getListCount(String category, String searchText) {
-		return infoDao.getListCount(category, searchText);
+	public int getUserListCount(String category, String searchText) {
+		return infoDao.getUserListCount(category, searchText);
 	}
 	
 	@Override
-	public ArrayList<InformationDto> copyApproveList(PageInfo pi) {
-		return infoDao.copyApproveList(pi);
+	public int getCopyListCount(String category, String searchText) {
+		return infoDao.getCopyListCount(category, searchText);
+	}
+	
+	@Override
+	public ArrayList<InformationDto> copyApproveList(PageInfo pi, String category, String searchText) {
+		return infoDao.copyApproveList(pi, category, searchText);
 	} 
+	@Override
+	public int copyApproveListCount(String category, String searchText) {
+		return infoDao.copyApproveListCount(category, searchText);
+	}
 	
 	@Override
 	public int copyApproveStatus(InformationDto infoDto) {

@@ -13,8 +13,26 @@ public class InformationDto {
 	private int constructNo;
 	private int copyNo;
 	private String copyName;
+	private String ceoName;
 	private String copyStartDate;
 	private String copyAddr;
+	private String approve;
+	
+	
+	
+	public String getCeoName() {
+		return ceoName;
+	}
+	public void setCeoName(String ceoName) {
+		this.ceoName = ceoName;
+	}
+	public String getApprove() {
+		return approve;
+	}
+	public void setApprove(String approve) {
+		this.approve = approve;
+	}
+	
 	
 	
 	
