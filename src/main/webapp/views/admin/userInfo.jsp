@@ -25,18 +25,17 @@
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-md-12 col-lg-7">
-                        <h2 class="mb-3">회원 검색</h2>
-                        <form action="userForm.do?cpage=${pi.cpage}&category=${category}&searchText=" method="GET">
+                        <a href="/userForm.do?cpage=1&category=name&searchText="><h2 class="mb-3">회원 검색</h2></a>
+                        <form action="userForm.do?cpage=${pi.cpage}" method="GET">
                         <input type="hidden" name="cpage" value="1" />
                         
                         <div class="input-group search-wid d-flex box-right" style="margin-left: 15%;">
                             <select name="category">
-                                <option value="">전체</option>
                                 <option value="user_no">번호</option>
                                 <option value="name">이름</option>
                                 <option value="user_id">아이</option>
                             </select>
-                            <input type="search" class=" inputSize form-control py-2 "  aria-describedby="search-icon-1" >
+                            <input type="search" name="searchText" class=" inputSize form-control py-2 "  aria-describedby="search-icon-1" >
                             <!-- <span id="search-icon-1" class="input-group-text search-i">
                             <i class="fa fa-search"></i></span> -->
                             <button id="search-icon-1" class="input-group-text search-i" type="submit">
@@ -64,8 +63,8 @@
 									<c:otherwise>
 										<c:forEach var="item" items="${list}">
 											<tr>
-												<th scope="row" style="width: 120px;">${row}</th> 
-												<%-- <td>${itemuserNo}</td> --%>
+												<%-- <th scope="row" style="width: 120px;">${row}</th>  --%>
+												<th scope="row" style="width: 120px;">${item.userNo}</th> 
 												<td>${item.userName}</td>
 												<td>${item.userId}</td>
 												<td>${item.addr}</td>
