@@ -4,7 +4,7 @@ smartEditor = function() {
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
 		elPlaceHolder: "editorTxt",
-		sSkinURI: "/smarteditor2/SmartEditor2Skin.html",
+		sSkinURI: "/resources/smarteditor2/SmartEditor2Skin.html",
 		fCreator: "createSEditor2",
 		htParams: { fOnBeforeUnload: function() { } }
 	})

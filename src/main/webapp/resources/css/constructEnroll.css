@@ -1,94 +1,72 @@
-.newimg{
-    position:relative;
-    width: 800px;
-/* height: 500px; */
+.page-title{
+    margin-top: 115px;
 }
 
-/* 이미지 업로드 준비창 */
-.tlrhd-img{
-    display: block;
-    margin: 0 auto;
-    margin-top: 10px;
-    width: 500px;
-    height: 300px;
-    border: 1px solid black;
-}
-.image-upload {  
-    margin-top: 75px;
-}
-    
-.tlrhd-se{
-    display:block;
-    margin: 0 auto;
-    margin-top: 20px; 
-    
-    
-}
-
-
-.container {
-    margin: 0;
-}
-
-
-
-.button {
-    display: flex;
+.example-insert-section{
+    margin-top: 15px;
+    display: inline-flex;
     justify-content: center;
-}
-
-label {
-    cursor: pointer;
-    font-size: 1em;
-}
-
-#chooseFile {
-    visibility: hidden;
-}
-
-.fileContainer {
-    display: flex;
-    justify-content: center;
+    align-content: center;
     align-items: center;
-}
-
-.fileInput {
-    display: flex;
-    align-items: center;
-    border-bottom: solid 2px black;
-    width: 60%;
-    height: 30px;
-}
-
-#fileName {
-    margin-left: 5px;
-}
-
-.buttonContainer {
-    width: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
-    background-color: black;
-    color: white;
-    border-radius: 30px;
-    padding: 10px;
-    font-size: 0.8em;
-
-    cursor: pointer;
-}
-
-.image-show {
-    z-index: -1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
+    flex-direction: column;
     width: 100%;
     height: 100%;
 }
 
-.img {
-    position: absolute;
+.example-div{
+    margin: 30px 0;
+    width: 50%;
+}
+
+@media(max-width:1490px){	
+	.example-div{
+	    margin: 30px 0;
+	    width: 60%;
+	}
+}
+
+.copy-infor p{
+    margin: 5px 0;
+    font-size: 15px;
+}
+
+.example-title{
+    width: 99%;
+    height: 45px !important;
+    border: solid 1.5px #8787878d;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+.smart-editor{
+    margin-top: 20px;
+    width: 100%;
+    height: 500px;
+}
+
+.smart-editor-box{
+    width: 99%;
+    height: 90%;
+}
+
+.editor-btn{
+    width: 80px;
+    height: 45px;
+    border-radius: 17px;
+    background-color: #223455;
+    color: #fff;
+    font-weight: 100 !important;
+    font-size: 15px !important;
+}
+
+.editor-btn:hover{
+    background-color: #495977;
+    font-weight: bold !important;
+}
+
+.btn-box{
+    margin-top: 20px;
+    width: 99%;
+    display: inline-flex;
+    justify-content: flex-end;
 }

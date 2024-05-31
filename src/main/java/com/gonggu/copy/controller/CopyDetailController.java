@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.gonggu.copy.model.dto.CopyDto;
 import com.gonggu.copy.model.service.CopyService;
@@ -15,23 +16,25 @@ import com.gonggu.copy.model.service.CopyServiceImpl;
 @WebServlet("/copyDetail.do")
 public class CopyDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public CopyDetailController() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("aaaa");
-		 int copyNo = Integer.parseInt(request.getParameter("copyNo"));
-		 CopyService copyService = new CopyServiceImpl();
-	     CopyDto copyDetail = copyService.getCopyDetail(copyNo);
-	     System.out.println("aaaa");
-	     System.out.println(copyDetail);
-	        request.setAttribute("copyDetail", copyDetail);
-	        request.getRequestDispatcher("/views/copy/copyDetail.jsp").forward(request, response);
+	public CopyDetailController() {
+		super();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String copyNo = request.getParameter("copyNo");
+
+		CopyService copyService = new CopyServiceImpl();
+		CopyDto copyDetail = copyService.getCopyDetail(copyNo);
+
+		request.setAttribute("copyDetail", copyDetail);
+		request.getRequestDispatcher("/views/copy/copyDetail.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 
 }

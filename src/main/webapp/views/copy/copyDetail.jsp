@@ -19,40 +19,36 @@
 	<%@ include file="/views/common/header.jsp"%>
 	<!-- Navbar End -->
 
-	<div class="container-fluid page-header py-5"
-		style="background-color: #223455;">
+	<div class="container-fluid py-5" style="background-color: #223455; margin-top: 120px">
 		<h1 class="text-center text-white display-6">업체 소개</h1>
 	</div>
 
 
 	<div class="container-fluid py-5 mt-5">
-
 		<div class="container py-5">
 			<div class="row g-4 mb-5">
 				<div class="col-lg-8 col-xl-9">
 
 					<div class="row g-4">
 						<div class="col-lg-6">
-							<div style="width: 500px; height: 400px;"
-								class="img-border rounded">
+							<div class="sizing img-border rounded">
 
-
-								<!-- 이미지 업로드 -->
 								<div class="container">
-
 									<div class="image-upload" id="image-upload">
-
-										<img class="img-border rounded"
-											src="/resources/img/${copyDetail.copyPhoto}">
-
+										<c:choose>
+											<c:when test="${copyDetail.copyPhoto == null}">
+												<img class="img-border rounded img-size" src="/resources/img/img_not_found.jpg">
+											</c:when>
+											<c:otherwise>
+												<img class="img-border rounded img-size" src="/resources/img/${copyDetail.copyPhoto}">
+											</c:otherwise>
+										</c:choose>
 									</div>
 
-
 								</div>
-								<!--  -->
 							</div>
 						</div>
-						<div class="col-lg-6" style="padding-left: 100px;">
+						<div class="col-lg-6" style="padding-left: 122px; margin-top: 40px">
 							<h4 class="fw-bold mb-3">${copyDetail.copyName}</h4>
 							<!-- <p class="mb-3">Category: Vegetables</p>
                                 <h5 class="fw-bold mb-3">3,35 $</h5> -->
@@ -64,12 +60,11 @@
                                     <i class="fa fa-star"></i> -->
 							</div>
 							<p class="mb-4">${copyDetail.copyContent}</p>
-							<p class="mb-4">
 							<p>업체 정보</p>
 							<div>
 								${copyDetail.copyAddress} <br> ${copyDetail.copyNumber}
 							</div>
-							</p>
+							
 							<!-- <div class="input-group quantity mb-5" style="width: 100px;"> -->
 
 						</div>
@@ -83,11 +78,9 @@
 
 					<div class="owl-carousel vegetable-carousel justify-content-center">
 						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<div
-							class="border border-primary rounded position-relative vesitable-item">
+						<div class="border border-primary rounded position-relative vesitable-item">
 							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg"
-									class="img-fluid w-100 rounded-top" alt="">
+								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
 							</div>
 
 							<div class="p-4 pb-0 rounded-bottom">
@@ -96,18 +89,14 @@
 									sed do eiusmod te incididunt</p>
 								<div class="d-flex justify-content-between flex-lg-wrap">
 
-									<a href="#"
-										class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히
-										보기</a>
+									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
 								</div>
 							</div>
 						</div>
 						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<div
-							class="border border-primary rounded position-relative vesitable-item">
+						<div class="border border-primary rounded position-relative vesitable-item">
 							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg"
-									class="img-fluid w-100 rounded-top" alt="">
+								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
 							</div>
 
 							<div class="p-4 pb-0 rounded-bottom">
@@ -116,18 +105,14 @@
 									sed do eiusmod te incididunt</p>
 								<div class="d-flex justify-content-between flex-lg-wrap">
 
-									<a href="#"
-										class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히
-										보기</a>
+									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
 								</div>
 							</div>
 						</div>
 						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<div
-							class="border border-primary rounded position-relative vesitable-item">
+						<div class="border border-primary rounded position-relative vesitable-item">
 							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg"
-									class="img-fluid w-100 rounded-top" alt="">
+								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
 							</div>
 
 							<div class="p-4 pb-0 rounded-bottom">
@@ -136,18 +121,14 @@
 									sed do eiusmod te incididunt</p>
 								<div class="d-flex justify-content-between flex-lg-wrap">
 
-									<a href="#"
-										class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히
-										보기</a>
+									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
 								</div>
 							</div>
 						</div>
 						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<div
-							class="border border-primary rounded position-relative vesitable-item">
+						<div class="border border-primary rounded position-relative vesitable-item">
 							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg"
-									class="img-fluid w-100 rounded-top" alt="">
+								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
 							</div>
 
 							<div class="p-4 pb-0 rounded-bottom">
@@ -156,18 +137,14 @@
 									sed do eiusmod te incididunt</p>
 								<div class="d-flex justify-content-between flex-lg-wrap">
 
-									<a href="#"
-										class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히
-										보기</a>
+									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
 								</div>
 							</div>
 						</div>
 						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<div
-							class="border border-primary rounded position-relative vesitable-item">
+						<div class="border border-primary rounded position-relative vesitable-item">
 							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg"
-									class="img-fluid w-100 rounded-top" alt="">
+								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
 							</div>
 
 							<div class="p-4 pb-0 rounded-bottom">
@@ -176,9 +153,7 @@
 									sed do eiusmod te incididunt</p>
 								<div class="d-flex justify-content-between flex-lg-wrap">
 
-									<a href="#"
-										class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히
-										보기</a>
+									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
 								</div>
 							</div>
 						</div>
@@ -186,6 +161,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
 		<!-- 후기 게시판 -->
 		<div class="col-lg-12">
@@ -199,7 +175,7 @@
 				</div>
 			</nav>
 			<div class="tab-content mb-5 repl">
-				<div class="tab-pane active" id="nav-about" role="tabpanel"
+				<div class="tab-pane active" id="nav-about" role="tabpanel"	
 					aria-labelledby="nav-about-tab">
 
 
@@ -231,6 +207,7 @@
 					</div>
 
 				</div>
+			</div>
 			</div>
 			<!-- 후기 쓰기 -->
 			<form action="/reviwEnroll.do" class="repl">
