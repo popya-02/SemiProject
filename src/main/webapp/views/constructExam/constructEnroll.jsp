@@ -23,10 +23,10 @@
         <section class="example-insert-section">
             <div class="example-div">
                 <div class="copy-infor">
-                    <p>업체명 : [업체명]</p>
+                    <p>업체명 : ${sessionScope.copyName}</p>
                 </div>
                 <div class="copy-infor">
-                    <p>작성일 : 2024-05-28</p>
+                    <p>작성일 : <span id="noew-time"></span></p>
                 </div>
                 <div>
                     <input type="text" class="example-title" placeholder="제목을 입력해주세요.">
@@ -53,6 +53,7 @@
 
     <!-- Template Javascript -->
     <script src="/resources/js/main.js"></script>
+    <script src="/resources/js/nowtime.js"></script>
     </body>
 
 </html>

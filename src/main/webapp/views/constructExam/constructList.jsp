@@ -19,8 +19,6 @@
 
 		<div class="container-fluid py-5" style="background-color: #223455; margin-top: 120px">
         <h1 class="text-center text-white display-6">시공예시</h1>
-        <a href="/form/constructEnroll.do"> <button class="tlrhd-btn tlrhd-border btn-sm btn-outline-secondary">
-            등록</button>  </a>
     </div>
 
     <main>
@@ -28,6 +26,13 @@
         <!-- 업체 -->
         <div class="album py-5 bg-body-tertiary">
             <div class="container">
+				<c:if test="${sessionScope.userType == 'copyUser'}">
+	                <div class="submit-btn">
+			            <a href="/form/constructEnroll.do">
+			        		<button class="tlrhd-btn tlrhd-border btn-sm btn-outline-secondary">등록</button>
+			        	</a>
+	                </div>
+				</c:if>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
                     <div class="col">
@@ -37,15 +42,16 @@
                                     src="/resources/img/업체이미지1.jpeg" width="100%" height="100%" fill="#55595c" />
                             </a>
                             <p class="djqcpaud">(주)그린인테리어</p>
+                            <%-- <input type="hidden" id="userNum" value="${result.userNum}"> --%>
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
+                                <%-- <c:if test="${sessionScope.userNum == result.userNum}"> --%>
                                     <div class="btn-group">
-                                        <button type="button"
-                                            class="tlrhd-border btn-sm btn-outline-secondary">수정</button>
+                                        <button type="button" class="tlrhd-border btn-sm btn-outline-secondary">수정</button>
                                         &nbsp;
-                                        <button type="button"
-                                            class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>
+                                        <button type="button" class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>
                                     </div>
+                                <%-- </c:if> --%>
                                 </div>
                             </div>
                         </div>
