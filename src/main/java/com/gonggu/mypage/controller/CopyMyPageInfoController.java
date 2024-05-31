@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/CopyMyPageInfo")
-public class CopyMyPageInfo extends HttpServlet {
+@WebServlet("/CopyMyPageInfoController")
+public class CopyMyPageInfoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public CopyMyPageInfo() {
+    public CopyMyPageInfoController() {
         super();
     }
 
