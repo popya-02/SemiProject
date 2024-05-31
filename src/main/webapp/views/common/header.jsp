@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <div class="container-fluid fixed-top point-color base-shadow">
@@ -29,7 +30,7 @@
                     <a href="/form/userMyPage.do" class="nav-item nav-link point-text"><i class="fas fa-user useri-font"></i><p class="nav-item nav-link my-none">마이페이지</p></a>
                     <a href="/form/copyMyPage.do" class="nav-item nav-link point-text"><i class="fas fa-user useri-font"></i><p class="nav-item nav-link my-none">마이페이지</p></a> -->
 					<c:choose>
-						<c:when test="${sessionScope.userName != null}">
+						<c:when test="${sessionScope.userType != null}">
 							<a href="/form/constructlist.do" class="nav-item nav-link point-text">시공예시</a>
 							<a href="/form/copylist.do" class="nav-item nav-link point-text">시공업체</a>
 							<a href="/form/loginForm.do" class="nav-item nav-link point-text">로그인</a>
@@ -61,6 +62,14 @@
 							</div>
 						</c:otherwise>
 					</c:choose>
+					<div class="nav-item dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">회원관리</a>
+								<div class="dropdown-menu m-0">
+									<a href="/userForm.do?cpage=1&category=name&searchText=" class="dropdown-item">회원 조회</a> 
+									<a href="/form/copyInfo.do" class="dropdown-item">업체 조회</a> 
+									<a href="/form/copyCheck.do" class="dropdown-item">업체 승인</a>
+								</div>
+							</div>
 				</div>
 			</div>
 		</nav>

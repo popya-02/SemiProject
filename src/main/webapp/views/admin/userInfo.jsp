@@ -26,16 +26,23 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-md-12 col-lg-7">
                         <h2 class="mb-3">회원 검색</h2>
+                        <form action="userForm.do?cpage=${pi.cpage}&category=${category}&searchText=" method="GET">
+                        <input type="hidden" name="cpage" value="1" />
+                        
                         <div class="input-group search-wid d-flex box-right" style="margin-left: 15%;">
-                            <select name="" id="">
+                            <select name="category">
                                 <option value="">전체</option>
-                                <option value="">번호</option>
-                                <option value="">이름</option>
+                                <option value="user_no">번호</option>
+                                <option value="name">이름</option>
+                                <option value="user_id">아이</option>
                             </select>
                             <input type="search" class=" inputSize form-control py-2 "  aria-describedby="search-icon-1" >
-                            <span id="search-icon-1" class="input-group-text search-i">
-                            <i class="fa fa-search"></i></span>
+                            <!-- <span id="search-icon-1" class="input-group-text search-i">
+                            <i class="fa fa-search"></i></span> -->
+                            <button id="search-icon-1" class="input-group-text search-i" type="submit">
+                            <i class="fa fa-search"></i></button>
                         </div>
+                        </form>
                     </div>
                     <div>
                         <table>
@@ -43,6 +50,7 @@
                                 <tr>
                                     <th>회원 번호</th>
                                     <th>이름</th>
+                                    <th>id</th>
                                     <th>주소</th>
                                 </tr>
 	                            </thead>
@@ -56,10 +64,11 @@
 									<c:otherwise>
 										<c:forEach var="item" items="${list}">
 											<tr>
-												<th scope="row">${row}</th>
-												<td>${itme.userNo}</td>
-												<td>${userName}</td>
-												<td>${addr}</td>
+												<th scope="row" style="width: 120px;">${row}</th> 
+												<%-- <td>${itemuserNo}</td> --%>
+												<td>${item.userName}</td>
+												<td>${item.userId}</td>
+												<td>${item.addr}</td>
 											</tr>
 											<c:set var="row" value="${row-1}" />
 										</c:forEach>
@@ -74,7 +83,7 @@
         <!-- Hero End -->
 
         <!-- 페이지네이션 -->
-        <div class="col-12">
+        <!-- <div class="col-12">
             <div class="pagination d-flex justify-content-center mt-5">
                 <a href="#" class="rounded page-n">&laquo;</a>
                 <a href="#" class="rounded page-n">1</a>
@@ -85,8 +94,8 @@
                 <a href="#" class="rounded page-n">6</a>
                 <a href="#" class="rounded page-n">&raquo;</a>
             </div>
-        </div>
-        <%-- <div class="col-12s">
+        </div> -->
+         <div class="col-12s">
             <div class="pagination d-flex justify-content-center mt-5">
         
 				<!-- 왼쪽 버튼  -->
@@ -100,7 +109,7 @@
 
 					<c:otherwise>
 						<li class="page-item" style="margin-right: 0px"><a
-							class="rounded page-n" href="/freeBoard/List.do?cpage=${pi.cpage-1}"
+							class="rounded page-n" href="/userForm.do?cpage=${pi.cpage-1}&category=name&searchText="
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
 					</c:otherwise>
@@ -109,7 +118,7 @@
 
 				<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
 					<li class="page-item" style="margin-right: 0px"><a
-						class="rounded page-n" href="/freeBoard/List.do?cpage=${page}">${page}</a></li>
+						class="rounded page-n" href="/userForm.do?cpage=${page}&category=name&searchText=">${page}</a></li>
 				</c:forEach>
 
 
@@ -123,7 +132,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item" style="margin-right: 0px"><a
-							class="rounded page-n" href="/freeBoard/List.do?cpage=${pi.cpage+1}"
+							class="rounded page-n" href="/userForm.do?cpage=${pi.cpage+1}&category=name&searchText="
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 						</a></li>
 					</c:otherwise>
@@ -131,7 +140,7 @@
 
 
 			</div>
-        </div>	 --%>
+        </div>	 
         <!-- Footer Start -->
        	<%@ include file="/views/common/footer.jsp"%>
         <!-- Copyright End -->

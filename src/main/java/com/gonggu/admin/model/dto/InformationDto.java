@@ -5,6 +5,7 @@ public class InformationDto {
 	
 	private int userNo;
 	private String userName;
+	private String userId;
 	private String addr;
 	private String indate;
 	private String phoneNum;
@@ -15,6 +16,14 @@ public class InformationDto {
 	private String copyStartDate;
 	private String copyAddr;
 	
+	
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public int getUserNo() {
 		return userNo;
 	}

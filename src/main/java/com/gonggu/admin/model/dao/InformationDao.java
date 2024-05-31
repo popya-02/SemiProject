@@ -31,12 +31,11 @@ public class InformationDao {
 	public ArrayList<InformationDto> getUserList(PageInfo pi, String category, String searchText) {
 		
 		ArrayList<InformationDto> result = new ArrayList<>();
-		String query = "SELECT USER_NO, NAME, ADDR FROM basic_user"
+		String query = "SELECT USER_NO, NAME, USER_ID, ADDR FROM basic_user"
 				+ " where " + category + " Like '%' || ? || '%' "
 				+ " ORDER BY user_no desc"
 				+ " offset ? rows fetch first ? rows only";
 
-		System.out.println("gd22");
 			
 		
 		try {
@@ -45,19 +44,21 @@ public class InformationDao {
 			pstmt.setInt(2, pi.getOffset());
 			pstmt.setInt(3, pi.getBoardLimit());
 			ResultSet rs = pstmt.executeQuery();
-			System.out.println("gd");
 			while(rs.next()) {
 				int no = rs.getInt("USER_NO");
 				String name = rs.getString("NAME");
+				String id = rs.getString("USER_ID");
 				String addr = rs.getString("ADDR");
 
 				InformationDto infoDto = new InformationDto();
 				infoDto.setUserNo(no);
 				infoDto.setUserName(name);
+				infoDto.setUserId(id);
 				infoDto.setAddr(addr);
 				
 
 				result.add(infoDto);
+				System.out.println(infoDto.getUserId());
 				System.out.println(infoDto.getUserName());
 			}
 
@@ -79,9 +80,7 @@ public class InformationDao {
 		try	{
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, searchText);
-			System.out.println("aaaaaaaaaaa");
 			ResultSet rs = pstmt.executeQuery();
-			System.out.println("bbbbbbbbbbb");
 
 			while(rs.next()) {
 				int result = rs.getInt("CNT");
