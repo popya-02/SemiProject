@@ -27,25 +27,31 @@ public class CopyApproveController extends HttpServlet {
 		
 		InformationDto infoDto = new InformationDto();
 		
-        int copyNo = Integer.parseInt(request.getParameter("copyNo"));
+		String copyNo = request.getParameter("copyNo");
         String approve = request.getParameter("approve");
         
         InformationImpl infoService = new InformationImpl();
         
         
+        int result = 0;
+        
+        infoDto.setCopyNo(copyNo);
+        infoDto.setApprove(approve);
+        
         // 세션에 승인 상태 저장
         HttpSession session = request.getSession();
         if ("approve".equals(approve)) {
             session.setAttribute("approvalStatus", "B");
+            result = infoService.copyApproveStatus(infoDto);
         } else {
             session.setAttribute("approvalStatus", "A");
         }
         
         
-        int result = infoService.copyApproveStatus(infoDto);
+//        int result = infoService.copyApproveStatus(infoDto);
         
         if(result == 1) {
-        	response.sendRedirect("/copyCheck.do");
+        	response.sendRedirect("/copyCheck.do?cpage=1");
         }
 	}
 

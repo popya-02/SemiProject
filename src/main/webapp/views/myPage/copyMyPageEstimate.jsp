@@ -18,7 +18,9 @@
         <!-- Navbar End -->
 
 		        <h2 class="mypage_1">업체페이지</h2>
-        <nav class="mypage_list">
+		        <c:choose>
+			<c:when test="${sessionScope.approvalStatus == 'B'}">
+				 <nav class="mypage_list">
             <ul>
                 <li class="mypage_list_1"><a href="">견적/공사 내역</a></li>
                 <li class="mypage_list_2"><a href="">관심 업체</a></li>
@@ -76,6 +78,12 @@
                 </div>
             </div>
         </div>
+			</c:when>
+			<c:otherwise>
+				<p>승인 대기 중입니다.</p>
+			</c:otherwise>
+		</c:choose>
+        
 
         <!-- Footer Start -->
        	<%@ include file="/views/common/footer.jsp"%>

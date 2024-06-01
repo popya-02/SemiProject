@@ -1,5 +1,7 @@
 package com.gonggu.admin.model.dto;
 
+import java.math.BigInteger;
+
 public class InformationDto {
 
 	
@@ -11,7 +13,7 @@ public class InformationDto {
 	private String phoneNum;
 	
 	private int constructNo;
-	private int copyNo;
+	private String copyNo;
 	private String copyName;
 	private String ceoName;
 	private String copyStartDate;
@@ -85,10 +87,10 @@ public class InformationDto {
 	public void setCopyName(String copyName) {
 		this.copyName = copyName;
 	}
-	public int getCopyNo() {
+	public String getCopyNo() {
 		return copyNo;
 	}
-	public void setCopyNo(int copyNo) {
+	public void setCopyNo(String copyNo) {
 		this.copyNo = copyNo;
 	}
 	public String getCopyStartDate() {

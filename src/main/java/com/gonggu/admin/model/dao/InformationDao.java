@@ -1,5 +1,6 @@
 package com.gonggu.admin.model.dao;
 
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -69,6 +70,8 @@ public class InformationDao {
 		}
 		return result;
 	}
+	
+	
 	public ArrayList<InformationDto> getCopyList(PageInfo pi, String category, String searchText) {
 		
 		ArrayList<InformationDto> result = new ArrayList<>();
@@ -85,11 +88,10 @@ public class InformationDao {
 			pstmt.setString(1, searchText);
 			pstmt.setInt(2, pi.getOffset());
 			pstmt.setInt(3, pi.getBoardLimit());
-			System.out.println("Aaaaaaaaaaaa");
 			ResultSet rs = pstmt.executeQuery();
-			System.out.println("bbbbbbbbbbbbbb");
 			while(rs.next()) {
-				int no = rs.getInt("COPY_NO");
+				String no = rs.getString("COPY_NO");
+				System.out.println(no);
 				String copyName = rs.getString("COPY_NAME");
 				String ceo = rs.getString("CEO_NAME");
 				String addr = rs.getString("COPY_ADDR");
@@ -178,7 +180,7 @@ public class InformationDao {
 			
 			while(rs.next()) {
 				
-				int no = rs.getInt("COPY_NO");
+				String no = rs.getString("COPY_NO");
 				String copyName = rs.getString("COPY_NAME");
 				String ceo = rs.getString("CEO_NAME");
 				String addr = rs.getString("COPY_ADDR");
@@ -230,15 +232,18 @@ public int copyApproveListCount() {
 	public int copyApproveStatus(InformationDto infoDto) {
 		
 		String query = "UPDATE COPY_USER SET APPROVE = 'Y' WHERE copy_no = ?";
-		
+		int result = 0;
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, infoDto.getCopyNo());
-			int result = pstmt.executeUpdate();
+			pstmt.setString(1, infoDto.getCopyNo());
+			result = pstmt.executeUpdate();
+			System.out.println("aaaaa " + result);
 			return result;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+        System.out.println("aaaaa " + result);
+
 		return 0;
 	}
 }

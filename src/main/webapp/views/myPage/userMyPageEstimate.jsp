@@ -18,8 +18,9 @@
         <!-- Navbar End -->
 
 		        <h2 class="mypage_1">마이페이지</h2>
+		
         <nav class="mypage_list">
-            <ul>
+		<ul>
                 <li class="mypage_list_1"><a href="">견적/공사 내역</a></li>
                 <li class="mypage_list_2"><a href="">관심 업체</a></li>
                 <li class="mypage_list_3"><a href="">정보 수정</a></li>
