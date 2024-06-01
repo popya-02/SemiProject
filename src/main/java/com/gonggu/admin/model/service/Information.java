@@ -20,9 +20,9 @@ public interface Information {
 	
 	
 	
-	public ArrayList<InformationDto> copyApproveList(PageInfo pi, String category, String searchText);
+	public ArrayList<InformationDto> copyApproveList(PageInfo pi);
 	
-	public int copyApproveListCount(String category, String searchText);
+	public int copyApproveListCount();
 	
 	
 	public int copyApproveStatus(InformationDto infoDto);

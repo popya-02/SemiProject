@@ -32,11 +32,9 @@ InformationImpl infoService = new InformationImpl();
 		
 		int cpage = Integer.parseInt(request.getParameter("cpage"));
 		
-		String category = request.getParameter("category");
-		String searchText = request.getParameter("search-text");
 		
 		// 전체 게시글 수
-		int listCount = infoService.copyApproveListCount(category, searchText);
+		int listCount = infoService.copyApproveListCount();
 				
 		// 보여줄 수
 		int pageLimit = 5;
@@ -47,7 +45,13 @@ InformationImpl infoService = new InformationImpl();
 		
 		PageInfo pi = Pagnation.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		
-		ArrayList<InformationDto> list = infoService.copyApproveList(pi, category, searchText);
+		ArrayList<InformationDto> list = infoService.copyApproveList(pi);
+		
+		
+		System.out.println("List size: " + list.size()); // 리스트 크기 확인
+		for (InformationDto copy : list) {
+		    System.out.println("Copy Name: " + copy.getCopyName()); // 리스트 데이터 확인
+		}
 		
 		
 		// 게시글 번호 구하기 

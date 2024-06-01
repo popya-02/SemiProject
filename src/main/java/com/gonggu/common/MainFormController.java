@@ -42,8 +42,7 @@ public class MainFormController extends HttpServlet {
 			List<CopyDto> companyList = copyService.getCompanyList();
 	        request.setAttribute("companyList", companyList);
 			nextPage = "/views/copy/copyList.jsp";
-		}else if(action.equals("/userInfo.do")) {
-			nextPage = "/userForm.do";
+		
 		}else if(action.equals("/copyDetail.do")) {
 //			CopyServiceImpl copyService = new CopyServiceImpl();
 //			List<CopyDto> companyList = copyService.getCompanyList();
@@ -54,10 +53,6 @@ public class MainFormController extends HttpServlet {
 			nextPage = "/views/constructExam/constructEnroll.jsp";
 		}else if(action.equals("/constructDetail.do")) {
 			nextPage = "/views/constructExam/constructDetail.jsp";
-		}else if(action.equals("/copyInfo.do")) {
-			nextPage = "/views/admin/copyInfo.jsp";
-		}else if(action.equals("/copyCheck.do")) {
-			nextPage = "/views/admin/copyCheck.jsp";
 		}
 		
 		

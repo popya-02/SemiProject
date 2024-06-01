@@ -42,12 +42,12 @@ public class InformationImpl implements Information {
 	}
 	
 	@Override
-	public ArrayList<InformationDto> copyApproveList(PageInfo pi, String category, String searchText) {
-		return infoDao.copyApproveList(pi, category, searchText);
+	public ArrayList<InformationDto> copyApproveList(PageInfo pi) {
+		return infoDao.copyApproveList(pi);
 	} 
 	@Override
-	public int copyApproveListCount(String category, String searchText) {
-		return infoDao.copyApproveListCount(category, searchText);
+	public int copyApproveListCount() {
+		return infoDao.copyApproveListCount();
 	}
 	
 	@Override

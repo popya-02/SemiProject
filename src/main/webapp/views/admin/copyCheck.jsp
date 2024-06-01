@@ -28,10 +28,12 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>번호</th>
-                                    <th>업체 명</th>
+                                    <th>업체명</th>
+                                    <th>대표자명</th>
                                     <th>주소</th>
-                                    <th></th>
+                                    <th>업체 번호</th>
+                                    <th style="text-align: center;">승인 여부 </th>
+                                    <th><span ></span></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,11 +46,13 @@
 									</c:when>
 									<c:otherwise>
 										<c:forEach var="item" items="${list}">
-											<tr>
-												<td>${item.copyNo}</td>
-                                   				<td>집닥</td>
-                                   				<td>서울특별시 강남구</td>
-                                   				<td>
+										    <tr>
+										        <td>${item.copyName}</td>
+										        <td>${item.ceoName}</td>
+										        <td>${item.copyAddr}</td>
+										        <td>${item.copyNo}</td>
+										        <td style="text-align: center;">${item.approve}</td>
+										        <td>
                                         			<!-- <div class="check" onclick="cancle()" name="cancle" id="cancle" style="background-color: red; float: right;" >취소</div>
                                         			<div class="check" onclick="check()" name="approve" id="check" style="float: right;">승인</div> -->
                                         			<form action="/copyApprove.do" method="post" style="display:inline;">
@@ -90,7 +94,7 @@
 
 					<c:otherwise>
 						<li class="page-item" style="margin-right: 0px"><a
-							class="rounded page-n" href="/freeBoard/List.do?cpage=${pi.cpage-1}"
+							class="rounded page-n" href="/copyCheck.do?cpage=${pi.cpage-1}"
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
 					</c:otherwise>
@@ -99,7 +103,7 @@
 
 				<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
 					<li class="page-item" style="margin-right: 0px"><a
-						class="rounded page-n" href="/freeBoard/List.do?cpage=${page}">${page}</a></li>
+						class="rounded page-n" href="/copyCheck.do?cpage=${page}">${page}</a></li>
 				</c:forEach>
 
 
@@ -113,7 +117,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item" style="margin-right: 0px"><a
-							class="rounded page-n" href="/freeBoard/List.do?cpage=${pi.cpage+1}"
+							class="rounded page-n" href="/copyCheck.do?cpage=${pi.cpage+1}"
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 						</a></li>
 					</c:otherwise>

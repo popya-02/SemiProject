@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.gonggu.admin.model.dto.InformationDto;
 import com.gonggu.admin.model.service.InformationImpl;
@@ -31,15 +32,21 @@ public class CopyApproveController extends HttpServlet {
         
         InformationImpl infoService = new InformationImpl();
         
-//        infoDto.setCopyNo(copyNo);
+        
+        // 세션에 승인 상태 저장
+        HttpSession session = request.getSession();
+        if ("approve".equals(approve)) {
+            session.setAttribute("approvalStatus", "B");
+        } else {
+            session.setAttribute("approvalStatus", "A");
+        }
         
         
         int result = infoService.copyApproveStatus(infoDto);
         
         if(result == 1) {
-        	response.sendRedirect("/copyApprove");
+        	response.sendRedirect("/copyCheck.do");
         }
-    
 	}
 
 }

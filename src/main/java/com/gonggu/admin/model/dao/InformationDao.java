@@ -165,10 +165,11 @@ public class InformationDao {
 		
 	}
 
-	public ArrayList<InformationDto> copyApproveList(PageInfo pi, String category, String searchText) {
+	public ArrayList<InformationDto> copyApproveList(PageInfo pi) {
 		
-		String query = "SELECT cu.COPY_NO, cu.COPY_NAME, cd.COPY_ADDR from COPY_USER cu"
-				+ "		JOIN COPY_DETAIL cd ON cu.COPY_NO = cd.COPY_NO";
+		String query = "SELECT cu.COPY_NO, cu.COPY_NAME, cd.CEO_NAME, cd.COPY_ADDR, cu.APPROVE FROM COPY_USER cu"
+				+ "		JOIN COPY_DETAIL cd ON cu.COPY_NO = cd.COPY_NO"
+				+ "		where cu.APPROVE = 'N' ";
 		
 		ArrayList<InformationDto>  result = new ArrayList<InformationDto>();
 		try {
@@ -178,14 +179,20 @@ public class InformationDao {
 			while(rs.next()) {
 				
 				int no = rs.getInt("COPY_NO");
-				String name = rs.getString("COPY_NAME");
+				String copyName = rs.getString("COPY_NAME");
+				String ceo = rs.getString("CEO_NAME");
 				String addr = rs.getString("COPY_ADDR");
+				String approve = rs.getString("APPROVE");
 				
 				InformationDto infoDto = new InformationDto();
 				infoDto.setCopyNo(no);
-				infoDto.setCopyName(name);
+				infoDto.setCopyName(copyName);
+				infoDto.setCeoName(ceo);
 				infoDto.setCopyAddr(addr);
+				infoDto.setApprove(approve);
 				
+				result.add(infoDto);
+				System.out.println(infoDto.getCopyNo());
 			}
 			
 		} catch (SQLException e) {
@@ -194,11 +201,10 @@ public class InformationDao {
 		return result;
 	}
 	
-public int copyApproveListCount(String category, String searchText) {
+public int copyApproveListCount() {
 		
 		String query = "SELECT COUNT(*) as cnt FROM copy_user cu"
-				+ "		JOIN copy_detail cd ON cu.copy_no = cd.copy_no"
-				+ "		where " + category + " like '%' || ? || '%' ";
+				+ "		JOIN copy_detail cd ON cu.copy_no = cd.copy_no";
 		
 	System.out.println(query);
 	
@@ -206,7 +212,6 @@ public int copyApproveListCount(String category, String searchText) {
 	
 		try	{
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, searchText);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
