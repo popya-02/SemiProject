@@ -17,23 +17,25 @@
 	    <%@ include file="/views/common/header.jsp"%>        
         <!-- Navbar End -->
 
-		        <section class=" p-3 p-md-4 p-xl-5 chat-section">
+		<section class=" p-3 p-md-4 p-xl-5 chat-section">
             <div class="chat-container chat-box card border-light-subtle shadow-sm">
                 <h4 class="chatting-title">견적 상담 : (업체명)</h4>
                 <div class="chatting-box">
-                    <div class="chatting-area">
+                    <div class="chatting-area" id="chatting-area">
                         <div class="receive-msg">
                             <p>수신 메세지</p>
                         </div>
-                        <div class="transmit-msg">
+<!--                         <div class="transmit-msg">
                             <p>송신메세지</p>
-                        </div>
+                        </div> -->
                     </div>
+                    <div style="height: 55px; width: 100%"></div>
                     <div class="input-box">
                         <input class="text-input" type="text" name="transmit-msg" id="transmit-msg">
-                        <button class="btn enter-btn">전 송</button>
+                        <button class="btn enter-btn" onclick="submitMsg()">전 송</button>
                     </div>
                 </div>
+                <button class="btn">상담 종료 </button>
             </div>
         </section>
 
@@ -50,6 +52,7 @@
 
     <!-- Template Javascript -->
     <script src="/resources/js/main.js"></script>
+    <script src="/resources/js/submitMsg.js"></script>
     </body>
 
 </html>

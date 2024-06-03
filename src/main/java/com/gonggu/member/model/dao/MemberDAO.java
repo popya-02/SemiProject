@@ -218,6 +218,31 @@ public class MemberDAO {
 			
 			int result = pstmt.executeUpdate();
 			
+			return result;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+
+	public int signupPicture(MemberDTO memberDto) {
+		String query = "INSERT INTO COPY_PHOTO cp VALUES("
+					+ "	copy_picture_seq.NEXTVAL,"
+					+ "	?,"
+					+ "	NULL,"
+					+ "	NULL"
+					+ ")";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, memberDto.getCopyNum());
+			
+			int result = pstmt.executeUpdate();
+			
 			pstmt.close();
 			con.close();
 			
