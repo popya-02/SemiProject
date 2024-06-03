@@ -25,7 +25,11 @@ public interface Information {
 	public int copyApproveListCount();
 	
 	
-	public int copyApproveStatus(InformationDto infoDto);
+	public int updateCopyApproveStatus(InformationDto infoDto);
+	
+	public int saveCopyStatus(String copyNo, String approve); 
+	
+	public String getUserApprovalStatus(String copyNo);
 	
 	
 	

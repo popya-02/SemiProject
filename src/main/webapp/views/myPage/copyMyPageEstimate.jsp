@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +16,7 @@
     </head>
     <body>
         <!-- Navbar start -->
-	    <%@ include file="/views/common/header.jsp"%>        
+	    <%@ include file="/views/common/header.jsp"%>   
         <!-- Navbar End -->
 
 		        <h2 class="mypage_1">업체페이지</h2>
@@ -80,7 +82,9 @@
         </div>
 			</c:when>
 			<c:otherwise>
-				<p>승인 대기 중입니다.</p>
+				<div>
+					<h3 style="text-align: center; margin: 100px;"  >업체 승인 요청 대기 중입니다...</h3>
+				</div>
 			</c:otherwise>
 		</c:choose>
         

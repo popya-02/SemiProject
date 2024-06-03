@@ -19,9 +19,16 @@ public class InformationDto {
 	private String copyStartDate;
 	private String copyAddr;
 	private String approve;
+	private int approveStatus = 0;
 	
 	
 	
+	public int getApproveStatus() {
+		return approveStatus;
+	}
+	public void setApproveStatus(int approveStatus) {
+		this.approveStatus = approveStatus;
+	}
 	public String getCeoName() {
 		return ceoName;
 	}

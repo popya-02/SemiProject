@@ -51,11 +51,21 @@ public class InformationImpl implements Information {
 	}
 	
 	@Override
-	public int copyApproveStatus(InformationDto infoDto) {
+	public int updateCopyApproveStatus(InformationDto infoDto) {
 		
-		return infoDao.copyApproveStatus(infoDto);
+		return infoDao.updateCopyApproveStatus(infoDto);
 	}
 	
+	@Override
+	public int saveCopyStatus(String copyNo, String approve) {
+		return infoDao.saveCopyStatus(copyNo, approve);
+	}
 	
+	@Override
+	public String getUserApprovalStatus(String copyNo) {
+		return infoDao.getUserApprovalStatus(copyNo);
+	}
 
+
+	
 }

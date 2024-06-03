@@ -229,15 +229,19 @@ public int copyApproveListCount() {
 
 // TODO : 업체 정보 불러오기 ApproveList 
 
-	public int copyApproveStatus(InformationDto infoDto) {
+	public int updateCopyApproveStatus(InformationDto infoDto) {
 		
 		String query = "UPDATE COPY_USER SET APPROVE = 'Y' WHERE copy_no = ?";
+		
+		
 		int result = 0;
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, infoDto.getCopyNo());
 			result = pstmt.executeUpdate();
+			
 			System.out.println("aaaaa " + result);
+			System.out.println(infoDto.getCopyNo());
 			return result;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -246,4 +250,49 @@ public int copyApproveListCount() {
 
 		return 0;
 	}
+	
+	public int saveCopyStatus(String copyNo, String approve) {
+		 String query = "SELECT approve from copy_user"
+		 		+ "		 where copy_no = ?"
+		 		+ "		 AND approve = 'Y' ";
+		 
+		 try {
+			pstmt = con.prepareStatement(query);
+	        pstmt.setObject(1, copyNo);
+	        int result = pstmt.executeUpdate();
+	        
+	        if (result == 0) {
+	        	System.out.println("asasasass");
+	        } else {
+	        	return result;
+	        }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 return 0;
+	}
+	
+	public String getUserApprovalStatus(String copyNo) {
+		String approvalStatus = null;
+		
+		
+		String query = "SELECT approve FROM users "
+				+ "		WHERE copy_no= ? ";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, copyNo);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				approvalStatus = rs.getString("approve");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return approvalStatus;
+		
+	}
+
+	
 }

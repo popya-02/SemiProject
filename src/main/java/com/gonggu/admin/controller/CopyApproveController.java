@@ -35,23 +35,33 @@ public class CopyApproveController extends HttpServlet {
         
         int result = 0;
         
+        
+//        String approvalStatus = infoService.getUserApprovalStatus(copyNo);
+        
         infoDto.setCopyNo(copyNo);
         infoDto.setApprove(approve);
+        System.out.println("2222222 " + infoDto.getApprove());    // approve
+        
+//        if (approvalStatus != null && approvalStatus.equals("Y")) {
+//            System.out.println("current");
+//        } else {
+//        }
         
         // 세션에 승인 상태 저장
-        HttpSession session = request.getSession();
-        if ("approve".equals(approve)) {
-            session.setAttribute("approvalStatus", "B");
-            result = infoService.copyApproveStatus(infoDto);
-        } else {
-            session.setAttribute("approvalStatus", "A");
-        }
-        
-        
-//        int result = infoService.copyApproveStatus(infoDto);
+//        HttpSession session = request.getSession();
+//        if (infoDto.getApproveStatus() == 0) {
+//            result = infoService.updateCopyApproveStatus(infoDto);
+//            infoDto.setApproveStatus(1);
+//            System.out.println("int approve = " + infoDto.getApproveStatus());
+//        } else {
+//        	System.out.println("aaaaa");
+//        }
+            result = infoService.updateCopyApproveStatus(infoDto);
         
         if(result == 1) {
         	response.sendRedirect("/copyCheck.do?cpage=1");
+        } else {
+        	response.sendRedirect("/error.jsp");
         }
 	}
 

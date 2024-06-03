@@ -48,10 +48,6 @@ InformationImpl infoService = new InformationImpl();
 		ArrayList<InformationDto> list = infoService.copyApproveList(pi);
 		
 		
-		System.out.println("List size: " + list.size()); // 리스트 크기 확인
-		for (InformationDto copy : list) {
-		    System.out.println("Copy Name: " + copy.getCopyName()); // 리스트 데이터 확인
-		}
 		
 		
 		// 게시글 번호 구하기 
