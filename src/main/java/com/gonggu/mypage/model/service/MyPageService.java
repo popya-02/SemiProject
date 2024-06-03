@@ -4,14 +4,18 @@ import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 
 public interface MyPageService {
 
-	int setEdit(MyPageDtoImpl myDto);
+	public int setUserEdit(MyPageDtoImpl myDto);
 
-	public MyPageDtoImpl getEditForm(String userNo);
+	public MyPageDtoImpl getUserDetail(int userNo);
 
-	public MyPageDtoImpl getMypageEstimate(int userNo);
+	public MyPageDtoImpl getUserEstimate(int userNo);
 
-	public MyPageDtoImpl getMyCopyEstimate(String copyNo);
+	public MyPageDtoImpl getCopyEstimate(String copyNo);
 
 	public int setCopyEdit(MyPageDtoImpl myDto);
+	
+	public MyPageDtoImpl getCopyDetail(String copyNo);
+
+	public int pictureUpload(MyPageDtoImpl myDto);
 
 }

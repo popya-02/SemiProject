@@ -26,19 +26,23 @@ public class MyPageInfoController extends HttpServlet {
 		String nextPage = "";
 		
 		if(action.equals("/copyInfo.do")) {
-            String userNo = request.getParameter("userNo");
+            String copyNo = request.getParameter("copyNo");
 			
 			MyPageServiceImpl myService = new MyPageServiceImpl();
-			MyPageDtoImpl result = myService.getEditForm(userNo);
+			MyPageDtoImpl result = myService.getCopyDetail(copyNo);
+			
+			myService.getPictureName(result);
+			System.out.println(result.getPictureName());
 			
 			request.setAttribute("result", result);
 			nextPage = "/views/myPage/copyMyPageInfo.jsp";
 			
 		}else if(action.equals("/userInfo.do")) {
-			String userNo = request.getParameter("userNo");
+			int userNo = Integer.parseInt(request.getParameter("userNo"));
 			
 			MyPageServiceImpl myService = new MyPageServiceImpl();
-			MyPageDtoImpl result = myService.getEditForm(userNo);
+			MyPageDtoImpl result = myService.getUserDetail(userNo);
+			
 			
 			request.setAttribute("result", result);
 			nextPage = "/views/myPage/userMyPageInfo.jsp";

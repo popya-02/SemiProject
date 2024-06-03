@@ -29,7 +29,7 @@ public class MyPageEstimateContoller extends HttpServlet {
 			int userNo = (int) session.getAttribute("userNum");
 			
 			MyPageServiceImpl myService = new MyPageServiceImpl();
-			MyPageDtoImpl result = myService.getMypageEstimate(userNo);
+			MyPageDtoImpl result = myService.getUserEstimate(userNo);
 			
 			request.setAttribute("result", result);
 			
@@ -40,7 +40,7 @@ public class MyPageEstimateContoller extends HttpServlet {
 			String copyNo = (String) session.getAttribute("copyNum");
 			
 			MyPageServiceImpl myService = new MyPageServiceImpl();
-			MyPageDtoImpl result = myService.getMyCopyEstimate(copyNo);
+			MyPageDtoImpl result = myService.getCopyEstimate(copyNo);
 			
 			request.setAttribute("result", result);
 			

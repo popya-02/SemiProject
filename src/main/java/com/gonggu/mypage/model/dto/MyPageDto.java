@@ -15,6 +15,29 @@ public class MyPageDto {
 	private String ConstructArea;
 	private int ConstructNo;
 	
+	private int CopyPictureNo;
+	private String PictureName;
+	private String PicturePath;
+	
+	public int getCopyPictureNo() {
+		return CopyPictureNo;
+	}
+	public void setCopyPictureNo(int copyPictureNo) {
+		CopyPictureNo = copyPictureNo;
+	}
+	public String getPictureName() {
+		return PictureName;
+	}
+	public void setPictureName(String pictureName) {
+		PictureName = pictureName;
+	}
+
+	public String getPicturePath() {
+		return PicturePath;
+	}
+	public void setPicturePath(String picturePath) {
+		PicturePath = picturePath;
+	}
 	public int getConstructNo() {
 		return ConstructNo;
 	}

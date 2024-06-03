@@ -11,27 +11,27 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public int setEdit(MyPageDtoImpl myDto) {
-		return myPageDao.setEdit(myDto);
+	public int setUserEdit(MyPageDtoImpl myDto) {
+		return myPageDao.setUserEdit(myDto);
 	}
 	
 	@Override
-	public MyPageDtoImpl getEditForm(String userNo) {
-		MyPageDtoImpl result = myPageDao.getDetail(userNo);
+	public MyPageDtoImpl getUserDetail(int userNo) {
+		MyPageDtoImpl result = myPageDao.getUserDetail(userNo);
 		
 		return result;
 	}
 
 	@Override
-	public MyPageDtoImpl getMypageEstimate(int userNo) {
-		MyPageDtoImpl result = myPageDao.getUserMyPage(userNo);
+	public MyPageDtoImpl getUserEstimate(int userNo) {
+		MyPageDtoImpl result = myPageDao.getUserEstimate(userNo);
 		
 		return result;
 	}
 
 	@Override
-	public MyPageDtoImpl getMyCopyEstimate(String copyNo) {
-		MyPageDtoImpl result = myPageDao.getCopyPage(copyNo);
+	public MyPageDtoImpl getCopyEstimate(String copyNo) {
+		MyPageDtoImpl result = myPageDao.getCopyEstimate(copyNo);
 		
 		return result;
 	}
@@ -41,4 +41,20 @@ public class MyPageServiceImpl implements MyPageService {
 		return myPageDao.setCopyEdit(myDto);
 	}
 
+	@Override
+	public MyPageDtoImpl getCopyDetail(String copyNo) {
+		MyPageDtoImpl result = myPageDao.getCopyDetail(copyNo);
+		
+		return result;
+		
+	}
+
+	@Override
+	public int pictureUpload(MyPageDtoImpl myDto) {
+		return myPageDao.pictureUpload(myDto);
+	}
+
+	public void getPictureName(MyPageDtoImpl result) {
+		myPageDao.getPictureName(result);
+	}
 }

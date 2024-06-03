@@ -40,16 +40,14 @@ public class UserMyPageInfoController extends HttpServlet {
 		myDto.setAddress(addr);
 		
 		MyPageServiceImpl myService = new MyPageServiceImpl();
-		int result = myService.setEdit(myDto);
-		
+		int result = myService.setUserEdit(myDto);
 		//request.setAttribute("result", result);
 //		
 //		RequestDispatcher view = request.getRequestDispatcher("/mypage/usermypageinfo.do?userNo="+userNo);
 //		view.forward(request, response);
 //		
-		System.out.println(userNo);
 		if(result == 1) {
-			response.sendRedirect("/MypageInfo/userInfodo?userNo=");
+			response.sendRedirect("/MypageInfo/userInfo.do?userNo="+userNo);
 		}
 	}
 
