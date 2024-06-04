@@ -29,7 +29,7 @@
 		                    <a href="/member/logoutForm.do" class="nav-item nav-link point-text">로그아웃</a>
 		                    <c:choose>
 		                    	<c:when test="${sessionScope.userType == 'basicUser'}">
-				                    <a href="/form/userMyPage.do" class="nav-item nav-link point-text"><i class="fas fa-user useri-font"></i><p class="nav-item nav-link my-none">마이페이지</p></a>
+				                    <a href="/MyPageEstimate/EstimateUser.do" class="nav-item nav-link point-text"><i class="fas fa-user useri-font"></i><p class="nav-item nav-link my-none">마이페이지</p></a>
 		                    	</c:when>
 		                    	<c:when test="${sessionScope.userType == 'copyUser'}">
 				                    <a href="/MyPageEstimate/EstimateCopy.do" class="nav-item nav-link point-text"><i class="fas fa-user useri-font"></i><p class="nav-item nav-link my-none">마이페이지</p></a>
@@ -45,12 +45,10 @@
 									</div>
 		                    	</c:when>		
 		                    	                    
+			                    </c:choose>
+		                    	</c:when>		                    
 		                    </c:choose>
-                    	</c:when>
-                    	<c:otherwise>
-		                    <a href="/form/loginForm.do" class="nav-item nav-link point-text">로그인</a>
-                    	</c:otherwise>
-                    </c:choose>
+                    	
                     <div class="nav-item dropdown">
 										<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">회원관리</a>
 										<div class="dropdown-menu m-0">

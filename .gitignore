@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,eclipse,windows,java,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,eclipse,windows,java,macos
+# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,eclipse,macos,windows,java
+# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,eclipse,macos,windows,java
 
 ### Eclipse ###
 .metadata
@@ -171,9 +171,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,eclipse,windows,java,macos
-<<<<<<< HEAD
 /build/
-=======
-/build/
->>>>>>> branch 'master' of https://github.com/popya-02/SemiProject.git

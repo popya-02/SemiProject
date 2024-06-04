@@ -20,10 +20,13 @@
 		        <h2 class="mypage_1">마이페이지</h2>
 		
         <nav class="mypage_list">
-		<ul>
-                <li class="mypage_list_1"><a href="">견적/공사 내역</a></li>
-                <li class="mypage_list_2"><a href="">관심 업체</a></li>
-                <li class="mypage_list_3"><a href="">정보 수정</a></li>
+
+        <input type="hidden" name="userno" value="${result.userNo }">
+            <ul>
+                <li class="mypage_list_1"><a href="/views/myPage/userMyPageEstimate.jsp">견적/공사 내역</a></li>
+                <li class="mypage_list_2"><a href="/view/myPage/userMyPageLikeCopy.jsp">관심 업체</a></li>
+                <li class="mypage_list_3"><a href="/MypageInfo/userInfo.do?userNo=${sessionScope.userNum}">정보 수정</a></li>
+                                                                  <!--  sessionScope.userNo -->
             </ul>
         </nav>
         <div class="mypage_list_1_detail"> 
@@ -40,9 +43,11 @@
                     <div class="reservation-name">업체명</div>
                     <div class="reservation-number">예약번호</div>
                 </div> -->
-                <a href="naver.com">
+                
+                
+                <!-- <a href="naver.com">
                     <div class="reservation-list-item">
-                        <img src="../img/antique_picture.jpg" alt="사진">
+                        <img src="/resources/img/antique_picture.jpg" alt="사진">
                         <div class="company_name">업체 이름</div>
                         <div class="reservation_number">123456</div>
                     </div>
@@ -62,9 +67,33 @@
                     <div class="company_name">업체 이름4</div>
                     <div class="reservation_number">346678</div>
                 </div> -->
-                
-                
-				
+
+
+       <!--      </div>
+        </div> -->
+        <table>
+        		<c:choose>
+						<c:when test="${empty list}">
+							<tr>
+								<td colspan="5" style="text-align: center !important; padding: 30px;" >등록된 글이 없습니다</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="item" items="${list}">
+								<tr>
+									<!-- 어떤 게시글에 들어가는지 알수있음 -->
+									<td scope="row">${row}</td>
+									<td>${item.boardTitle}</td>
+									<td>${item.memberName}</td>
+									<td>${item.boardIndate}</td>
+									<td>${item.boardViews}</td>
+								</tr>
+								<c:set var="row" value="${row-1}" />
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+        </table>
+					
                 <div class="col-12">
                     <div class="pagination d-flex justify-content-center mt-5">
                         <a href="#" class="rounded">&laquo;</a>
@@ -77,8 +106,8 @@
                         <a href="#" class="rounded">&raquo;</a>
                     </div>
                 </div>
-            </div>
-        </div>
+                </div>
+                </div>
 
         <!-- Footer Start -->
        	<%@ include file="/views/common/footer.jsp"%>
