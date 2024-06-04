@@ -6,11 +6,13 @@
 }
 
 .tlrhd-border{
-    border: 1px solid #223455 !important;
+    border: 1px solid #9AAAC9 !important;
     color: #223455 !important;
     background-color: #ffffff;
+    font-size: 16px;
     font-weight: bold;
     transition: 0.3s;
+    left: 5%;
 }
 .tlrhd-border:hover{
     background-color: #223455 !important;
@@ -27,11 +29,16 @@
 .tlrhd-btn{
     width: 60px;
     height: 40px;
-    
-    font-size: 20px;
     margin: 0 auto;
     display: block;
 
+}
+
+.submit-btn{
+	display: inline-flex;
+	justify-content: flex-start;
+	margin-bottom: 15px;
+	
 }
 
 .page-n{

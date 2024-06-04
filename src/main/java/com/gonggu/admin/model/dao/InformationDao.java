@@ -240,13 +240,10 @@ public int copyApproveListCount() {
 			pstmt.setString(1, infoDto.getCopyNo());
 			result = pstmt.executeUpdate();
 			
-			System.out.println("aaaaa " + result);
-			System.out.println(infoDto.getCopyNo());
 			return result;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-        System.out.println("aaaaa " + result);
 
 		return 0;
 	}
@@ -262,7 +259,6 @@ public int copyApproveListCount() {
 	        int result = pstmt.executeUpdate();
 	        
 	        if (result == 0) {
-	        	System.out.println("asasasass");
 	        } else {
 	        	return result;
 	        }

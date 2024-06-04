@@ -31,27 +31,28 @@
 		<!-- 업체 -->
 		<div class="album py-5 bg-body-tertiary">
 			<div class="container">
-				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 					<!-- ------------------------------------------------------------------------ -->
 
 					<c:choose>
 						<c:when test="${empty companyList}">
-							<tr>등록 되어있는 업체가 없습니다.
-							</tr>
+							<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+							<h5>등록 되어있는 업체가 없습니다.</h5>
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="companyList" items="${companyList}">
-								<div class="col">
-									<div class="card shadow-sm">
-										<a href="/copyDetail.do?copyNo=${companyList.copyNo}">
-											<img class="bd-placeholder-img card-img-top" width="100%"
-											height="225" img
-											src="/resources/img/${companyList.copyPhoto}" width="100%"
-											height="100%" fill="#55595c" />
-										</a>
-										<p class="djqcpaud">${companyList.copyName}</p>
+								<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" scope="row">
+									<div class="col">
+										<div class="card shadow-sm">
+											<a href="/copyDetail.do?copyNo=${companyList.copyNo}">
+												<img class="bd-placeholder-img card-img-top" width="100%"
+												height="225" img
+												src="/resources/img/${companyList.copyPhoto}" width="100%"
+												height="100%" fill="#55595c" />
+											</a>
+											<p class="djqcpaud">${companyList.copyName}</p>
+										</div>
 									</div>
-								</div>
+									<c:set var="row" value="${row-1}" />
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
@@ -72,12 +73,30 @@
 	<!-- ---------------------------------페이지네이션------------------------------------------ -->
 	<div class="col-12">
 		<div class="pagination d-flex justify-content-center mt-5">
-			<a href="#" class="page-n rounded">&laquo;</a> <a href="#"
-				class="page-n rounded">1</a> <a href="#" class="page-n rounded">2</a>
-			<a href="#" class="page-n rounded">3</a> <a href="#"
-				class="page-n rounded">4</a> <a href="#" class="page-n rounded">5</a>
-			<a href="#" class="page-n rounded">6</a> <a href="#"
-				class="page-n rounded">&raquo;</a>
+		
+			<c:choose>
+				<c:when test="${pi.copypage == 1 }">
+					<a href="#" class="page-n rounded">&laquo;</a>
+				</c:when>
+				<c:otherwise>
+					<a href="/copy/copylist.do?copypage=${pi.copypage-1}" class="page-n rounded">&laquo;</a>
+				</c:otherwise>
+			</c:choose>
+			
+			<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+				<a href="/copy/copylist.do?copypage=${page}" class="page-n rounded">${page}</a>
+			</c:forEach>
+			
+			<c:choose>
+				<c:when test="${pi.copypage == pi.maxPage }">
+					<a href="#" class="page-n rounded">&raquo;</a>
+				</c:when>
+				<c:otherwise>
+					<a href="/copy/copylist.do?copypage=${pi.copypage+1}" class="page-n rounded">&raquo;</a>
+				</c:otherwise>
+			</c:choose>
+			
+			
 		</div>
 	</div>
 
