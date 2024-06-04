@@ -3905,7 +3905,7 @@ fieldset:disabled .btn {
     position: absolute;
     z-index: 1000;
     display: none;
-    min-width: 10rem;
+    min-width: 6rem;   /* 관리자 페이지 드랍다운 메뉴 6rem 변경 가능할까요? */
     padding: .5rem 0;
     margin: 0;
     font-size: 1rem;
@@ -4186,8 +4186,8 @@ fieldset:disabled .btn {
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-    color: #1e2125;
-    background-color: #e9ecef
+    color: #fff !important;
+    background-color: #9caac4 !important;
 }
 
 .dropdown-item.active,
@@ -8402,10 +8402,10 @@ fieldset:disabled .btn {
     background-color: #81c408 !important
 }
 
-.bg-secondary {
-    background-color: #ffb524 !important
+ .bg-secondary {     
+    background-color: #223455 !important
 }
-
+ 
 .bg-success {
     background-color: #198754 !important
 }
@@ -8476,9 +8476,9 @@ fieldset:disabled .btn {
     border-radius: 10px !important
 }
 
-.rounded-0 {
+ .rounded-0 {
     border-radius: 0 !important
-}
+} 								
 
 .rounded-1 {
     border-radius: 10px !important

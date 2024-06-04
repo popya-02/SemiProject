@@ -18,7 +18,9 @@
         <!-- Navbar End -->
 
 		        <h2 class="mypage_1">마이페이지</h2>
+		
         <nav class="mypage_list">
+
         <input type="hidden" name="userno" value="${result.userNo }">
             <ul>
                 <li class="mypage_list_1"><a href="/views/myPage/userMyPageEstimate.jsp">견적/공사 내역</a></li>
@@ -36,7 +38,7 @@
                     <div class="company_name">업체 이름</div>
                     <div class="reservation_number">예약번호</div>
                 </div>
-                <!-- <div class="reservation-list-header">
+                <!-- <!-- <div class="reservation-list-header">
                     <div class="reservation-photo">사진</div>
                     <div class="reservation-name">업체명</div>
                     <div class="reservation-number">예약번호</div>
@@ -65,6 +67,7 @@
                     <div class="company_name">업체 이름4</div>
                     <div class="reservation_number">346678</div>
                 </div> -->
+
 
        <!--      </div>
         </div> -->
