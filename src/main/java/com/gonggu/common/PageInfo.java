@@ -1,6 +1,7 @@
 package com.gonggu.common;
 
 public class PageInfo {
+
 	private int listCount;	// 전체 게시글 수
 	private int copypage;	// 현재 페이지(currentPage)
 	private int pageLimit; // 페이지 수

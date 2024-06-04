@@ -33,14 +33,30 @@
 		                    	</c:when>
 		                    	<c:when test="${sessionScope.userType == 'copyUser'}">
 				                    <a href="/MyPageEstimate/EstimateCopy.do" class="nav-item nav-link point-text"><i class="fas fa-user useri-font"></i><p class="nav-item nav-link my-none">마이페이지</p></a>
+		                    	</c:when>		
+		                    	<c:when test="${sessionScope.userType == 'admin'}">
+				                    <div class="nav-item dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">회원관리</a>
+										<div class="dropdown-menu m-0">
+											<a href="/userForm.do?cpage=1&category=name&searchText=" class="dropdown-item">회원 조회</a> 
+											<a href="/copyInfo.do?cpage=1&category=name&searchText=" class="dropdown-item">업체 조회</a> 
+											<a href="/copyCheck.do?cpage=1&category=name&searchText=" class="dropdown-item">업체 승인</a>
+										</div>
+									</div>
+		                    	</c:when>		
+		                    	                    
+			                    </c:choose>
 		                    	</c:when>		                    
 		                    </c:choose>
-                    	</c:when>
-                    	<c:otherwise>
-		                    <a href="/form/loginForm.do" class="nav-item nav-link point-text">로그인</a>
-                    	</c:otherwise>
-                    </c:choose>
-                    
+                    	
+                    <div class="nav-item dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">회원관리</a>
+										<div class="dropdown-menu m-0">
+											<a href="/userForm.do?cpage=1&category=name&searchText=" class="dropdown-item">회원 조회</a> 
+											<a href="/copyInfo.do?cpage=1&category=cu.copy_no&searchText=" class="dropdown-item">업체 조회</a> 
+											<a href="/copyCheck.do?cpage=1" class="dropdown-item">업체 승인</a>
+										</div>
+									</div>
                 </div>
             </div>
         </nav>

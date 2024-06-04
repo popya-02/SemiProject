@@ -5,12 +5,13 @@
 <html lang="en">
 
     <head>
+    	<link href="/resources/css/copyInfo.css" rel="stylesheet">
 	    <%@ include file="/views/common/head.jsp"%>
         <title>GONGGU</title>
         <!-- Template Stylesheet -->
         <link href="/resources/css/style.css" rel="stylesheet">
-        <link href="/resources/css/signup.css" rel="stylesheet">
-        <link href="/resources/css/copyInfo.css" rel="stylesheet">
+        <!-- <link href="/resources/css/signup.css" rel="stylesheet"> -->
+        
         
     </head>
     <body>
@@ -18,7 +19,7 @@
 	    <%@ include file="/views/common/header.jsp"%>        
         <!-- Navbar End -->
 
-		        <div class="container-fluid py-5 mb-5 " style="margin-top: 100px;">
+		<div class="container-fluid py-5 mb-5 " style="margin-top: 100px;">
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-md-12 col-lg-7">
@@ -38,21 +39,35 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>번호</th>
                                     <th>업체명</th>
+                                    <th>대표자명</th>
                                     <th>주소</th>
                                     <th>업체 번호</th>
+                                    <th>승인 여부 </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>집닥</td>
-                                    <td>서울특별시 강남구</td>
-                                    <td>14523-12553</td>
-                                </tr>
+                                <c:choose>
+									<c:when test="${empty list}">
+										<tr>
+											<td colspan="5" style="text-align: center; padding: 30px">등록된 업체가 없습니다.</td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:forEach var="item" items="${list}">
+											<tr>
+												<td>${item.copyName}</td>
+												<td>${item.ceoName}</td>
+												<td>${item.copyAddr}</td>
+												<td>${item.copyNo}</td>
+												<td>${item.approve}</td>
+											</tr>
+											<c:set var="row" value="${row-1}" />
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
                             </tbody>
-                            
+                           
                         </table>
                     </div>
                 </div>
@@ -62,18 +77,53 @@
 
         
         <!-- 페이지네이션 -->
+        		
         <div class="col-12">
             <div class="pagination d-flex justify-content-center mt-5">
-                <a href="#" class="rounded">&laquo;</a>
-                <a href="#" class="active rounded">1</a>
-                <a href="#" class="rounded">2</a>
-                <a href="#" class="rounded">3</a>
-                <a href="#" class="rounded">4</a>
-                <a href="#" class="rounded">5</a>
-                <a href="#" class="rounded">6</a>
-                <a href="#" class="rounded">&raquo;</a>
-            </div>
-        </div>		
+        
+				<!-- 왼쪽 버튼  -->
+				<c:choose>
+					<c:when test="${pi.cpage == 1}">
+						<li class="page-item" style="margin-right: 0px"><a
+							class="rounded page-n" href="#" aria-label="Previous"> <span
+								aria-hidden="true">&laquo;</span>
+						</a></li>
+					</c:when>
+
+					<c:otherwise>
+						<li class="page-item" style="margin-right: 0px"><a
+							class="rounded page-n" href="/copyInfo.do?cpage=${pi.cpage-1}"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a></li>
+					</c:otherwise>
+
+				</c:choose>
+
+				<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+					<li class="page-item" style="margin-right: 0px"><a
+						class="rounded page-n" href="/copyInfo.do?cpage=${page}">${page}</a></li>
+				</c:forEach>
+
+
+
+				<c:choose>
+					<c:when test="${pi.cpage == pi.maxPage}">
+						<li class="page-item" style="margin-right: 0px"><a
+							class="rounded page-n" href="#" aria-label="Next"> <span
+								aria-hidden="true">&raquo;</span>
+						</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item" style="margin-right: 0px"><a
+							class="rounded page-n" href="/copyInfo.do?cpage=${pi.cpage+1}"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a></li>
+					</c:otherwise>
+				</c:choose>
+
+
+			</div>
+        </div>
 
         <!-- Footer Start -->
        	<%@ include file="/views/common/footer.jsp"%>
