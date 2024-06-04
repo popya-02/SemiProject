@@ -19,7 +19,9 @@ public class UserMyPageEstimateController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String pictureName = request.getParameter("picturename");
+		String copyName = request.getParameter("copyname");
+		int constructNo = Integer.parseInt(request.getParameter("constructno"));
 	}
 
 }

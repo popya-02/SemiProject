@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/CopyMyPageEstimateController")
-public class CopyMyPageEstimateController extends HttpServlet {
+@WebServlet("/UserMyPageLike")
+public class UserMyPageLike extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public CopyMyPageEstimateController() {
+    public UserMyPageLike() {
         super();
     }
 

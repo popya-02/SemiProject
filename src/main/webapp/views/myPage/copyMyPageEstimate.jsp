@@ -29,7 +29,7 @@
 
             <div class="reservation-list body">
                 <div class="reservation-list-header">
-                    <div class="company_photo">사진</div>
+                    <div class="company_photo"name="hg">사진</div>
                     <div class="user_name">예약자명</div>
                     <div class="reservation_number">예약번호</div>
                 </div>
@@ -38,7 +38,7 @@
                     <div class="reservation-name">업체명</div>
                     <div class="reservation-number">예약번호</div>
                 </div> -->
-                <a href="naver.com">
+              <!--   <a href="naver.com">
                     <div class="reservation-list-item">
                         <img src="../img/antique_picture.jpg" alt="사진">
                         <div class="user_name">예약자명1</div>
@@ -59,7 +59,7 @@
                     <img src="https://via.placeholder.com/100" alt="사진">
                     <div class="user_name">예약자명4</div>
                     <div class="reservation_number">346678</div>
-                </div>
+                </div> -->
 
                 <div class="col-12">
                     <div class="pagination d-flex justify-content-center mt-5">
