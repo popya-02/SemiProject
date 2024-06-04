@@ -1,6 +1,7 @@
 package com.gonggu.chatting.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,27 +42,52 @@ public class ChattingConnectionController extends HttpServlet {
 		chattingDto.setCopyNum(copyNum);
 		ChattingServiceImpl chattingService = new ChattingServiceImpl();
 		
-		if(userType == "copyUser") {
+		
+		ChattingDTO typeResult;
+		
+		if(userType.equals("copyUser") ) {
 			String sessionCopyNum = (String) session.getAttribute("copyNum");
-			if(sessionCopyNum == copyNum) {
+			
+			typeResult = chattingService.getCopyType(chattingDto);
+			int copychattingNum = chattingService.setChatnum(chattingDto);
+			if(sessionCopyNum.equals(copyNum)) {
+				ArrayList<ChattingDTO> list = chattingService.getList(copychattingNum);
+				
+				request.setAttribute("list", list);
+				
+				request.setAttribute("chattingNum", copychattingNum);
+				request.setAttribute("userType",userType);
+				request.setAttribute("noCheck",typeResult.getUserNum());
 				RequestDispatcher view = request.getRequestDispatcher("/views/etc/chatting.jsp");
 				view.forward(request, response);
 			}
-		} else if (userType == "basicUser"){
+		} else if (userType.equals("basicUser")){
 			int sessionUserNum = (int) session.getAttribute("userNum");
+			
+			typeResult = chattingService.getUserType(chattingDto);
+
 			
 			if(sessionUserNum == userNum) {
 				int result = chattingService.setChatting(chattingDto);
+				int userchattingNum = chattingService.setChatnum(chattingDto);
 				
 				if(result == 0) {
 					response.sendRedirect("/form/constructDetail.do");
-				}else {					
+				}else {
+					
+					ArrayList<ChattingDTO> list = chattingService.getList(userchattingNum);
+					
+					request.setAttribute("list", list);
+					request.setAttribute("chattingNum", userchattingNum);
+					request.setAttribute("userType",userType);
+					request.setAttribute("noCheck",typeResult.getUserNum());
 					RequestDispatcher view = request.getRequestDispatcher("/views/etc/chatting.jsp");
 					view.forward(request, response);
 				}			
 				
 			}
 		}else{
+			System.out.println("a");
 			response.sendRedirect("/form/constructDetail.do");
 			
 			

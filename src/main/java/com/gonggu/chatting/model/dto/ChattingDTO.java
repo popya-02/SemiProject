@@ -3,10 +3,10 @@ package com.gonggu.chatting.model.dto;
 public class ChattingDTO {
 	private int chattingNum;
 	private int userNum;
+	private String userType;
 	private String copyNum;
 	private String message;
 	private String chattingIndate;
-	
 	
 	public int getChattingNum() {
 		return chattingNum;
@@ -37,6 +37,12 @@ public class ChattingDTO {
 	}
 	public void setChattingIndate(String chattingIndate) {
 		this.chattingIndate = chattingIndate;
+	}
+	public String getUserType() {
+		return userType;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 	
 	

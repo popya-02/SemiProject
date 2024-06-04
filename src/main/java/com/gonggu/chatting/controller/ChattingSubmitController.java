@@ -15,6 +15,7 @@ public class ChattingSubmitController {
 	
 	private static Set<Session> userSessions = Collections.newSetFromMap(new ConcurrentHashMap<Session, Boolean>());
 	
+	
 	@OnOpen
 	public void onOpen(Session curSession) {
 		userSessions.add(curSession);
@@ -30,5 +31,6 @@ public class ChattingSubmitController {
 		for(Session ses : userSessions) {
 			ses.getAsyncRemote().sendText(message);
 		}
+		
 	}
 }
