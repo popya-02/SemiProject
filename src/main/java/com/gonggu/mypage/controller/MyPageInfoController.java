@@ -32,7 +32,6 @@ public class MyPageInfoController extends HttpServlet {
 			MyPageDtoImpl result = myService.getCopyDetail(copyNo);
 			
 			myService.getPictureName(result);
-			System.out.println(result.getPictureName());
 			
 			request.setAttribute("result", result);
 			nextPage = "/views/myPage/copyMyPageInfo.jsp";
@@ -42,7 +41,6 @@ public class MyPageInfoController extends HttpServlet {
 			
 			MyPageServiceImpl myService = new MyPageServiceImpl();
 			MyPageDtoImpl result = myService.getUserDetail(userNo);
-			
 			
 			request.setAttribute("result", result);
 			nextPage = "/views/myPage/userMyPageInfo.jsp";

@@ -17,5 +17,9 @@ public interface MyPageService {
 	public MyPageDtoImpl getCopyDetail(String copyNo);
 
 	public int pictureUpload(MyPageDtoImpl myDto);
+	
+	public void getPictureName(MyPageDtoImpl result);
+	
+	public int setDelete(String copyNo);
 
 }

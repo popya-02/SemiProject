@@ -43,6 +43,9 @@ public class CopyMyPageInfoController extends HttpServlet {
 		myDto.setConstructArea(constructArea);
 		myDto.setContent(content);
 		
+		MyPageServiceImpl myService = new MyPageServiceImpl();
+		int result = myService.setCopyEdit(myDto);
+		
 		// 파일 업로드
 		Collection<Part> parts = request.getParts();
 		String uploadDirectory = "C:\\dev\\File\\semiProject\\SemiProject\\src\\main\\webapp\\resources\\img";
@@ -55,15 +58,12 @@ public class CopyMyPageInfoController extends HttpServlet {
 
 		String PictureName = null;
 		
-		MyPageServiceImpl myService = new MyPageServiceImpl();
-		int result = myService.setCopyEdit(myDto);
-		
 		for(Part part : parts) {
 			PictureName = getPictureName(part);
-			if(PictureName != null) {
-				System.out.println(PicturePath + File.separator + PictureName);
+			if(PictureName != null && PictureName != "") {
 				part.write(PicturePath + File.separator + PictureName);
 				
+				myService.setDelete(copyNo);
 				myDto.setPicturePath(uploadDirectory);
 				myDto.setPictureName(PictureName);
 				
@@ -73,13 +73,11 @@ public class CopyMyPageInfoController extends HttpServlet {
 		
 		if(result == 1) {
 			response.sendRedirect("/MypageInfo/copyInfo.do?copyNo="+copyNo);
-		}
+		} 
 	}
 	
 	 private String getPictureName(Part part) {
 	        String contentDisposition = part.getHeader("content-disposition");
-	        
-	        System.out.println(contentDisposition);
 	        
 	        String[] tokens = contentDisposition.split(";");
 	        for (String token : tokens) {

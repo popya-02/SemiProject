@@ -105,6 +105,7 @@
 
             //이미지를 image-show div에 추가
             let container = document.getElementById('image-show');
+            container.innerHTML = '';
             container.appendChild(newImage);
         }
     </script>

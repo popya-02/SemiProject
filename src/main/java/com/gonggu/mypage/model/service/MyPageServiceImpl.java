@@ -54,7 +54,14 @@ public class MyPageServiceImpl implements MyPageService {
 		return myPageDao.pictureUpload(myDto);
 	}
 
+	@Override
 	public void getPictureName(MyPageDtoImpl result) {
 		myPageDao.getPictureName(result);
 	}
+
+	@Override
+	public int setDelete(String copyNo) {
+		return myPageDao.setDelete(copyNo);
+	}
+
 }

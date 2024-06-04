@@ -202,9 +202,11 @@ public class MyPageDao {
 		return null;
 	}
 
+	// 이미지 업로드
 	public int pictureUpload(MyPageDtoImpl myDto) {
 		String query = "INSERT INTO COPY_PHOTO"
 				+ "     VALUES(copy_picture_seq.nextval, ?, ?, ?)";
+		System.out.println("a: " + myDto.getPictureName());
 	
 		try {
 			pstmt = con.prepareStatement(query);
@@ -221,6 +223,7 @@ public class MyPageDao {
 		return 0;
 	}
 
+	// 업로드한 이미지 조회
 	public void getPictureName(MyPageDtoImpl result) {	
 		String query = "SELECT COPY_PICTURE_NO, NAME FROM COPY_PHOTO"
 				+ "     WHERE COPY_NO = ?";
@@ -244,6 +247,24 @@ public class MyPageDao {
 			e.printStackTrace();
 		}
 	}
+
+	public int setDelete(String copyNo) {
+		String query = "DELETE FROM COPY_PHOTO"
+				+ "    WHERE COPY_NO = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, copyNo);
+			
+			int result = pstmt.executeUpdate();
+			return result;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 
 }
 

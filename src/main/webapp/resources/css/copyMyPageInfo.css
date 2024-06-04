@@ -141,6 +141,7 @@ div div input {
     background-color: #747d88;
     color: white;
     text-decoration: none;
+    border: 0;
 }
 
 .mypage_list_3_detail_complete button:hover {
