@@ -42,7 +42,7 @@ public class InformationDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, searchText);
-			pstmt.setInt(2, pi.getOffset());
+			pstmt.setInt(2, pi.getOffSet());
 			pstmt.setInt(3, pi.getBoardLimit());
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -86,7 +86,7 @@ public class InformationDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, searchText);
-			pstmt.setInt(2, pi.getOffset());
+			pstmt.setInt(2, pi.getOffSet());
 			pstmt.setInt(3, pi.getBoardLimit());
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
