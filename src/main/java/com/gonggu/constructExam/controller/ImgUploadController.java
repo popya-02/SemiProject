@@ -47,14 +47,11 @@ public class ImgUploadController extends HttpServlet {
 			}
 		}
 		
-		System.out.println('d');
 		
 		if(cnt == 0) {
 			// 이미지가 아닐 때
-			System.out.println('s');
 			System.out.println("NOTALLOW" + filename);
 		}else {
-			System.out.println('a');
 			// 이미지 일 때
 			// 파일 기본 경로
 			String defaultPath = request.getServletContext().getRealPath("/");
