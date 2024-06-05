@@ -46,9 +46,12 @@
 		                    	</c:when>		
 		                    	                    
 			                    </c:choose>
-		                    	</c:when>		                    
-		                    </c:choose>
-                    	
+		                    	</c:when>	
+		                    	 <c:otherwise>
+                          <a href="/form/loginForm.do" class="nav-item nav-link point-text">로그인</a>
+                       </c:otherwise>
+                    </c:choose>
+		                    		                    
                     <div class="nav-item dropdown">
 										<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">회원관리</a>
 										<div class="dropdown-menu m-0">

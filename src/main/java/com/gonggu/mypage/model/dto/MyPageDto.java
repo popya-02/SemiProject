@@ -19,6 +19,14 @@ public class MyPageDto {
 	private String PictureName;
 	private String PicturePath;
 	
+	private int LikeNo;
+	
+	public int getLikeNo() {
+		return LikeNo;
+	}
+	public void setLikeNo(int likeNo) {
+		LikeNo = likeNo;
+	}
 	public int getCopyPictureNo() {
 		return CopyPictureNo;
 	}
