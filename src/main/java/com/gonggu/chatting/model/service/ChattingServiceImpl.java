@@ -1,6 +1,7 @@
 package com.gonggu.chatting.model.service;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.gonggu.chatting.model.dao.ChattingDAO;
 import com.gonggu.chatting.model.dto.ChattingDTO;
@@ -21,11 +22,16 @@ public class ChattingServiceImpl implements ChattingService{
 		
 		duplicete = chattingDao.duplicateCheck(chattingDto);
 		
-		
-		if(duplicete.getEndCheck().equals("Y")) {
+		if(Objects.isNull(duplicete)) {
 			result = chattingDao.setChatting(chattingDto);
+			
 		}else {
-			result = 1;
+			if(duplicete.getEndCheck().equals("Y")) {
+				result = chattingDao.setChatting(chattingDto);
+			}else {
+				result = 1;
+			}
+			
 		}
 		
 		return result;
