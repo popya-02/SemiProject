@@ -44,7 +44,20 @@ public class ChattingServiceImpl implements ChattingService{
 
 	@Override
 	public ChattingDTO setChatnum(ChattingDTO chattingDto) {
-		return chattingDao.duplicateCheck(chattingDto);
+		ChattingDTO result = chattingDao.duplicateCheck(chattingDto);
+		ChattingDTO userResult = null;
+		
+		if(result != null) {
+			userResult = chattingDao.getUserName(result);
+			
+			ChattingDTO copyResult = chattingDao.getCopyName(userResult);
+			
+			return copyResult;
+			
+		}else {
+			return result;
+		}
+		
 	}
 	
 	@Override

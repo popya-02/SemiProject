@@ -20,7 +20,14 @@
 
 		<section class=" p-3 p-md-4 p-xl-5 chat-section">
             <div class="chat-container chat-box card border-light-subtle shadow-sm">
-                <h4 class="chatting-title">견적 상담 : (업체명)</h4>
+            	<c:choose>
+            		<c:when test="${userType == 'basicUser'}">
+		                <h4 class="chatting-title">견적 상담 : ${copyName}</h4>
+            		</c:when>
+            		<c:otherwise>
+		                <h4 class="chatting-title">견적 상담 : ${nickName} <small>${userId}</small></h4>
+            		</c:otherwise>
+            	</c:choose>
                 <input type="hidden" id="chatting-num" value="${chattingNum}">
                 <div class="chatting-box" id="chatting-box">
                   	<c:if test="${endCheck == 'Y'}">

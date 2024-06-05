@@ -49,13 +49,15 @@ public class ChattingConnectionController extends HttpServlet {
 			String sessionCopyNum = (String) session.getAttribute("copyNum");
 			
 			typeResult = chattingService.getCopyType(chattingDto);
-			ChattingDTO copychattingNum = chattingService.setChatnum(chattingDto);
+			ChattingDTO copychattingSet = chattingService.setChatnum(chattingDto);
 			if(sessionCopyNum.equals(copyNum)) {	// 로그인한 업체유저의 채팅방인지
-				ArrayList<ChattingDTO> list = chattingService.getList(copychattingNum.getChattingNum());
+				ArrayList<ChattingDTO> list = chattingService.getList(copychattingSet.getChattingNum());
 				
 				request.setAttribute("list", list);
-				request.setAttribute("endCheck", copychattingNum.getEndCheck());
-				request.setAttribute("chattingNum", copychattingNum.getChattingNum());
+				request.setAttribute("nickName", copychattingSet.getUserNickName());
+				request.setAttribute("userId", copychattingSet.getUserId());
+				request.setAttribute("endCheck", copychattingSet.getEndCheck());
+				request.setAttribute("chattingNum", copychattingSet.getChattingNum());
 				request.setAttribute("userType",userType);
 				request.setAttribute("noCheck",typeResult.getUserNum());
 				RequestDispatcher view = request.getRequestDispatcher("/views/etc/chatting.jsp");
@@ -69,19 +71,20 @@ public class ChattingConnectionController extends HttpServlet {
 			
 			if(sessionUserNum == userNum) {	// 로그인한 일반유저의 채팅방인지
 				int result = chattingService.setChatting(chattingDto);	// 중복체크 없으면 생성
-				ChattingDTO userchattingNum = chattingService.setChatnum(chattingDto);
+				ChattingDTO userchattingSet = chattingService.setChatnum(chattingDto);
 				
-				if(userchattingNum.getEndCheck() == "Y") {	// 상담 종료 여부
+				if(userchattingSet.getEndCheck() == "Y") {	// 상담 종료 여부
 					response.sendRedirect("/form/constructDetail.do");
 				}else {
 					if(result == 0) {
 						response.sendRedirect("/form/constructDetail.do");
 					}else {
 						
-						ArrayList<ChattingDTO> list = chattingService.getList(userchattingNum.getChattingNum());
+						ArrayList<ChattingDTO> list = chattingService.getList(userchattingSet.getChattingNum());
 						
 						request.setAttribute("list", list);
-						request.setAttribute("chattingNum", userchattingNum.getChattingNum());
+						request.setAttribute("copyName", userchattingSet.getCopyName());
+						request.setAttribute("chattingNum", userchattingSet.getChattingNum());
 						request.setAttribute("userType",userType);
 						request.setAttribute("noCheck",typeResult.getUserNum());
 						RequestDispatcher view = request.getRequestDispatcher("/views/etc/chatting.jsp");

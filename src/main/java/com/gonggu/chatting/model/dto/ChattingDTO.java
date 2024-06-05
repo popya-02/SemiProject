@@ -2,12 +2,17 @@ package com.gonggu.chatting.model.dto;
 
 public class ChattingDTO {
 	private int chattingNum;
+	private String chattingIndate;
 	private int userNum;
-	private String userType;
 	private String copyNum;
 	private String message;
-	private String chattingIndate;
+
 	private String endCheck;
+	private String userType;
+
+	private String copyName;
+	private String userNickName;
+	private String userId;
 	
 	public int getChattingNum() {
 		return chattingNum;
@@ -51,12 +56,25 @@ public class ChattingDTO {
 	public void setEndCheck(String endCheck) {
 		this.endCheck = endCheck;
 	}
-	@Override
-	public String toString() {
-		return "ChattingDTO [chattingNum=" + chattingNum + ", userNum=" + userNum + ", userType=" + userType
-				+ ", copyNum=" + copyNum + ", message=" + message + ", chattingIndate=" + chattingIndate + ", endCheck="
-				+ endCheck + "]";
+	public String getCopyName() {
+		return copyName;
 	}
+	public void setCopyName(String copyName) {
+		this.copyName = copyName;
+	}
+	public String getUserNickName() {
+		return userNickName;
+	}
+	public void setUserNickName(String userNickName) {
+		this.userNickName = userNickName;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	
 	
 	
 	

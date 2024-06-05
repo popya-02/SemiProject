@@ -6,7 +6,7 @@
 }
 
 .chat-box{
-    height: 640px;
+    height: 680px;
     width: 80%;
     min-width: 400px;
     padding: 45px;
@@ -37,7 +37,7 @@
 
 .input-box{
     right: 5%;
-    bottom: 15%;
+    bottom: 14%;
     position: absolute;
     display: inline-flex;
     justify-content: center;
@@ -69,7 +69,8 @@
 .chatting-area{
 	position: relative;
 	top: -2%;
-	padding: 15px 0;
+	padding: 10px 0;
+	margin-bottom: 15px;
     width: 94%;
     overflow: auto;
     height: 82%;

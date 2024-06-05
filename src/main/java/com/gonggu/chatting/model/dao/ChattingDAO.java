@@ -259,6 +259,70 @@ public class ChattingDAO {
 		return 0;
 	}
 
+	public ChattingDTO getUserName(ChattingDTO result) {
+		
+		String query = "SELECT bu.NICKNAME ,bu.USER_ID"
+					+ " FROM CONSTRUCT_STATUS cs"
+					+ " JOIN BASIC_USER bu "
+					+ "	ON cs.USER_NO = bu.USER_NO"
+					+ " WHERE cs.CHATTING_NO = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, result.getChattingNum());
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String nickName = rs.getString("NICKNAME");
+				String userId = rs.getString("USER_ID");
+				
+				result.setUserNickName(nickName);
+				result.setUserId(userId);
+				
+				return result;
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public ChattingDTO getCopyName(ChattingDTO userResult) {
+		
+		String query = "SELECT cu.COPY_NAME"
+				+ " FROM CONSTRUCT_STATUS cs"
+				+ " JOIN COPY_USER cu "
+				+ "	ON cs.COPY_NO = cu.COPY_NO"
+				+ " WHERE cs.CHATTING_NO = ?";
+	
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, userResult.getChattingNum());
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String copyName = rs.getString("COPY_NAME");
+				
+				userResult.setCopyName(copyName);
+				
+				return userResult;
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
 	
 	
 	
