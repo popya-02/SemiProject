@@ -13,10 +13,12 @@
 				<h4 class="point-text display-6">GONGGU</h4>
 			</a>
 			<div class="input-group search-wid d-flex box-right">
-				<input type="search" class="form-control py-2 "
-					placeholder="keywords" aria-describedby="search-icon-1"> <span
-					id="search-icon-1" class="input-group-text search-i"><a
-					href="./search.html"><i class="fa fa-search"></a></i></span>
+				<input type="search" class="form-control py-2 " placeholder="keywords" aria-describedby="search-icon-1">
+				<span id="search-icon-1" class="input-group-text search-i">
+					<a href="./search.html">
+						<i class="fa fa-search"></i>
+					</a>
+				</span>
 			</div>
 			<button class="navbar-toggler py-2 px-3" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -31,31 +33,29 @@
 
 					<c:choose>
 						<c:when test="${sessionScope.userType != null}">
-							<a href="/member/logoutForm.do"
-								class="nav-item nav-link point-text">로그아웃</a>
+							<a href="/member/logoutForm.do" class="nav-item nav-link point-text">로그아웃</a>
 							<c:choose>
 								<c:when test="${sessionScope.userType == 'basicUser'}">
-									<a href="/MyPageEstimate/EstimateUser.do"
-										class="nav-item nav-link point-text"><i
-										class="fas fa-user useri-font"></i>
-									<p class="nav-item nav-link my-none">마이페이지</p></a>
+									<a href="/MyPageEstimate/EstimateUser.do" class="nav-item nav-link point-text">
+										<i class="fas fa-user useri-font"></i>
+										<p class="nav-item nav-link my-none">마이페이지</p>
+									</a>
 								</c:when>
 								<c:when test="${sessionScope.userType == 'copyUser'}">
-									<a href="/MyPageEstimate/EstimateCopy.do"
-										class="nav-item nav-link point-text"><i
-										class="fas fa-user useri-font"></i>
-									<p class="nav-item nav-link my-none">마이페이지</p></a>
+									<a href="/MyPageEstimate/EstimateCopy.do" class="nav-item nav-link point-text">
+										<i class="fas fa-user useri-font"></i>
+										<p class="nav-item nav-link my-none">마이페이지</p>
+									</a>
 								</c:when>
 								<c:when test="${sessionScope.userType == 'admin'}">
 									<div class="nav-item dropdown">
-										<a href="#" class="nav-link dropdown-toggle"
-											data-bs-toggle="dropdown">회원관리</a>
+										<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">회원관리</a>
 										<div class="dropdown-menu m-0">
 											<a href="/userForm.do?cpage=1&category=name&searchText="
-												class="dropdown-item">회원 조회</a> <a
-												href="/copyInfo.do?cpage=1&category=name&searchText="
-												class="dropdown-item">업체 조회</a> <a
-												href="/copyCheck.do?cpage=1&category=name&searchText="
+												class="dropdown-item">회원 조회</a>
+											<a href="/copyInfo.do?cpage=1&category=name&searchText="
+												class="dropdown-item">업체 조회</a>
+											<a href="/copyCheck.do?cpage=1&category=name&searchText="
 												class="dropdown-item">업체 승인</a>
 										</div>
 									</div>
