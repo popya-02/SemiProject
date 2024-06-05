@@ -20,7 +20,7 @@ public class CopyServiceImpl implements CopyService {
 	}
 
 	@Override
-	public CopyDto getCopyDetail(String copyNo) {
+	public ArrayList<CopyDto> getCopyDetail(String copyNo) {
 		return copyDao.getCopyDetail(copyNo);
 	}
 

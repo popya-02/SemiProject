@@ -6,12 +6,32 @@ public class CopyDto {
 	private String copyName;
 	private String copyNo;
 	private String copyPhoto;
-	
+	private String examPhoto;
 	private String copyContent;
 	private String copyAddress;
 	private String copyNumber;
+	private String examTitle;
+	private int examNo;
 	
 	
+	public int getExamNo() {
+		return examNo;
+	}
+	public void setExamNo(int examNo) {
+		this.examNo = examNo;
+	}
+	public String getExamTitle() {
+		return examTitle;
+	}
+	public void setExamTitle(String examTitle) {
+		this.examTitle = examTitle;
+	}
+	public String getExamPhoto() {
+		return examPhoto;
+	}
+	public void setExamPhoto(String examPhoto) {
+		this.examPhoto = examPhoto;
+	}
 	public String getCopyContent() {
 		return copyContent;
 	}

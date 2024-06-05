@@ -36,11 +36,11 @@
 								<div class="container">
 									<div class="image-upload" id="image-upload">
 										<c:choose>
-											<c:when test="${copyDetail.copyPhoto == null}">
+											<c:when test="${copyDetail[0].copyPhoto == null}">
 												<img class="img-border rounded img-size" src="/resources/img/img_not_found.jpg">
 											</c:when>
 											<c:otherwise>
-												<img class="img-border rounded img-size" src="/resources/img/${copyDetail.copyPhoto}">
+												<img class="img-border rounded img-size" src="/resources/img/${copyDetail[0].copyPhoto}">
 											</c:otherwise>
 										</c:choose>
 									</div>
@@ -49,15 +49,15 @@
 							</div>
 						</div>
 						<div class="col-lg-6" style="padding-left: 122px; margin-top: 40px">
-							<h4 class="fw-bold mb-3">${copyDetail.copyName}</h4>
+							<h4 class="fw-bold mb-3">${copyDetail[0].copyName}</h4>
 
 							<div class="d-flex mb-4">
 
 							</div>
-							<p class="mb-4">${copyDetail.copyContent}</p>
+							<p class="mb-4">${copyDetail[0].copyContent}</p>
 							<p>업체 정보</p>
 							<div>
-								${copyDetail.copyAddress} <br> ${copyDetail.copyNumber}
+								${copyDetail[0].copyAddress} <br> ${copyDetail[0].copyNumber}
 							</div>
 							
 
@@ -72,85 +72,24 @@
 
 					<div class="owl-carousel vegetable-carousel justify-content-center">
 						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
+						<c:forEach var="copyDetail" items="${copyDetail}">
 						<div class="border border-primary rounded position-relative vesitable-item">
 							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
+								<img src="/resources/img/${copyDetail.examPhoto}" class="img-fluid w-100 rounded-top" alt="">
 							</div>
 
 							<div class="p-4 pb-0 rounded-bottom">
 
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-									sed do eiusmod te incididunt</p>
+								<p>${copyDetail.examTitle}</p>
 								<div class="d-flex justify-content-between flex-lg-wrap">
 
-									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
+									<a href="/constructDetail.do?examNo=${copyDetail.examNo}" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
 								</div>
 							</div>
 						</div>
+						</c:forEach>
 						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<div class="border border-primary rounded position-relative vesitable-item">
-							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
-							</div>
 
-							<div class="p-4 pb-0 rounded-bottom">
-
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-									sed do eiusmod te incididunt</p>
-								<div class="d-flex justify-content-between flex-lg-wrap">
-
-									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
-								</div>
-							</div>
-						</div>
-						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<div class="border border-primary rounded position-relative vesitable-item">
-							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
-							</div>
-
-							<div class="p-4 pb-0 rounded-bottom">
-
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-									sed do eiusmod te incididunt</p>
-								<div class="d-flex justify-content-between flex-lg-wrap">
-
-									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
-								</div>
-							</div>
-						</div>
-						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<div class="border border-primary rounded position-relative vesitable-item">
-							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
-							</div>
-
-							<div class="p-4 pb-0 rounded-bottom">
-
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-									sed do eiusmod te incididunt</p>
-								<div class="d-flex justify-content-between flex-lg-wrap">
-
-									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
-								</div>
-							</div>
-						</div>
-						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<div class="border border-primary rounded position-relative vesitable-item">
-							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
-							</div>
-
-							<div class="p-4 pb-0 rounded-bottom">
-
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-									sed do eiusmod te incididunt</p>
-								<div class="d-flex justify-content-between flex-lg-wrap">
-
-									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>

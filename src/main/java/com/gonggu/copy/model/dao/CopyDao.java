@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 import com.gonggu.common.DatabaseConnection;
 import com.gonggu.common.PageInfo;
 import com.gonggu.copy.model.dto.CopyDto;
@@ -55,31 +54,48 @@ public class CopyDao {
         return list;
     }
 
-	public CopyDto getCopyDetail(String copyNo) {
-        String query = "SELECT cd.COPY_NO, PATH , COPY_NAME , CONTENT , COPY_ADDR , TEL_NUM"
+	public ArrayList<CopyDto> getCopyDetail(String copyNo) {
+        String query = "SELECT ce.exam_no,TITLE,cd.COPY_NO, cp.PATH AS COPY_PATH, ep.PATH AS EXAM_PATH , COPY_NAME , cd.CONTENT , COPY_ADDR , TEL_NUM"
         			+ " FROM COPY_DETAIL cd"
         			+ " FULL JOIN COPY_PHOTO cp"
         			+ " ON cd.COPY_NO = cp.COPY_NO"
+        			+ " FULL JOIN COPY_REVIEW cr"
+        			+ " ON cd.COPY_NO = cr.COPY_NO"
+        			+ " FULL JOIN CONSTRUCT c"
+        			+ " ON c.COPY_NO = cd.COPY_NO"
+        			+ " FULL JOIN CONST_EXAM ce"
+        			+ " ON ce.CONSTRUCT_NO = c.CONSTRUCT_NO"
+        			+ " FULL JOIN EXAM_PICTURE ep"
+        			+ " ON ep.EXAM_NO = ce.EXAM_NO"
+        			+ " FULL JOIN CATEGORY cg"
+        			+ " ON ce.CATEGORY_NO = cg.CATEGORY_NO"
         			+ " WHERE cd.COPY_NO = ?";
-        CopyDto dto = null;
+        
+        ArrayList<CopyDto> list = new ArrayList<>();
+        
         try {
             pstmt = con.prepareStatement(query);
             pstmt.setString(1, copyNo);
             ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                dto = new CopyDto();
+            while (rs.next()) {
+            	CopyDto dto = new CopyDto();
                 dto.setCopyName(rs.getString("COPY_NAME"));
                 dto.setCopyNo(rs.getString("COPY_NO"));
-                dto.setCopyPhoto(rs.getString("PATH"));
+                dto.setCopyPhoto(rs.getString("COPY_PATH"));
+                dto.setExamPhoto(rs.getString("EXAM_PATH"));
                 dto.setCopyContent(rs.getString("CONTENT"));
                 dto.setCopyAddress(rs.getString("COPY_ADDR"));
                 dto.setCopyNumber(rs.getString("TEL_NUM"));
-                
+                dto.setExamTitle(rs.getString("TITLE"));
+                dto.setExamNo(rs.getInt("EXAM_NO"));
+                System.out.println("TITLE : "+dto.getExamTitle());
+                System.out.println("EXAM_NO : "+dto.getExamNo());
+                list.add(dto);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return dto;
+        return list;
     }
 	
 	public int getListCount() {

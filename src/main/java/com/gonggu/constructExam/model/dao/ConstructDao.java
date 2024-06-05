@@ -72,9 +72,10 @@ public class ConstructDao {
 	}
 
 	public List<ConstructDto> getConstructList(PageInfo pi) {
-		String query = "SELECT copy_name, ce.title , ce.exam_no FROM COPY_USER cu"
-				+ "      JOIN CONSTRUCT c ON cu.COPY_NO = c.COPY_NO"
-				+ "      JOIN CONST_EXAM ce ON c.CONSTRUCT_NO = ce.CONSTRUCT_NO";
+		String query = "SELECT copy_name, ce.title, ce.exam_no, ep.path FROM COPY_USER cu"
+				+ "     FULL JOIN CONSTRUCT c ON cu.COPY_NO = c.COPY_NO"
+				+ "     FULL JOIN CONST_EXAM ce ON c.CONSTRUCT_NO = ce.CONSTRUCT_NO"
+				+ "     FULL JOIN EXAM_PICTURE ep ON ce.EXAM_NO = ep.EXAM_NO";
 
 		List<ConstructDto> list = new ArrayList<>();
 
@@ -90,7 +91,12 @@ public class ConstructDao {
 				dto.setCopyName(rs.getString("COPY_NAME"));
 				dto.setTitle(rs.getString("title"));
 				dto.setExamNo(rs.getInt("exam_no"));
+				dto.setFilePath(rs.getString("PATH"));
 				list.add(dto);
+				System.out.println(dto.getCopyName());
+				System.out.println(dto.getFilePath());
+				
+				
 			}
 
 		} catch (SQLException e) {
@@ -130,6 +136,8 @@ String query = "select * from construct c"
 		    +"  on ce.exam_no = ep.exam_no"
             +"  full join copy_user cu"
 		    +"  on cu.copy_no = c.copy_no"
+            +"  full join copy_photo cp"
+		    +"  on cp.copy_no = c.copy_no"
             +"  where ce.exam_no = ?";
 ConstructDtoImpl detail = new ConstructDtoImpl();
 
@@ -150,6 +158,8 @@ try {
 		dto.setCopyName(rs.getString("COPY_NAME"));
 		dto.setCategoryNo(rs.getInt("CATEGORY_NO"));
 		dto.setContent(rs.getString("content"));
+		dto.setFilePath(rs.getString("PATH"));
+//		dto.setFilePath("PATH");
 		return dto;
 		
 	}

@@ -10,7 +10,7 @@ public interface CopyService {
 	
 	public ArrayList<CopyDto> getCompanyList(PageInfo pi);
 	
-	public CopyDto getCopyDetail(String copyNo);
+	public ArrayList<CopyDto> getCopyDetail(String copyNo);
 
 	public int getListCount();
 }

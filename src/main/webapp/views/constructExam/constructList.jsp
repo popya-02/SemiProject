@@ -46,7 +46,7 @@
 								<div class="card shadow-sm">
 									<a href="/constructDetail.do?examNo=${construct.examNo}"> <img
 										class="bd-placeholder-img card-img-top"
-										src="/resources/img/업체이미지1.jpeg" width="100%" height="100%"
+										src="/resources/img/${construct.filePath}" width="100%" height="100%"
 										fill="#55595c" />
 									</a>
 									<p class="djqcpaud">${construct.copyName}</p>
