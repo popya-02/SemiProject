@@ -26,7 +26,7 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-md-12 col-lg-7">
                         <a href="/userForm.do?cpage=1&category=name&searchText="><h2 class="mb-3">회원 검색</h2></a>
-                        <form action="userForm.do?cpage=${pi.cpage}" method="GET">
+                        <form action="userForm.do?cpage=${pi.copypage}" method="GET">
                         <input type="hidden" name="cpage" value="1" />
                         
                         <div class="input-group search-wid d-flex box-right" style="margin-left: 15%;">
@@ -99,7 +99,7 @@
         
 				<!-- 왼쪽 버튼  -->
 				<c:choose>
-					<c:when test="${pi.cpage == 1}">
+					<c:when test="${pi.copypage == 1}">
 						<li class="page-item" style="margin-right: 0px"><a
 							class="rounded page-n" href="#" aria-label="Previous"> <span
 								aria-hidden="true">&laquo;</span>
@@ -108,7 +108,7 @@
 
 					<c:otherwise>
 						<li class="page-item" style="margin-right: 0px"><a
-							class="rounded page-n" href="/userForm.do?cpage=${pi.cpage-1}&category=name&searchText="
+							class="rounded page-n" href="/userForm.do?cpage=${pi.copypage-1}&category=name&searchText="
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
 					</c:otherwise>
@@ -123,7 +123,7 @@
 
 
 				<c:choose>
-					<c:when test="${pi.cpage == pi.maxPage}">
+					<c:when test="${pi.copypage == pi.maxPage}">
 						<li class="page-item" style="margin-right: 0px"><a
 							class="rounded page-n" href="#" aria-label="Next"> <span
 								aria-hidden="true">&raquo;</span>
@@ -131,7 +131,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item" style="margin-right: 0px"><a
-							class="rounded page-n" href="/userForm.do?cpage=${pi.cpage+1}&category=name&searchText="
+							class="rounded page-n" href="/userForm.do?cpage=${pi.copypage+1}&category=name&searchText="
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 						</a></li>
 					</c:otherwise>

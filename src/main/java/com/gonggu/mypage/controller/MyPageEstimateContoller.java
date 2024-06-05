@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.gonggu.admin.model.dto.InformationDto;
+import com.gonggu.admin.model.service.InformationImpl;
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 import com.gonggu.mypage.model.service.MyPageServiceImpl;
 
@@ -28,6 +30,7 @@ public class MyPageEstimateContoller extends HttpServlet {
 		if(action.equals("/EstimateUser.do")) {
 			int userNo = (int) session.getAttribute("userNum");
 			
+			
 			MyPageServiceImpl myService = new MyPageServiceImpl();
 			MyPageDtoImpl result = myService.getUserEstimate(userNo);
 			
@@ -38,14 +41,25 @@ public class MyPageEstimateContoller extends HttpServlet {
 			
 		}else if(action.equals("/EstimateCopy.do")) {
 			String copyNo = (String) session.getAttribute("copyNum");
+	        String approve = request.getParameter("approve");
+
+			
 			
 			MyPageServiceImpl myService = new MyPageServiceImpl();
 			MyPageDtoImpl result = myService.getCopyEstimate(copyNo);
 			
+			InformationImpl infoService = new InformationImpl();
+			int result2 = infoService.saveCopyStatus(copyNo, approve);
+			
+			if (result2 == 1) {
+	            session.setAttribute("approvalStatus", "B");
+	        } else {
+	            session.setAttribute("approvalStatus", "A");
+	        }
 			request.setAttribute("result", result);
 			
+			 
 			nextPage = "/views/myPage/copyMyPageEstimate.jsp";
-			
 			
 		}
 		
@@ -61,5 +75,6 @@ public class MyPageEstimateContoller extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
+
 
 }

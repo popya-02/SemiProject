@@ -83,7 +83,7 @@
         
 				<!-- 왼쪽 버튼  -->
 				<c:choose>
-					<c:when test="${pi.cpage == 1}">
+					<c:when test="${pi.copypage == 1}">
 						<li class="page-item" style="margin-right: 0px"><a
 							class="rounded page-n" href="#" aria-label="Previous"> <span
 								aria-hidden="true">&laquo;</span>
@@ -92,7 +92,7 @@
 
 					<c:otherwise>
 						<li class="page-item" style="margin-right: 0px"><a
-							class="rounded page-n" href="/copyInfo.do?cpage=${pi.cpage-1}"
+							class="rounded page-n" href="/copyInfo.do?cpage=${pi.copypage-1}"
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
 					</c:otherwise>
@@ -107,7 +107,7 @@
 
 
 				<c:choose>
-					<c:when test="${pi.cpage == pi.maxPage}">
+					<c:when test="${pi.copypage == pi.maxPage}">
 						<li class="page-item" style="margin-right: 0px"><a
 							class="rounded page-n" href="#" aria-label="Next"> <span
 								aria-hidden="true">&raquo;</span>
@@ -115,7 +115,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item" style="margin-right: 0px"><a
-							class="rounded page-n" href="/copyInfo.do?cpage=${pi.cpage+1}"
+							class="rounded page-n" href="/copyInfo.do?cpage=${pi.copypage+1}"
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 						</a></li>
 					</c:otherwise>
