@@ -8,13 +8,13 @@
  	console.log("aaaaaaa");
 		IMP.request_pay({
 			pg: 'html5_inicis',
-			pay_method: 'card',
-			merchant_uid: '0200203-19292',
+			pay_method: 'card',				 /* 결제 수단방법 */
+			merchant_oid: '0200203-19292',   /* 주문 번호 */
 
 			name: 'ksdfklds',
-			amount: "2000000000",
-			buyer_email: "test1212@gmail.com",  
-			buyer_name: "asdasd",
+			amount: '{amount}',
+			
+            buyer_name: `${username}`,
 		}, function(rsp) {
 			console.log(rsp);
 			
@@ -25,7 +25,7 @@
 
 				
 			
-			} else {
+			} else if(rsp.success == false) {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
 			}
