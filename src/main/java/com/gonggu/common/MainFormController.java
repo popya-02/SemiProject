@@ -2,6 +2,7 @@ package com.gonggu.common;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,51 +14,68 @@ import javax.servlet.http.HttpSession;
 
 import com.gonggu.constructExam.model.dto.ConstructDtoImpl;
 import com.gonggu.constructExam.model.service.ConstructServiceImpl;
+import com.gonggu.copy.model.dto.CopyDto;
+import com.gonggu.copy.model.service.CopyServiceImpl;
 
 @WebServlet("/form/*")
 public class MainFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public MainFormController() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public MainFormController() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
-		
+
 		String action = request.getPathInfo();
 		String nextPage = "";
-		
-		if(action.equals("/loginForm.do")) {
+
+		HttpSession session = request.getSession();
+
+		if (action.equals("/loginForm.do")) {
 			nextPage = "/views/member/login.jsp";
-		}else if(action.equals("/signup.do")) {
-			nextPage = "/views/member/signup.jsp";			
-		}else if(action.equals("/signupuserForm.do")) {
+		} else if (action.equals("/signup.do")) {
+			nextPage = "/views/member/signup.jsp";
+		} else if (action.equals("/signupuserForm.do")) {
 			nextPage = "/views/member/signupUser.jsp";
-		}else if(action.equals("/signupcopyForm.do")) {
+		} else if (action.equals("/signupcopyForm.do")) {
 			nextPage = "/views/member/signupCopy.jsp";
-		}else if(action.equals("/constructlist.do")) {
+		} else if (action.equals("/constructlist.do")) {
 			nextPage = "/views/constructExam/constructList.jsp";
-		}else if(action.equals("/constructEnroll.do")) {
-			HttpSession session = request.getSession();
+//		} else if (action.equals("/copylist.do")) {
+//			CopyServiceImpl copyService = new CopyServiceImpl();
+//			List<CopyDto> companyList = copyService.getCompanyList();
+//	        request.setAttribute("companyList", companyList);
+//			nextPage = "/views/copy/copyList.jsp";
+//
+//		} else if (action.equals("/copyDetail.do")) {
+//			nextPage = "/views/copy/copyDetail.jsp";
+		} else if (action.equals("/constructEnroll.do")) {
 			String copyNum = (String) session.getAttribute("copyNum");
 			ConstructServiceImpl constructService = new ConstructServiceImpl();
 			ArrayList<ConstructDtoImpl> list = constructService.getList(copyNum);
 			request.setAttribute("list", list);
 			nextPage = "/views/constructExam/constructEnroll.jsp";
-		}		
-		
-		if(nextPage != null && !nextPage.isEmpty()) {
-			RequestDispatcher view = request.getRequestDispatcher(nextPage);
-			view.forward(request, response);
-		}else {
-			response.sendRedirect("/views/errors.jsp");
+
+//		} else if (action.equals("/constructDetail.do")) {
+//			nextPage = "/views/constructExam/constructDetail.jsp";
+//		}
+
+			if (nextPage != null && !nextPage.isEmpty()) {
+				RequestDispatcher view = request.getRequestDispatcher(nextPage);
+				view.forward(request, response);
+			} else {
+				response.sendRedirect("/views/errors.jsp");
+
+			}
 		}
-	
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 
 }

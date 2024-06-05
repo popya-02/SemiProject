@@ -68,7 +68,7 @@
 
 .mypage_list_3_detail_picture {
     margin-top: 10px;
-    margin-left: 37%;
+    margin-left: 39.5%;
     width: 300px;
     height: 200px;
 }
@@ -128,7 +128,7 @@ div div input {
     margin-left: 22%;
 }
 
-.mypage_list_3_detail_complete a {
+.mypage_list_3_detail_complete button {
     margin-top: 40px;
     margin-left: 35%;
     padding-top: 10px;
@@ -141,8 +141,9 @@ div div input {
     background-color: #747d88;
     color: white;
     text-decoration: none;
+    border: 0;
 }
 
-.mypage_list_3_detail_complete a:hover {
+.mypage_list_3_detail_complete button:hover {
     background-color: #223455;
 }
