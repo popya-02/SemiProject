@@ -1,4 +1,76 @@
+// 구매자 정보
+ var IMP = window.IMP;
+ IMP.init("imp67844376");   /* imp~ : 가맹점 식별코드*/
+ 
+ 
+ $('#money-btn').click(function() {
+ 
+ 	console.log("aaaaaaa");
+		IMP.request_pay({
+			pg: 'html5_inicis',
+			pay_method: 'card',
+			merchant_uid: '0200203-19292',
 
+			name: 'ksdfklds',
+			amount: "2000000000",
+			buyer_email: "test1212@gmail.com",  
+			buyer_name: "asdasd",
+		}, function(rsp) {
+			console.log(rsp);
+			
+			 //결제 성공 시
+			if (rsp.success) {
+				var msg = '결제가 완료되었습니다.';
+				console.log("결제성공 ");
+
+				
+			
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+			}
+			alert(msg);
+		});
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    $(document).ready(function() {
+    console.log("?");
+        console.log($("#datepicker"));
+        $( "#datepicker" ).datepicker({
+            changeMonth: true, 
+            dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+            dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+            monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+            monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+            dateFormat: 'yy년 MM d일'
+        });
+    });
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function (data) {
@@ -46,16 +118,4 @@
             }
         }).open();
     }
-        
-    $(document).ready(function() {
-        
-        $( "#datepicker" ).datepicker({
-            changeMonth: true, 
-            dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-            dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-            monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-            monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-            dateFormat: 'yy년 MM d일'
-        });
-    });
-
+    

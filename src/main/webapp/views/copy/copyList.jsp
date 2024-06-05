@@ -33,14 +33,13 @@
 			<div class="container">
 					<!-- ------------------------------------------------------------------------ -->
 
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 					<c:choose>
 						<c:when test="${empty companyList}">
-							<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 							<h5>등록 되어있는 업체가 없습니다.</h5>
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="companyList" items="${companyList}">
-								<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" scope="row">
 									<div class="col">
 										<div class="card shadow-sm">
 											<a href="/copyDetail.do?copyNo=${companyList.copyNo}">
