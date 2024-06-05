@@ -33,14 +33,29 @@ select {
     padding-top: 2px;
     color: #f2f2f2;
     font-weight: bold;
+    border: 0;
+    margin-right: 7px;
 
 }
 
-td div:hover {
+td .check:hover {
     background-color: #223455;
     color: #f2f2f2;
 }
-
+/* 
 li a {
     background-color: #869ec9 !important;
+} */
+
+.page-n {
+    border: 1px solid #223455 !important;
+    color: #223455 !important ;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.page-n:hover {
+    background-color: #223455 !important;
+    color: white !important;
+    transition: 0.3s;
 }

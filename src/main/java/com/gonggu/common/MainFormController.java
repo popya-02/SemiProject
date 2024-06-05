@@ -9,7 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.gonggu.mypage.model.dto.MyPageDtoImpl;
+import com.gonggu.mypage.model.service.MyPageServiceImpl;
 import com.gonggu.copy.model.dto.CopyDto;
 import com.gonggu.copy.model.service.CopyServiceImpl;
 
@@ -27,6 +30,8 @@ public class MainFormController extends HttpServlet {
 		String action = request.getPathInfo();
 		String nextPage = "";
 		
+		HttpSession session = request.getSession();
+		
 		if(action.equals("/loginForm.do")) {
 			nextPage = "/views/member/login.jsp";
 		}else if(action.equals("/signup.do")) {
@@ -37,21 +42,28 @@ public class MainFormController extends HttpServlet {
 			nextPage = "/views/member/signupCopy.jsp";
 		}else if(action.equals("/constructlist.do")) {
 			nextPage = "/views/constructExam/constructList.jsp";
+		}else if(action.equals("/copylist.do")) {
+			CopyServiceImpl copyService = new CopyServiceImpl();
+//			List<CopyDto> companyList = copyService.getCompanyList();
+//	        request.setAttribute("companyList", companyList);
+			nextPage = "/views/copy/copyList.jsp";
+		
+		}else if(action.equals("/copyDetail.do")) {
+			nextPage = "/views/copy/copyDetail.jsp";
 		}else if(action.equals("/constructEnroll.do")) {
 			nextPage = "/views/constructExam/constructEnroll.jsp";
 		}else if(action.equals("/constructDetail.do")) {
 		nextPage = "/views/constructExam/constructDetail.jsp";
 		}
-		
-		
 		if(nextPage != null && !nextPage.isEmpty()) {
 			RequestDispatcher view = request.getRequestDispatcher(nextPage);
 			view.forward(request, response);
 		}else {
 			response.sendRedirect("/views/errors.jsp");
 		}
-	
 	}
+			
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

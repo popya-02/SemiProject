@@ -11,6 +11,7 @@ td {
 th {
     background-color: #f2f2f2;
     padding: 10px;
+    /* width: 50px !important; */
 }
 
 select {
@@ -25,4 +26,17 @@ select {
 .form-control::placeholder {
     color: #6c757d;
     opacity: 1
+}
+
+.page-n {
+    border: 1px solid #223455 !important;
+    color: #223455 !important ;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.page-n:hover {
+    background-color: #223455 !important;
+    color: white !important;
+    transition: 0.3s;
 }

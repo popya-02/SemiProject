@@ -20,31 +20,34 @@
 		        <h2 class="mypage_1">마이페이지</h2>
         <nav class="mypage_list">
             <ul>
-                <li class="mypage_list_1"><a href="">견적/공사 내역</a></li>
-                <li class="mypage_list_2"><a href="">관심 업체</a></li>
-                <li class="mypage_list_3"><a href="">정보 수정</a></li>
+                <li class="mypage_list_1"><a href="/views/myPage/userMyPageEstimate.jsp">견적/공사 내역</a></li>
+                <li class="mypage_list_2"><a href="/view/myPage/userMyPageLikeCopy.jsp">관심 업체</a></li>
+                <li class="mypage_list_3"><a href="/MypageInfo/userInfo.do?userNo=${sessionScope.userNum}">정보 수정</a></li>
             </ul>
         </nav>
         <div class="mypage_list_3_detail">
+         <form action="/mypage/usermypageinfo.do" method="Post">
+			<input type="hidden" name="userno" value="${result.userNo }">
             <div class="mypage_list_3_detail_id">
                 <label for="">회원 ID</label>
-                <input class="id_box" type="id" name="" id="" placeholder="">
+                <input class="id_box" type="text" name="userid" id="" placeholder="" value="${result.userId }" disabled >
             </div>
             <div class="mypage_list_3_detail_name">
                 <label for="">회원 이름</label>
-                <input class="name_box" type="name" name="" id="" placeholder="">
+                <input class="name_box" type="text" name="name" id="" placeholder="" value="${result.name }" disabled >
             </div>
             <div class="mypage_list_3_detail_nickname">
                 <label for="">닉네임</label>
-                <input class="nickname_box" type="name" name="" id="" placeholder="">
+                <input class="nickname_box" type="text" name="nickname" id="" placeholder="" value="${result.nickName }" >
             </div>
             <div class="mypage_list_3_detail_address">
                 <label for="">주소</label>
-                <input class="address_box" type="text" name="" id="" placeholder="">
+                <input class="address_box" type="text" name="addr" id="" placeholder="" value="${result.address }" >
             </div>
             <div class="mypage_list_3_detail_complete">
-                <a href="">저장</a>
+                <button type="submit" >저장</button>
             </div>
+         </form>
         </div>
 
 
