@@ -8,15 +8,15 @@ public interface ChattingService {
 	
 	public int setChatting(ChattingDTO chattingDto);
 	
-	public int submitMsg(ChattingDTO chattingDto);
-	
 	public ChattingDTO getUserType(ChattingDTO chattingDto);
 	
 	public ChattingDTO getCopyType(ChattingDTO chattingDto);
 	
-	public int setChatnum(ChattingDTO chattingDto);
+	public ChattingDTO setChatnum(ChattingDTO chattingDto);
 	
 	public int insertMsg(ChattingDTO chattingDto);
 	
 	public ArrayList<ChattingDTO> getList(int chattingNum);
+	
+	public int chatLogDelete(int chatNum);
 }

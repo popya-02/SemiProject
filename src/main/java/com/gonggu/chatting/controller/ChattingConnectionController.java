@@ -45,49 +45,53 @@ public class ChattingConnectionController extends HttpServlet {
 		
 		ChattingDTO typeResult;
 		
-		if(userType.equals("copyUser") ) {
+		if(userType.equals("copyUser") ) {	// 업체유저
 			String sessionCopyNum = (String) session.getAttribute("copyNum");
 			
 			typeResult = chattingService.getCopyType(chattingDto);
-			int copychattingNum = chattingService.setChatnum(chattingDto);
-			if(sessionCopyNum.equals(copyNum)) {
-				ArrayList<ChattingDTO> list = chattingService.getList(copychattingNum);
+			ChattingDTO copychattingNum = chattingService.setChatnum(chattingDto);
+			if(sessionCopyNum.equals(copyNum)) {	// 로그인한 업체유저의 채팅방인지
+				ArrayList<ChattingDTO> list = chattingService.getList(copychattingNum.getChattingNum());
 				
 				request.setAttribute("list", list);
-				
-				request.setAttribute("chattingNum", copychattingNum);
+				request.setAttribute("endCheck", copychattingNum.getEndCheck());
+				request.setAttribute("chattingNum", copychattingNum.getChattingNum());
 				request.setAttribute("userType",userType);
 				request.setAttribute("noCheck",typeResult.getUserNum());
 				RequestDispatcher view = request.getRequestDispatcher("/views/etc/chatting.jsp");
 				view.forward(request, response);
 			}
-		} else if (userType.equals("basicUser")){
+		} else if (userType.equals("basicUser")){	// 일반 유저
 			int sessionUserNum = (int) session.getAttribute("userNum");
 			
 			typeResult = chattingService.getUserType(chattingDto);
 
 			
-			if(sessionUserNum == userNum) {
-				int result = chattingService.setChatting(chattingDto);
-				int userchattingNum = chattingService.setChatnum(chattingDto);
+			if(sessionUserNum == userNum) {	// 로그인한 일반유저의 채팅방인지
+				int result = chattingService.setChatting(chattingDto);	// 중복체크 없으면 생성
+				ChattingDTO userchattingNum = chattingService.setChatnum(chattingDto);
 				
-				if(result == 0) {
+				if(userchattingNum.getEndCheck() == "Y") {	// 상담 종료 여부
 					response.sendRedirect("/form/constructDetail.do");
 				}else {
+					if(result == 0) {
+						response.sendRedirect("/form/constructDetail.do");
+					}else {
+						
+						ArrayList<ChattingDTO> list = chattingService.getList(userchattingNum.getChattingNum());
+						
+						request.setAttribute("list", list);
+						request.setAttribute("chattingNum", userchattingNum.getChattingNum());
+						request.setAttribute("userType",userType);
+						request.setAttribute("noCheck",typeResult.getUserNum());
+						RequestDispatcher view = request.getRequestDispatcher("/views/etc/chatting.jsp");
+						view.forward(request, response);
+					}
 					
-					ArrayList<ChattingDTO> list = chattingService.getList(userchattingNum);
-					
-					request.setAttribute("list", list);
-					request.setAttribute("chattingNum", userchattingNum);
-					request.setAttribute("userType",userType);
-					request.setAttribute("noCheck",typeResult.getUserNum());
-					RequestDispatcher view = request.getRequestDispatcher("/views/etc/chatting.jsp");
-					view.forward(request, response);
-				}			
+				}
 				
 			}
 		}else{
-			System.out.println("a");
 			response.sendRedirect("/form/constructDetail.do");
 			
 			

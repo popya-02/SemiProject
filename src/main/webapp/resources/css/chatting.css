@@ -6,7 +6,7 @@
 }
 
 .chat-box{
-    height: 620px;
+    height: 640px;
     width: 80%;
     min-width: 400px;
     padding: 45px;
@@ -67,6 +67,8 @@
 
 
 .chatting-area{
+	position: relative;
+	top: -2%;
 	padding: 15px 0;
     width: 94%;
     overflow: auto;
@@ -95,4 +97,15 @@
     padding: 7px 12px;
     background-color: #ffffff;
     border-radius: 5px;
+}
+
+.endmsg{
+	top: 14%;
+    display: flex;
+    width: 75%;
+    justify-content: center;
+    position: absolute;
+    font-size: 14px;
+    margin: 0;
+    padding: 5px 0;
 }

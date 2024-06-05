@@ -33,9 +33,6 @@ public class ChattingDAO {
 			
 			int result = pstmt.executeUpdate();
 			
-			pstmt.close();
-			con.close();
-			
 			return result;
 			
 		} catch (SQLException e) {
@@ -45,12 +42,11 @@ public class ChattingDAO {
 		return 0;
 	}
 
-	public int duplicateCheck(ChattingDTO chattingDto) {
-		String query = "SELECT CHATTING_NO AS "
+	public ChattingDTO duplicateCheck(ChattingDTO chattingDto) {
+		String query = "SELECT CHATTING_NO, END_CHECK AS "
 					+ " FROM CONSTRUCT_STATUS cc "
 					+ " WHERE USER_NO = ?"
-					+ "	AND COPY_NO = ?"
-					+ "	AND END_CHECK = 'N'";
+					+ "	AND COPY_NO = ?";
 		
 		try {
 			pstmt  = con.prepareStatement(query);
@@ -62,8 +58,13 @@ public class ChattingDAO {
 			
 			while(rs.next()) {
 				int chatResult = rs.getInt("CHATTING_NO");
+				String endCheck = rs.getString("END_CHECK");
 				
-				return chatResult;
+				ChattingDTO chattingDto2 = new ChattingDTO();
+				chattingDto2.setChattingNum(chatResult);
+				chattingDto2.setEndCheck(endCheck);
+				
+				return chattingDto2;
 				
 			}
 						
@@ -71,7 +72,7 @@ public class ChattingDAO {
 			e.printStackTrace();
 		}
 		
-		return 0;
+		return null;
 	}
 
 	public ChattingDTO getUserType(ChattingDTO chattingDto) {
@@ -129,6 +130,9 @@ public class ChattingDAO {
 				
 			}
 			
+			pstmt.close();
+			con.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -154,8 +158,10 @@ public class ChattingDAO {
 			
 			int result = pstmt.executeUpdate();
 			
-			return result;
+			pstmt.close();
+			con.close();
 			
+			return result;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -196,7 +202,9 @@ public class ChattingDAO {
 				chattingDto.setMessage(content);
 				chattingDto.setUserType(type);
 				
+								
 				result.add(chattingDto);
+				
 			}
 			
 		} catch (SQLException e) {
@@ -204,6 +212,51 @@ public class ChattingDAO {
 		}
 		
 		return result;
+	}
+
+	public int deleteLog(int chatNum) {
+		String query = "DELETE FROM CHATTING_LOG"
+					+ " WHERE CHATTING_NO = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, chatNum);
+			
+			int result = pstmt.executeUpdate();
+			
+			return result;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public int changeChattingState(int chatNum) {
+		
+		String query = "UPDATE CONSTRUCT_STATUS"
+					+ " SET END_CHECK = 'Y'"
+					+ " WHERE CHATTING_NO = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, chatNum);
+			
+			int result = pstmt.executeUpdate();
+			
+			pstmt.close();
+			con.close();
+			
+			return result;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
 	}
 
 	

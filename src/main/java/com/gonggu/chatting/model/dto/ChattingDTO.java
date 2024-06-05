@@ -7,6 +7,7 @@ public class ChattingDTO {
 	private String copyNum;
 	private String message;
 	private String chattingIndate;
+	private String endCheck;
 	
 	public int getChattingNum() {
 		return chattingNum;
@@ -44,6 +45,19 @@ public class ChattingDTO {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
+	public String getEndCheck() {
+		return endCheck;
+	}
+	public void setEndCheck(String endCheck) {
+		this.endCheck = endCheck;
+	}
+	@Override
+	public String toString() {
+		return "ChattingDTO [chattingNum=" + chattingNum + ", userNum=" + userNum + ", userType=" + userType
+				+ ", copyNum=" + copyNum + ", message=" + message + ", chattingIndate=" + chattingIndate + ", endCheck="
+				+ endCheck + "]";
+	}
+	
 	
 	
 }

@@ -17,23 +17,18 @@ public class ChattingServiceImpl implements ChattingService{
 	@Override
 	public int setChatting(ChattingDTO chattingDto) {
 		int result = 0;
-		int duplicete = 0;
+		ChattingDTO duplicete;
 		
 		duplicete = chattingDao.duplicateCheck(chattingDto);
 		
 		
-		if(duplicete == 0) {
+		if(duplicete.getEndCheck().equals("Y")) {
 			result = chattingDao.setChatting(chattingDto);
 		}else {
 			result = 1;
 		}
 		
 		return result;
-	}
-
-	@Override
-	public int submitMsg(ChattingDTO chattingDto) {
-		return 0;
 	}
 
 	@Override
@@ -48,7 +43,7 @@ public class ChattingServiceImpl implements ChattingService{
 	}
 
 	@Override
-	public int setChatnum(ChattingDTO chattingDto) {
+	public ChattingDTO setChatnum(ChattingDTO chattingDto) {
 		return chattingDao.duplicateCheck(chattingDto);
 	}
 	
@@ -60,6 +55,18 @@ public class ChattingServiceImpl implements ChattingService{
 	@Override
 	public ArrayList<ChattingDTO> getList(int chattingNum) {
 		return chattingDao.getList(chattingNum);
+	}
+
+	@Override
+	public int chatLogDelete(int chatNum) {
+//		int result = chattingDao.deleteLog(chatNum);
+		
+//		if(result == 1) {
+//			result = chattingDao.changeChattingState(chatNum);
+//		}
+		int result = chattingDao.changeChattingState(chatNum);
+		
+		return result;
 	}
 
 
