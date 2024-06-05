@@ -5,9 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+
 
 import com.gonggu.common.DatabaseConnection;
+import com.gonggu.common.PageInfo;
 import com.gonggu.copy.model.dto.CopyDto;
 
 
@@ -21,44 +22,54 @@ public class CopyDao {
 		dc = new DatabaseConnection();																					
 		con = dc.connDB();
 	}
-	public List<CopyDto> getCompanyList() {
-        String query = "SELECT COPY_NAME, cu.COPY_NO, PATH FROM COPY_USER cu"
-        		+"      JOIN COPY_PHOTO cp ON cu.COPY_NO = cp.COPY_NO"
-        		+"      WHERE APPROVE = ?";
-        List<CopyDto> list = new ArrayList<>();
-        try {
-        	pstmt = con.prepareStatement(query);
-        	pstmt.setString(1, "Y");
-        	rs = pstmt.executeQuery();
-            
-            while (rs.next()) {
-                CopyDto dto = new CopyDto();
-                dto.setCopyName(rs.getString("COPY_Name"));
-                dto.setCopyNo(rs.getInt("COPY_NO"));
-                dto.setCopyPhoto(rs.getString("PATH"));
-                list.add(dto);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+	public ArrayList<CopyDto> getCompanyList(PageInfo pi) {
+		String query = "SELECT COPY_NAME, cd.COPY_NO, PATH"
+				+ " FROM COPY_DETAIL cd"
+				+ " FULL JOIN COPY_PHOTO cp"
+				+ " 	ON cd.COPY_NO = cp.COPY_NO"
+				+ " WHERE cd.COPY_NO IN (SELECT COPY_NO"
+				+ "						FROM COPY_USER cu"
+				+ "						WHERE APPROVE = 'Y')"
+				+ " ORDER BY COPY_NAME DESC"
+				+ " OFFSET ? ROWS FETCH FIRST ? ROWS ONLY";
+		
+		ArrayList<CopyDto> list = new ArrayList<>();
+		
+		try {
+		pstmt = con.prepareStatement(query);
+		pstmt.setInt(1, pi.getOffSet());
+		pstmt.setInt(2, pi.getBoardLimit());            
+        rs = pstmt.executeQuery();
         
+        while(rs.next()) {
+        	CopyDto dto = new CopyDto();
+            dto.setCopyName(rs.getString("COPY_NAME"));
+            dto.setCopyNo(rs.getString("COPY_NO"));
+            dto.setCopyPhoto(rs.getString("PATH"));
+            list.add(dto);          
+        } 
+		}catch (SQLException e) {
+            e.printStackTrace();
         }
         return list;
     }
 
-	public CopyDto getCopyDetail(int copyNo) {
-        String query = "SELECT cd.COPY_NO, PATH , COPY_NAME , CONTENT , COPY_ADDR , TEL_NUM FROM COPY_DETAIL cd"
-        		+ "     JOIN COPY_PHOTO cp"
-        		+ "     ON cd.COPY_NO = cp.COPY_NO"
-        		+ "     WHERE cd.COPY_NO = ?";
+	public CopyDto getCopyDetail(String copyNo) {
+        String query = "SELECT cd.COPY_NO, PATH , COPY_NAME , CONTENT , COPY_ADDR , TEL_NUM"
+        			+ " FROM COPY_DETAIL cd"
+        			+ " FULL JOIN COPY_PHOTO cp"
+        			+ " ON cd.COPY_NO = cp.COPY_NO"
+        			+ " WHERE cd.COPY_NO = ?";
         CopyDto dto = null;
         try {
             pstmt = con.prepareStatement(query);
-            pstmt.setInt(1, copyNo);
-            rs = pstmt.executeQuery();
+            pstmt.setString(1, copyNo);
+            ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 dto = new CopyDto();
                 dto.setCopyName(rs.getString("COPY_NAME"));
-                dto.setCopyNo(rs.getInt("COPY_NO"));
+                dto.setCopyNo(rs.getString("COPY_NO"));
                 dto.setCopyPhoto(rs.getString("PATH"));
                 dto.setCopyContent(rs.getString("CONTENT"));
                 dto.setCopyAddress(rs.getString("COPY_ADDR"));
@@ -70,7 +81,31 @@ public class CopyDao {
         }
         return dto;
     }
+	
+	public int getListCount() {
+		
+        String query = "SELECT COUNT(cd.COPY_NO) AS CNT"
+        			+ " FROM COPY_DETAIL cd"
+        			+ " FULL JOIN COPY_PHOTO cp"
+        			+ " 	ON cd.COPY_NO = cp.COPY_NO"
+        			+ " WHERE cd.COPY_NO IN (SELECT COPY_NO"
+        			+ "						FROM COPY_USER cu"
+        			+ "						WHERE APPROVE = 'Y')";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int result = rs.getInt("CNT");
+				
+				return result;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
 }
-
-
-

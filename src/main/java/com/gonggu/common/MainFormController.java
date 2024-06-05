@@ -1,7 +1,7 @@
 package com.gonggu.common;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.gonggu.copy.model.dto.CopyDto;
-import com.gonggu.copy.model.service.CopyServiceImpl;
+import com.gonggu.constructExam.model.dto.ConstructDtoImpl;
+import com.gonggu.constructExam.model.service.ConstructServiceImpl;
 
 @WebServlet("/form/*")
 public class MainFormController extends HttpServlet {
@@ -37,22 +38,14 @@ public class MainFormController extends HttpServlet {
 			nextPage = "/views/member/signupCopy.jsp";
 		}else if(action.equals("/constructlist.do")) {
 			nextPage = "/views/constructExam/constructList.jsp";
-		}else if(action.equals("/copylist.do")) {
-			CopyServiceImpl copyService = new CopyServiceImpl();
-			List<CopyDto> companyList = copyService.getCompanyList();
-	        request.setAttribute("companyList", companyList);
-			nextPage = "/views/copy/copyList.jsp";
-		}else if(action.equals("/copyDetail.do")) {
-//			CopyServiceImpl copyService = new CopyServiceImpl();
-//			List<CopyDto> companyList = copyService.getCompanyList();
-//	        request.setAttribute("companyList", companyList);
-//			
-			nextPage = "/views/copy/copyDetail.jsp";
 		}else if(action.equals("/constructEnroll.do")) {
+			HttpSession session = request.getSession();
+			String copyNum = (String) session.getAttribute("copyNum");
+			ConstructServiceImpl constructService = new ConstructServiceImpl();
+			ArrayList<ConstructDtoImpl> list = constructService.getList(copyNum);
+			request.setAttribute("list", list);
 			nextPage = "/views/constructExam/constructEnroll.jsp";
-		}else if(action.equals("/constructDetail.do")) {
-		nextPage = "/views/constructExam/constructDetail.jsp";
-	}
+		}		
 		
 		if(nextPage != null && !nextPage.isEmpty()) {
 			RequestDispatcher view = request.getRequestDispatcher(nextPage);
