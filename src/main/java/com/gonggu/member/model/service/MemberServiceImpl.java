@@ -45,12 +45,20 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int signupCopy(MemberDTO memberDto) {
+		int singResult = 0;
+		int detailResult = 0;
 		int result = 0;
 		
-		result = memberDao.signupCopy(memberDto);
+		singResult = memberDao.signupCopy(memberDto);
 		
-		if(result == 1) {
-			result = memberDao.signupCopyDetail(memberDto);
+		if(singResult == 1) {
+			detailResult = memberDao.signupCopyDetail(memberDto);
+			
+			if(detailResult == 1) {
+				result = memberDao.signupPicture(memberDto);
+			}else {
+				result = 0;
+			}
 		}else {
 			result = 0;
 		}

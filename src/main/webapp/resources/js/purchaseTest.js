@@ -1,4 +1,4 @@
-
+/*
 
 
 
@@ -18,3 +18,4 @@ const onClickPay = async () => {
 };
 
 button.addEventListener("click", onClickPay);
+*/
