@@ -248,6 +248,7 @@ public class MyPageDao {
 		}
 	}
 
+	// 새로운 이미지 업로드 하기위해 삭제
 	public int setDelete(String copyNo) {
 		String query = "DELETE FROM COPY_PHOTO"
 				+ "    WHERE COPY_NO = ?";
@@ -262,6 +263,47 @@ public class MyPageDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return 0;
+	}
+
+	// 
+	public MyPageDtoImpl getLikeCopy(int likeNo) {
+		String query = "SELECT * FROM LIKE_COPY lc"
+				+ "     JOIN BASIC_USER bu"
+				+ "     ON lc.USER_NO = bu.USER_NO"
+				+ "     WHERE bu.USER_NO = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, likeNo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public int getLikeListCount(String category, String searchText) {
+		String query = "SELECT COUNT(cd.LIKE_CNT) AS CNT"
+				+ "     FROM LIKE_COPY lc"
+				+ "     JOIN COPY_DETAIL cd"
+				+ "     ON lc.COPY_NO = cd.COPY_NO"
+				+ "     WHERE cd.COPY_NO = ?";
+		   try {
+			pstmt = con.prepareStatement(query);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int result = rs.getInt("CNT");
+				
+				return result;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return 0;
 	}
 

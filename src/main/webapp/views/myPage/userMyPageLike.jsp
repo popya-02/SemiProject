@@ -10,7 +10,7 @@
 <!-- Template Stylesheet -->
 <link href="/resources/css/style.css" rel="stylesheet">
 <link href="/resources/css/login.css" rel="stylesheet">
-<link href="/resources/css/userMyPageLikeCopy.css" rel="stylesheet">
+<link href="/resources/css/userMyPageLike.css" rel="stylesheet">
 </head>
 <body>
 	<!-- Navbar start -->
@@ -23,22 +23,22 @@
 			<li class="mypage_list_1"><a
 				href="/views/myPage/userMyPageEstimate.jsp">견적/공사 내역</a></li>
 			<li class="mypage_list_2"><a
-				href="/view/myPage/userMyPageLikeCopy.jsp">관심 업체</a></li>
+				href="/view/myPage/userMyPageLike.jsp">관심 업체</a></li>
 			<li class="mypage_list_3"><a
 				href="/MypageInfo/userInfo.do?userNo=${sessionScope.userNum}">정보
 					수정</a></li>
 		</ul>
 	</nav>
 	<div class="mypage_list_1_detail">
-		<form action="" method="post">
+		<form action="/mypage/likecopy.do" method="post">
 		   <input type="hidden" name="likeno" value="${result.likeNo }">
-			<p class="estimate_list">관심 업체</p>
+			<p class="likecopy_list">관심 업체</p>
 
-			<div class="reservation-list body">
-				<div class="reservation-list-header">
-					<div class="company_photo" name="picturename">사진</div>
+			<div class="likecopy-list body">
+				<div class="likecopy-list-header">
+					<div class="company_photo" name="picturename">업체 이름</div>
 					<div class="company_name" name="copyname">업체 이름</div>
-					<div class="reservation_number" name="constructno">예약번호</div>
+					<div class="reservation_number" name="constructno"></div>
 				</div>
 			</div>	
 		</form>
@@ -75,11 +75,11 @@
 			<div class="pagination d-flex justify-content-center mt-5">
 
 				<c:choose>
-					<c:when test="${pi.copypage == 1 }">
+					<c:when test="${pi.cpage == 1 }">
 						<a href="#" class="page-n rounded">&laquo;</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/copy/copylist.do?copypage=${pi.copypage-1}"
+						<a href="/copy/copylist.do?copypage=${pi.cpage-1}"
 							class="page-n rounded">&laquo;</a>
 					</c:otherwise>
 				</c:choose>
@@ -89,11 +89,11 @@
 				</c:forEach>
 
 				<c:choose>
-					<c:when test="${pi.copypage == pi.maxPage }">
+					<c:when test="${pi.cpage == pi.maxPage }">
 						<a href="#" class="page-n rounded">&raquo;</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/copy/copylist.do?copypage=${pi.copypage+1}"
+						<a href="/copy/copylist.do?copypage=${pi.cpage+1}"
 							class="page-n rounded">&raquo;</a>
 					</c:otherwise>
 				</c:choose>

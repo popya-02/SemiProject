@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/CopyMyPageEstimateController")
+@WebServlet("//mypage/copyestimate.do")
 public class CopyMyPageEstimateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -16,11 +16,18 @@ public class CopyMyPageEstimateController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
+		String copyNo = request.getParameter("copyno");
+		String copyName = request.getParameter("copyname");
+		String copyPicture = request.getParameter("picturename");
+		int constructNo = Integer.parseInt(request.getParameter("constructno");
+		
+		MyPageServiceImpl myService = new MyPageServiceImpl();
+		MyPageDtoImpl result = myService.get
 	}
 
 }

@@ -64,4 +64,14 @@ public class MyPageServiceImpl implements MyPageService {
 		return myPageDao.setDelete(copyNo);
 	}
 
+	public MyPageDtoImpl getLikeCopy(int likeNo) {
+		MyPageDtoImpl result = myPageDao.getLikeCopy(likeNo);
+		
+		return result;
+	}
+
+	public int getLikeListCount(String category, String searchText) {
+		return myPageDao.getLikeListCount(category, searchText);
+	}
+
 }

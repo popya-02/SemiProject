@@ -41,8 +41,6 @@ public class MyPageEstimateContoller extends HttpServlet {
 		}else if(action.equals("/EstimateCopy.do")) {
 			String copyNo = (String) session.getAttribute("copyNum");
 	        String approve = request.getParameter("approve");
-
-			
 			
 			MyPageServiceImpl myService = new MyPageServiceImpl();
 			MyPageDtoImpl result = myService.getCopyEstimate(copyNo);
@@ -56,8 +54,6 @@ public class MyPageEstimateContoller extends HttpServlet {
 	            session.setAttribute("approvalStatus", "A");
 	        }
 			request.setAttribute("result", result);
-			
-			 
 			nextPage = "/views/myPage/copyMyPageEstimate.jsp";
 			
 		}

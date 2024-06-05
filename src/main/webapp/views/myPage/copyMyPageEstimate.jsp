@@ -29,42 +29,16 @@
             </ul>
         </nav>
         <div class="mypage_list_1_detail"> 
+          <form action="/mypage/copyestimate.do"method="post">
+          <input type="hidden" name="copyno" value="">
             <p class="estimate_list">견적신청 내역</p>
 
             <div class="reservation-list body">
                 <div class="reservation-list-header">
-                    <div class="company_photo"name="hg">사진</div>
-                    <div class="user_name">예약자명</div>
-                    <div class="reservation_number">예약번호</div>
+                    <div class="company_photo" name="picturename">업체사진</div>
+                    <div class="user_name" name="copyname">업체명</div>
+                    <div class="reservation_number" name="constructno">예약번호</div>
                 </div>
-                <!-- <div class="reservation-list-header">
-                    <div class="reservation-photo">사진</div>
-                    <div class="reservation-name">업체명</div>
-                    <div class="reservation-number">예약번호</div>
-                </div> -->
-              <!--   <a href="naver.com">
-                    <div class="reservation-list-item">
-                        <img src="../img/antique_picture.jpg" alt="사진">
-                        <div class="user_name">예약자명1</div>
-                        <div class="reservation_number">123456</div>
-                    </div>
-                </a>
-                <div class="reservation-list-item">
-                    <img src="https://via.placeholder.com/100" alt="사진">
-                    <div class="user_name">예약자명2</div>
-                    <div class="reservation_number">789012</div>
-                </div>
-                <div class="reservation-list-item">
-                    <img src="https://via.placeholder.com/100" alt="사진">
-                    <div class="user_name">예약자명3</div>
-                    <div class="reservation_number">345678</div>
-                </div>
-                <div class="reservation-list-item">
-                    <img src="https://via.placeholder.com/100" alt="사진">
-                    <div class="user_name">예약자명4</div>
-                    <div class="reservation_number">346678</div>
-                </div> -->
-
                 <div class="col-12">
                     <div class="pagination d-flex justify-content-center mt-5">
                         <a href="#" class="rounded">&laquo;</a>
@@ -78,7 +52,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+       </form>
+     </div>
 			</c:when>
 			<c:otherwise>
 				<div>
