@@ -72,17 +72,21 @@ public class ConstructDao {
 	}
 
 	public List<ConstructDto> getConstructList(PageInfo pi) {
-		String query = "SELECT copy_name, ce.title, ce.exam_no, ep.path FROM COPY_USER cu"
+		String query = "SELECT ce.DELETE_STATUS,cu.copy_name, ce.title, ce.exam_no, ep.path, ep.name, ep.EXAM_PICTURE_NO FROM COPY_USER cu"
 				+ "     FULL JOIN CONSTRUCT c ON cu.COPY_NO = c.COPY_NO"
 				+ "     FULL JOIN CONST_EXAM ce ON c.CONSTRUCT_NO = ce.CONSTRUCT_NO"
 				+ "     FULL JOIN EXAM_PICTURE ep ON ce.EXAM_NO = ep.EXAM_NO"
-				+ "     ORDER BY ce.exam_no DESC";
+				+ "     WHERE ce.DELETE_STATUS = 'N'"
+				+ "     ORDER BY ce.exam_no DESC"
+		        + "		OFFSET ? ROWS FETCH FIRST ? ROWS ONLY";
 
 		List<ConstructDto> list = new ArrayList<>();
 
 		try {
 
 			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, pi.getOffSet());
+			pstmt.setInt(2, pi.getBoardLimit());
 			ResultSet rs = pstmt.executeQuery();
 
 			rs = pstmt.executeQuery();
@@ -93,6 +97,9 @@ public class ConstructDao {
 				dto.setTitle(rs.getString("title"));
 				dto.setExamNo(rs.getInt("exam_no"));
 				dto.setFilePath(rs.getString("PATH"));
+				dto.setFileName(rs.getString("NAME"));
+				dto.setFileNo(rs.getInt("EXAM_PICTURE_NO"));
+				dto.setDeleteStatus(query);
 				list.add(dto);
 			}
 
@@ -158,5 +165,42 @@ public class ConstructDao {
 		}
 
 		return null;
+	}
+	public int listDelete(int examNo) {
+		String query = "UPDATE CONST_EXAM ce"
+				+ "		SET DELETE_DATE = SYSDATE,"
+				+ "			DELETE_STATUS = 'Y'"
+				+ "		WHERE EXAM_NO = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, examNo);
+			
+			int result = pstmt.executeUpdate();
+//			pstmt.close();
+//			con.close();
+			
+			return result;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+	
+	public int fileDelete(int fileNo) {
+		String query = "DELETE FROM EXAM_PICTURE ep"
+				+"      WHERE EXAM_PICTURE_NO = ?";
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, fileNo);
+			int result = pstmt.executeUpdate();
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

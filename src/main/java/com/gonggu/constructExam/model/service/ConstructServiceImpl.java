@@ -40,6 +40,16 @@ public class ConstructServiceImpl implements ConstructService {
 	public ConstructDtoImpl getDeteil(int examNo){
 		return constructDao.getDetail(examNo);
 	};
+	
+	@Override
+	public int listDelete(int examNo) {
+		return constructDao.listDelete(examNo);
+	};
+	
+	@Override
+	public int fileDelete(int fileNo) {
+		return constructDao.fileDelete(fileNo);
+	};
 
 //	@Override
 //	public ConstructDtoImpl selectNo(ConstructDtoImpl constructDto) {

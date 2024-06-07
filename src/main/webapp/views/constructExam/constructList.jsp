@@ -42,6 +42,11 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="construct" items="${constructList}">
+						<form action="/constructExam/constructdelete.do" method="POST">
+						<input type="hidden" name="examNo" value="${construct.examNo}">
+						<input type="hidden" name="fileNo" value="${construct.fileNo}">
+						<input type="hidden" name="fileName" value="${construct.fileName}">
+						<input type="hidden" name="page" value="${pi.copypage}">
 							<div class="col">
 								<div class="card shadow-sm">
 									<a href="/constructDetail.do?examNo=${construct.examNo}"> <img
@@ -56,16 +61,18 @@
 										<div class="d-flex justify-content-between align-items-center">
 
 											<div class="btn-group">
+												<c:if test="${sessionScope.copyName == construct.copyName}">
 												<button type="button"
 													class="tlrhd-border btn-sm btn-outline-secondary">수정</button>
 												&nbsp;
-												<button type="button"
-													class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>
+												<button type="submit" class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>
+											</c:if>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+							</form>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>

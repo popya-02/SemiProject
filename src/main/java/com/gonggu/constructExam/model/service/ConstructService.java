@@ -18,6 +18,10 @@ public interface ConstructService {
 	
 	public ConstructDtoImpl getDeteil(int examNo);
 
+	public int listDelete(int examNo);
+	
+	public int fileDelete(int fileNo);
+
 //	public ConstructDtoImpl selectNo(ConstructDtoImpl ConstructDto);
 //	public int fileUpload(ConstructDtoImpl ConstructDto);
 //	public void getFileName(ConstructDtoImpl result);

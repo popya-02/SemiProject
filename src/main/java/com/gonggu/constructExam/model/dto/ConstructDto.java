@@ -5,12 +5,6 @@ public class ConstructDto {
 	private String filePath; // 시공 사례 사진 경로
 	private String fileName; // 시공 사례 사진 이름
     private int constructList;
-	public int getConstructList() {
-		return constructList;
-	}
-	public void setConstructList(int constructList) {
-		this.constructList = constructList;
-	}
 	private String copyNum;  // 업체 번호
 	private String copyName; // 업체 이름
 	private String title;  // 시공사례 제목
@@ -27,7 +21,27 @@ public class ConstructDto {
 	private String constructEndDate; // 시공 종료일
 	private int category; // 카테고리
 	private int examNo;
+	private String deleteStatus;
+	private String deleteDate;
 	
+	public String getDeleteStatus() {
+		return deleteStatus;
+	}
+	public void setDeleteStatus(String deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
+	public String getDeleteDate() {
+		return deleteDate;
+	}
+	public void setDeleteDate(String deleteDate) {
+		this.deleteDate = deleteDate;
+	}
+	public int getConstructList() {
+		return constructList;
+	}
+	public void setConstructList(int constructList) {
+		this.constructList = constructList;
+	}
 	public int getExamNo() {
 		return examNo;
 	}
