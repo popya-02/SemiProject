@@ -572,6 +572,15 @@
     text-shadow: 1px 2px 2px #ffffff51;
 }
 
+/* 관리자 로그인 버튼 */
+.admin-login{
+	position: relative;
+	width: 60px;
+	height: 40px;
+    background-color: #223455;
+    border: none;
+}
+
 /*** Footer End ***/
 
 .btn-point{

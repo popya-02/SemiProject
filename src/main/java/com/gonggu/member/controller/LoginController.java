@@ -1,6 +1,7 @@
 	package com.gonggu.member.controller;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,6 +29,9 @@ public class LoginController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		
 		String loginId = request.getParameter("id");
 		String loginPwd = request.getParameter("password");
 		
@@ -35,35 +39,49 @@ public class LoginController extends HttpServlet {
 		
 		MemberDTO hashPwd = memberService.getHashPwd(loginId);
 		
-		if(hashPwd.getUserType() == "basicUser") {
-			if(BCrypt.checkpw(loginPwd, hashPwd.getUserPwd())) {
-				HttpSession session = request.getSession();
-				session.setAttribute("userNum", hashPwd.getUserNum());
-				session.setAttribute("userId", hashPwd.getUserId());
-				session.setAttribute("userName", hashPwd.getUserName());
-				session.setAttribute("userType", hashPwd.getUserType());
-				
-				RequestDispatcher view = request.getRequestDispatcher("/");
-				view.forward(request, response);
+		if(Objects.isNull(hashPwd)) {
+			returnAlert(response, "아이디 또는 비밀번호가 잘못되었습니다.", "/form/loginForm.do");
+			return;
+		}else {
+			if(hashPwd.getUserType() == "basicUser") {
+				if(BCrypt.checkpw(loginPwd, hashPwd.getUserPwd())) {
+					HttpSession session = request.getSession();
+					session.setAttribute("userNum", hashPwd.getUserNum());
+					session.setAttribute("userId", hashPwd.getUserId());
+					session.setAttribute("userName", hashPwd.getUserName());
+					session.setAttribute("userType", hashPwd.getUserType());
+					
+					returnAlert(response, "로그인되었습니다.", "/");
+				}else {
+					returnAlert(response, "아이디 또는 비밀번호가 잘못되었습니다.", "/form/loginForm.do");
+					return;
+				}
+			}else if (hashPwd.getUserType() == "copyUser") {
+				if(BCrypt.checkpw(loginPwd, hashPwd.getCopyPwd())) {
+					HttpSession session = request.getSession();
+					session.setAttribute("copyNum", hashPwd.getCopyNum());
+					session.setAttribute("copyName", hashPwd.getCopyName());
+					session.setAttribute("userType", hashPwd.getUserType());
+					
+					returnAlert(response, "로그인되었습니다.", "/");
+					
+				}else {
+					returnAlert(response, "아이디 또는 비밀번호가 잘못되었습니다.", "/form/loginForm.do");
+					return;
+				}
 			}else {
-				response.sendRedirect("/views/common/error.jsp");
-				
-			}			
-		}else if (hashPwd.getUserType() == "copyUser") {
-			if(BCrypt.checkpw(loginPwd, hashPwd.getCopyPwd())) {
-				HttpSession session = request.getSession();
-				session.setAttribute("copyNum", hashPwd.getCopyNum());
-				session.setAttribute("copyName", hashPwd.getCopyName());
-				session.setAttribute("userType", hashPwd.getUserType());
-				
-				RequestDispatcher view = request.getRequestDispatcher("/");
-				view.forward(request, response);
-				
-			}else {
-				response.sendRedirect("/views/common/error.jsp");
-			}			
+				returnAlert(response, "아이디 또는 비밀번호가 잘못되었습니다.", "/form/loginForm.do");
+				return;
+			}
 		}
 		
+	}
+	
+	private void returnAlert(HttpServletResponse response, String msg, String url) throws IOException {
+		response.getWriter().write("<script>"
+								  +"	alert('"+ msg +"');"
+  								  +"	location.href='"+ url + "';"
+								  +"</script>");	// js 코드로 넘겨주기
 	}
 
 }

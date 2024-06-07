@@ -62,9 +62,6 @@ function sendNumCheck(){
 	
 	if(checkNumInput.length === 0 || checkNumInput === null) return alert("확인번호를 입력해주세요.");
 	
-	console.log(checkNumInput);
-	console.log(num);
-	
 	if(checkNumInput == num){
 		clearInterval(timer);
 		authenticationCheck.value = "available";

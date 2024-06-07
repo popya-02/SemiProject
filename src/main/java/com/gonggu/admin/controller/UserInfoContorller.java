@@ -32,7 +32,7 @@ public class UserInfoContorller extends HttpServlet {
 		InformationImpl infoService = new InformationImpl();
 		
 		int cpage = Integer.parseInt(request.getParameter("cpage"));
-		System.out.println(cpage);
+//		System.out.println(cpage);
 		
 		String category = request.getParameter("category");
 		String searchText = request.getParameter("searchText");
