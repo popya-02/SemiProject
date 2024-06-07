@@ -12,8 +12,36 @@ public class CopyDto {
 	private String copyNumber;
 	private String examTitle;
 	private int examNo;
+	private String review;
+	private String userId;
+	private String constructNo;
+	private int userNum;
 	
 	
+	public int getUserNum() {
+		return userNum;
+	}
+	public void setUserNum(int userNum) {
+		this.userNum = userNum;
+	}
+	public String getConstructNo() {
+		return constructNo;
+	}
+	public void setConstructNo(String constructNo) {
+		this.constructNo = constructNo;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getReview() {
+		return review;
+	}
+	public void setReview(String review) {
+		this.review = review;
+	}
 	public int getExamNo() {
 		return examNo;
 	}

@@ -44,33 +44,23 @@ public class MainFormController extends HttpServlet {
 			nextPage = "/views/member/signupCopy.jsp";
 		} else if (action.equals("/constructlist.do")) {
 			nextPage = "/views/constructExam/constructList.jsp";
-//		} else if (action.equals("/copylist.do")) {
-//			CopyServiceImpl copyService = new CopyServiceImpl();
-//			List<CopyDto> companyList = copyService.getCompanyList();
-//	        request.setAttribute("companyList", companyList);
-//			nextPage = "/views/copy/copyList.jsp";
-//
-//		} else if (action.equals("/copyDetail.do")) {
-//			nextPage = "/views/copy/copyDetail.jsp";
-		} else if (action.equals("/constructEnroll.do")) {
+		} else if (action.equals("/constructEnroll.do")) {  //시공예시 등록에서 시공내역 리스트뽑기
 			String copyNum = (String) session.getAttribute("copyNum");
 			ConstructServiceImpl constructService = new ConstructServiceImpl();
 			ArrayList<ConstructDtoImpl> list = constructService.getList(copyNum);
 			request.setAttribute("list", list);
 			nextPage = "/views/constructExam/constructEnroll.jsp";
 
-//		} else if (action.equals("/constructDetail.do")) {
-//			nextPage = "/views/constructExam/constructDetail.jsp";
-//		}
 
-			if (nextPage != null && !nextPage.isEmpty()) {
-				RequestDispatcher view = request.getRequestDispatcher(nextPage);
-				view.forward(request, response);
-			} else {
-				response.sendRedirect("/views/errors.jsp");
+		}if (nextPage != null && !nextPage.isEmpty()) {
+			RequestDispatcher view = request.getRequestDispatcher(nextPage);
+			view.forward(request, response);
+		} else {
+			response.sendRedirect("/views/errors.jsp");
+			
 
-			}
 		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

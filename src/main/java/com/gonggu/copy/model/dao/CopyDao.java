@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.gonggu.common.DatabaseConnection;
 import com.gonggu.common.PageInfo;
 import com.gonggu.copy.model.dto.CopyDto;
+import com.gonggu.copy.model.dto.CopyDtoImpl;
 
 
 public class CopyDao {
@@ -55,7 +56,7 @@ public class CopyDao {
     }
 
 	public ArrayList<CopyDto> getCopyDetail(String copyNo) {
-        String query = "SELECT ce.exam_no,TITLE,cd.COPY_NO, cp.PATH AS COPY_PATH, ep.PATH AS EXAM_PATH , COPY_NAME , cd.CONTENT , COPY_ADDR , TEL_NUM"
+        String query = "SELECT REVIEW_CONTENT,c.CONSTRUCT_NO,bu.user_id,ce.exam_no,TITLE,cd.COPY_NO, cp.PATH AS COPY_PATH, ep.PATH AS EXAM_PATH , COPY_NAME , cd.CONTENT , COPY_ADDR , TEL_NUM"
         			+ " FROM COPY_DETAIL cd"
         			+ " FULL JOIN COPY_PHOTO cp"
         			+ " ON cd.COPY_NO = cp.COPY_NO"
@@ -69,6 +70,8 @@ public class CopyDao {
         			+ " ON ep.EXAM_NO = ce.EXAM_NO"
         			+ " FULL JOIN CATEGORY cg"
         			+ " ON ce.CATEGORY_NO = cg.CATEGORY_NO"
+        			+ " FULL JOIN BASIC_USER bu" 
+       			    + " ON bu.USER_NO  = c.USER_NO" 
         			+ " WHERE cd.COPY_NO = ?";
         
         ArrayList<CopyDto> list = new ArrayList<>();
@@ -88,15 +91,42 @@ public class CopyDao {
                 dto.setCopyNumber(rs.getString("TEL_NUM"));
                 dto.setExamTitle(rs.getString("TITLE"));
                 dto.setExamNo(rs.getInt("EXAM_NO"));
-                System.out.println("TITLE : "+dto.getExamTitle());
-                System.out.println("EXAM_NO : "+dto.getExamNo());
+                dto.setUserId(rs.getString("USER_ID"));
+                dto.setReview(rs.getString("REVIEW_CONTENT"));
+                dto.setConstructNo(rs.getString("CONSTRUCT_NO"));
                 list.add(dto);
+                
+                System.out.println("copyNo:"+dto.getCopyNo());
+                System.out.println("constructNo:"+dto.getConstructNo());
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return list;
-    }
+        
+	}
+        public ArrayList<CopyDto> getReview(String copyNo){
+        	String query = "SELECT * FROM COPY_REVIEW cr"
+        			   + "  JOIN BASIC_USER bu ON cr.USER_NO = bu.USER_NO"
+        			   + "  where copy_no = ?" 
+        			   + "  ORDER BY REVIEW_NO DESC";
+        	ArrayList<CopyDto> list = new ArrayList<>();	
+        	try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, copyNo);
+	            ResultSet rs = pstmt.executeQuery();
+	            
+	           while(rs.next()){
+	        	   CopyDto dto = new CopyDto();
+	        	   dto.setUserId(rs.getString("USER_ID"));
+	        	   dto.setReview(rs.getString("REVIEW_CONTENT"));
+	        	   list.add(dto);
+	           }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+        	return list;
+        }
 	
 	public int getListCount() {
 		
@@ -123,5 +153,23 @@ public class CopyDao {
 		}
 		
 		return 0;
+	}
+	
+	public int reviewUpload(CopyDtoImpl copyDto) {
+		String query = "INSERT INTO COPY_REVIEW cr"
+				   +"   VALUES(review_seq.nextval, ?, ?, ?)";
+		int result=0;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, copyDto.getCopyNo());
+			pstmt.setString(2, copyDto.getReview());
+			pstmt.setInt(3, copyDto.getUserNum());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 }

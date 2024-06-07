@@ -12,7 +12,6 @@ import com.gonggu.common.PageInfo;
 import com.gonggu.constructExam.model.dto.ConstructDto;
 import com.gonggu.constructExam.model.dto.ConstructDtoImpl;
 
-
 public class ConstructDao {
 	private Connection con;
 	private DatabaseConnection dc;
@@ -23,6 +22,7 @@ public class ConstructDao {
 		con = dc.connDB();
 	}
 
+	//시공예시 등록에서 시공내역 리스트뽑기
 	public ArrayList<ConstructDtoImpl> getList(String copyNum) {
 
 		ArrayList<ConstructDtoImpl> result = new ArrayList<>();
@@ -75,7 +75,8 @@ public class ConstructDao {
 		String query = "SELECT copy_name, ce.title, ce.exam_no, ep.path FROM COPY_USER cu"
 				+ "     FULL JOIN CONSTRUCT c ON cu.COPY_NO = c.COPY_NO"
 				+ "     FULL JOIN CONST_EXAM ce ON c.CONSTRUCT_NO = ce.CONSTRUCT_NO"
-				+ "     FULL JOIN EXAM_PICTURE ep ON ce.EXAM_NO = ep.EXAM_NO";
+				+ "     FULL JOIN EXAM_PICTURE ep ON ce.EXAM_NO = ep.EXAM_NO"
+				+ "     ORDER BY ce.exam_no DESC";
 
 		List<ConstructDto> list = new ArrayList<>();
 
@@ -93,10 +94,6 @@ public class ConstructDao {
 				dto.setExamNo(rs.getInt("exam_no"));
 				dto.setFilePath(rs.getString("PATH"));
 				list.add(dto);
-				System.out.println(dto.getCopyName());
-				System.out.println(dto.getFilePath());
-				
-				
 			}
 
 		} catch (SQLException e) {
@@ -108,8 +105,10 @@ public class ConstructDao {
 
 	public int getListCount() {
 
-		String query = "SELECT COUNT(ce.EXAM_NO) AS CNT" + " FROM CONST_EXAM ce" + " FULL JOIN EXAM_PICTURE ep"
-				+ " 	ON ce.EXAM_NO = ep.EXAM_NO";
+		String query = "SELECT COUNT(ce.EXAM_NO) AS CNT" 
+		    + "         FROM CONST_EXAM ce" 
+		    + "         FULL JOIN EXAM_PICTURE ep"
+			+ "     	ON ce.EXAM_NO = ep.EXAM_NO";
 
 		try {
 			pstmt = con.prepareStatement(query);
@@ -129,43 +128,34 @@ public class ConstructDao {
 	}
 
 	public ConstructDtoImpl getDetail(int examNo) {
-String query = "select * from construct c"
-            +"  full join const_exam ce"
-		    +"  on c.construct_no = ce.construct_no"
-            +"  full join exam_picture ep"
-		    +"  on ce.exam_no = ep.exam_no"
-            +"  full join copy_user cu"
-		    +"  on cu.copy_no = c.copy_no"
-            +"  full join copy_photo cp"
-		    +"  on cp.copy_no = c.copy_no"
-            +"  where ce.exam_no = ?";
-ConstructDtoImpl detail = new ConstructDtoImpl();
+		String query = "select * from construct c" + "  full join const_exam ce"
+				+ "  on c.construct_no = ce.construct_no" + "  full join exam_picture ep"
+				+ "  on ce.exam_no = ep.exam_no" + "  full join copy_user cu" + "  on cu.copy_no = c.copy_no"
+				+ "  full join copy_photo cp" + "  on cp.copy_no = c.copy_no" + "  where ce.exam_no = ?";
+		ConstructDtoImpl detail = new ConstructDtoImpl();
 
-try {
-	pstmt = con.prepareStatement(query);
-	pstmt.setInt(1, examNo);
-	ResultSet rs = pstmt.executeQuery();
-	System.out.println("a : " + examNo);
-	
-	
-	while(rs.next()) {
-		ConstructDtoImpl dto = new ConstructDtoImpl();
-		dto.setConstructStartDate(rs.getString("CONSTRUCT_START_DATE"));
-		dto.setConstructEndDate(rs.getString("CONSTRUCT_END_DATE"));
-		dto.setConstructAddr(rs.getString("CONSTRUCT_ADDR"));
-		dto.setConstructRange(rs.getString("CONSTRUCT_RANGE"));
-		dto.setConstructPrice(rs.getString("CONSTRUCT_PRICE"));
-		dto.setCopyName(rs.getString("COPY_NAME"));
-		dto.setCategoryNo(rs.getInt("CATEGORY_NO"));
-		dto.setContent(rs.getString("content"));
-		dto.setFilePath(rs.getString("PATH"));
-//		dto.setFilePath("PATH");
-		return dto;
-		
-	}
-} catch (SQLException e) {
-	e.printStackTrace();
-}
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, examNo);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ConstructDtoImpl dto = new ConstructDtoImpl();
+				dto.setConstructStartDate(rs.getString("CONSTRUCT_START_DATE"));
+				dto.setConstructEndDate(rs.getString("CONSTRUCT_END_DATE"));
+				dto.setConstructAddr(rs.getString("CONSTRUCT_ADDR"));
+				dto.setConstructRange(rs.getString("CONSTRUCT_RANGE"));
+				dto.setConstructPrice(rs.getString("CONSTRUCT_PRICE"));
+				dto.setCopyName(rs.getString("COPY_NAME"));
+				dto.setCategoryNo(rs.getInt("CATEGORY_NO"));
+				dto.setContent(rs.getString("content"));
+				dto.setFilePath(rs.getString("PATH"));
+				return dto;
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		return null;
 	}

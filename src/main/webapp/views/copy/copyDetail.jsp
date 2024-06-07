@@ -114,43 +114,36 @@
 
 					<div class="tab-pane" id="nav-mission" role="tabpanel"
 						aria-labelledby="nav-mission-tab">
-
+                        <c:forEach var="getReview" items="${getReview}"> 
 						<div class="d-flex">
 
 							<div class="">
 								<p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
 								<div class="d-flex justify-content-between">
-									<h5>이진우</h5>
+									<h5>${getReview.userId}</h5>
 								</div>
-								<p>데헷ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ</p>
+								<p>${getReview.review}</p>
 							</div>
 						</div>
+						</c:forEach>
 
-						<div class="d-flex">
-
-							<div class="">
-								<p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-								<div class="d-flex justify-content-between">
-									<h5>전해원</h5>
-
-								</div>
-								<p class="text-dark">끼얗ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ</p>
-							</div>
-						</div>
 					</div>
 
 				</div>
 			</div>
 			</div>
 			<!-- 후기 쓰기 -->
-			<form action="/reviwEnroll.do" class="repl">
+			<form action="/copyDetail.do" method="POST" class="repl">
 				<h4 class="mb-5 fw-bold">후기를 남겨주세요.</h4>
 				<div class="row g-4" style="width: 1100px;">
 
 
 					<div class="col-lg-12">
 						<div class="border-bottom rounded my-4">
-							<textarea name="" id="" class="form-control border-0" cols="30"
+						<input type="hidden" name="copyNo" value="${copyDetail[0].copyNo}">
+						<input type="hidden" name="userNum" value="${sessionScope.userNum}">
+						
+							<textarea name="content" id="" class="form-control border-0" cols="30"
 								rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
 						</div>
 					</div>
