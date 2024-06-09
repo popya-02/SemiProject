@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.gonggu.admin.model.dto.InformationDto;
 import com.gonggu.common.DatabaseConnection;
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 
@@ -265,6 +266,50 @@ public class MyPageDao {
 		return 0;
 	}
 
+	
+//	======================== 예약 확인 ===========================
+	
+	
+	public int reserveCheck(int userNo) {
+		
+		String query = "SELECT copy_name, c.CONSTRUCT_NO, bu.ADDR,c.CONSTRUCT_ADDR , c.CONSTRUCT_PRICE, c.CONSTRUCT_START_DATE "
+				+ "		FROM COPY_DETAIL cd"
+				+ "		FULL JOIN CONSTRUCT c ON cd.COPY_NO = c.COPY_NO "
+				+ "		FULL JOIN BASIC_USER bu ON bu.USER_NO = c.USER_NO";
+		
+		
+		int result = 0;
+		try {
+			pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				String copyName = rs.getString("COPY_NAME");
+				int constructNo = rs.getInt("CONSTRUCT_NO");
+				String addr = rs.getString("ADDR");
+				String userAddr = rs.getString("CONSTRUCT_ADDR");
+				String constructPrice = rs.getString("CONSTRUCT_PRICE");
+				String startDate = rs.getString("CONSTRUCT_START_DATE");
+				
+				MyPageDtoImpl myDTO = new MyPageDtoImpl();
+				
+				myDTO.setCopyName(copyName);
+				myDTO.setConstructNo(constructNo);
+				myDTO.setAddress(addr);
+				myDTO.setConstructArea(userAddr);
+				myDTO.setConstructPrice(constructPrice);
+				myDTO.setConstructStartDate(startDate);
+				
+				
+				return result;
+			}				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+		
+	}
 
 }
 

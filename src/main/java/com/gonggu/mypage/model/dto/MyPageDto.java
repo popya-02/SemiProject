@@ -15,6 +15,9 @@ public class MyPageDto {
 	private String ConstructArea;
 	private int ConstructNo;
 	
+	private String constructStartDate;
+	private String constructPrice;
+	
 	private int CopyPictureNo;
 	private String PictureName;
 	private String PicturePath;
@@ -113,6 +116,27 @@ public class MyPageDto {
 	public void setConstructArea(String constructArea) {
 		ConstructArea = constructArea;
 	}
+	
+	
+	
+	
+	public String getConstructStartDate() {
+		return constructStartDate;
+	}
+	public void setConstructStartDate(String constructStartDate) {
+		this.constructStartDate = constructStartDate;
+	}
+	public String getConstructPrice() {
+		return constructPrice;
+	}
+	public void setConstructPrice(String constructPrice) {
+		this.constructPrice = constructPrice;
+	}
+	
+	
+	
+	
+	
 	
 	
 }

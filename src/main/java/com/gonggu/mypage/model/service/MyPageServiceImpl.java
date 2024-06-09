@@ -63,5 +63,10 @@ public class MyPageServiceImpl implements MyPageService {
 	public int setDelete(String copyNo) {
 		return myPageDao.setDelete(copyNo);
 	}
+	
+	@Override
+	public int reserveCheck(int userNo) {
+		return myPageDao.reserveCheck(userNo);
+	}
 
 }

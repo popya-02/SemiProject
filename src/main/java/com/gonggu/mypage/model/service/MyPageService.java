@@ -21,5 +21,8 @@ public interface MyPageService {
 	public void getPictureName(MyPageDtoImpl result);
 	
 	public int setDelete(String copyNo);
+	
+	
+	public int reserveCheck(int userNo);
 
 }
