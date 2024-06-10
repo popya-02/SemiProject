@@ -526,14 +526,14 @@
     padding: 10px 16px;
     text-decoration: none;
     transition: 0.5s;
-    border: 1px solid var(--bs-secondary);
+    border: 1px solid #223455;
     margin: 0 4px;
 }
 
 .pagination a.active {
-    background-color: var(--bs-primary);
-    color: var(--bs-light);
-    border: 1px solid var(--bs-secondary);
+    background-color: #223455;
+    color: #ffffff;
+    border: 1px solid #223455;
 }
 
 .pagination a:hover:not(.active) {background-color: var(--bs-primary)}
@@ -570,6 +570,15 @@
 
 .font-style-2{
     text-shadow: 1px 2px 2px #ffffff51;
+}
+
+/* 관리자 로그인 버튼 */
+.admin-login{
+	position: relative;
+	width: 60px;
+	height: 40px;
+    background-color: #223455;
+    border: none;
 }
 
 /*** Footer End ***/

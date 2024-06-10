@@ -14,7 +14,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import com.gonggu.member.model.dto.MemberDTO;
 import com.gonggu.member.model.service.MemberServiceImpl;
 
-@WebServlet("/signupCopy/*")
+@WebServlet("/signupCopy/signupResult.do")
 public class SignupCopyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -44,34 +44,45 @@ public class SignupCopyController extends HttpServlet {
 		String salt = BCrypt.gensalt(12);
 		String hashPassword = BCrypt.hashpw(copyPwd, salt);
 		
-		if(businessRegistorCheck.equals("unavailable") || 
-				confirmCheck.equals("unavailable")) {
-			response.sendRedirect("/form/signupuserForm.do");
+		if(businessRegistorCheck.equals("unavailable")){
+			returnAlert(response, "사업자등록번호 인증을 완료해주세요.", "/form/signupcopyForm.do");
 			return;
+			
+		}else if(confirmCheck.equals("unavailable")) {
+			returnAlert(response, "비밀번호재확인란을 올바르게 입력해주세요.", "/form/signupcopyForm.do");
+			return;
+		}else {
+			MemberDTO memberDto = new MemberDTO();
+			memberDto.setCopyNum(copyId);
+			memberDto.setCopyPwd(hashPassword);
+			memberDto.setCopyName(copyName);
+			memberDto.setCopyAddr(copyAddr);
+			memberDto.setCopyArea(copyArea);
+			memberDto.setCopyTelNum(copyTel);
+			memberDto.setCopyCeoName(copyCeoName);
+			
+			MemberServiceImpl memberService = new MemberServiceImpl();
+			
+			int result = memberService.signupCopy(memberDto);
+			
+			if(result == 1) {
+				//성공
+				returnAlert(response, "회원가입이 완료되었습니다. 관리자의 승인을 기다려주세요.", "/");
+			}else{
+				// 실패
+				returnAlert(response, "회원가입 실패", "/form/signupcopyForm.do");
+			}
+			
 		}
 		
-		MemberDTO memberDto = new MemberDTO();
-		memberDto.setCopyNum(copyId);
-		memberDto.setCopyPwd(hashPassword);
-		memberDto.setCopyName(copyName);
-		memberDto.setCopyAddr(copyAddr);
-		memberDto.setCopyArea(copyArea);
-		memberDto.setCopyTelNum(copyTel);
-		memberDto.setCopyCeoName(copyCeoName);
 		
-		MemberServiceImpl memberService = new MemberServiceImpl();
-		
-		int result = memberService.signupCopy(memberDto);
-		
-		if(result == 1) {
-			//성공
-			RequestDispatcher view = request.getRequestDispatcher("/views/member/login.jsp");
-			view.forward(request, response);
-		}else{
-			// 실패
-			response.sendRedirect("/form/signupcopyForm.do");
-		}
-		
+	}
+	
+	private void returnAlert(HttpServletResponse response, String msg, String url) throws IOException {
+		response.getWriter().write("<script>"
+								  +"	alert('"+ msg +"');"
+  								  +"	location.href='"+ url + "';"
+								  +"</script>");	// js 코드로 넘겨주기
 	}
 
 }

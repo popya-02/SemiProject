@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.gonggu.common.PageInfo;
 import com.gonggu.mypage.model.dao.MyPageDao;
+import com.gonggu.mypage.model.dto.MyPageDto;
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 
 public class MyPageServiceImpl implements MyPageService {
@@ -84,5 +85,20 @@ public class MyPageServiceImpl implements MyPageService {
 
 
 
+
+	@Override
+	public int saveConstElement(MyPageDto constDto) {
+		return myPageDao.saveConstElement(constDto);
+	}
+
+	@Override
+	public MyPageDto getConstructDetail(int chattingNum) {
+		return myPageDao.getConstructDetail(chattingNum);
+	}
+
+	@Override
+	public int updateConstElement(MyPageDto constDto) {
+		return myPageDao.updateConstElement(constDto);
+	}
 
 }

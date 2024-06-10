@@ -1,5 +1,6 @@
 package com.gonggu.mypage.model.service;
 
+import com.gonggu.mypage.model.dto.MyPageDto;
 import java.util.ArrayList;
 
 import com.gonggu.common.PageInfo;
@@ -20,6 +21,12 @@ public interface MyPageService {
 	public void getPictureName(MyPageDtoImpl result);
 	
 	public int setDelete(String copyNo);
+	
+	public int saveConstElement(MyPageDto constDto);
+	
+	public MyPageDto getConstructDetail(int chattingNum);
+
+	public int updateConstElement(MyPageDto constDto);
 
 	public ArrayList<MyPageDtoImpl> getLikeList(PageInfo pi, MyPageDtoImpl myDto);
 

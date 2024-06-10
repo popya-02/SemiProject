@@ -39,8 +39,8 @@
                                             </div>
                                         </div>
                                         <form action="/signupCopy/signupResult.do" method="post">
-											<input type="hidden" id="businessRegistorCheck" name="businessRegistorCheck"/>
-											<input type="hidden" id="confirmCheck" name="confirmCheck"/>
+											<input type="hidden" id="businessRegistorCheck" name="businessRegistorCheck" value=""/>
+											<input type="hidden" id="confirmCheck" name="confirmCheck" value=""/>
                                             <div class="row gy-3 overflow-hidden">
                                                 <div class="col-12">
                                                     <div class="form-floating mb-0 copy-id-check">
@@ -96,7 +96,7 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="d-grid">
-                                                        <button class="btn point-color text-white btn-lg mb-4" type="submit">SignUp</button>
+                                                        <button class="btn point-color text-white btn-lg mb-4" type="submit" onclick="sigupFailCopyFunc()">SignUp</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -125,6 +125,7 @@
     <script src="/resources/js/main.js"></script>
     <script src="/resources/js/businessRegistor.js"></script>
     <script src="/resources/js/effectiveness.js"></script>
+    <script src="/resources/js/alert.js"></script>
     </body>
 
 </html>
