@@ -23,7 +23,7 @@ public interface MyPageService {
 	public int setDelete(String copyNo);
 	
 	
-	public MyPageDto reserveCheck(int constructNum);
+	public MyPageDtoImpl reserveCheck(int constructNum);
 
 	public ArrayList<MyPageDtoImpl> getLikeList(PageInfo pi, MyPageDtoImpl myDto);
 

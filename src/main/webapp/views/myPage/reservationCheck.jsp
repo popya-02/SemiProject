@@ -35,36 +35,33 @@
 
 			<div class="reservation-list body">
 				<div class="reservation-list-item">
-					<img src="/img/vintage_ratro_picture.jpg" alt="사진">
+					<img src="/img/" alt="사진">
 					<!-- 사진 크기 조정 -->
 					<div class="reservation-details">
 						<div class="reservation-details-item">
 							<strong>업체명:</strong><input type="text" class="fixed-input"
-								value="${result.CopyName}" readonly>
+								value="${result.copyName}" readonly style="padding-left:10px">
 						</div>
 						<div class="reservation-details-item">
 							<strong>예약번호:</strong><input type="text" class="fixed-input"
-								value=" 789012" readonly>
+								value="${result.constructNo}" readonly style="padding-left:10px">
 						</div>
-						<div class="reservation-details-item">
-							<strong>주소:</strong><input type="text" class="fixed-input"
-								value=" 서울시 강북구 " readonly>
-						</div>
+						
 						<div class="reservation-details-item">
 							<strong>상세주소:</strong><input type="text" class="fixed-input"
-								value="어디어디 아파트 102동 2202호" readonly>
+								value="${result.address}" readonly style="padding-left:10px">
 						</div>
 						<div class="reservation-details-item">
 							<strong>금액:</strong><input type="text" class="fixed-input"
-								value=" 150,000원" readonly>
+								value="${result.constructPrice}" readonly style="padding-left:10px">
 						</div>
-						<div class="reservation-details-item">
+						<%-- <div class="reservation-details-item">
 							<strong>전화번호:</strong><input type="text" class="fixed-input"
-								value="" readonly>
-						</div>
+								value="${result.phoneNum}" readonly>
+						</div> --%>
 						<div class="reservation-details-item">
 							<strong>날짜:</strong><input type="text" class="fixed-input"
-								value=" 2024-06-02" readonly>
+								value="${result.constructStartDate}" readonly style="padding-left:10px">
 						</div>
 					</div>
 				</div>
@@ -74,6 +71,38 @@
 		<c:when test="${sessionScope.userType == 'copyUser'}">
 			<div class="reservation-list body">
 				<div class="reservation-list-item">
+					<img src="/img/" alt="사진">
+					<!-- 사진 크기 조정 -->
+					<div class="reservation-details">
+						<div class="reservation-details-item">
+							<strong style="width: 300px">업체명 :</strong><input type="text" class="fixed-input"
+								value="${result.copyName}" readonly style="padding-left:10px">
+						</div>
+						<div class="reservation-details-item">
+							<strong style="width: 300px">예약번호 :</strong><input type="text" class="fixed-input"
+								value="${result.constructNo}" readonly style="padding-left:10px">
+						</div>
+						<div class="reservation-details-item">
+							<strong style="width: 300px"> 주소 :</strong><input type="text" class="fixed-input"
+								value="${result.address}" readonly style="padding-left:10px">
+						</div> 
+						<div class="reservation-details-item">
+							<strong style="width: 300px">상세 주소 :</strong><input type="text" class="fixed-input"
+								value="${result.constructAddr}" readonly style="padding-left:10px">
+						</div>
+						<div class="reservation-details-item">
+							<strong style="width: 300px">금액 :</strong><input type="text" class="fixed-input"
+								value="${result.constructPrice}" readonly style="padding-left:10px">
+						</div>
+						<div class="reservation-details-item">
+							<strong style="width: 300px">전화번호 :</strong><input type="text" class="fixed-input"
+								value="${result.phoneNum}" readonly style="padding-left:10px">
+						</div>
+						<div class="reservation-details-item">
+							<strong style="width: 300px">시공 날짜 :</strong><input type="text" class="fixed-input"
+								value="${result.constructStartDate}" readonly style="padding-left:10px">
+						</div>
+					</div>
 				</div>
 			</div>
 		</c:when>

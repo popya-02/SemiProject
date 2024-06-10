@@ -39,45 +39,7 @@
                     <div class="company_name" name="capyName">업체 이름</div>
                     <div class="reservation_number" name="constructno">예약번호</div>
                 </div>
-<<<<<<< HEAD
-                <!-- <!-- <div class="reservation-list-header">
-                    <div class="reservation-photo">사진</div>
-                    <div class="reservation-name">업체명</div>
-                    <div class="reservation-number">예약번호</div>
-                </div> -->
                 
-                
-                <a href="/reserveCheck.do">
-                    <div class="reservation-list-item">
-                        <img src="/resources/img/antique_picture.jpg" alt="사진">
-                        <div class="company_name">{item.copyName}</div>
-                        <div class="reservation_number">{item.constructNo}</div>
-                        <input type="hidden" name="copyNo" value="${result.copyNo}">
-                    </div>
-                </a>
-                <!-- 
-                <div class="reservation-list-item">
-                    <img src="https://via.placeholder.com/100" alt="사진">
-                    <div class="company_name">업체 이름2</div>
-                    <div class="reservation_number">789012</div>
-                </div>
-                <div class="reservation-list-item">
-                    <img src="https://via.placeholder.com/100" alt="사진">
-                    <div class="company_name">업체 이름3</div>
-                    <div class="reservation_number">345678</div>
-                </div>
-                <div class="reservation-list-item">
-                    <img src="https://via.placeholder.com/100" alt="사진">
-                    <div class="company_name">업체 이름4</div>
-                    <div class="reservation_number">346678</div>
-                </div> -->
-
-
-       <!--      </div>
-        </div> -->
-        <table>
-=======
->>>>>>> branch 'master' of https://github.com/popya-02/SemiProject.git
         		<c:choose>
 						<c:when test="${empty list}">
 							<div>
@@ -86,7 +48,7 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="item" items="${list}">
-								<a class="reservation-list-item" href='/copyDetail.do?copyNo=${item.copyNo}'">
+								<a class="reservation-list-item" href='/reserveCheck.do?constructNum=${item.constructNo}'>
 									<!-- 어떤 게시글에 들어가는지 알수있음 -->
 									<img src="/resources/img/${item.pictureName}"/>
 									<div class="company_name">${item.copyName}</div>

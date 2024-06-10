@@ -47,7 +47,7 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach var="item" items="${list}">
-									<a class="reservation-list-item" href="/copyDetail.do?copyNo=${item.copyNo}"> <!-- 어떤 게시글에 들어가는지 알수있음 -->
+									<a class="reservation-list-item" href="/reserveCheck.do?constructNum=${item.constructNo}"> <!-- 어떤 게시글에 들어가는지 알수있음 -->
 										<div class="company_name">${item.name}</div>
 										<div class="company_name">${item.phoneNum}</div>
 										<div class="reservation_number">${item.constructNo}</div>

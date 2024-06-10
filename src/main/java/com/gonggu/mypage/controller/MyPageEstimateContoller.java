@@ -99,7 +99,6 @@ public class MyPageEstimateContoller extends HttpServlet {
 			
 			if (result2 == 1) {
 	            session.setAttribute("approvalStatus", "B");
-	            System.out.println(result);
 	        } else {
 	            session.setAttribute("approvalStatus", "A");
 	        }

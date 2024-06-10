@@ -29,10 +29,11 @@ public class ReservationCheckController extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 //		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		int userNo = (int) session.getAttribute("userNum");
-		int constructNum = (int) session.getAttribute("constructNum");
+//		int userNo = (int) session.gsetAttribute("userNum");
+//		int constructNum = (int) session.getAttribute("constructNum");
 		
 		String copyNo = request.getParameter("copyNo");
+		int constructNo = Integer.parseInt( request.getParameter("constructNum"));
 		
 		MyPageServiceImpl myService = new MyPageServiceImpl();
 		MyPageDtoImpl myDto = new MyPageDtoImpl();
@@ -51,7 +52,8 @@ public class ReservationCheckController extends HttpServlet {
 		 * jsp 가 다르니까 그게 나을지도....?
 		 */
 		
-		MyPageDto result = myService.reserveCheck(constructNum);
+		
+		MyPageDtoImpl result = myService.reserveCheck(constructNo);
 		
 		
 		

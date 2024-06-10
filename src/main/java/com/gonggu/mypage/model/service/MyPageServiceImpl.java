@@ -54,7 +54,7 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 	@Override
-	public MyPageDto reserveCheck(int constructNum) {
+	public MyPageDtoImpl reserveCheck(int constructNum) {
 		return myPageDao.reserveCheck(constructNum);
 	}
 	

@@ -390,9 +390,9 @@ public class MyPageDao {
 //	======================== 예약 확인 ===========================
 	
 	
-	public MyPageDto reserveCheck(int constructNum) {
+	public MyPageDtoImpl reserveCheck(int constructNum) {
 		
-		String query = "SELECT cd.copy_name, c.CONSTRUCT_NO, bu.ADDR,c.CONSTRUCT_ADDR , c.CONSTRUCT_PRICE, c.CONSTRUCT_START_DATE "
+		String query = "SELECT cd.copy_name, c.CONSTRUCT_NO, bu.ADDR,c.CONSTRUCT_ADDR, bu.PHONE_NUM , c.CONSTRUCT_PRICE, c.CONSTRUCT_START_DATE "
 				+ "		FROM COPY_DETAIL cd"
 				+ "		FULL JOIN CONSTRUCT c ON cd.COPY_NO = c.COPY_NO "
 				+ "		FULL JOIN BASIC_USER bu ON bu.USER_NO = c.USER_NO"
@@ -403,24 +403,23 @@ public class MyPageDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, constructNum);
 			ResultSet rs = pstmt.executeQuery();
-			System.out.println("tttttttttttt" + constructNum);
 			while(rs.next()) {
 				
 				String copyName = rs.getString("COPY_NAME");
 				int constructNo = rs.getInt("CONSTRUCT_NO");
 				String addr = rs.getString("ADDR");
+				String phoneNum = rs.getString("PHONE_NUM");
 				String userAddr = rs.getString("CONSTRUCT_ADDR");
 				String constructPrice = rs.getString("CONSTRUCT_PRICE");
 				String startDate = rs.getString("CONSTRUCT_START_DATE");
-				System.out.println("=======================" + copyName);
-				System.out.println("=======================" + constructNo);
 				
 				MyPageDtoImpl myDTO = new MyPageDtoImpl();
 				
 				myDTO.setCopyName(copyName);
 				myDTO.setConstructNo(constructNo);
 				myDTO.setAddress(addr);
-				myDTO.setConstructArea(userAddr);
+				myDTO.setPhoneNum(phoneNum);
+				myDTO.setConstructAddr(userAddr);
 				myDTO.setConstructPrice(constructPrice);
 				myDTO.setConstructStartDate(startDate);
 				

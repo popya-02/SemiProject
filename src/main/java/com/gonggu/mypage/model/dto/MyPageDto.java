@@ -18,6 +18,7 @@ public class MyPageDto {
 	
 	private String constructStartDate;
 	private String constructPrice;
+	private String constructAddr;
 	
 	private int CopyPictureNo;
 	private String PictureName;
@@ -133,17 +134,6 @@ public class MyPageDto {
 		ConstructArea = constructArea;
 	}
 	
-	@Override
-	public String toString() {
-		return "MyPageDto [UserNo=" + UserNo + ", UserId=" + UserId + ", name=" + name + ", address=" + address
-				+ ", nickName=" + nickName + ", CopyNo=" + CopyNo + ", CopyName=" + CopyName + ", TelNum=" + TelNum
-				+ ", CopyAddr=" + CopyAddr + ", Content=" + Content + ", ConstructArea=" + ConstructArea
-				+ ", ConstructNo=" + ConstructNo + ", CopyPictureNo=" + CopyPictureNo + ", PictureName=" + PictureName
-				+ ", PicturePath=" + PicturePath + ", LikeNo=" + LikeNo + "]";
-	}
-	
-	
-	
 	public String getConstructStartDate() {
 		return constructStartDate;
 	}
@@ -156,8 +146,12 @@ public class MyPageDto {
 	public void setConstructPrice(String constructPrice) {
 		this.constructPrice = constructPrice;
 	}
-	
-	
+	public String getConstructAddr() {
+		return constructAddr;
+	}
+	public void setConstructAddr(String constructAddr) {
+		this.constructAddr = constructAddr;
+	}
 	
 	
 	
