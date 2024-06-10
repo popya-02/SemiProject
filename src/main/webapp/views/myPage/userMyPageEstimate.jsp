@@ -21,7 +21,7 @@
 		
         <nav class="mypage_list">
 
-        <input type="hidden" name="userno" value="${result.userNo }">
+        <input type="hidden" name="userNo" value="${result.userNo }">
             <ul>
                 <li class="mypage_list_1"><a href="/views/myPage/userMyPageEstimate.jsp">견적/공사 내역</a></li>
                 <li class="mypage_list_2"><a href="/view/myPage/userMyPageLikeCopy.jsp">관심 업체</a></li>
@@ -45,13 +45,15 @@
                 </div> -->
                 
                 
-                <!-- <a href="naver.com">
+                <a href="/reserveCheck.do">
                     <div class="reservation-list-item">
                         <img src="/resources/img/antique_picture.jpg" alt="사진">
-                        <div class="company_name">업체 이름</div>
-                        <div class="reservation_number">123456</div>
+                        <div class="company_name">{item.copyName}</div>
+                        <div class="reservation_number">{item.constructNo}</div>
+                        <input type="hidden" name="copyNo" value="${result.copyNo}">
                     </div>
                 </a>
+                <!-- 
                 <div class="reservation-list-item">
                     <img src="https://via.placeholder.com/100" alt="사진">
                     <div class="company_name">업체 이름2</div>

@@ -1,6 +1,7 @@
 package com.gonggu.mypage.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.gonggu.mypage.model.dto.MyPageDto;
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 import com.gonggu.mypage.model.service.MyPageServiceImpl;
 
@@ -26,23 +28,32 @@ public class ReservationCheckController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		System.out.println("aaaaaaaaaaa");
 //		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		int userNo = (int) session.getAttribute("userNum");
+		int constructNum = (int) session.getAttribute("constructNum");
+		
 		String copyNo = request.getParameter("copyNo");
-	 	System.out.println(userNo);
 		
 		MyPageServiceImpl myService = new MyPageServiceImpl();
 		MyPageDtoImpl myDto = new MyPageDtoImpl();
 		
 		/**
+		 * =======user========
 		 * userNo 가져와서 페이지 보여주기
 		 * copyNo 으로 업체에 대한 정보 가져오고 
 		 * 확인 페이지 들어기기 
 		 * 어떻게? 
+		 * =======copy=========
+		 * copyNo 가져와서 해당 페이지 보여주기
+		 * userNo으로 예약 정보 불러오기
+		 * 확인페이지 들어가기
+		 * controller를 두개를 만들어야되나 
+		 * jsp 가 다르니까 그게 나을지도....?
 		 */
 		
-		int result = myService.reserveCheck(userNo);
+		MyPageDto result = myService.reserveCheck(constructNum);
+		
+		
 		
 		
 		request.setAttribute("result", result);

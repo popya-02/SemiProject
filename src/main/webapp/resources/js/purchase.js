@@ -5,16 +5,18 @@
  
  $('#money-btn').click(function() {
  
- 	console.log("aaaaaaa");
+ 	
 		IMP.request_pay({
 			pg: 'html5_inicis',
 			pay_method: 'card',				 /* 결제 수단방법 */
 			merchant_oid: '0200203-19292',   /* 주문 번호 */
 
 			name: 'ksdfklds',
-			amount: '{amount}',
+			amount: '000000',
 			
             buyer_name: `${username}`,
+            
+            
 		}, function(rsp) {
 			console.log(rsp);
 			

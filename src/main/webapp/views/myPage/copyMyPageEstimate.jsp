@@ -42,7 +42,7 @@
                     <div class="reservation-name">업체명</div>
                     <div class="reservation-number">예약번호</div>
                 </div> -->
-                <a href="naver.com">
+                <a href="/reserveCheck.do">
                     <div class="reservation-list-item">
                         <img src="../img/antique_picture.jpg" alt="사진">
                         <div class="user_name">예약자명1</div>

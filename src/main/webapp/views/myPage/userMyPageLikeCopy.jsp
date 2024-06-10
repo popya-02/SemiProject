@@ -40,7 +40,7 @@
                     <div class="reservation-number">예약번호</div>
                 </div> -->
                 <a href="#">
-                    <div class="reservation-list-item">
+                    <div> <!-- class="reservation-list-item" --> 
                         <img src="../img/antique_picture.jpg" alt="사진">
                         <div class="company_name">업체이름1</div>
                         <div class="reservation_number">123456</div>

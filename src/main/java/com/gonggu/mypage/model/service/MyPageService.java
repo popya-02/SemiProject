@@ -1,5 +1,6 @@
 package com.gonggu.mypage.model.service;
 
+import com.gonggu.mypage.model.dto.MyPageDto;
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 
 public interface MyPageService {
@@ -23,6 +24,6 @@ public interface MyPageService {
 	public int setDelete(String copyNo);
 	
 	
-	public int reserveCheck(int userNo);
+	public MyPageDto reserveCheck(int constructNum);
 
 }

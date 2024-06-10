@@ -1,6 +1,7 @@
 package com.gonggu.mypage.model.service;
 
 import com.gonggu.mypage.model.dao.MyPageDao;
+import com.gonggu.mypage.model.dto.MyPageDto;
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 
 public class MyPageServiceImpl implements MyPageService {
@@ -65,8 +66,8 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 	@Override
-	public int reserveCheck(int userNo) {
-		return myPageDao.reserveCheck(userNo);
+	public MyPageDto reserveCheck(int constructNum) {
+		return myPageDao.reserveCheck(constructNum);
 	}
 
 }

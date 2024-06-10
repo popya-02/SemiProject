@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.gonggu.admin.model.dto.InformationDto;
 import com.gonggu.common.DatabaseConnection;
+import com.gonggu.mypage.model.dto.MyPageDto;
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 
 
@@ -270,19 +270,20 @@ public class MyPageDao {
 //	======================== 예약 확인 ===========================
 	
 	
-	public int reserveCheck(int userNo) {
+	public MyPageDto reserveCheck(int constructNum) {
 		
-		String query = "SELECT copy_name, c.CONSTRUCT_NO, bu.ADDR,c.CONSTRUCT_ADDR , c.CONSTRUCT_PRICE, c.CONSTRUCT_START_DATE "
+		String query = "SELECT cd.copy_name, c.CONSTRUCT_NO, bu.ADDR,c.CONSTRUCT_ADDR , c.CONSTRUCT_PRICE, c.CONSTRUCT_START_DATE "
 				+ "		FROM COPY_DETAIL cd"
 				+ "		FULL JOIN CONSTRUCT c ON cd.COPY_NO = c.COPY_NO "
-				+ "		FULL JOIN BASIC_USER bu ON bu.USER_NO = c.USER_NO";
+				+ "		FULL JOIN BASIC_USER bu ON bu.USER_NO = c.USER_NO"
+				+ "		WHERE c.construct_no  = ?";
 		
 		
-		int result = 0;
 		try {
 			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, constructNum);
 			ResultSet rs = pstmt.executeQuery();
-			
+			System.out.println("tttttttttttt" + constructNum);
 			while(rs.next()) {
 				
 				String copyName = rs.getString("COPY_NAME");
@@ -291,6 +292,8 @@ public class MyPageDao {
 				String userAddr = rs.getString("CONSTRUCT_ADDR");
 				String constructPrice = rs.getString("CONSTRUCT_PRICE");
 				String startDate = rs.getString("CONSTRUCT_START_DATE");
+				System.out.println("=======================" + copyName);
+				System.out.println("=======================" + constructNo);
 				
 				MyPageDtoImpl myDTO = new MyPageDtoImpl();
 				
@@ -301,13 +304,12 @@ public class MyPageDao {
 				myDTO.setConstructPrice(constructPrice);
 				myDTO.setConstructStartDate(startDate);
 				
-				
-				return result;
+				return myDTO;
 			}				
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return null;
 		
 	}
 
