@@ -33,9 +33,7 @@ public class ChattingServiceImpl implements ChattingService{
 			}else {
 				result = 1;
 			}
-			
 		}
-		
 		return result;
 	}
 

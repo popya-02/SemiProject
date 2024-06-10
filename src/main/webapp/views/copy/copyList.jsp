@@ -33,7 +33,6 @@
 			<div class="container">
 					<!-- ------------------------------------------------------------------------ -->
 					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
 					<c:choose>
 						<c:when test="${empty companyList}">
 							<h5>등록 되어있는 업체가 없습니다.</h5>
