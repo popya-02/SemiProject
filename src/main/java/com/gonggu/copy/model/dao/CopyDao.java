@@ -11,7 +11,6 @@ import com.gonggu.common.DatabaseConnection;
 import com.gonggu.common.PageInfo;
 import com.gonggu.copy.model.dto.CopyDto;
 
-
 public class CopyDao {
 	private Connection con;
 	private DatabaseConnection dc;

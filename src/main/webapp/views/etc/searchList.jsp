@@ -7,17 +7,18 @@
     <head>
 	    <%@ include file="/views/common/head.jsp"%>
         <title>GONGGU</title>
+        <link href="/resources/css/searchList.css" rel="stylesheet">
         <!-- Template Stylesheet -->
         <link href="/resources/css/style.css" rel="stylesheet">
         <link href="/resources/css/login.css" rel="stylesheet">
-        <link href="/resources/css/searchList.css" rel="stylesheet">
     </head>
     <body>
         <!-- Navbar start -->
 	    <%@ include file="/views/common/header.jsp"%>        
         <!-- Navbar End -->
 
-		        <section class="search-section">
+		       <section class="search-section">
+		        <form action="/SearchForm.do" method="Get">
             <div class=" p-3 p-md-4 p-xl-5 search-box">
                 <div>
                     <h2>검색 결과</h2>
@@ -90,6 +91,7 @@
                     </div>
                 </div>
             </div>
+           </form>
         </section>
 		
         <!-- Footer Start -->

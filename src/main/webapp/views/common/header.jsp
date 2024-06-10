@@ -15,7 +15,7 @@
 			<div class="input-group search-wid d-flex box-right">
 				<input type="search" class="form-control py-2 " placeholder="keywords" aria-describedby="search-icon-1">
 				<span id="search-icon-1" class="input-group-text search-i">
-					<a href="./search.html">
+					<a href="/views/etc/searchList.jsp">
 						<i class="fa fa-search"></i>
 					</a>
 				</span>
