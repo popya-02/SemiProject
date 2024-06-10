@@ -36,11 +36,11 @@
 								<div class="container">
 									<div class="image-upload" id="image-upload">
 										<c:choose>
-											<c:when test="${copyDetail.copyPhoto == null}">
+											<c:when test="${copyDetail[0].copyPhoto == null}">
 												<img class="img-border rounded img-size" src="/resources/img/img_not_found.jpg">
 											</c:when>
 											<c:otherwise>
-												<img class="img-border rounded img-size" src="/resources/img/${copyDetail.copyPhoto}">
+												<img class="img-border rounded img-size" src="/resources/img/${copyDetail[0].copyPhoto}">
 											</c:otherwise>
 										</c:choose>
 									</div>
@@ -49,26 +49,20 @@
 							</div>
 						</div>
 						<div class="col-lg-6" style="padding-left: 122px; margin-top: 40px">
-							<h4 class="fw-bold mb-3">${copyDetail.copyName}</h4>
-							<!-- <p class="mb-3">Category: Vegetables</p>
-                                <h5 class="fw-bold mb-3">3,35 $</h5> -->
+							<h4 class="fw-bold mb-3">${copyDetail[0].copyName}</h4>
+
 							<div class="d-flex mb-4">
-								<!-- <i class="fa fa-star text-secondary"></i>
-                                    <i class="fa fa-star text-secondary"></i>
-                                    <i class="fa fa-star text-secondary"></i>
-                                    <i class="fa fa-star text-secondary"></i>
-                                    <i class="fa fa-star"></i> -->
+
 							</div>
-							<p class="mb-4">${copyDetail.copyContent}</p>
+							<p class="mb-4">${copyDetail[0].copyContent}</p>
 							<p>업체 정보</p>
 							<div>
-								${copyDetail.copyAddress} <br> ${copyDetail.copyNumber}
+								${copyDetail[0].copyAddress} <br> ${copyDetail[0].copyNumber}
 							</div>
 							
-							<!-- <div class="input-group quantity mb-5" style="width: 100px;"> -->
+
 
 						</div>
-						<!-- <a href="#" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
 					</div>
 
 				</div>
@@ -78,86 +72,25 @@
 
 					<div class="owl-carousel vegetable-carousel justify-content-center">
 						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
+						<c:forEach var="copyDetail" items="${copyDetail}">
 						<div class="border border-primary rounded position-relative vesitable-item">
 							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
+								<img src="/resources/img/${copyDetail.examPhoto}" class="img-fluid w-100 rounded-top" alt="">
 							</div>
 
 							<div class="p-4 pb-0 rounded-bottom">
 
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-									sed do eiusmod te incididunt</p>
+								<p>${copyDetail.examTitle}</p>
 								<div class="d-flex justify-content-between flex-lg-wrap">
 
-									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
+									<a href="/constructDetail.do?examNo=${copyDetail.examNo}" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
 								</div>
 							</div>
 						</div>
+						</c:forEach>
 						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<div class="border border-primary rounded position-relative vesitable-item">
-							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
-							</div>
-
-							<div class="p-4 pb-0 rounded-bottom">
-
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-									sed do eiusmod te incididunt</p>
-								<div class="d-flex justify-content-between flex-lg-wrap">
-
-									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
-								</div>
-							</div>
-						</div>
-						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<div class="border border-primary rounded position-relative vesitable-item">
-							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
-							</div>
-
-							<div class="p-4 pb-0 rounded-bottom">
-
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-									sed do eiusmod te incididunt</p>
-								<div class="d-flex justify-content-between flex-lg-wrap">
-
-									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
-								</div>
-							</div>
-						</div>
-						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<div class="border border-primary rounded position-relative vesitable-item">
-							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
-							</div>
-
-							<div class="p-4 pb-0 rounded-bottom">
-
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-									sed do eiusmod te incididunt</p>
-								<div class="d-flex justify-content-between flex-lg-wrap">
-
-									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
-								</div>
-							</div>
-						</div>
-						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<div class="border border-primary rounded position-relative vesitable-item">
-							<div class="vesitable-img">
-								<img src="/resources/img/업체이미지1.jpeg" class="img-fluid w-100 rounded-top" alt="">
-							</div>
-
-							<div class="p-4 pb-0 rounded-bottom">
-
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-									sed do eiusmod te incididunt</p>
-								<div class="d-flex justify-content-between flex-lg-wrap">
-
-									<a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
-								</div>
-							</div>
-						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
@@ -181,43 +114,36 @@
 
 					<div class="tab-pane" id="nav-mission" role="tabpanel"
 						aria-labelledby="nav-mission-tab">
-
+                        <c:forEach var="getReview" items="${getReview}"> 
 						<div class="d-flex">
 
 							<div class="">
 								<p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
 								<div class="d-flex justify-content-between">
-									<h5>이진우</h5>
+									<h5>${getReview.userId}</h5>
 								</div>
-								<p>데헷ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ</p>
+								<p>${getReview.review}</p>
 							</div>
 						</div>
+						</c:forEach>
 
-						<div class="d-flex">
-
-							<div class="">
-								<p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-								<div class="d-flex justify-content-between">
-									<h5>전해원</h5>
-
-								</div>
-								<p class="text-dark">끼얗ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ</p>
-							</div>
-						</div>
 					</div>
 
 				</div>
 			</div>
 			</div>
 			<!-- 후기 쓰기 -->
-			<form action="/reviwEnroll.do" class="repl">
+			<form action="/copyDetail.do" method="POST" class="repl">
 				<h4 class="mb-5 fw-bold">후기를 남겨주세요.</h4>
 				<div class="row g-4" style="width: 1100px;">
 
 
 					<div class="col-lg-12">
 						<div class="border-bottom rounded my-4">
-							<textarea name="" id="" class="form-control border-0" cols="30"
+						<input type="hidden" name="copyNo" value="${copyDetail[0].copyNo}">
+						<input type="hidden" name="userNum" value="${sessionScope.userNum}">
+						
+							<textarea name="content" id="" class="form-control border-0" cols="30"
 								rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
 						</div>
 					</div>

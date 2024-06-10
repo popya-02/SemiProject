@@ -20,24 +20,17 @@
 
 		    <div class="container-fluid page-header py-5" style="background-color: #223455;">
         <h1 class="text-center text-white display-6">시공예시</h1>
-        <!-- <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active text-white">Shop Detail</li>
-            </ol> -->
+     
     </div>
-    <!-- Single Page Header End -->
 
-
-    <!-- Single Product Start -->
 
     <!-- 시공예시 메인 이미지 -->
 
     <div class="tlrhd">
-        <img class="tlrhd-img img-border rounded" src="/resources/img/업체이미지1.jpeg">
+        <img class="tlrhd-img img-border rounded" src="/resources/img/${detail.fileName}">
     </div>
     <div class="tlrhddjqcpaud">
-        <p>업체명</p>
+        <p>${detail.copyName}</p>
     </div>
 
     <!-- 시공 nav -->
@@ -46,10 +39,36 @@
         &nbsp;&nbsp;
         <a href="/chatting/connection.do?copyNum=4848600594&userNum=${sessionScope.userNum}" class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">이 스타일로 상담하기</a>
     </div>
+<br><br>
+<br>
+<br>
+<div class="tlrhd-ruswjr border-secondary text-primary">
+시공 시작일 : ${detail.constructStartDate}
+</div>
+<br>
+<div class="tlrhd-ruswjr border-secondary text-primary">
+시공 종료일 : ${detail.constructEndDate}
+  </div>
+  <br>
+  <div class="tlrhd-ruswjr border-secondary text-primary">
+시공지 주소 : ${detail.constructAddr}
+</div>
+<br>
+<div class="tlrhd-ruswjr border-secondary text-primary">
+시공 평수 : ${detail.constructRange}평
+</div>
+<br>
+<div class="tlrhd-ruswjr border-secondary text-primary">
+시공 가격 : ${detail.constructPrice}원
+</div>
+<br>
 
+        
+
+    </div>
     <!-- 상세 설명 -->
     <div class="tlrhd-content">
-     스마트에디터 쓸거임
+    ${detail.content }
     </div>
 
         <!-- Footer Start -->
