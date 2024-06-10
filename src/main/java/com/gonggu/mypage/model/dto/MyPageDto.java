@@ -20,7 +20,6 @@ public class MyPageDto {
 	private String PictureName;
 	private String PicturePath;
 	
-<<<<<<< HEAD
 	// 견적서 요소 추가
 	private String constructElement;
 	private String constAddr;
@@ -68,7 +67,6 @@ public class MyPageDto {
 	}
 
 
-=======
 	private int LikeNo;
 	
 	public int getLikeNo() {
@@ -77,7 +75,6 @@ public class MyPageDto {
 	public void setLikeNo(int likeNo) {
 		LikeNo = likeNo;
 	}
->>>>>>> branch 'master' of https://github.com/popya-02/SemiProject.git
 	public int getCopyPictureNo() {
 		return CopyPictureNo;
 	}
@@ -233,24 +230,5 @@ public class MyPageDto {
 	}
 
 
-	@Override
-	public String toString() {
-		return "MyPageDto [UserNo=" + UserNo + ", UserId=" + UserId + ", name=" + name + ", address=" + address
-				+ ", nickName=" + nickName + ", CopyNo=" + CopyNo + ", CopyName=" + CopyName + ", TelNum=" + TelNum
-				+ ", CopyAddr=" + CopyAddr + ", Content=" + Content + ", ConstructArea=" + ConstructArea
-				+ ", ConstructNo=" + ConstructNo + ", CopyPictureNo=" + CopyPictureNo + ", PictureName=" + PictureName
-				+ ", PicturePath=" + PicturePath + ", constructElement=" + constructElement + ", constAddr=" + constAddr
-				+ ", constStartDate=" + constStartDate + ", constEndDate=" + constEndDate + ", constRange=" + constRange
-				+ ", estimatePrice=" + estimatePrice + ", sumPrice=" + sumPrice + ", chattingNum=" + chattingNum + "]";
-	}
-	
-	@Override
-	public String toString() {
-		return "MyPageDto [UserNo=" + UserNo + ", UserId=" + UserId + ", name=" + name + ", address=" + address
-				+ ", nickName=" + nickName + ", CopyNo=" + CopyNo + ", CopyName=" + CopyName + ", TelNum=" + TelNum
-				+ ", CopyAddr=" + CopyAddr + ", Content=" + Content + ", ConstructArea=" + ConstructArea
-				+ ", ConstructNo=" + ConstructNo + ", CopyPictureNo=" + CopyPictureNo + ", PictureName=" + PictureName
-				+ ", PicturePath=" + PicturePath + ", LikeNo=" + LikeNo + "]";
-	}
 	
 }
