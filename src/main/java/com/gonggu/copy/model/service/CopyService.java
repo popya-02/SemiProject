@@ -1,16 +1,23 @@
 package com.gonggu.copy.model.service;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.gonggu.common.PageInfo;
 import com.gonggu.copy.model.dto.CopyDto;
+import com.gonggu.copy.model.dto.CopyDtoImpl;
 
 
 public interface CopyService {
 	
-	public List<CopyDto> getCompanyList(PageInfo pi);
+	public ArrayList<CopyDto> getCompanyList(PageInfo pi);
 	
-	public CopyDto getCopyDetail(String copyNo);
+	public ArrayList<CopyDto> getCopyDetail(String copyNo);
+	public ArrayList<CopyDto> getReview(String copyNo);
 
 	public int getListCount();
+	
+	public int reviewUpload(CopyDtoImpl copyDto);
+	
+	
+	
 }

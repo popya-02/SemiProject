@@ -1,10 +1,11 @@
 package com.gonggu.copy.model.service;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.gonggu.common.PageInfo;
 import com.gonggu.copy.model.dao.CopyDao;
 import com.gonggu.copy.model.dto.CopyDto;
+import com.gonggu.copy.model.dto.CopyDtoImpl;
 
 public class CopyServiceImpl implements CopyService {
 	private CopyDao copyDao;
@@ -15,12 +16,12 @@ public class CopyServiceImpl implements CopyService {
 	}
 
 	@Override
-	public List<CopyDto> getCompanyList(PageInfo pi) {
+	public ArrayList<CopyDto> getCompanyList(PageInfo pi) {
 		return copyDao.getCompanyList(pi);
 	}
 
 	@Override
-	public CopyDto getCopyDetail(String copyNo) {
+	public ArrayList<CopyDto> getCopyDetail(String copyNo) {
 		return copyDao.getCopyDetail(copyNo);
 	}
 
@@ -28,4 +29,14 @@ public class CopyServiceImpl implements CopyService {
 	public int getListCount() {
 		return copyDao.getListCount();
 	}
+	
+	@Override
+	public int reviewUpload(CopyDtoImpl copyDto) {
+		return copyDao.reviewUpload(copyDto);
+	};
+	
+	@Override
+	public ArrayList<CopyDto> getReview(String copyNo){
+		return copyDao.getReview(copyNo);
+	};
 }

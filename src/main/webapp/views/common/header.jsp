@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <div class="container-fluid fixed-top point-color base-shadow">
+
 	<div class="topbar-width">
 		<div class="header-home point-color">
 			<a href="/" class="text-white navbar-brand">GONGGU</a>
@@ -26,9 +27,10 @@
 			</button>
 			<div class="collapse navbar-collapse nav-menu" id="navbarCollapse">
 				<div class="navbar-nav bg-white">
-					<a href="/form/constructlist.do"
-						class="nav-item nav-link point-text">시공예시</a> <a
-						href="/copy/copylist.do?copypage=1"
+					<a href="/constructExam/constructlist.do?constructpage=1"
+						class="nav-item nav-link point-text">시공예시</a>
+						
+						<a href="/copy/copylist.do?copypage=1"
 						class="nav-item nav-link point-text">시공업체</a>
 
 					<c:choose>
@@ -69,4 +71,5 @@
 			</div>
 		</nav>
 	</div>
+
 </div>
