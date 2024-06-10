@@ -44,7 +44,6 @@
     <div class="tlrhd-nav">
         <a href="#" class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">공유하기</a>
         &nbsp;&nbsp;
-        <input type="hidden" id="copy-num" name="copy-num" value="3549400342">
         <a href="/chatting/connection.do?copyNum=3549400342&userNum=${sessionScope.userNum}" class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">이 스타일로 상담하기</a>
     </div>
 

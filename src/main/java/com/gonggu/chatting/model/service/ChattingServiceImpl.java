@@ -1,10 +1,12 @@
 package com.gonggu.chatting.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import com.gonggu.chatting.model.dao.ChattingDAO;
 import com.gonggu.chatting.model.dto.ChattingDTO;
+import com.gonggu.common.PageInfo;
 
 public class ChattingServiceImpl implements ChattingService{
 	
@@ -88,5 +90,14 @@ public class ChattingServiceImpl implements ChattingService{
 		return result;
 	}
 
+	@Override
+	public int getListCount(String copyNum) {
+		return chattingDao.getListCount(copyNum);
+	}
 
+	@Override
+	public List<ChattingDTO> getCopyChattingList(PageInfo pi, String sessionCopyNum) {
+		return chattingDao.getCopyChattingList(pi,sessionCopyNum);
+	}
+	
 }

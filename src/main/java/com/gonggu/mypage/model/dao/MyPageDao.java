@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.gonggu.common.DatabaseConnection;
+import com.gonggu.mypage.model.dto.MyPageDto;
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 
 
@@ -111,6 +112,8 @@ public class MyPageDao {
 		String query = "SELECT * FROM CONSTRUCT c"
 				+ "     JOIN BASIC_USER bu"
 				+ "     ON c.USER_NO = bu.USER_NO"
+				+ "		JOIN COPY_USER cu"
+				+ "			ON c.COPY_NO = cu.COPY_NO"
 				+ "     WHERE c.COPY_NO = ?";
 		
 		try {
@@ -264,6 +267,150 @@ public class MyPageDao {
 		}
 		return 0;
 	}
+
+	public int saveConstElement(MyPageDto constDto) {
+	    String query = "INSERT INTO CONSTRUCT VALUES("
+	            	+ " CONSTRUCT_SEQ.NEXTVAL,"
+	            	+ " ?,"  // copt_no 1
+	            	+ " ?,"  // user_no 2
+	            	+ " TO_DATE(?, 'YYYY-MM-DD'),"  // start 3
+	            	+ " TO_DATE(?, 'YYYY-MM-DD'),"  // end 4
+	            	+ " ?,"  // addr 5
+	            	+ " ?,"  // range 6
+	            	+ " ?,"  // sumprice 7
+	            	+ " ?,"  // chatNum 8
+	            	+ " ?,"  // element 9
+	            	+ " ?"  // deposit 10
+	            	+ ")";
+
+//	    System.out.println(constDto.getConstructElement());
+//	    System.out.println(constDto.getConstStartDate());
+//	    System.out.println(constDto.getConstEndDate());
+//	    System.out.println(constDto.getSumPrice());
+//	    System.out.println(constDto.getEstimatePrice());
+//	    System.out.println(constDto.getConstAddr());
+//	    System.out.println(constDto.getConstRange());
+//	    System.out.println(constDto.getCopyNo());
+//	    System.out.println(constDto.getUserNo());
+	    
+	    try {
+	        pstmt = con.prepareStatement(query);
+	        
+	        
+	        pstmt.setString(1, constDto.getCopyNo());
+	        pstmt.setInt(2, constDto.getUserNo());
+	        pstmt.setString(3, constDto.getConstStartDate());
+	        pstmt.setString(4, constDto.getConstEndDate());
+	        pstmt.setString(5, constDto.getConstAddr());
+	        pstmt.setInt(6, constDto.getConstRange());
+	        pstmt.setString(7, constDto.getSumPrice());
+	        pstmt.setInt(8, constDto.getChattingNum());
+	        pstmt.setString(9, constDto.getConstructElement());
+	        pstmt.setString(10, constDto.getEstimatePrice());
+	        
+	        int result = pstmt.executeUpdate();
+	        
+	        return result;
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return 0;
+	}
+
+	public MyPageDto getConstructDetail(int chattingNum) {
+		String query = "SELECT * FROM CONSTRUCT c"
+					+ " JOIN BASIC_USER bu "
+					+ "		ON c.USER_NO = bu.USER_NO"
+					+ " JOIN COPY_DETAIL cd"
+					+ "		ON c.COPY_NO = cd.COPY_NO"
+					+ " WHERE CHATTING_NO = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, chattingNum);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int constNum = rs.getInt("CONSTRUCT_NO");
+				int basicUserNum = rs.getInt("USER_NO");
+				String startDateSub = rs.getString("CONSTRUCT_START_DATE");
+				String endDateSub = rs.getString("CONSTRUCT_END_DATE");
+				String addr = rs.getString("CONSTRUCT_ADDR");
+				int range = rs.getInt("CONSTRUCT_RANGE");
+				String price = rs.getString("CONSTRUCT_PRICE");
+				String element = rs.getString("CONSTRUCT_TABLE");
+				String estimatePrice = rs.getString("CONSTRUCT_DEPOSIT");
+				String userName = rs.getString("NAME");
+				String copyTel = rs.getString("TEL_NUM");
+				
+				String startDate = startDateSub.substring(0, startDateSub.length()-9);
+				String endDate = endDateSub.substring(0, endDateSub.length()-9);
+				
+				MyPageDto dto = new MyPageDto();
+				dto.setConstructNo(constNum);
+				dto.setUserNo(basicUserNum);
+				dto.setConstStartDate(startDate);
+				dto.setConstEndDate(endDate);
+				dto.setAddress(addr);
+				dto.setConstRange(range);
+				dto.setSumPrice(price);
+				dto.setEstimatePrice(estimatePrice);
+				dto.setConstructElement(element);
+				dto.setName(userName);
+				dto.setTelNum(copyTel);
+				dto.setChattingNum(chattingNum);
+				
+				return dto;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return null;
+	}
+
+	public int updateConstElement(MyPageDto constDto) {
+		
+		String query = "UPDATE CONSTRUCT"
+					+ " SET CONSTRUCT_START_DATE = TO_DATE(?, 'YYYY-MM-DD'), "
+					+ "		CONSTRUCT_END_DATE = TO_DATE(?, 'YYYY-MM-DD'), "
+					+ "		CONSTRUCT_ADDR = ?, "
+					+ "		CONSTRUCT_RANGE = ?, "
+					+ "		CONSTRUCT_PRICE = ?, "
+					+ "		CONSTRUCT_TABLE = ?, "
+					+ "		CONSTRUCT_DEPOSIT = ? "
+					+ " WHERE CHATTING_NO = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, constDto.getConstStartDate());
+			pstmt.setString(2, constDto.getConstEndDate());
+			pstmt.setString(3, constDto.getConstAddr());
+			pstmt.setInt(4, constDto.getConstRange());
+			pstmt.setString(5, constDto.getSumPrice());
+			pstmt.setString(6, constDto.getConstructElement());
+			pstmt.setString(7, constDto.getEstimatePrice());
+			pstmt.setInt(8, constDto.getChattingNum());
+			
+			int result = pstmt.executeUpdate();
+			
+			return result;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
 
 
 }

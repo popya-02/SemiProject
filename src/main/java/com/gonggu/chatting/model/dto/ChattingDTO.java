@@ -13,6 +13,7 @@ public class ChattingDTO {
 	private String copyName;
 	private String userNickName;
 	private String userId;
+	private String userName;
 	
 	public int getChattingNum() {
 		return chattingNum;
@@ -73,6 +74,12 @@ public class ChattingDTO {
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	

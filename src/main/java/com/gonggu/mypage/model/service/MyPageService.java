@@ -1,6 +1,6 @@
 package com.gonggu.mypage.model.service;
 
-import com.gonggu.member.model.dto.MemberDTO;
+import com.gonggu.mypage.model.dto.MyPageDto;
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 
 public interface MyPageService {
@@ -22,4 +22,10 @@ public interface MyPageService {
 	public void getPictureName(MyPageDtoImpl result);
 	
 	public int setDelete(String copyNo);
+	
+	public int saveConstElement(MyPageDto constDto);
+	
+	public MyPageDto getConstructDetail(int chattingNum);
+
+	public int updateConstElement(MyPageDto constDto);
 }
