@@ -1,6 +1,10 @@
 package com.gonggu.mypage.model.service;
 
+import java.util.ArrayList;
+
+import com.gonggu.common.PageInfo;
 import com.gonggu.mypage.model.dao.MyPageDao;
+import com.gonggu.mypage.model.dto.MyPageDto;
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 
 public class MyPageServiceImpl implements MyPageService {
@@ -23,20 +27,6 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public MyPageDtoImpl getUserEstimate(int userNo) {
-		MyPageDtoImpl result = myPageDao.getUserEstimate(userNo);
-		
-		return result;
-	}
-
-	@Override
-	public MyPageDtoImpl getCopyEstimate(String copyNo) {
-		MyPageDtoImpl result = myPageDao.getCopyEstimate(copyNo);
-		
-		return result;
-	}
-
-	@Override
 	public int setCopyEdit(MyPageDtoImpl myDto) {
 		return myPageDao.setCopyEdit(myDto);
 	}
@@ -46,7 +36,6 @@ public class MyPageServiceImpl implements MyPageService {
 		MyPageDtoImpl result = myPageDao.getCopyDetail(copyNo);
 		
 		return result;
-		
 	}
 
 	@Override
@@ -62,6 +51,54 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public int setDelete(String copyNo) {
 		return myPageDao.setDelete(copyNo);
+	}
+	
+	@Override
+	public ArrayList<MyPageDtoImpl> getLikeList(PageInfo pi, MyPageDtoImpl myDto) {
+		return myPageDao.getLikeList(pi, myDto);
+	}
+
+	@Override
+	public int getLikeListCount(MyPageDtoImpl myDto) {
+		return myPageDao.getLikeListCount(myDto);
+	}
+	
+	@Override
+	public ArrayList<MyPageDtoImpl> getUserEstimateList(PageInfo pi, MyPageDtoImpl myDto) {
+		return myPageDao.getUserEstimateList(pi, myDto);
+	}
+
+	@Override
+	public int getUserEstimateListCount(MyPageDtoImpl myDto) {
+		return myPageDao.getUserEstimateListCount(myDto);
+	}
+
+	@Override
+	public ArrayList<MyPageDtoImpl> getCopyEstimateList(PageInfo pi, MyPageDtoImpl myDto) {
+		return myPageDao.getCopyEstimateList(pi, myDto);
+	}
+	
+	@Override
+	public int getCopyEstimateListCount(MyPageDtoImpl myDto) {
+		return myPageDao.getCopyEstimateListCount(myDto);
+	}
+
+
+
+
+	@Override
+	public int saveConstElement(MyPageDto constDto) {
+		return myPageDao.saveConstElement(constDto);
+	}
+
+	@Override
+	public MyPageDto getConstructDetail(int chattingNum) {
+		return myPageDao.getConstructDetail(chattingNum);
+	}
+
+	@Override
+	public int updateConstElement(MyPageDto constDto) {
+		return myPageDao.updateConstElement(constDto);
 	}
 
 }

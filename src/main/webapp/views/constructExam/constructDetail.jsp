@@ -37,7 +37,8 @@
     <div class="tlrhd-nav">
         <a href="#" class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">공유하기</a>
         &nbsp;&nbsp;
-        <a href="#" class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">이 스타일로 상담하기</a>
+        <a href="/chatting/connection.do?copyNum=4848600594&userNum=${sessionScope.userNum}" class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">이 스타일로 상담하기</a>
+    </div>
 <br><br>
 <br>
 <br>
@@ -62,6 +63,8 @@
 </div>
 <br>
 
+        
+
     </div>
     <!-- 상세 설명 -->
     <div class="tlrhd-content">
@@ -81,6 +84,7 @@
 
     <!-- Template Javascript -->
     <script src="/resources/js/main.js"></script>
+<!--     <script src="/resources/js/chatting.js"></script> -->
     </body>
 
 </html>

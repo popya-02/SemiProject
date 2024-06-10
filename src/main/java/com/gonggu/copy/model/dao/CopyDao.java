@@ -33,27 +33,30 @@ public class CopyDao {
 				+ "						WHERE APPROVE = 'Y')"
 				+ " ORDER BY COPY_NAME DESC"
 				+ " OFFSET ? ROWS FETCH FIRST ? ROWS ONLY";
-		
+
 		ArrayList<CopyDto> list = new ArrayList<>();
-		
+
 		try {
-		pstmt = con.prepareStatement(query);
-		pstmt.setInt(1, pi.getOffSet());
-		pstmt.setInt(2, pi.getBoardLimit());            
-        rs = pstmt.executeQuery();
-        
-        while(rs.next()) {
-        	CopyDto dto = new CopyDto();
-            dto.setCopyName(rs.getString("COPY_NAME"));
-            dto.setCopyNo(rs.getString("COPY_NO"));
-            dto.setCopyPhoto(rs.getString("PATH"));
-            list.add(dto);          
-        } 
-		}catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
+
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setInt(1, pi.getOffSet());
+			pstmt.setInt(2, pi.getBoardLimit());
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				CopyDto dto = new CopyDto();
+				dto.setCopyName(rs.getString("COPY_NAME"));
+				dto.setCopyNo(rs.getString("COPY_NO"));
+				dto.setCopyPhoto(rs.getString("PATH"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 	public ArrayList<CopyDto> getCopyDetail(String copyNo) {
 	        String query = "SELECT cd.COPY_NO,cd.COPY_NAME,cd.CONTENT,cd.COPY_ADDR,cd.TEL_NUM,cp.NAME AS CP_P_NAME,c.CONSTRUCT_NO,ce.exam_no,ce.TITLE,ep.NAME as EX_P_NAME,bu.user_id"

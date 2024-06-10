@@ -52,7 +52,7 @@ public class SignupUserController extends HttpServlet {
 				authenticate.equals("unavailable") || 
 				confirmCheck.equals("unavailable") || 
 				effectiveNameCheck.equals("unavailable")) {
-			response.sendRedirect("/form/signupuserForm.do");
+			returnAlert(response, "회원가입 실패", "/form/signupuserForm.do");
 			return;
 		}
 		
@@ -71,14 +71,19 @@ public class SignupUserController extends HttpServlet {
 		
 		if(result == 1) {
 			//성공
-			RequestDispatcher view = request.getRequestDispatcher("/views/member/login.jsp");
-			view.forward(request, response);
+			returnAlert(response, "회원가입이 완료되었습니다.", "/");
 		}else{
 			// 실패
-			response.sendRedirect("/form/signupuserForm.do");
+			returnAlert(response, "회원가입 실패", "/form/signupuserForm.do");
 		}
 		
 	}
 	
+	private void returnAlert(HttpServletResponse response, String msg, String url) throws IOException {
+		response.getWriter().write("<script>"
+								  +"	alert('"+ msg +"');"
+  								  +"	location.href='"+ url + "';"
+								  +"</script>");	// js 코드로 넘겨주기
+	}
 
 }

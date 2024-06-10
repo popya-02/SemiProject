@@ -32,14 +32,15 @@
 		<!-- 업체 -->
 		<div class="album py-5 bg-body-tertiary">
 			<div class="container">
+
 				<!-- ------------------------------------------------------------------------ -->
 
 				<c:choose>
 					<c:when test="${empty companyList}">
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 							<h5>등록 되어있는 업체가 없습니다.</h5>
-						</div>
-					</c:when>
+						</c:when>
+						
 					<c:otherwise>
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
 							scope="row">

@@ -39,7 +39,7 @@ public class CopyListController extends HttpServlet {
 		int pageLimit = 5;
 		
 		// 한 페이지에 보여질 게시글 수
-		int boardLimit = 5;
+		int boardLimit = 9;
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, copypage, pageLimit, boardLimit);
 				

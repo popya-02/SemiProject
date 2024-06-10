@@ -203,7 +203,7 @@ public class MemberDAO {
 	public int signupCopyDetail(MemberDTO memberDto) {
 		
 		String query = "INSERT INTO COPY_DETAIL cd"
-					+ " VALUES(?, ?, ?, ?, ?, ?, NULL, DEFAULT)";
+					+ " VALUES(?, ?, ?, ?, ?, ?, NULL)";
 		// id(no),name, ceo, tel, area, addr, content, like
 		
 		try {
@@ -215,6 +215,31 @@ public class MemberDAO {
 			pstmt.setString(4, memberDto.getCopyTelNum());
 			pstmt.setString(5, memberDto.getCopyArea());
 			pstmt.setString(6, memberDto.getCopyAddr());
+			
+			int result = pstmt.executeUpdate();
+			
+			return result;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+
+	public int signupPicture(MemberDTO memberDto) {
+		String query = "INSERT INTO COPY_PHOTO cp VALUES("
+					+ "	copy_picture_seq.NEXTVAL,"
+					+ "	?,"
+					+ "	NULL,"
+					+ "	NULL"
+					+ ")";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, memberDto.getCopyNum());
 			
 			int result = pstmt.executeUpdate();
 			
@@ -230,9 +255,40 @@ public class MemberDAO {
 		return 0;
 	}
 
+
+	public MemberDTO getHashPwdAdmin(String adminId) {
+		
+		String query = "SELECT bu.USER_ID , bu.PASSWORD FROM ADMIN a"
+					+ " JOIN BASIC_USER bu"
+					+ "		ON a.USER_NO = bu.USER_NO"
+					+ " WHERE bu.USER_ID = ? ";
+		
+		MemberDTO result = new MemberDTO();
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, adminId);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String pwd = rs.getString("PASSWORD");
+				
+				result.setAdminId(adminId);
+				result.setAdminPwd(pwd);
+				result.setUserType("admin");
+				
+				return result;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
 }
-
-
 
 
 

@@ -34,7 +34,8 @@ public class MainFormController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		if (action.equals("/loginForm.do")) {
+		
+		if(action.equals("/loginForm.do")) {
 			nextPage = "/views/member/login.jsp";
 		} else if (action.equals("/signup.do")) {
 			nextPage = "/views/member/signup.jsp";
@@ -50,9 +51,13 @@ public class MainFormController extends HttpServlet {
 			ArrayList<ConstructDtoImpl> list = constructService.getList(copyNum);
 			request.setAttribute("list", list);
 			nextPage = "/views/constructExam/constructEnroll.jsp";
-
-
-		}if (nextPage != null && !nextPage.isEmpty()) {
+		}else if(action.equals("/constructDetail.do")) {
+			nextPage = "/views/constructExam/constructDetail.jsp";
+		}else if(action.equals("/adminLogin.do")) {
+			nextPage = "/views/member/adminLogin.jsp";
+		}
+		
+		if(nextPage != null && !nextPage.isEmpty()) {
 			RequestDispatcher view = request.getRequestDispatcher(nextPage);
 			view.forward(request, response);
 		} else {

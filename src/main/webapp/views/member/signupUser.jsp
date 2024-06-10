@@ -134,6 +134,7 @@
     <script src="/resources/js/duplicate.js"></script>
     <script src="/resources/js/authentication.js"></script>
     <script src="/resources/js/effectiveness.js"></script>
+    <script src="/resources/js/alert.js"></script>
     
     </body>
 </html>

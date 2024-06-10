@@ -80,14 +80,11 @@
     display: block;
     text-align: center;
 }
-
 .body {
     font-family: Arial, sans-serif;
-    height: 100vh;
     margin: 0;
     background-color: #f0f0f0;
 }
-
 .reservation-list {
     width: 80%;
     max-width: 800px;
@@ -96,9 +93,8 @@
     border-radius: 10px;
     overflow: hidden;
     margin: 0 auto;
-
+    
 }
-
 .reservation-list-header,
 .reservation-list-item {
     display: flex;
@@ -106,14 +102,12 @@
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
-
 .reservation-list-header {
     background-color: #f7f7f7;
     font-weight: bold;
     /* color: #223455; */
     text-align: center;
 }
-
 .reservation-list-item:last-child {
     border-bottom: none;
 }
@@ -121,11 +115,10 @@
 .navTop {
     margin-top: 120px;
     margin-bottom: 50px;
-    background-color: #223455;
+    background-color: #223455 ;
     width: 100%;
     height: 130px;
 }
-
 .centerBox {
     /* display: flex;
     flex-direction: column; */
@@ -142,7 +135,6 @@
     border-radius: 5%;
     margin-right: 20px;
 }
-
 .company_name,
 .reservation_number {
     flex: 1;

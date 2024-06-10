@@ -6,7 +6,7 @@
 }
 
 .chat-box{
-    height: 620px;
+    height: 680px;
     width: 80%;
     min-width: 400px;
     padding: 45px;
@@ -36,15 +36,17 @@
 }
 
 .input-box{
+    right: 5%;
+    bottom: 14%;
+    position: absolute;
     display: inline-flex;
     justify-content: center;
-    width: 100%;
+    width: 90%;
     height: 50px;
-    overflow: auto;
 }
 
 .text-input{
-    width: 80%;
+    width: 65%;
     height: 50px;
     border: solid 1px #aaaaaa;
     border-radius: 10px 0 0 10px;
@@ -65,8 +67,12 @@
 
 
 .chatting-area{
-    padding: 15px 0;
-    width: 90%;
+	position: relative;
+	top: -2%;
+	padding: 10px 0;
+	margin-bottom: 15px;
+    width: 94%;
+    overflow: auto;
     height: 82%;
 }
 
@@ -92,4 +98,15 @@
     padding: 7px 12px;
     background-color: #ffffff;
     border-radius: 5px;
+}
+
+.endmsg{
+	top: 14%;
+    display: flex;
+    width: 75%;
+    justify-content: center;
+    position: absolute;
+    font-size: 14px;
+    margin: 0;
+    padding: 5px 0;
 }
