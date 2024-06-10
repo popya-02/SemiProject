@@ -28,8 +28,8 @@ public class CopyDao {
         			+ " FULL JOIN COPY_PHOTO cp"
         			+ " 	ON cd.COPY_NO = cp.COPY_NO"
         			+ " WHERE cd.COPY_NO IN (SELECT COPY_NO"
-        			+ "						 FROM COPY_USER cu"
-        			+ "						 WHERE APPROVE = 'Y')"
+        			+ "						FROM COPY_USER cu"
+        			+ "						WHERE APPROVE = 'Y')"
         			+ " ORDER BY COPY_NAME DESC"
         			+ " OFFSET ? ROWS FETCH FIRST ? ROWS ONLY";
         
