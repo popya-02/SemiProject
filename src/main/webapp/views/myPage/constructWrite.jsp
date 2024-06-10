@@ -35,8 +35,8 @@
 					        </tr>
 					        <tr>
 					            <td class="header">고객명: </td><td><input type="text" id="basic-name" name="basic-name" value="${userName}"/><input type="hidden" name="basicNum" id="basicNum" value="${userNum}"/></td>
-					            <td class="header">주소: </td><td><input type="text" id="addr"/></td>
-					            <td class="header">전화: </td><td><input type="text" id="tel"/></td>
+					            <td class="header">시공지 주소: </td><td><input type="text" id="addr"/></td>
+					            <td class="header">전화번호: </td><td><input type="text" id="tel"/></td>
 					        </tr>
 					        <tr>
 					            <td colspan="2" class="header">견적금액 (예약금): </td><td colspan="4"><input type="text" id="estimatePrice"/></td>
@@ -51,7 +51,7 @@
 					                <th width="6%">단위</th>
 					                <th width="6%">수량</th>
 					                <th width="16%">금액단가</th>
-					                <th width="24%">총액</th>
+					                <th width="24%" colspan="2">총액</th>
 					            </tr>
 					        </thead>
 					        <tbody>
@@ -61,14 +61,15 @@
 					                <td><input type="text" onInput="this.setAttribute('value', this.value);"/></td>
 					                <td><input type="text" onInput="this.setAttribute('value', this.value);"/></td>
 					                <td><input type="text" onInput="this.setAttribute('value', this.value);"/></td>
-					                <td><input type="text" onInput="this.setAttribute('value', this.value);"/></td>
+					                <td class="border-none2"><input type="text" onInput="this.setAttribute('value', this.value);"/></td>
+					                <td class="border-none" id="remove-btn"></td>
 					            </tr>
 					            <tr>
-					            	<td colspan="6" class="add-td"><button type="button" onclick="addSelFunc()" class="add-btn">+</button></td>
+					            	<td colspan="7" class="add-td"><button type="button" onclick="addSelFunc()" class="add-btn" id="add-btn">+</button></td>
 					            </tr>
 					            <tr>
 					                <td colspan="5"><b>합계</b></td>
-					                <td><input type="text" id="sumPrice"/></td>
+					                <td colspan="2"><input type="text" id="sumPrice"/></td>
 					            </tr>
 					        </tbody>
 					    </table>
@@ -108,9 +109,20 @@
 						    	sumPrice.value = ${result.sumPrice};
 						    </script>
 					    </section>
-					    	<c:if test="${endCheck != 'Y'}">
+					    <c:choose>
+					    	<c:when test="${endCheck == 'Y'}">
+							    <script type="text/javascript">
+								    const inputDisable = document.getElementsByTagName("input");
+								    
+								    for(let i = 0; i < inputDisable.length; i++){
+								    	inputDisable[i].disabled = true;;
+							    	}
+							    </script>
+							</c:when>
+							<c:otherwise>
 							    <button class="save-btn" onclick="updateConstruct()">수 정</button>
-					    	</c:if>
+							</c:otherwise>
+					    </c:choose>
 					</div>
 				</section>
 			</c:otherwise>

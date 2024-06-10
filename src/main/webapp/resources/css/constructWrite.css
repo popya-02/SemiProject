@@ -113,10 +113,28 @@ tr{
 	width: 280px;
 }
 
+.border-none{
+	border: none ;
+	border-bottom: 1px solid black;
+	width: 26px;
+}
 
+.border-none2{
+	border-right-width: 0;
+}
 
+.remove-btn{
+	font-size: 18px;
+	border: none;
+	border-radius: 6px;
+	width: 25px;
+	padding: 0 6px;
+	background-color: #c0c0c0;
+}
 
-
+.remove-btn:hover{
+	background-color: #d7d7d7;
+}
 
 
 
