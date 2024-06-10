@@ -56,20 +56,24 @@
 			                		<input type="hidden" value="${item.userNum}" name="user-num">
 			                		<input type="hidden" value="${item.userName}" name="user-name">
 			                		<input type="hidden" value="${item.endCheck}" name="end-check">
-				                    <div class="user_name" id="user-name" onclick="location.href='/chatting/connection.do?copyNum=${sessionScope.copyNum}&userNum=${item.userNum}'">${item.userName}</div>
-				                    <div class="reservation_number" onclick="location.href='/chatting/connection.do?copyNum=${sessionScope.copyNum}&userNum=${item.userNum}'">${item.chattingIndate}</div>
-				                    <div class="reservation_number" onclick="location.href='/chatting/connection.do?copyNum=${sessionScope.copyNum}&userNum=${item.userNum}'">
-				                    	<c:choose>
-				                    		<c:when test="${item.endCheck == 'Y'}">
-				                    			<input type="hidden" value="${item.endCheck}" name="endCheck">
+			                    	<c:choose>
+			                    		<c:when test="${item.endCheck == 'Y'}">
+						                    <div class="user_name" id="user-name" onclick="location.href='/chatting/connection.do?chatNum=${item.chattingNum}'">${item.userName}</div>
+						                    <div class="reservation_number" onclick="location.href='/chatting/connection.do?chatNum=${item.chattingNum}'">${item.chattingIndate}</div>
+			                    			<input type="hidden" value="${item.endCheck}" name="endCheck">
+			                    			<div class="reservation_number">
 				                    			종료
-				                    		</c:when>
-				                    		<c:otherwise>
-				                    			<input type="hidden" value="${item.endCheck}" name="endCheck">
+			                    			</div>
+			                    		</c:when>
+			                    		<c:otherwise>
+						                    <div class="user_name" id="user-name" onclick="location.href='/chatting/connection.do?copyNum=${sessionScope.copyNum}&userNum=${item.userNum}'">${item.userName}</div>
+						                    <div class="reservation_number" onclick="location.href='/chatting/connection.do?copyNum=${sessionScope.copyNum}&userNum=${item.userNum}'">${item.chattingIndate}</div>
+			                    			<input type="hidden" value="${item.endCheck}" name="endCheck">
+			                    			<div class="reservation_number">
 				                    			진행중
-				                    		</c:otherwise>
-				                    	</c:choose>
-				                    </div>
+			                    			</div>
+			                    		</c:otherwise>
+			                    	</c:choose>
 				                    <div class="reservation_number">
 					                    <button type="button" class="construct-btn">결제 요청</button>
 				                    </div>

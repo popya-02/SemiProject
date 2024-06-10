@@ -48,7 +48,8 @@ public class ChattingDAO {
 		String query = "SELECT CHATTING_NO, END_CHECK AS "
 					+ " FROM CONSTRUCT_STATUS cc "
 					+ " WHERE USER_NO = ?"
-					+ "	AND COPY_NO = ?";
+					+ "	AND COPY_NO = ?"
+					+ " AND END_CHECK = 'N'";
 		
 		try {
 			pstmt  = con.prepareStatement(query);
