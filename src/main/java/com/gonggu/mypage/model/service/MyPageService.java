@@ -1,6 +1,9 @@
 package com.gonggu.mypage.model.service;
 
 import com.gonggu.mypage.model.dto.MyPageDto;
+import java.util.ArrayList;
+
+import com.gonggu.common.PageInfo;
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 
 public interface MyPageService {
@@ -8,10 +11,6 @@ public interface MyPageService {
 	public int setUserEdit(MyPageDtoImpl myDto);
 
 	public MyPageDtoImpl getUserDetail(int userNo);
-
-	public MyPageDtoImpl getUserEstimate(int userNo);
-
-	public MyPageDtoImpl getCopyEstimate(String copyNo);
 
 	public int setCopyEdit(MyPageDtoImpl myDto);
 	
@@ -25,5 +24,17 @@ public interface MyPageService {
 	
 	
 	public MyPageDto reserveCheck(int constructNum);
+
+	public ArrayList<MyPageDtoImpl> getLikeList(PageInfo pi, MyPageDtoImpl myDto);
+
+	public int getLikeListCount(MyPageDtoImpl myDto);
+
+	public ArrayList<MyPageDtoImpl> getUserEstimateList(PageInfo pi, MyPageDtoImpl myDto);
+
+	public int getUserEstimateListCount(MyPageDtoImpl myDto);
+
+	public ArrayList<MyPageDtoImpl> getCopyEstimateList(PageInfo pi, MyPageDtoImpl myDto);
+
+	public int getCopyEstimateListCount(MyPageDtoImpl myDto);
 
 }

@@ -24,6 +24,7 @@ public class ChattingServiceImpl implements ChattingService{
 		
 		if(Objects.isNull(duplicete)) {
 			result = chattingDao.setChatting(chattingDto);
+<<<<<<< HEAD
 			} else {
 			if(duplicete.getEndCheck().equals("Y")) {
 				result = chattingDao.setChatting(chattingDto);
@@ -31,8 +32,16 @@ public class ChattingServiceImpl implements ChattingService{
 				result = 1;
 			}
 			
+=======
+			
+		}else {
+			if(duplicete.getEndCheck().equals("Y")) {
+				result = chattingDao.setChatting(chattingDto);
+			}else {
+				result = 1;
+			}
+>>>>>>> branch 'master' of https://github.com/popya-02/SemiProject.git
 		}
-		
 		return result;
 	}
 

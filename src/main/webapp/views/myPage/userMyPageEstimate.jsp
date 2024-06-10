@@ -17,27 +17,29 @@
 	    <%@ include file="/views/common/header.jsp"%>        
         <!-- Navbar End -->
 
-		        <h2 class="mypage_1">마이페이지</h2>
-		
+     <h2 class="mypage_1">마이페이지</h2>
         <nav class="mypage_list">
 
         <input type="hidden" name="userNo" value="${result.userNo }">
             <ul>
-                <li class="mypage_list_1"><a href="/views/myPage/userMyPageEstimate.jsp">견적/공사 내역</a></li>
-                <li class="mypage_list_2"><a href="/view/myPage/userMyPageLikeCopy.jsp">관심 업체</a></li>
+               <!--  <li class="mypage_list_1"><a href="/MyPageEstimate/EstimateUser.do?cpage=1">견적/공사 내역</a></li> -->
+                <li class="mypage_list_1"><a href="/MyPageEstimate/EstimateUser.do?cpage=1"">견적/공사 내역</a></li>
+                <li class="mypage_list_2"><a href="/mypage/likecopy.do?cpage=1">관심 업체</a></li>
                 <li class="mypage_list_3"><a href="/MypageInfo/userInfo.do?userNo=${sessionScope.userNum}">정보 수정</a></li>
-                                                                  <!--  sessionScope.userNo -->
             </ul>
         </nav>
         <div class="mypage_list_1_detail"> 
-            <p class="estimate_list">견적신청 내역</p>
+          <form action="/MyPageEstimate/EstimateUser.do?cpage=${pi.copypage }" method="Get">
+            <input type="hidden" name="cpage" value="1">
+             <p class="estimate_list">견적/공사 내역</p>
 
             <div class="reservation-list body">
                 <div class="reservation-list-header">
-                    <div class="company_photo">사진</div>
-                    <div class="company_name">업체 이름</div>
-                    <div class="reservation_number">예약번호</div>
+                    <div class="company_photo" name="pictureName">사진</div>
+                    <div class="company_name" name="capyName">업체 이름</div>
+                    <div class="reservation_number" name="constructno">예약번호</div>
                 </div>
+<<<<<<< HEAD
                 <!-- <!-- <div class="reservation-list-header">
                     <div class="reservation-photo">사진</div>
                     <div class="reservation-name">업체명</div>
@@ -74,42 +76,75 @@
        <!--      </div>
         </div> -->
         <table>
+=======
+>>>>>>> branch 'master' of https://github.com/popya-02/SemiProject.git
         		<c:choose>
 						<c:when test="${empty list}">
-							<tr>
-								<td colspan="5" style="text-align: center !important; padding: 30px;" >등록된 글이 없습니다</td>
-							</tr>
+							<div>
+								<div colspan="5" style="text-align: center !important; padding: 30px;" >등록된 글이 없습니다</div>
+							</div>
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="item" items="${list}">
-								<tr>
+								<a class="reservation-list-item" href='/copyDetail.do?copyNo=${item.copyNo}'">
 									<!-- 어떤 게시글에 들어가는지 알수있음 -->
-									<td scope="row">${row}</td>
-									<td>${item.boardTitle}</td>
-									<td>${item.memberName}</td>
-									<td>${item.boardIndate}</td>
-									<td>${item.boardViews}</td>
-								</tr>
+									<img src="/resources/img/${item.pictureName}"/>
+									<div class="company_name">${item.copyName}</div>
+									<div class="reservation_number">${item.constructNo}</div>
+								</a>
 								<c:set var="row" value="${row-1}" />
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
-        </table>
-					
-                <div class="col-12">
-                    <div class="pagination d-flex justify-content-center mt-5">
-                        <a href="#" class="rounded">&laquo;</a>
-                        <a href="#" class="active rounded">1</a>
-                        <a href="#" class="rounded">2</a>
-                        <a href="#" class="rounded">3</a>
-                        <a href="#" class="rounded">4</a>
-                        <a href="#" class="rounded">5</a>
-                        <a href="#" class="rounded">6</a>
-                        <a href="#" class="rounded">&raquo;</a>
-                    </div>
-                </div>
-                </div>
-                </div>
+         </div>
+        </form>
+       </div>
+       
+                 <!-- 페이지네이션 -->
+        <div class="col-12">
+            <div class="pagination d-flex justify-content-center mt-5">
+        
+				<!-- 왼쪽 버튼  -->
+				<c:choose>
+					<c:when test="${pi.copypage == 1}">
+						<li class="page-item" style="margin-right: 0px"><a
+							class="rounded page-n" href="#" aria-label="Previous"> <span
+								aria-hidden="true">&laquo;</span>
+						</a></li>
+					</c:when>
+
+					<c:otherwise>
+						<li class="page-item" style="margin-right: 0px"><a
+							class="rounded page-n" href="/MyPageEstimate/EstimateUser.do?cpage=${pi.copypage-1}"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a></li>
+					</c:otherwise>
+
+				</c:choose>
+
+				<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+					<li class="page-item" style="margin-right: 0px"><a
+						class="rounded page-n" href="/MyPageEstimate/EstimateUser.do?cpage=${page}">${page}</a></li>
+				</c:forEach>
+
+
+
+				<c:choose>
+					<c:when test="${pi.copypage == pi.maxPage}">
+						<li class="page-item" style="margin-right: 0px"><a
+							class="rounded page-n" href="#" aria-label="Next"> <span
+								aria-hidden="true">&raquo;</span>
+						</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item" style="margin-right: 0px"><a
+							class="rounded page-n" href="/MyPageEstimate/EstimateUser.do?cpage=${pi.copypage+1}"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a></li>
+					</c:otherwise>
+				</c:choose>
+			</div>
+        </div>
 
         <!-- Footer Start -->
        	<%@ include file="/views/common/footer.jsp"%>

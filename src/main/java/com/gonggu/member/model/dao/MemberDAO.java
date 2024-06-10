@@ -203,7 +203,7 @@ public class MemberDAO {
 	public int signupCopyDetail(MemberDTO memberDto) {
 		
 		String query = "INSERT INTO COPY_DETAIL cd"
-					+ " VALUES(?, ?, ?, ?, ?, ?, NULL, DEFAULT)";
+					+ " VALUES(?, ?, ?, ?, ?, ?, NULL)";
 		// id(no),name, ceo, tel, area, addr, content, like
 		
 		try {
