@@ -36,13 +36,13 @@
 							<a href="/member/logoutForm.do" class="nav-item nav-link point-text">로그아웃</a>
 							<c:choose>
 								<c:when test="${sessionScope.userType == 'basicUser'}">
-									<a href="/MyPageEstimate/EstimateUser.do" class="nav-item nav-link point-text">
+									<a href="/MyPageEstimate/EstimateUser.do?cpage=1" class="nav-item nav-link point-text">
 										<i class="fas fa-user useri-font"></i>
 										<p class="nav-item nav-link my-none">마이페이지</p>
 									</a>
 								</c:when>
 								<c:when test="${sessionScope.userType == 'copyUser'}">
-									<a href="/MyPageEstimate/EstimateCopy.do" class="nav-item nav-link point-text">
+									<a href="/MyPageEstimate/EstimateCopy.do?cpage=1" class="nav-item nav-link point-text">
 										<i class="fas fa-user useri-font"></i>
 										<p class="nav-item nav-link my-none">마이페이지</p>
 									</a>

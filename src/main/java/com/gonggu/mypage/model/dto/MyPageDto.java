@@ -6,6 +6,7 @@ public class MyPageDto {
 	private String name;
 	private String address;
 	private String nickName;
+	private String phoneNum;
 	
 	private String CopyNo;
 	private String CopyName;
@@ -85,6 +86,13 @@ public class MyPageDto {
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
+	
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
 	public String getCopyNo() {
 		return CopyNo;
 	}
@@ -122,5 +130,13 @@ public class MyPageDto {
 		ConstructArea = constructArea;
 	}
 	
+	@Override
+	public String toString() {
+		return "MyPageDto [UserNo=" + UserNo + ", UserId=" + UserId + ", name=" + name + ", address=" + address
+				+ ", nickName=" + nickName + ", CopyNo=" + CopyNo + ", CopyName=" + CopyName + ", TelNum=" + TelNum
+				+ ", CopyAddr=" + CopyAddr + ", Content=" + Content + ", ConstructArea=" + ConstructArea
+				+ ", ConstructNo=" + ConstructNo + ", CopyPictureNo=" + CopyPictureNo + ", PictureName=" + PictureName
+				+ ", PicturePath=" + PicturePath + ", LikeNo=" + LikeNo + "]";
+	}
 	
 }

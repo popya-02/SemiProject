@@ -20,103 +20,86 @@
 	<h2 class="mypage_1">마이페이지</h2>
 	<nav class="mypage_list">
 		<ul>
-			<li class="mypage_list_1"><a
-				href="/views/myPage/userMyPageEstimate.jsp">견적/공사 내역</a></li>
-			<li class="mypage_list_2"><a
-				href="/view/myPage/userMyPageLike.jsp">관심 업체</a></li>
-			<li class="mypage_list_3"><a
-				href="/MypageInfo/userInfo.do?userNo=${sessionScope.userNum}">정보
-					수정</a></li>
+			<li class="mypage_list_1"><a href="/MyPageEstimate/EstimateUser.do?cpage=1">견적/공사 내역</a></li>
+			<li class="mypage_list_2"><a href="/mypage/likecopy.do?cpage=1">관심 업체</a></li>
+			<li class="mypage_list_3"><a href="/MypageInfo/userInfo.do?userNo=${sessionScope.userNum}">정보 수정</a></li>
 		</ul>
 	</nav>
 	<div class="mypage_list_1_detail">
-		<form action="/mypage/likecopy.do" method="post">
-		   <input type="hidden" name="likeno" value="${result.likeNo }">
-			<p class="likecopy_list">관심 업체</p>
+		<form action="/mypage/likecopy.do?cpage=${pi.copypage}" method="GET">
+		   <input type="hidden" name="cpage" value="1">
+			<p class="estimate_list">관심 업체</p>
 
-			<div class="likecopy-list body">
-				<div class="likecopy-list-header">
-					<div class="company_photo" name="picturename">업체 이름</div>
+			 <div class="reservation-list body"> 
+			    <div class="reservation-list-header">
+					<div class="company_photo" name="picturepath">사진</div>
 					<div class="company_name" name="copyname">업체 이름</div>
-					<div class="reservation_number" name="constructno"></div>
-				</div>
-			</div>	
+					<div class="company_name" name="telnum">업체 번호</div>
+					<div class="reservation_number" name="copyaddr">업체 주소</div>
+				</div> 
+        		<c:choose>
+						<c:when test="${empty likeList}">
+							<div>
+								<div style="text-align: center !important; padding: 30px;" >등록된 글이 없습니다</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="item" items="${likeList}">
+								<a class="reservation-list-item" href='/copyDetail.do?copyNo=${item.copyNo}'">
+									<!-- 어떤 게시글에 들어가는지 알수있음 -->
+									<img src="/resources/img/${item.pictureName}"/>
+									<div class="company_name">${item.copyName}</div>
+									<div class="company_name">${item.telNum}</div>
+									<div class="reservation_number">${item.copyAddr}</div>
+								</a>
+								<c:set var="row" value="${row-1}" />
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+			  </div>	 
 		</form>
-		<!-- <div class="reservation-list-header">
-                    <div class="reservation-photo">사진</div>
-                    <div class="reservation-name">업체명</div>
-                    <div class="reservation-number">예약번호</div>
-                </div> -->
-		<!--  <a href="#">
-                    <div class="reservation-list-item">
-                        <img src="../img/antique_picture.jpg" alt="사진">
-                        <div class="company_name">업체이름1</div>
-                        <div class="reservation_number">123456</div>
-                    </div>
-                </a>
-                <div class="reservation-list-item">
-                    <img src="https://via.placeholder.com/100" alt="사진">
-                    <div class="company_name">업체이름2</div>
-                    <div class="reservation_number">789012</div>
-                </div>
-                <div class="reservation-list-item">
-                    <img src="https://via.placeholder.com/100" alt="사진">
-                    <div class="company_name">업체이름3</div>
-                    <div class="reservation_number">345678</div>
-                </div>
-                <div class="reservation-list-item">
-                    <img src="https://via.placeholder.com/100" alt="사진">
-                    <div class="company_name">업체이름4</div>
-                    <div class="reservation_number">341678</div>
-                </div> -->
-
-		<!-- ---------------------------------페이지네이션------------------------------------------ -->
-		<div class="col-12">
-			<div class="pagination d-flex justify-content-center mt-5">
-
+	</div>
+	 <!-- 페이지네이션 -->
+        		
+        <div class="col-12">
+            <div class="pagination d-flex justify-content-center mt-5">
+        
+				<!-- 왼쪽 버튼  -->
 				<c:choose>
-					<c:when test="${pi.cpage == 1 }">
-						<a href="#" class="page-n rounded">&laquo;</a>
+					<c:when test="${pi.copypage == 1}">
+						<li class="page-item" style="margin-right: 0px"><a class="rounded page-n" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
 					</c:when>
+
 					<c:otherwise>
-						<a href="/copy/copylist.do?copypage=${pi.cpage-1}"
-							class="page-n rounded">&laquo;</a>
+						<li class="page-item" style="margin-right: 0px"><a class="rounded page-n" href="/mypage/likecopy.do?cpage=${pi.copypage-1}"aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a></li>
 					</c:otherwise>
+
 				</c:choose>
 
 				<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
-					<a href="/copy/copylist.do?copypage=${page}" class="page-n rounded">${page}</a>
+					<li class="page-item" style="margin-right: 0px"><a
+						class="rounded page-n" href="/mypage/likecopy.do?cpage=${page}">${page}</a></li>
 				</c:forEach>
 
+
+
 				<c:choose>
-					<c:when test="${pi.cpage == pi.maxPage }">
-						<a href="#" class="page-n rounded">&raquo;</a>
+					<c:when test="${pi.copypage == pi.maxPage}">
+						<li class="page-item" style="margin-right: 0px"><a
+							class="rounded page-n" href="#" aria-label="Next"> <span
+								aria-hidden="true">&raquo;</span>
+						</a></li>
 					</c:when>
 					<c:otherwise>
-						<a href="/copy/copylist.do?copypage=${pi.cpage+1}"
-							class="page-n rounded">&raquo;</a>
+						<li class="page-item" style="margin-right: 0px"><a
+							class="rounded page-n" href="/mypage/likecopy.do?cpage=${pi.copypage+1}"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a></li>
 					</c:otherwise>
 				</c:choose>
-
-
 			</div>
-		</div>
-
-
-		<!--   <div class="col-12">
-                    <div class="pagination d-flex justify-content-center mt-5">
-                        <a href="#" class="rounded">&laquo;</a>
-                        <a href="#" class="active rounded">1</a>
-                        <a href="#" class="rounded">2</a>
-                        <a href="#" class="rounded">3</a>
-                        <a href="#" class="rounded">4</a>
-                        <a href="#" class="rounded">5</a>
-                        <a href="#" class="rounded">6</a>
-                        <a href="#" class="rounded">&raquo;</a>
-                    </div>
-                </div> -->
-	</div>
-	</div>
+        </div>
 
 	<!-- Footer Start -->
 	<%@ include file="/views/common/footer.jsp"%>
