@@ -56,24 +56,19 @@ public class CopyDao {
     }
 
 	public ArrayList<CopyDto> getCopyDetail(String copyNo) {
-        String query = "SELECT REVIEW_CONTENT,c.CONSTRUCT_NO,bu.user_id,ce.exam_no,TITLE,cd.COPY_NO, cp.PATH AS COPY_PATH, ep.PATH AS EXAM_PATH , COPY_NAME , cd.CONTENT , COPY_ADDR , TEL_NUM"
-        			+ " FROM COPY_DETAIL cd"
-        			+ " FULL JOIN COPY_PHOTO cp"
-        			+ " ON cd.COPY_NO = cp.COPY_NO"
-        			+ " FULL JOIN COPY_REVIEW cr"
-        			+ " ON cd.COPY_NO = cr.COPY_NO"
-        			+ " FULL JOIN CONSTRUCT c"
-        			+ " ON c.COPY_NO = cd.COPY_NO"
-        			+ " FULL JOIN CONST_EXAM ce"
-        			+ " ON ce.CONSTRUCT_NO = c.CONSTRUCT_NO"
-        			+ " FULL JOIN EXAM_PICTURE ep"
-        			+ " ON ep.EXAM_NO = ce.EXAM_NO"
-        			+ " FULL JOIN CATEGORY cg"
-        			+ " ON ce.CATEGORY_NO = cg.CATEGORY_NO"
-        			+ " FULL JOIN BASIC_USER bu" 
-       			    + " ON bu.USER_NO  = c.USER_NO" 
-        			+ " WHERE cd.COPY_NO = ?";
-        
+	        String query = "SELECT cd.COPY_NO,cd.COPY_NAME,cd.CONTENT,cd.COPY_ADDR,cd.TEL_NUM,cp.NAME AS CP_P_NAME,c.CONSTRUCT_NO,ce.exam_no,ce.TITLE,ep.NAME as EX_P_NAME,bu.user_id"
+	        	   +"       FROM COPY_DETAIL cd"
+	        	   +"       INNER JOIN COPY_PHOTO cp"
+	        	   +"   	ON cd.COPY_NO = cp.COPY_NO"
+	        	   +"       INNER JOIN CONSTRUCT c"
+	        	   +"       ON c.COPY_NO = cd.COPY_NO"
+	        	   +"       INNER JOIN CONST_EXAM ce"
+	        	   +"       ON ce.CONSTRUCT_NO = c.CONSTRUCT_NO"
+	               +"	    INNER JOIN EXAM_PICTURE ep"
+	        	   +"		ON ep.EXAM_NO = ce.EXAM_NO"
+	        	   +"	    INNER JOIN BASIC_USER bu"
+	       		   +"	    ON bu.USER_NO  = c.USER_NO"
+	       		   +"	    WHERE cd.COPY_NO  = ?";
         ArrayList<CopyDto> list = new ArrayList<>();
         
         try {
@@ -84,20 +79,18 @@ public class CopyDao {
             	CopyDto dto = new CopyDto();
                 dto.setCopyName(rs.getString("COPY_NAME"));
                 dto.setCopyNo(rs.getString("COPY_NO"));
-                dto.setCopyPhoto(rs.getString("COPY_PATH"));
-                dto.setExamPhoto(rs.getString("EXAM_PATH"));
+                dto.setCopyPhoto(rs.getString("CP_P_NAME"));
                 dto.setCopyContent(rs.getString("CONTENT"));
                 dto.setCopyAddress(rs.getString("COPY_ADDR"));
                 dto.setCopyNumber(rs.getString("TEL_NUM"));
                 dto.setExamTitle(rs.getString("TITLE"));
                 dto.setExamNo(rs.getInt("EXAM_NO"));
                 dto.setUserId(rs.getString("USER_ID"));
-                dto.setReview(rs.getString("REVIEW_CONTENT"));
                 dto.setConstructNo(rs.getString("CONSTRUCT_NO"));
+                dto.setExamPhoto(rs.getString("EX_P_NAME"));
                 list.add(dto);
                 
-                System.out.println("copyNo:"+dto.getCopyNo());
-                System.out.println("constructNo:"+dto.getConstructNo());
+               
             }
         } catch (SQLException e) {
             e.printStackTrace();

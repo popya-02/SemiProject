@@ -27,7 +27,7 @@
     <!-- 시공예시 메인 이미지 -->
 
     <div class="tlrhd">
-        <img class="tlrhd-img img-border rounded" src="/resources/img/${detail.filePath}">
+        <img class="tlrhd-img img-border rounded" src="/resources/img/${detail.fileName}">
     </div>
     <div class="tlrhddjqcpaud">
         <p>${detail.copyName}</p>

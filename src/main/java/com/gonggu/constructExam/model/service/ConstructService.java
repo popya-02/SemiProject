@@ -21,6 +21,14 @@ public interface ConstructService {
 	public int listDelete(int examNo);
 	
 	public int fileDelete(int fileNo);
+	
+	public int setEdit(ConstructDtoImpl constructDto);
+	
+	public int fileUpload(ConstructDtoImpl constructDto);
+	
+	public int getExamNo(ConstructDtoImpl constructDto);
+	
+	
 
 //	public ConstructDtoImpl selectNo(ConstructDtoImpl ConstructDto);
 //	public int fileUpload(ConstructDtoImpl ConstructDto);

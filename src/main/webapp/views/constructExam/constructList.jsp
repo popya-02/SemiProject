@@ -51,7 +51,7 @@
 								<div class="card shadow-sm">
 									<a href="/constructDetail.do?examNo=${construct.examNo}"> <img
 										class="bd-placeholder-img card-img-top"
-										src="/resources/img/${construct.filePath}" width="100%" height="100%"
+										src="/resources/img/${construct.fileName}" width="100%" height="100%"
 										fill="#55595c" />
 									</a>
 									<p class="djqcpaud">${construct.copyName}</p>
@@ -62,8 +62,9 @@
 
 											<div class="btn-group">
 												<c:if test="${sessionScope.copyName == construct.copyName}">
-												<button type="button"
-													class="tlrhd-border btn-sm btn-outline-secondary">수정</button>
+												<button type="button" class="tlrhd-border btn-sm btn-outline-secondary"
+												onclick="location.href='/constructExam/constructEdit.do?examNo=${construct.examNo}'">
+												수정</button>
 												&nbsp;
 												<button type="submit" class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>
 											</c:if>

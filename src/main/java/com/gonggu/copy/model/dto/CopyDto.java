@@ -16,8 +16,15 @@ public class CopyDto {
 	private String userId;
 	private String constructNo;
 	private int userNum;
+	private String examPhotoName;
 	
 	
+	public String getExamPhotoName() {
+		return examPhotoName;
+	}
+	public void setExamPhotoName(String examPhotoName) {
+		this.examPhotoName = examPhotoName;
+	}
 	public int getUserNum() {
 		return userNum;
 	}

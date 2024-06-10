@@ -53,8 +53,10 @@ public class ConstructDao {
 	}
 
 	public int enroll(ConstructDtoImpl constructDto) {
-		String query = "INSERT INTO CONST_EXAM VALUES(exam_seq.nextval, ?, ?, ?, ?)";
+		String query = "INSERT INTO CONST_EXAM VALUES(exam_seq.nextval, ?, ?, ?, ?, default, null)";
 		int result = 0;
+		
+		/* int result = SELECT MAX(EXAM_NO) FROM CONST_EXAM where */
 
 		try {
 			pstmt = con.prepareStatement(query);
@@ -135,10 +137,20 @@ public class ConstructDao {
 	}
 
 	public ConstructDtoImpl getDetail(int examNo) {
-		String query = "select * from construct c" + "  full join const_exam ce"
-				+ "  on c.construct_no = ce.construct_no" + "  full join exam_picture ep"
-				+ "  on ce.exam_no = ep.exam_no" + "  full join copy_user cu" + "  on cu.copy_no = c.copy_no"
-				+ "  full join copy_photo cp" + "  on cp.copy_no = c.copy_no" + "  where ce.exam_no = ?";
+		String query = "select ep.NAME as PICTURE_NAME,ce.EXAM_NO,c.CONSTRUCT_START_DATE,c.CONSTRUCT_END_DATE,c.CONSTRUCT_ADDR,c.CONSTRUCT_RANGE,c.CONSTRUCT_PRICE,"
+				+ "     cu.COPY_NAME,cg.CATEGORY_NO ,cg.NAME AS category_name,ce.content,ep.PATH,ce.title"
+				+ "     from construct c" 
+	            + "     full join const_exam ce"
+				+ "     on c.construct_no = ce.construct_no"
+	            + "     full join exam_picture ep"
+				+ "     on ce.exam_no = ep.exam_no"
+	            + "     full join copy_user cu" 
+				+ "     on cu.copy_no = c.copy_no"
+				+ "     full join copy_photo cp"
+				+ "     on cp.copy_no = c.copy_no"
+				+ "     full join category cg"
+				+ "     on cg.category_no = ce.category_no"
+				+ "     where ce.exam_no = ?";
 		ConstructDtoImpl detail = new ConstructDtoImpl();
 
 		try {
@@ -155,8 +167,12 @@ public class ConstructDao {
 				dto.setConstructPrice(rs.getString("CONSTRUCT_PRICE"));
 				dto.setCopyName(rs.getString("COPY_NAME"));
 				dto.setCategoryNo(rs.getInt("CATEGORY_NO"));
+				dto.setCategory(rs.getString("category_name"));
 				dto.setContent(rs.getString("content"));
 				dto.setFilePath(rs.getString("PATH"));
+				dto.setTitle(rs.getString("TITLE"));
+				dto.setExamNo(rs.getInt("EXAM_NO"));
+				dto.setFileName(rs.getString("PICTURE_NAME"));
 				return dto;
 
 			}
@@ -203,4 +219,84 @@ public class ConstructDao {
 		}
 		return 0;
 	}
+	
+	public int setEdit(ConstructDtoImpl constructDto) {
+		String query = "UPDATE CONSTRUCT c" 
+				+"      SET	CONSTRUCT_START_DATE=?,"
+				+"          CONSTRUCT_END_DATE=?,"
+				+"          CONSTRUCT_ADDR=?,"
+				+"          CONSTRUCT_RANGE=?,"
+				+"          CONSTRUCT_PRICE=?"
+				+"      WHERE EXAM_NO=?";
+		System.out.println(constructDto.getCategoryNo());
+		System.out.println(constructDto.getTitle());
+		System.out.println(constructDto.getContent());
+		System.out.println(constructDto.getExamNo());
+	    String query1 = "UPDATE CONST_EXAM ce"  
+	            +"      SET CATEGORY_NO=?,"
+	            +"      TITLE=?,"
+	            +"      CONTENT=?"
+	            +"      WHERE EXAM_NO=?"; 
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, constructDto.getConstructStartDate());
+			pstmt.setString(2, constructDto.getConstructEndDate());
+			pstmt.setString(3, constructDto.getConstructAddr());
+			pstmt.setString(4, constructDto.getConstructRange());
+			pstmt.setString(5, constructDto.getConstructPrice());
+			pstmt.setInt(6, constructDto.getExamNo());
+			int result = pstmt.executeUpdate();
+			
+			
+			
+			pstmt = con.prepareStatement(query1);
+			pstmt.setInt(1, constructDto.getCategoryNo());
+			pstmt.setString(2, constructDto.getTitle());
+			pstmt.setString(3, constructDto.getContent());
+			pstmt.setInt(4, constructDto.getExamNo());
+			int result1 = pstmt.executeUpdate();
+			return result+result1;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	 public int fileUpload(ConstructDtoImpl constructDto) {
+	        String query = "INSERT INTO EXAM_PICTURE (EXAM_PICTURE_NO, EXAM_NO, NAME, PATH) VALUES (exam_picture_seq.nextval, ?, ?, ?)";
+	        int result = 0;
+	        
+	        try {
+	            pstmt = con.prepareStatement(query);
+	            pstmt.setInt(1, constructDto.getExamNo());
+	            pstmt.setString(2, constructDto.getFileName());
+	            pstmt.setString(3, constructDto.getUploadDirectory());
+	            
+	            result = pstmt.executeUpdate();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        
+	        return result;
+	    }
+	 
+	 public int getExamNo(ConstructDtoImpl constructDto) {
+		 String query = "SELECT MAX(EXAM_NO) AS MAX FROM CONST_EXAM";
+		
+				 try {
+						pstmt = con.prepareStatement(query);
+						ResultSet rs = pstmt.executeQuery();
+
+						while (rs.next()) {
+						int no = rs.getInt("MAX");
+						constructDto.setExamNo(no);
+						
+						}
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+
+					return 0;
+				}
 }

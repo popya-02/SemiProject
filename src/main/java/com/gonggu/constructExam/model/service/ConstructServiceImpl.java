@@ -50,7 +50,23 @@ public class ConstructServiceImpl implements ConstructService {
 	public int fileDelete(int fileNo) {
 		return constructDao.fileDelete(fileNo);
 	};
+	
+	@Override
+	public int setEdit(ConstructDtoImpl constructDto) {
+		return constructDao.setEdit(constructDto);
+	};
+	
+	 @Override
+	    public int fileUpload(ConstructDtoImpl constructDto) {
+	        return constructDao.fileUpload(constructDto);
+	    }
+	 
+	 @Override
+	 public int getExamNo(ConstructDtoImpl constructDto) {
+		 return constructDao.getExamNo(constructDto);
+	 }
 
+	
 //	@Override
 //	public ConstructDtoImpl selectNo(ConstructDtoImpl constructDto) {
 //		return constructDao.selectNo(constructDto);

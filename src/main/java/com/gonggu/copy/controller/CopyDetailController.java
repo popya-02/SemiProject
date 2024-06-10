@@ -30,7 +30,7 @@ public class CopyDetailController extends HttpServlet {
 		CopyService copyService = new CopyServiceImpl();
 		ArrayList<CopyDto> copyDetail = copyService.getCopyDetail(copyNo);
 		ArrayList<CopyDto> getReview = copyService.getReview(copyNo);
-		
+		System.out.println("aaaa"+copyDetail.size());
 		request.setAttribute("copyDetail", copyDetail);
 		request.setAttribute("getReview", getReview);
 		request.getRequestDispatcher("/views/copy/copyDetail.jsp").forward(request, response);
@@ -56,6 +56,7 @@ public class CopyDetailController extends HttpServlet {
 	    
 		ArrayList<CopyDto> copyDetail = copyService.getCopyDetail(copyNo);
 		ArrayList<CopyDto> getReview = copyService.getReview(copyNo);
+		
 		
 		request.setAttribute("copyDetail", copyDetail);
 		request.setAttribute("getReview", getReview);

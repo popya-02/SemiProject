@@ -19,11 +19,18 @@ public class ConstructDto {
 	private String constructPrice;  // 시공 가격
 	private String constructStartDate;  // 시공 시작일
 	private String constructEndDate; // 시공 종료일
-	private int category; // 카테고리
+	private String category; // 카테고리
 	private int examNo;
 	private String deleteStatus;
 	private String deleteDate;
+	private String uploadDirectory;
 	
+	public String getUploadDirectory() {
+		return uploadDirectory;
+	}
+	public void setUploadDirectory(String uploadDirectory) {
+		this.uploadDirectory = uploadDirectory;
+	}
 	public String getDeleteStatus() {
 		return deleteStatus;
 	}
@@ -48,10 +55,10 @@ public class ConstructDto {
 	public void setExamNo(int examNo) {
 		this.examNo = examNo;
 	}
-	public int getCategory() {
+	public String getCategory() {
 		return category;
 	}
-	public void setCategory(int category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 	public int getConstructNo() {
