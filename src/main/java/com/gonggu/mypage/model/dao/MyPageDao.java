@@ -7,11 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.gonggu.common.DatabaseConnection;
-<<<<<<< HEAD
 import com.gonggu.mypage.model.dto.MyPageDto;
-=======
 import com.gonggu.common.PageInfo;
->>>>>>> branch 'master' of https://github.com/popya-02/SemiProject.git
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 
 

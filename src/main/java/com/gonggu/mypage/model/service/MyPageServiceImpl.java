@@ -90,6 +90,5 @@ public class MyPageServiceImpl implements MyPageService {
 
 
 
->>>>>>> branch 'master' of https://github.com/popya-02/SemiProject.git
 
 }
