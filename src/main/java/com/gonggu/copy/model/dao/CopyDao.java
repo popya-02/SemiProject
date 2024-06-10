@@ -24,7 +24,7 @@ public class CopyDao {
 	}
 
 	public ArrayList<CopyDto> getCompanyList(PageInfo pi) {
-		String query = "SELECT COPY_NAME, cd.COPY_NO, PATH"
+		String query = "SELECT COPY_NAME, cd.COPY_NO, cp.NAME"
 				+ " FROM COPY_DETAIL cd"
 				+ " FULL JOIN COPY_PHOTO cp"
 				+ " 	ON cd.COPY_NO = cp.COPY_NO"
@@ -49,7 +49,7 @@ public class CopyDao {
 				CopyDto dto = new CopyDto();
 				dto.setCopyName(rs.getString("COPY_NAME"));
 				dto.setCopyNo(rs.getString("COPY_NO"));
-				dto.setCopyPhoto(rs.getString("PATH"));
+				dto.setCopyPhoto(rs.getString("NAME"));
 				list.add(dto);
 			}
 		} catch (SQLException e) {
