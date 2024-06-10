@@ -5,6 +5,8 @@ function duplicateId(){
 	const idMsg = document.getElementById("duplicate-msg");
 	const duplicateCheck = document.getElementById("duplicateCheck");
 	
+	
+	
 	if(id.length === 0 || id === null) return alert("아이디를 입력해주세요.");
 
 	$.ajax({

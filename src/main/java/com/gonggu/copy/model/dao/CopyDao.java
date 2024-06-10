@@ -49,6 +49,20 @@ public class CopyDao {
                 dto.setCopyNo(rs.getString("COPY_NO"));
                 dto.setCopyPhoto(rs.getString("PATH"));
                 list.add(dto);
+                
+                
+//            	private int chattingNum;
+//            	private String chattingIndate;
+//            	private int userNum;
+//            	private String copyNum;
+//            	private String message;
+//
+//            	private String endCheck;
+//            	private String userType;
+//
+//            	private String copyName;
+//            	private String userNickName;
+//            	private String userId;
             }
             
         } catch (SQLException e) {

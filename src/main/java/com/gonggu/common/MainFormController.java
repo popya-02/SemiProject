@@ -30,8 +30,6 @@ public class MainFormController extends HttpServlet {
 		String action = request.getPathInfo();
 		String nextPage = "";
 		
-		HttpSession session = request.getSession();
-		
 		if(action.equals("/loginForm.do")) {
 			nextPage = "/views/member/login.jsp";
 		}else if(action.equals("/signup.do")) {
@@ -53,8 +51,11 @@ public class MainFormController extends HttpServlet {
 		}else if(action.equals("/constructEnroll.do")) {
 			nextPage = "/views/constructExam/constructEnroll.jsp";
 		}else if(action.equals("/constructDetail.do")) {
-		nextPage = "/views/constructExam/constructDetail.jsp";
+			nextPage = "/views/constructExam/constructDetail.jsp";
+		}else if(action.equals("/adminLogin.do")) {
+			nextPage = "/views/member/adminLogin.jsp";
 		}
+		
 		if(nextPage != null && !nextPage.isEmpty()) {
 			RequestDispatcher view = request.getRequestDispatcher(nextPage);
 			view.forward(request, response);

@@ -34,4 +34,6 @@
                     </div>
                 </div>
             </div>
+        	<button class="admin-login" onclick="adminLoginFunc()"></button>
         </div>
+        <script src="/resources/js/adminLogin.js"></script>
