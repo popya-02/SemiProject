@@ -5,9 +5,9 @@
 <html lang="en">
 
     <head>
+        <link href="/resources/css/searchList.css" rel="stylesheet">
 	    <%@ include file="/views/common/head.jsp"%>
         <title>GONGGU</title>
-        <link href="/resources/css/searchList.css" rel="stylesheet">
         <!-- Template Stylesheet -->
         <link href="/resources/css/style.css" rel="stylesheet">
         <link href="/resources/css/login.css" rel="stylesheet">

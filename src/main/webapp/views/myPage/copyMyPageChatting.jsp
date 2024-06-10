@@ -24,7 +24,7 @@
 			<c:when test="${sessionScope.approvalStatus == 'B'}">
 				 <nav class="mypage_list">
             <ul>
-                <li class="mypage_list_1"><a href="/views/myPage/copyMyPageEstimate.jsp">견적/공사 내역</a></li>
+                <li class="mypage_list_1"><a href="/MyPageEstimate/EstimateCopy.do?cpage=1">견적/공사 내역</a></li>
                 <li class="mypage_list_2"><a href="/MypageInfo/ChattingList.do?copyNo=${sessionScope.copyNum}&chatpage=1">견적 상담 채팅</a></li>
                 <li class="mypage_list_2"><a href="/MypageInfo/copyInfo.do?copyNo=${sessionScope.copyNum}">정보 수정</a></li>
             </ul>
