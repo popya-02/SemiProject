@@ -4,10 +4,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
     <head>
-        
-    	
         <link href="/resources/css/purchase.css" rel="stylesheet">
 	    <%@ include file="/views/common/head.jsp"%>
         <title>GONGGU</title>
@@ -18,9 +15,9 @@
         <link href="/resources/css/signup.css" rel="stylesheet">
         
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    	<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+    	 <script type="text/javascript"	 src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script type="text/javascript"	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-    	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     </head>
     <body>
@@ -50,7 +47,7 @@
             <div class="form-group">
                 <label for="amount">결제 금액</label><br>
                  <!-- TODO: 결제금액 내리고 크기키우  -->
-                <input type="number" id="amount" value="" readonly class="readonly-input">
+                <input type="number" id="amount" value="${result.price}" readonly class="readonly-input">
             </div>
             <div class="form-group center-input location-box">
                 <label for="location">주소</label><br>

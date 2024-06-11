@@ -1,52 +1,37 @@
 // 구매자 정보
  var IMP = window.IMP;
  IMP.init("imp67844376");   /* imp~ : 가맹점 식별코드*/
- 
- 
+
  $('#money-btn').click(function() {
- 
- 	
 		IMP.request_pay({
 			pg: 'html5_inicis',
 			pay_method: 'card',				 /* 결제 수단방법 */
-			merchant_oid: '0200203-19292',   /* 주문 번호 */
 
-			name: 'ksdfklds',
-			amount: '000000',
-			
-            buyer_name: `${username}`,
-            
+
+			merchant_oid: 'oid20240610-00000001',   /* 주문 번호 */
+			name: 'asdas',
+			amount: "${result.constructPrice}",
+			goods_name: "asdasda",
+            buyer_name: "dsamds",
+            acceptName: "SKIN(#5E2BB8)"
             
 		}, function(rsp) {
+			debugger;
 			console.log(rsp);
 			
 			 //결제 성공 시
 			if (rsp.success) {
 				var msg = '결제가 완료되었습니다.';
-				console.log("결제성공 ");
-
-				
+				console.log("결제성공");
 			
 			} else if(rsp.success == false) {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
 			}
+
 			alert(msg);
 		});
 	});
-
-
-
-
-
-
-
-
-
-
-
-
-
     
     $(document).ready(function() {
     console.log("?");
@@ -61,18 +46,6 @@
         });
     });
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function (data) {

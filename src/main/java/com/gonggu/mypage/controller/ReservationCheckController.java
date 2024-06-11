@@ -26,32 +26,9 @@ public class ReservationCheckController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		HttpSession session = request.getSession();
-		
-//		int userNo = Integer.parseInt(request.getParameter("userNo"));
-//		int userNo = (int) session.gsetAttribute("userNum");
-//		int constructNum = (int) session.getAttribute("constructNum");
-		
-		String copyNo = request.getParameter("copyNo");
 		int constructNo = Integer.parseInt( request.getParameter("constructNum"));
 		
 		MyPageServiceImpl myService = new MyPageServiceImpl();
-		MyPageDtoImpl myDto = new MyPageDtoImpl();
-		
-		/**
-		 * =======user========
-		 * userNo 가져와서 페이지 보여주기
-		 * copyNo 으로 업체에 대한 정보 가져오고 
-		 * 확인 페이지 들어기기 
-		 * 어떻게? 
-		 * =======copy=========
-		 * copyNo 가져와서 해당 페이지 보여주기
-		 * userNo으로 예약 정보 불러오기
-		 * 확인페이지 들어가기
-		 * controller를 두개를 만들어야되나 
-		 * jsp 가 다르니까 그게 나을지도....?
-		 */
-		
 		
 		MyPageDtoImpl result = myService.reserveCheck(constructNo);
 		
