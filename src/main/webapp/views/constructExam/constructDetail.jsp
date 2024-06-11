@@ -68,7 +68,7 @@
     </div>
     <!-- 상세 설명 -->
     <div class="tlrhd-content">
-    ${detail.content }
+    ${detail.content}
     </div>
 
         <!-- Footer Start -->

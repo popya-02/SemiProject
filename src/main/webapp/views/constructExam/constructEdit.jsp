@@ -76,7 +76,7 @@
 						class="smart-editor-box">${getEdit.content}</textarea>
 				</div>
 				<div class="btn-box">
-					<button type="submit" class="btn editor-btn">수 정</button>`````````````````````````````````````````````
+					<button type="submit" onclick="save()" class="btn editor-btn">수 정</button>
 				</div>
 			</form>
 		</div>

@@ -83,11 +83,7 @@ public class CopyDao {
                 dto.setCopyAddress(rs.getString("COPY_ADDR"));
                 dto.setCopyNumber(rs.getString("TEL_NUM"));
                 dto.setCopyPhoto(rs.getString("CP_P_NAME"));
-				/* dto.setExamTitle(rs.getString("TITLE")); */
-				/* dto.setExamNo(rs.getInt("EXAM_NO")); */
-				/* dto.setUserId(rs.getString("USER_ID")); */
-				/* dto.setConstructNo(rs.getString("CONSTRUCT_NO")); */
-				/* dto.setExamPhoto(rs.getString("EX_P_NAME")); */
+				
                 list.add(dto);
                 
                
