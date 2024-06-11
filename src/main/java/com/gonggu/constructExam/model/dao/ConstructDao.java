@@ -138,7 +138,7 @@ public class ConstructDao {
 
 	public ConstructDtoImpl getDetail(int examNo) {
 		String query = "select ep.NAME as PICTURE_NAME,ce.EXAM_NO,c.CONSTRUCT_START_DATE,c.CONSTRUCT_END_DATE,c.CONSTRUCT_ADDR,c.CONSTRUCT_RANGE,c.CONSTRUCT_PRICE,"
-				+ "     cu.COPY_NAME,cg.CATEGORY_NO ,cg.NAME AS category_name,ce.content,ep.PATH,ce.title"
+				+ "     cu.COPY_NAME,cg.CATEGORY_NO ,cg.NAME AS category_name,ce.content,ep.PATH,ce.title, cu.COPY_NO"
 				+ "     from construct c" 
 	            + "     full join const_exam ce"
 				+ "     on c.construct_no = ce.construct_no"
@@ -160,8 +160,15 @@ public class ConstructDao {
 
 			while (rs.next()) {
 				ConstructDtoImpl dto = new ConstructDtoImpl();
-				dto.setConstructStartDate(rs.getString("CONSTRUCT_START_DATE"));
-				dto.setConstructEndDate(rs.getString("CONSTRUCT_END_DATE"));
+				
+				String startDateSub = rs.getString("CONSTRUCT_START_DATE");
+				String endDateSub = rs.getString("CONSTRUCT_END_DATE");
+				
+				String startDate = startDateSub.substring(0, startDateSub.length()-9);
+				String endDate = endDateSub.substring(0, endDateSub.length()-9);
+				
+				dto.setConstructStartDate(startDate);//시작
+				dto.setConstructEndDate(endDate);	//마감
 				dto.setConstructAddr(rs.getString("CONSTRUCT_ADDR"));
 				dto.setConstructRange(rs.getString("CONSTRUCT_RANGE"));
 				dto.setConstructPrice(rs.getString("CONSTRUCT_PRICE"));
@@ -173,6 +180,7 @@ public class ConstructDao {
 				dto.setTitle(rs.getString("TITLE"));
 				dto.setExamNo(rs.getInt("EXAM_NO"));
 				dto.setFileName(rs.getString("PICTURE_NAME"));
+				dto.setCopyNo(rs.getString("COPY_NO"));
 				return dto;
 
 			}

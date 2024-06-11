@@ -144,5 +144,6 @@
 .user_name,
 .company_name,
 .reservation_number {
+    text-align: center;
     flex: 1;
 }
