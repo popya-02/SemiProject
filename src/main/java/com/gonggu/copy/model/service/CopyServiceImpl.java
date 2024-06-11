@@ -24,6 +24,10 @@ public class CopyServiceImpl implements CopyService {
 	public ArrayList<CopyDto> getCopyDetail(String copyNo) {
 		return copyDao.getCopyDetail(copyNo);
 	}
+	@Override
+	public ArrayList<CopyDto> getCopyDetailEx(String copyNo) {
+		return copyDao.getCopyDetailEx(copyNo);
+	}
 
 	@Override
 	public int getListCount() {
