@@ -14,8 +14,8 @@
 				<h4 class="point-text display-6">GONGGU</h4>
 			</a>
 			<div class="input-group search-wid d-flex box-right">
-				<input type="search" class="form-control py-2 " placeholder="keywords" aria-describedby="search-icon-1">
-				<span id="search-icon-1" class="input-group-text search-i">
+				<input type="search" class="form-control py-2 " name="searchtext" id="searchtext" placeholder="keywords" aria-describedby="search-icon-1">
+				<span onclick="submitSearch()" id="search-icon-1" class="input-group-text search-i">
 					<a href="/views/etc/searchList.jsp">
 						<i class="fa fa-search"></i>
 					</a>
@@ -73,3 +73,22 @@
 	</div>
 
 </div>
+
+
+<script>
+    function submitSearch() {
+    	const searchText = document.gerElementById("searchtext").value;
+    	
+    	$.ajax({
+    		type: "GET",
+    		url: "/SearchForm.do",
+    		data: {searchText : searchText},
+    		success:function(data) {
+    			if(data == 
+    		}
+    		error:function(err){
+    			
+    		}
+    	})
+    }
+</script>

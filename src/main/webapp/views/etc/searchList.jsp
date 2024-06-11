@@ -26,7 +26,7 @@
                     <div>
                         <h4>시공 예시</h4>
                         <div class="example-result">
-                            <div class="example-div">
+                        <!--     <div class="example-div">
                                 <img src="./img/natural_picture.jpg" class="search-img">
                                 <div class="example-box">
                                     <div class="example-obj">
@@ -61,13 +61,13 @@
                                         <p class="example-content">예시 내용 40자 정도example-contentexample-contentexample-contentexample-contentexample-content example-contentasdfqwerasdfqwerasdfqwerasdfqwerasdfqwerasdfqwer....</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div>
                         <h4>업체</h4>
                         <div class="search-result row">
-                            <div class="col-md-4 col-lg-3 inte-pama">
+                        <!--     <div class="col-md-4 col-lg-3 inte-pama">
                                 <div class="rounded position-relative copy-search">
                                     <div class="">
                                         <img src="img/antique_picture.jpg" class="img-fluid w-100 rounded-top" alt="앤틱">
@@ -86,7 +86,7 @@
                                         <h5>업체 2</h5>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
