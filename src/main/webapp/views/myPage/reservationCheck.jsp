@@ -53,7 +53,7 @@
 						</div>
 						<div class="reservation-details-item">
 							<strong>금액:</strong><input type="text" class="fixed-input"
-								value="${result.constructPrice}" readonly style="padding-left:10px">
+								value="${result.estimatePrice}" readonly style="padding-left:10px">
 						</div>
 						<%-- <div class="reservation-details-item">
 							<strong>전화번호:</strong><input type="text" class="fixed-input"
@@ -61,11 +61,14 @@
 						</div> --%>
 						<div class="reservation-details-item">
 							<strong>날짜:</strong><input type="text" class="fixed-input"
-								value="${result.constructStartDate}" readonly style="padding-left:10px">
+								value="${result.constStartDate}" readonly style="padding-left:10px">
 						</div>
 					</div>
 				</div>
 			</div>
+			<a href="/purchase.do">
+				<h1>아아ㅏ</h1>
+			</a>
 		</c:when>
 
 		<c:when test="${sessionScope.userType == 'copyUser'}">
@@ -88,11 +91,11 @@
 						</div> 
 						<div class="reservation-details-item">
 							<strong style="width: 300px">상세 주소 :</strong><input type="text" class="fixed-input"
-								value="${result.constructAddr}" readonly style="padding-left:10px">
+								value="${result.constAddr}" readonly style="padding-left:10px">
 						</div>
 						<div class="reservation-details-item">
 							<strong style="width: 300px">금액 :</strong><input type="text" class="fixed-input"
-								value="${result.constructPrice}" readonly style="padding-left:10px">
+								value="${result.estimatePrice}" readonly style="padding-left:10px">
 						</div>
 						<div class="reservation-details-item">
 							<strong style="width: 300px">전화번호 :</strong><input type="text" class="fixed-input"
@@ -100,7 +103,7 @@
 						</div>
 						<div class="reservation-details-item">
 							<strong style="width: 300px">시공 날짜 :</strong><input type="text" class="fixed-input"
-								value="${result.constructStartDate}" readonly style="padding-left:10px">
+								value="${result.constStartDate}" readonly style="padding-left:10px">
 						</div>
 					</div>
 				</div>

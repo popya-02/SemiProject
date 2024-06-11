@@ -90,10 +90,6 @@ public class InformationDao {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				String no = rs.getString("COPY_NO");
-<<<<<<< HEAD
-=======
-//				System.out.println(no);
->>>>>>> branch 'master' of https://github.com/popya-02/SemiProject.git
 				String copyName = rs.getString("COPY_NAME");
 				String ceo = rs.getString("CEO_NAME");
 				String addr = rs.getString("COPY_ADDR");

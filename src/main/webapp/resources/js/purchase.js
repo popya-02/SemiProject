@@ -1,6 +1,28 @@
 // 구매자 정보
  var IMP = window.IMP;
  IMP.init("imp67844376");   /* imp~ : 가맹점 식별코드*/
+ 
+ let amount = document.getElementById("amount").value
+ let userName = document.getElementById("name").value
+ let copy = document.getElementById("company").value
+ let goodsName = document.getElementById("goods").value
+ 
+
+
+// $.ajax({
+//				type: "POST",
+//				url: "/payment/complete.do",
+//				data: { priceArr : priceArr[0],
+//						objectTitle : objectTitle,
+//						objectCeller : objectCeller,
+//					   },
+//				success: function(success){
+//					window.location.href='/views/payment/completeOrder.jsp';
+//				},
+//				error: function(error){
+//					console.log("실패");
+//				}
+//			});
 
  $('#money-btn').click(function() {
 		IMP.request_pay({
@@ -8,22 +30,38 @@
 			pay_method: 'card',				 /* 결제 수단방법 */
 
 
-			merchant_oid: 'oid20240610-00000001',   /* 주문 번호 */
-			name: 'asdas',
-			amount: "${result.constructPrice}",
-			goods_name: "asdasda",
-            buyer_name: "dsamds",
+			name: "상품 명",					// 상품 명 
+			amount: amount,
+			goods_name: "카테고리 명",
+            buyer_name: "sdfsdds",
             acceptName: "SKIN(#5E2BB8)"
             
 		}, function(rsp) {
 			debugger;
 			console.log(rsp);
-			
+			 $.ajax({
+				type: "POST",
+				url: "/complete.do",
+			});
 			 //결제 성공 시
 			if (rsp.success) {
-				var msg = '결제가 완료되었습니다.';
+				var msg;
 				console.log("결제성공");
-			
+			//    $.ajax({
+//		type: "POST",
+//		url: "/complete.do",
+//		data: { amount: amount,			// 금액 
+//				goodsName: goodsName,			// 상품명 
+//				userName: userName,			// 주문자 
+//			   },
+//		success: function(success){
+//			window.location.href='/views/etc/success.jsp';
+//			msg = '결제가 완료되었습니다.';
+//		},
+//		error: function(error){
+//			console.log("실패");
+//		}
+//	});
 			} else if(rsp.success == false) {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;

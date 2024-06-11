@@ -25,24 +25,27 @@ public class PurchaseDao {
         		+ "		FULL JOIN COPY_DETAIL cd ON cd.COPY_NO = cs.COPY_NO"
         		+ "		FULL JOIN BASIC_USER bu ON cs.USER_NO = bu.USER_NO"
         		+ "		FULL JOIN CONSTRUCT c ON c.CHATTING_NO = cs.CHATTING_NO"
-        		+ "		where c.chatting_no = ?";
+        		+ "		where c.chatting_no = 1";
 
         String oid = UUID.randomUUID().toString();
 
         try {
             pstmt = con.prepareStatement(query);
-            pstmt.setInt(1, chattingNo);
+//            pstmt.setInt(1, chattingNo);
+            System.out.println("aaaaaaaaaaa");
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                String name = rs.getString("name");
+                String userName = rs.getString("name");
                 String phoneNum = rs.getString("phone_num");
                 String copyName = rs.getString("copy_name");
                 int price = rs.getInt("construct_price");
 
                 // 값 세팅
-                PurchaseDto dto = PurchaseDto.of(name, phoneNum, copyName, price, oid);
+                PurchaseDto dto = PurchaseDto.of(userName, phoneNum, copyName, price, oid);
                 
+                System.out.println("lklklk"+dto.getUserName());
+                System.out.println(userName);
                 return dto;
 
             }
@@ -51,5 +54,11 @@ public class PurchaseDao {
         }
 
         return null;
+    }
+    
+    
+    public PurchaseDto order(PurchaseDto dto) {
+    	String query = "";
+    	return null;
     }
 }

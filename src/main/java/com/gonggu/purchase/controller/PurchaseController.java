@@ -27,9 +27,13 @@ public class PurchaseController extends HttpServlet {
 
 		String oid = UUID.randomUUID().toString();
 
-		int chattingNo = Integer.parseInt( request.getParameter("chattingNum"));
+		int chattingNo = 1;
+		
 		PurchaseDto result = myService.purchaseInfo(chattingNo);
 		request.setAttribute("result", result);
+		
+		
+		System.out.println(result.getUserName());
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/etc/purchase.jsp"); 
 		dispatcher.forward(request, response);
 	}

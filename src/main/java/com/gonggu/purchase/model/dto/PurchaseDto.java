@@ -55,8 +55,29 @@ public class PurchaseDto {
         this.constructPrice = constructPrice;
         this.oid = oid;
     }
+    
+    
+//    $.ajax({
+//		type: "POST",
+//		url: "/complete.do",
+//		data: { amount: amount,			// 금액 
+//				goodsName: goodsName,			// 상품명 
+//				userName: userName,			// 주문자 
+//			   },
+//		success: function(success){
+//			window.location.href='/views/etc/success.jsp';
+//			msg = '결제가 완료되었습니다.';
+//		},
+//		error: function(error){
+//			console.log("실패");
+//		}
+//	});
 
-    public static PurchaseDto of(String userName, String phoneNum, String copyName, int constructPrice, String oid) {
+    public PurchaseDto() {
+		super();
+	}
+
+	public static PurchaseDto of(String userName, String phoneNum, String copyName, int constructPrice, String oid) {
         return new PurchaseDto(userName, phoneNum, copyName, constructPrice, oid);
     }
 }

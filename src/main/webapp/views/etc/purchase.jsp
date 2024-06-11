@@ -31,23 +31,24 @@
         </div>
     </div>
     <div class="container-box container">
+        <input type="hidden" name="godds" id="goods" value="${result.userName}">
         <form>
             <div class="form-group">
                 <label for="name">이름</label><br>
-                <input type="text" id="name" value="" readonly class="readonly-input">
+                <input type="text" id="name" value="${result.userName}" readonly class="readonly-input">
             </div>
             <div class="form-group">
                 <label for="phone">전화번호</label><br>
-                <input type="tel" id="phone" value="" readonly class="readonly-input">
+                <input type="tel" id="phone" value="${result.phoneNum}" readonly class="readonly-input">
             </div>
             <div class="form-group">
                 <label for="company">업체명</label><br>
-                <input type="text" id="company" value="" readonly class="readonly-input">
+                <input type="text" id="company" value="${result.copyName}" readonly class="readonly-input">
             </div>
             <div class="form-group">
                 <label for="amount">결제 금액</label><br>
                  <!-- TODO: 결제금액 내리고 크기키우  -->
-                <input type="number" id="amount" value="${result.price}" readonly class="readonly-input">
+                <input type="number" id="amount" value="100"<%-- value="${result.constructPrice}" --%> readonly class="readonly-input">
             </div>
             <div class="form-group center-input location-box">
                 <label for="location">주소</label><br>
