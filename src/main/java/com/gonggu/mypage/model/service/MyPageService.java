@@ -24,6 +24,12 @@ public interface MyPageService {
 	
 	
 	public MyPageDtoImpl reserveCheck(int constructNum);
+	
+	public int saveConstElement(MyPageDto constDto);
+	
+	public MyPageDto getConstructDetail(int chattingNum);
+
+	public int updateConstElement(MyPageDto constDto);
 
 	public ArrayList<MyPageDtoImpl> getLikeList(PageInfo pi, MyPageDtoImpl myDto);
 

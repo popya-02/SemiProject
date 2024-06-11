@@ -255,9 +255,40 @@ public class MemberDAO {
 		return 0;
 	}
 
+
+	public MemberDTO getHashPwdAdmin(String adminId) {
+		
+		String query = "SELECT bu.USER_ID , bu.PASSWORD FROM ADMIN a"
+					+ " JOIN BASIC_USER bu"
+					+ "		ON a.USER_NO = bu.USER_NO"
+					+ " WHERE bu.USER_ID = ? ";
+		
+		MemberDTO result = new MemberDTO();
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, adminId);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String pwd = rs.getString("PASSWORD");
+				
+				result.setAdminId(adminId);
+				result.setAdminPwd(pwd);
+				result.setUserType("admin");
+				
+				return result;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
 }
-
-
 
 
 

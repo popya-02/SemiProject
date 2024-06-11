@@ -91,4 +91,19 @@ public class MyPageServiceImpl implements MyPageService {
 
 
 
+	@Override
+	public int saveConstElement(MyPageDto constDto) {
+		return myPageDao.saveConstElement(constDto);
+	}
+
+	@Override
+	public MyPageDto getConstructDetail(int chattingNum) {
+		return myPageDao.getConstructDetail(chattingNum);
+	}
+
+	@Override
+	public int updateConstElement(MyPageDto constDto) {
+		return myPageDao.updateConstElement(constDto);
+	}
+
 }

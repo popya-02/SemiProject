@@ -1,6 +1,5 @@
 package com.gonggu.admin.model.dao;
 
-import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -59,8 +58,8 @@ public class InformationDao {
 				
 
 				result.add(infoDto);
-				System.out.println(infoDto.getUserId());
-				System.out.println(infoDto.getUserName());
+//				System.out.println(infoDto.getUserId());
+//				System.out.println(infoDto.getUserName());
 			}
 
 			
@@ -91,6 +90,10 @@ public class InformationDao {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				String no = rs.getString("COPY_NO");
+<<<<<<< HEAD
+=======
+//				System.out.println(no);
+>>>>>>> branch 'master' of https://github.com/popya-02/SemiProject.git
 				String copyName = rs.getString("COPY_NAME");
 				String ceo = rs.getString("CEO_NAME");
 				String addr = rs.getString("COPY_ADDR");
@@ -105,9 +108,9 @@ public class InformationDao {
 				
 				
 				result.add(infoDto);
-				System.out.println(infoDto.getCopyNo());
-				System.out.println(infoDto.getCopyName());
-				System.out.println(infoDto.getCopyAddr());
+//				System.out.println(infoDto.getCopyNo());
+//				System.out.println(infoDto.getCopyName());
+//				System.out.println(infoDto.getCopyAddr());
 			}
 			
 			
@@ -146,7 +149,7 @@ public class InformationDao {
 				+ "		JOIN copy_detail cd ON cu.copy_no = cd.copy_no"
 				+ "		where " + category + " like '%' || ? || '%' ";
 		
-	System.out.println(query);
+//	System.out.println(query);
 	
 	
 	
@@ -193,7 +196,7 @@ public class InformationDao {
 				infoDto.setApprove(approve);
 				
 				result.add(infoDto);
-				System.out.println(infoDto.getCopyNo());
+//				System.out.println(infoDto.getCopyNo());
 			}
 			
 		} catch (SQLException e) {
@@ -207,7 +210,7 @@ public int copyApproveListCount() {
 		String query = "SELECT COUNT(*) as cnt FROM copy_user cu"
 				+ "		JOIN copy_detail cd ON cu.copy_no = cd.copy_no";
 		
-	System.out.println(query);
+//	System.out.println(query);
 	
 	
 	

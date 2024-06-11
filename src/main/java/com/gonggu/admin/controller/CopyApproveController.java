@@ -40,7 +40,7 @@ public class CopyApproveController extends HttpServlet {
         
         infoDto.setCopyNo(copyNo);
         infoDto.setApprove(approve);
-        System.out.println("2222222 " + infoDto.getApprove());    // approve
+//        System.out.println("2222222 " + infoDto.getApprove());    // approve
         
 //        if (approvalStatus != null && approvalStatus.equals("Y")) {
 //            System.out.println("current");

@@ -9,21 +9,65 @@ public class MyPageDto {
 	private String phoneNum;
 	
 	private String CopyNo;
-	private String CopyName;
-	private String TelNum;
-	private String CopyAddr;
-	private String Content;
+	private String CopyName;	
+	private String TelNum;		// const tel
+	private String CopyAddr;	// const addr
+	private String Content;		
 	private String ConstructArea;
 	private int ConstructNo;
 	
-	private String constructStartDate;
-	private String constructPrice;
-	private String constructAddr;
 	
 	private int CopyPictureNo;
 	private String PictureName;
 	private String PicturePath;
 	
+	// 견적서 요소 추가
+	private String constructElement;
+	private String constAddr;
+	private String constStartDate;
+	private String constEndDate;
+	private int constRange;
+	private String estimatePrice;
+	private String sumPrice;
+	private int chattingNum;
+	
+	public MyPageDto() {
+		super();
+	}
+	
+	
+	public MyPageDto(int userNo, String copyNo, String telNum, String constructElement, String constAddr,
+			int constRange, String constStartDate, String constEndDate, String estimatePrice, String sumPrice, int chattingNum) {
+		super();
+		this.UserNo = userNo;
+		this.CopyNo = copyNo;
+		this.TelNum = telNum;
+		this.constructElement = constructElement;
+		this.constAddr = constAddr;
+		this.constRange = constRange;
+		this.constStartDate = constStartDate;
+		this.constEndDate = constEndDate;
+		this.estimatePrice = estimatePrice;
+		this.sumPrice = sumPrice;
+		this.chattingNum = chattingNum;
+	}
+	
+	
+	
+	public MyPageDto(String constructElement, String constAddr, String constStartDate, String constEndDate,
+			int constRange, String estimatePrice, String sumPrice, int chattingNum) {
+		super();
+		this.constructElement = constructElement;
+		this.constAddr = constAddr;
+		this.constStartDate = constStartDate;
+		this.constEndDate = constEndDate;
+		this.constRange = constRange;
+		this.estimatePrice = estimatePrice;
+		this.sumPrice = sumPrice;
+		this.chattingNum = chattingNum;
+	}
+
+
 	private int LikeNo;
 	
 	public int getLikeNo() {
@@ -134,27 +178,60 @@ public class MyPageDto {
 		ConstructArea = constructArea;
 	}
 	
-	public String getConstructStartDate() {
-		return constructStartDate;
+	public String getConstructElement() {
+		return constructElement;
 	}
-	public void setConstructStartDate(String constructStartDate) {
-		this.constructStartDate = constructStartDate;
+
+	public void setConstructElement(String constructElement) {
+		this.constructElement = constructElement;
 	}
-	public String getConstructPrice() {
-		return constructPrice;
+	public String getConstStartDate() {
+		return constStartDate;
 	}
-	public void setConstructPrice(String constructPrice) {
-		this.constructPrice = constructPrice;
+	public void setConstStartDate(String constStartDate) {
+		this.constStartDate = constStartDate;
 	}
-	public String getConstructAddr() {
-		return constructAddr;
+	public String getConstEndDate() {
+		return constEndDate;
 	}
-	public void setConstructAddr(String constructAddr) {
-		this.constructAddr = constructAddr;
+	public void setConstEndDate(String constEndDate) {
+		this.constEndDate = constEndDate;
 	}
-	
-	
-	
-	
+	public String getEstimatePrice() {
+		return estimatePrice;
+	}
+	public void setEstimatePrice(String estimatePrice) {
+		this.estimatePrice = estimatePrice;
+	}
+	public String getSumPrice() {
+		return sumPrice;
+	}
+	public void setSumPrice(String sumPrice) {
+		this.sumPrice = sumPrice;
+	}
+	public String getConstAddr() {
+		return constAddr;
+	}
+	public void setConstAddr(String constAddr) {
+		this.constAddr = constAddr;
+	}
+
+	public int getConstRange() {
+		return constRange;
+	}
+
+	public void setConstRange(int constRange) {
+		this.constRange = constRange;
+	}
+
+	public int getChattingNum() {
+		return chattingNum;
+	}
+
+	public void setChattingNum(int chattingNum) {
+		this.chattingNum = chattingNum;
+	}
+
+
 	
 }

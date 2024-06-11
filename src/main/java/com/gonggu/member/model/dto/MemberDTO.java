@@ -11,6 +11,8 @@ public class MemberDTO {
 	private String phoneNum;
 	private int duplicateId;
 	
+	private String adminId;
+	private String adminPwd;
 	private String userType;
 	
 	private String copyNum;	// 사업자등록번호 id
@@ -118,6 +120,17 @@ public class MemberDTO {
 	public void setCopyCeoName(String copyCeoName) {
 		this.copyCeoName = copyCeoName;
 	}
-	
+	public String getAdminId() {
+		return adminId;
+	}
+	public void setAdminId(String adminId) {
+		this.adminId = adminId;
+	}
+	public String getAdminPwd() {
+		return adminPwd;
+	}
+	public void setAdminPwd(String adminPwd) {
+		this.adminPwd = adminPwd;
+	}
 	
 }

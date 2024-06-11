@@ -66,6 +66,10 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 
+	@Override
+	public MemberDTO getHashPwdAdmin(String adminId) {
+		return memberDao.getHashPwdAdmin(adminId);
+	}
 	
 
 }

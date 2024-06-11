@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.gonggu.chatting.model.dto.ChattingDTO;
 import com.gonggu.common.DatabaseConnection;
+import com.gonggu.common.PageInfo;
 
 public class ChattingDAO {
 	private Connection con;
@@ -324,7 +326,74 @@ public class ChattingDAO {
 	}
 
 	
-	
+	public int getListCount(String copyNum) {
+		
+		String query = "SELECT COUNT(COPY_NO) AS CNT"
+					+ " FROM CONSTRUCT_STATUS cs "
+					+ " WHERE COPY_NO = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, copyNum);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int result = rs.getInt("CNT");
+				
+				return result;
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public List<ChattingDTO> getCopyChattingList(PageInfo pi, String sessionCopyNum) {
+		
+		String query = "SELECT cs.CHATTING_NO , cs.COPY_NO , cs.USER_NO , cs.CREATE_DATE , cs.END_CHECK , bu.NAME"
+					+ " FROM CONSTRUCT_STATUS cs"
+					+ " JOIN BASIC_USER bu"
+					+ "		ON cs.USER_NO = bu.USER_NO "
+					+ " WHERE COPY_NO = ?"
+					+ " ORDER BY CREATE_DATE DESC"
+					+ " OFFSET ? ROWS FETCH FIRST ? ROWS ONLY";
+		
+		List<ChattingDTO> list = new ArrayList<>();
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, sessionCopyNum);
+			pstmt.setInt(2, pi.getOffSet());
+			pstmt.setInt(3, pi.getBoardLimit());
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ChattingDTO dto = new ChattingDTO();
+				dto.setChattingNum(rs.getInt("CHATTING_NO"));
+				dto.setCopyNum(rs.getString("COPY_NO"));
+				dto.setUserNum(rs.getInt("USER_NO"));
+				dto.setUserName(rs.getString("NAME"));
+				dto.setChattingIndate(rs.getString("CREATE_DATE"));
+				dto.setEndCheck(rs.getString("END_CHECK"));
+				
+				list.add(dto);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
 	
 	
 	

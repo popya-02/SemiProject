@@ -13,4 +13,6 @@ public interface MemberService {
 	public int copyIdCheck(String copyId);
 	
 	public int signupCopy(MemberDTO memberDto);
+	
+	public MemberDTO getHashPwdAdmin(String adminId);
 }
