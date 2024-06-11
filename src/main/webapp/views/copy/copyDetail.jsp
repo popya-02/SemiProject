@@ -72,18 +72,18 @@
 
 					<div class="owl-carousel vegetable-carousel justify-content-center">
 						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<c:forEach var="copyDetail" items="${copyDetail}">
+						<c:forEach var="copyDetailEx" items="${copyDetailEx}">
 						<div class="border border-primary rounded position-relative vesitable-item">
 							<div class="vesitable-img">
-								<img src="/resources/img/${copyDetail.examPhoto}" class="img-fluid w-100 rounded-top" alt="">
+								<img src="/resources/img/${copyDetailEx.examPhoto}" class="img-fluid w-100 rounded-top" alt="">
 							</div>
 
 							<div class="p-4 pb-0 rounded-bottom">
 
-								<p>${copyDetail.examTitle}</p>
+								<p>${copyDetailEx.examTitle}</p>
 								<div class="d-flex justify-content-between flex-lg-wrap">
 
-									<a href="/constructDetail.do?examNo=${copyDetail.examNo}" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
+									<a href="/constructDetail.do?examNo=${copyDetailEx.examNo}" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
 								</div>
 							</div>
 						</div>

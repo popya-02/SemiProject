@@ -39,19 +39,19 @@
 				<div>시공내역
 				<br>
 				시공 시작일 : 
-				<input type="text" name="constructStartDate" value="${getEdit.constructStartDate}">
+				${getEdit.constructStartDate}
 				<br>
 				시공 종료일 : 
-				<input type="text" name="constructEndDate" value="${getEdit.constructEndDate}">
+				${getEdit.constructEndDate}
 				<br>
 				시공 주소 : 
-				<input type="text" name="constructAddr" value="${getEdit.constructAddr}">
+				${getEdit.constructAddr}
 				<br>
 				시공 평수 : 
-				<input type="text" name="constructRange" value="${getEdit.constructRange}">
+				${getEdit.constructRange}
 				<br>
 				시공 가격 : 
-				<input type="text" name="constructPrice" value="${getEdit.constructPrice}">
+				${getEdit.constructPrice}
 						
 					
 				</div>
@@ -76,7 +76,7 @@
 						class="smart-editor-box">${getEdit.content}</textarea>
 				</div>
 				<div class="btn-box">
-					<button type="submit" class="btn editor-btn">수 정</button>
+					<button type="submit" onclick="save()" class="btn editor-btn">수 정</button>
 				</div>
 			</form>
 		</div>
@@ -95,6 +95,7 @@
 	<%@ include file="/views/common/jsLib.jsp"%>
 
 	<!-- Template Javascript -->
+
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/nowtime.js"></script>
 </body>

@@ -58,19 +58,16 @@ public class CopyDao {
 	}
 
 	public ArrayList<CopyDto> getCopyDetail(String copyNo) {
-	        String query = "SELECT cd.COPY_NO,cd.COPY_NAME,cd.CONTENT,cd.COPY_ADDR,cd.TEL_NUM,cp.NAME AS CP_P_NAME,c.CONSTRUCT_NO,ce.exam_no,ce.TITLE,ep.NAME as EX_P_NAME,bu.user_id"
+	        String query = "SELECT cd.COPY_NO,cd.COPY_NAME,cd.CONTENT,cd.COPY_ADDR,cd.TEL_NUM,cp.NAME AS CP_P_NAME"
 	        	   +"       FROM COPY_DETAIL cd"
-	        	   +"       INNER JOIN COPY_PHOTO cp"
+	        	   +"       FULL JOIN COPY_PHOTO cp"
 	        	   +"   	ON cd.COPY_NO = cp.COPY_NO"
-	        	   +"       INNER JOIN CONSTRUCT c"
-	        	   +"       ON c.COPY_NO = cd.COPY_NO"
-	        	   +"       INNER JOIN CONST_EXAM ce"
+	        	   +"       FULL JOIN CONSTRUCT c"
+	        	   +"       ON cd.COPY_NO  = c.COPY_NO"
+	               +"       FULL JOIN CONST_EXAM ce"
 	        	   +"       ON ce.CONSTRUCT_NO = c.CONSTRUCT_NO"
-	               +"	    INNER JOIN EXAM_PICTURE ep"
-	        	   +"		ON ep.EXAM_NO = ce.EXAM_NO"
-	        	   +"	    INNER JOIN BASIC_USER bu"
-	       		   +"	    ON bu.USER_NO  = c.USER_NO"
-	       		   +"	    WHERE cd.COPY_NO  = ?";
+	       	   	   +"	    WHERE cd.COPY_NO  = ? AND ce.delete_status = 'N'";
+	        
         ArrayList<CopyDto> list = new ArrayList<>();
         
         try {
@@ -79,17 +76,13 @@ public class CopyDao {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
             	CopyDto dto = new CopyDto();
+            	dto.setCopyNo(rs.getString("COPY_NO"));
                 dto.setCopyName(rs.getString("COPY_NAME"));
-                dto.setCopyNo(rs.getString("COPY_NO"));
-                dto.setCopyPhoto(rs.getString("CP_P_NAME"));
                 dto.setCopyContent(rs.getString("CONTENT"));
                 dto.setCopyAddress(rs.getString("COPY_ADDR"));
                 dto.setCopyNumber(rs.getString("TEL_NUM"));
-                dto.setExamTitle(rs.getString("TITLE"));
-                dto.setExamNo(rs.getInt("EXAM_NO"));
-                dto.setUserId(rs.getString("USER_ID"));
-                dto.setConstructNo(rs.getString("CONSTRUCT_NO"));
-                dto.setExamPhoto(rs.getString("EX_P_NAME"));
+                dto.setCopyPhoto(rs.getString("CP_P_NAME"));
+				
                 list.add(dto);
                 
                
@@ -98,6 +91,39 @@ public class CopyDao {
             e.printStackTrace();
         }
         return list;
+	}
+        
+        public ArrayList<CopyDto> getCopyDetailEx(String copyNo) {
+        	String query = "SELECT ce.TITLE,ce.EXAM_NO,ce.CONSTRUCT_NO,EP.NAME FROM CONST_EXAM ce" 
+	        	   +"       FULL JOIN EXAM_PICTURE ep"
+	        	   +"       ON ce.EXAM_NO = ep.EXAM_NO"
+	        	   +"       FULL JOIN CONSTRUCT c"
+	        	   +"       ON c.CONSTRUCT_NO = ce.CONSTRUCT_NO"
+	        	   +"       FULL JOIN COPY_DETAIL cd"
+	        	   +"       ON cd.COPY_NO = c.COPY_NO"
+	        	   +"       WHERE cd.COPY_NO = ? AND ce.DELETE_STATUS = 'N'";
+        	
+        	ArrayList<CopyDto> list = new ArrayList<>();
+        	
+        	try {
+        		pstmt = con.prepareStatement(query);
+        		pstmt.setString(1, copyNo);
+        		ResultSet rs = pstmt.executeQuery();
+        		while (rs.next()) {
+        			CopyDto dto = new CopyDto();
+        			
+        			 dto.setExamTitle(rs.getString("TITLE"));
+        			 dto.setExamNo(rs.getInt("EXAM_NO"));
+        			 dto.setConstructNo(rs.getString("CONSTRUCT_NO"));
+        			 dto.setExamPhoto(rs.getString("NAME"));
+        			 list.add(dto);
+        			
+        			
+        		}
+        	} catch (SQLException e) {
+        		e.printStackTrace();
+        	}
+        	return list;
         
 	}
         public ArrayList<CopyDto> getReview(String copyNo){
