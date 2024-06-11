@@ -221,41 +221,19 @@ public class ConstructDao {
 	}
 	
 	public int setEdit(ConstructDtoImpl constructDto) {
-		String query = "UPDATE CONSTRUCT c" 
-				+"      SET	CONSTRUCT_START_DATE=?,"
-				+"          CONSTRUCT_END_DATE=?,"
-				+"          CONSTRUCT_ADDR=?,"
-				+"          CONSTRUCT_RANGE=?,"
-				+"          CONSTRUCT_PRICE=?"
-				+"      WHERE EXAM_NO=?";
-		System.out.println(constructDto.getCategoryNo());
-		System.out.println(constructDto.getTitle());
-		System.out.println(constructDto.getContent());
-		System.out.println(constructDto.getExamNo());
-	    String query1 = "UPDATE CONST_EXAM ce"  
+	    String query = "UPDATE CONST_EXAM ce"  
 	            +"      SET CATEGORY_NO=?,"
 	            +"      TITLE=?,"
 	            +"      CONTENT=?"
 	            +"      WHERE EXAM_NO=?"; 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, constructDto.getConstructStartDate());
-			pstmt.setString(2, constructDto.getConstructEndDate());
-			pstmt.setString(3, constructDto.getConstructAddr());
-			pstmt.setString(4, constructDto.getConstructRange());
-			pstmt.setString(5, constructDto.getConstructPrice());
-			pstmt.setInt(6, constructDto.getExamNo());
-			int result = pstmt.executeUpdate();
-			
-			
-			
-			pstmt = con.prepareStatement(query1);
 			pstmt.setInt(1, constructDto.getCategoryNo());
 			pstmt.setString(2, constructDto.getTitle());
 			pstmt.setString(3, constructDto.getContent());
 			pstmt.setInt(4, constructDto.getExamNo());
-			int result1 = pstmt.executeUpdate();
-			return result+result1;
+			int result = pstmt.executeUpdate();
+			return result;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
