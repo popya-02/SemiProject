@@ -78,10 +78,7 @@ public class ChattingConnectionController extends HttpServlet {
 					if(userchattingSet.getEndCheck() == "Y") {	// 상담 종료 여부
 						response.sendRedirect("/form/constructDetail.do");
 					}else {
-						if(result == 0) {
-							response.sendRedirect("/form/constructDetail.do");
-						}else {
-							
+						if(result != 0) {
 							ArrayList<ChattingDTO> list = chattingService.getList(userchattingSet.getChattingNum());
 							
 							request.setAttribute("list", list);
@@ -91,6 +88,9 @@ public class ChattingConnectionController extends HttpServlet {
 							request.setAttribute("noCheck",typeResult.getUserNum());
 							RequestDispatcher view = request.getRequestDispatcher("/views/etc/chatting.jsp");
 							view.forward(request, response);
+						}else {
+							response.sendRedirect("/form/constructDetail.do");
+							
 						}
 						
 					}

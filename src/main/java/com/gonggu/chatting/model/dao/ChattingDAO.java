@@ -51,6 +51,7 @@ public class ChattingDAO {
 					+ "	AND COPY_NO = ?"
 					+ " AND END_CHECK = 'N'";
 		
+		
 		try {
 			pstmt  = con.prepareStatement(query);
 			

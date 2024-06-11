@@ -39,10 +39,10 @@
 				<div>시공내역
 				<br>
 				시공 시작일 : 
-				<input type="text" name="constructStartDate" value="${getEdit.constructStartDate}">
+				<input type="date" name="constructStartDate" value="${getEdit.constructStartDate}">
 				<br>
 				시공 종료일 : 
-				<input type="text" name="constructEndDate" value="${getEdit.constructEndDate}">
+				<input type="date" name="constructEndDate" value="${getEdit.constructEndDate}">
 				<br>
 				시공 주소 : 
 				<input type="text" name="constructAddr" value="${getEdit.constructAddr}">

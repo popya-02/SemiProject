@@ -49,7 +49,12 @@
 							</div>
 						</div>
 						<div class="col-lg-6" style="padding-left: 122px; margin-top: 40px">
-							<h4 class="fw-bold mb-3">${copyDetail[0].copyName}</h4>
+							<div class="btn-box">
+								<h4 class="fw-bold">${copyDetail[0].copyName}</h4>
+								<c:if test="${sessionScope.userType == 'basicUser' }">
+							        <a href="/chatting/connection.do?copyNum=${copyDetail[0].copyNo}&userNum=${sessionScope.userNum}" class="tlrhd-border border border-secondary text-primary rounded-pill px-3 py-2">시공 상담하기</a>
+						        </c:if>							
+							</div>
 
 							<div class="d-flex mb-4">
 
