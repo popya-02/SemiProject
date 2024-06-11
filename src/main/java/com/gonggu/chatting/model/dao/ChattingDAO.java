@@ -395,6 +395,39 @@ public class ChattingDAO {
 		
 		return list;
 	}
+
+	public ChattingDTO setEndChatSet(int chatNum) {
+		
+		String query = "SELECT END_CHECK, cs.USER_NO, USER_ID, NICKNAME "
+					+ " FROM CONSTRUCT_STATUS cs "
+					+ " JOIN BASIC_USER bu "
+					+ "		ON cs.USER_NO = bu.USER_NO "
+					+ " WHERE CHATTING_NO = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, chatNum);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ChattingDTO dto = new ChattingDTO();
+				dto.setEndCheck(rs.getString("END_CHECK"));
+				dto.setUserNum(rs.getInt("USER_NO"));
+				dto.setUserId(rs.getString("USER_ID"));
+				dto.setUserNickName(rs.getString("NICKNAME"));
+				
+				return dto;
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 	
 	
 	
