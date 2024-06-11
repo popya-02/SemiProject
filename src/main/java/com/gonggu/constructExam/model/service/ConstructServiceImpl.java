@@ -62,6 +62,11 @@ public class ConstructServiceImpl implements ConstructService {
 	    }
 	 
 	 @Override
+	 public int fileEdit(ConstructDtoImpl constructDto) {
+		 return constructDao.fileEdit(constructDto);
+	 }
+	 
+	 @Override
 	 public int getExamNo(ConstructDtoImpl constructDto) {
 		 return constructDao.getExamNo(constructDto);
 	 }

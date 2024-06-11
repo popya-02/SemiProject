@@ -57,7 +57,7 @@
 				
 				<!-- 메인이미지 업로드 -->
 				
-					<div class="tlrhd-img" id="container">
+					<div class="tlrhd-img" id="container-enroll">
 						<div class="image-upload" id="image-upload">
 
 							<div class="button">
@@ -71,8 +71,8 @@
 									<p>파일 명:</p>
 									<p id="fileName"></p>
 								</div>
-								<div class="buttonContainer">
-									<div class="submitButton" id="submitButton">등록</div>
+								<div class="buttonContainer" id="submitButton">
+									<div class="submitButton">등록</div>
 								</div>
 							</div>
 						</div>

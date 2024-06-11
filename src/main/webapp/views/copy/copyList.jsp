@@ -46,11 +46,10 @@
 							scope="row">
 							<c:forEach var="companyList" items="${companyList}">
 								<div class="col">
-									<div class="card shadow-sm">
-										<a href="/copyDetail.do?copyNo=${companyList.copyNo}"> <img
-											class="bd-placeholder-img card-img-top"
-											src="/resources/img/${companyList.copyPhoto}" width="100%"
-											height="100%" alt="업체 이미지" />
+									<div class="card shadow-sm" >
+										<a href="/copyDetail.do?copyNo=${companyList.copyNo}" class="img-size">
+											<img class="bd-placeholder-img card-img-top img-contain"
+												src="/resources/img/${companyList.copyPhoto}" alt="업체 이미지"/>
 										</a>
 										<p class="djqcpaud">${companyList.copyName}</p>
 									</div>

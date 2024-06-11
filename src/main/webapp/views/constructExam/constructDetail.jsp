@@ -37,7 +37,9 @@
     <div class="tlrhd-nav">
         <a href="#" class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">공유하기</a>
         &nbsp;&nbsp;
-        <a href="/chatting/connection.do?copyNum=4848600594&userNum=${sessionScope.userNum}" class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">이 스타일로 상담하기</a>
+        <c:if test="${sessionScope.userType == 'basicUser' }">
+	        <a href="/chatting/connection.do?copyNum=${detail.copyNum}&userNum=${sessionScope.userNum}" class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">이 스타일로 상담하기</a>
+        </c:if>
     </div>
 <br><br>
 <br>

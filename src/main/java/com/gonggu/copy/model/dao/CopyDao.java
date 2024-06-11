@@ -67,7 +67,9 @@ public class CopyDao {
 	        	   +"       ON cd.COPY_NO  = c.COPY_NO"
 	               +"       FULL JOIN CONST_EXAM ce"
 	        	   +"       ON ce.CONSTRUCT_NO = c.CONSTRUCT_NO"
+
 	       	   	   +"	    WHERE cd.COPY_NO  = ?";
+
 	        
         ArrayList<CopyDto> list = new ArrayList<>();
         

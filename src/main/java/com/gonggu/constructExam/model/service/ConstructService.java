@@ -26,7 +26,11 @@ public interface ConstructService {
 	
 	public int fileUpload(ConstructDtoImpl constructDto);
 	
+	public int fileEdit(ConstructDtoImpl constructDto);
+	
 	public int getExamNo(ConstructDtoImpl constructDto);
+	
+	
 	
 	
 
