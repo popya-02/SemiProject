@@ -29,10 +29,14 @@ public class CopyDetailController extends HttpServlet {
 
 		CopyService copyService = new CopyServiceImpl();
 		ArrayList<CopyDto> copyDetail = copyService.getCopyDetail(copyNo);
+		ArrayList<CopyDto> copyDetailEx = copyService.getCopyDetailEx(copyNo);
+		
 		ArrayList<CopyDto> getReview = copyService.getReview(copyNo);
-		System.out.println("aaaa"+copyDetail.size());
+		
 		request.setAttribute("copyDetail", copyDetail);
 		request.setAttribute("getReview", getReview);
+		request.setAttribute("copyDetailEx", copyDetailEx);
+		
 		request.getRequestDispatcher("/views/copy/copyDetail.jsp").forward(request, response);
 	}
 
