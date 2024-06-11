@@ -32,7 +32,6 @@ public class CopyDetailController extends HttpServlet {
 		ArrayList<CopyDto> copyDetailEx = copyService.getCopyDetailEx(copyNo);
 		
 		ArrayList<CopyDto> getReview = copyService.getReview(copyNo);
-		
 		request.setAttribute("copyDetail", copyDetail);
 		request.setAttribute("getReview", getReview);
 		request.setAttribute("copyDetailEx", copyDetailEx);

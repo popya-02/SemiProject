@@ -97,5 +97,10 @@ public class ChattingServiceImpl implements ChattingService{
 	public List<ChattingDTO> getCopyChattingList(PageInfo pi, String sessionCopyNum) {
 		return chattingDao.getCopyChattingList(pi,sessionCopyNum);
 	}
+
+	@Override
+	public ChattingDTO setEndChatSet(int chatNum) {
+		return chattingDao.setEndChatSet(chatNum);
+	}
 	
 }
