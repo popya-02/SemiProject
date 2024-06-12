@@ -37,7 +37,8 @@
                 <div class="reservation-list-header">
                     <div class="company_photo" name="pictureName">사진</div>
                     <div class="company_name" name="capyName">업체 이름</div>
-                    <div class="reservation_number" name="constructno">예약번호</div>
+                    <div class="reservation_number" name="constructno" >예약번호</div>
+                    <div>결제 현황</div>
                 </div>
                 
         		<c:choose>
@@ -52,7 +53,15 @@
 									<!-- 어떤 게시글에 들어가는지 알수있음 -->
 									<img src="/resources/img/${item.pictureName}"/>
 									<div class="company_name">${item.copyName}</div>
-									<div class="reservation_number">${item.constructNo}</div>
+									<div class="reservation_number" >${item.constructNo}</div>
+									<c:choose>
+										<c:when test="${item.constStatus == 'N'}">
+											<div>결제 대기중</div>
+										</c:when>
+										<c:otherwise>
+											<div>예약 확정</div>
+										</c:otherwise>
+									</c:choose>
 								</a>
 								<c:set var="row" value="${row-1}" />
 							</c:forEach>

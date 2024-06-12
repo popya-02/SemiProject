@@ -504,7 +504,7 @@ public class MyPageDao {
 //  나의 견적/공사 내역
 	public ArrayList<MyPageDtoImpl> getUserEstimateList(PageInfo pi, MyPageDtoImpl myDto) {
 		ArrayList<MyPageDtoImpl> result = new ArrayList<>();
-		String query = "SELECT cd.COPY_NO, NAME, COPY_NAME, CONSTRUCT_NO"
+		String query = "SELECT cd.COPY_NO, NAME, COPY_NAME, CONSTRUCT_NO, c.PURCHASE_STATUS"
 				+ "     FROM COPY_DETAIL cd"
 				+ "     FULL JOIN COPY_PHOTO cp"
 				+ "        ON cd.COPY_NO = cp.COPY_NO"
@@ -526,6 +526,7 @@ public class MyPageDao {
 				pageDto.setPictureName(rs.getString("NAME"));
 				pageDto.setCopyName(rs.getString("COPY_NAME"));
 				pageDto.setConstructNo(rs.getInt("CONSTRUCT_NO"));
+				pageDto.setConstStatus(rs.getString("PURCHASE_STATUS"));
 				
 				result.add(pageDto);
 			}
@@ -565,7 +566,7 @@ public class MyPageDao {
 //  업체 견적/공사 내역
 	public ArrayList<MyPageDtoImpl> getCopyEstimateList(PageInfo pi, MyPageDtoImpl myDto) {
 		ArrayList<MyPageDtoImpl> result = new ArrayList<>();
-		String query = "SELECT bu.USER_NO, bu.NAME, bu.PHONE_NUM, c.CONSTRUCT_NO"
+		String query = "SELECT bu.USER_NO, bu.NAME, bu.PHONE_NUM, c.CONSTRUCT_NO, c.PURCHASE_STATUS"
 				+ "     FROM CONSTRUCT c"
 				+ "     FULL JOIN BASIC_USER bu"
 				+ "        ON c.USER_NO = bu.USER_NO"
@@ -585,6 +586,7 @@ public class MyPageDao {
 				pageDto.setName(rs.getString("NAME"));
 				pageDto.setPhoneNum(rs.getString("PHONE_NUM"));
 				pageDto.setConstructNo(rs.getInt("CONSTRUCT_NO"));
+				pageDto.setConstStatus(rs.getString("PURCHASE_STATUS"));
 				
 				result.add(pageDto);
 			}

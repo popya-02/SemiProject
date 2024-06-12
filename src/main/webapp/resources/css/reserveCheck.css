@@ -12,6 +12,7 @@
 .reservation-list {
     width: 80%;
     max-width: 800px;
+   	height: 500px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
@@ -55,6 +56,7 @@
 .fixed-input {
     border: none;
     width: 200px;
+    
     background-color:gainsboro;
     font-size:17px;
     color: inherit;

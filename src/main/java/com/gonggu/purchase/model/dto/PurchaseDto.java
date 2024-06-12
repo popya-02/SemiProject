@@ -7,7 +7,15 @@ public class PurchaseDto {
     private String copyName;
     private int constructPrice;
     private String oid;                // 주문 번호
-
+    
+    private String detailAddr;
+    private String purchaseStatus;
+    private String constructDate;
+    private String goodsName;
+    private String refundDate;
+    private int chattingNo;
+    
+    
     public String getUserName() {
         return userName;
     }
@@ -47,8 +55,63 @@ public class PurchaseDto {
     public void setOid(String oid) {
         this.oid = oid;
     }
+    
+    
 
-    public PurchaseDto(String userName, String phoneNum, String copyName, int constructPrice, String oid) {
+    public String getDetailAddr() {
+		return detailAddr;
+	}
+
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
+	}
+
+	public String getPurchaseStatus() {
+		return purchaseStatus;
+	}
+
+	public void setPurchaseStatus(String purchaseStatus) {
+		this.purchaseStatus = purchaseStatus;
+	}
+
+	public String getGoodsName() {
+		return goodsName;
+	}
+
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+
+	public String getRefundDate() {
+		return refundDate;
+	}
+
+	public void setRefundDate(String refundDate) {
+		this.refundDate = refundDate;
+	}
+	
+	public String getConstructDate() {
+		return constructDate;
+	}
+	
+	public void setConstructDate(String constructDate) {
+		this.constructDate = constructDate;
+	}
+
+	public int getChattingNo() {
+		return chattingNo;
+	}
+	
+	public void setChattingNo(int chattingNo) {
+		this.chattingNo = chattingNo;
+	}
+	
+	
+	// 결제 정보 불러오기 
+	
+
+
+	public PurchaseDto(String userName, String phoneNum, String copyName, int constructPrice, String oid) {
         this.userName = userName;
         this.phoneNum = phoneNum;
         this.copyName = copyName;

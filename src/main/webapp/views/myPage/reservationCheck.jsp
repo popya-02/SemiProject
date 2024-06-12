@@ -37,22 +37,22 @@
 				<div class="reservation-list-item">
 					<img src="/img/" alt="사진">
 					<!-- 사진 크기 조정 -->
-					<div class="reservation-details">
+					<div class="reservation-details" >
 						<div class="reservation-details-item">
-							<strong>업체명:</strong><input type="text" class="fixed-input"
+							<strong style="width: 300px">업체명:</strong><input type="text" class="fixed-input"
 								value="${result.copyName}" readonly style="padding-left:10px">
 						</div>
 						<div class="reservation-details-item">
-							<strong>예약번호:</strong><input type="text" class="fixed-input"
+							<strong style="width: 300px">예약번호:</strong><input type="text" class="fixed-input"
 								value="${result.constructNo}" readonly style="padding-left:10px">
 						</div>
 						
 						<div class="reservation-details-item">
-							<strong>상세주소:</strong><input type="text" class="fixed-input"
+							<strong style="width: 300px">상세주소:</strong><input type="text" class="fixed-input"
 								value="${result.address}" readonly style="padding-left:10px">
 						</div>
 						<div class="reservation-details-item">
-							<strong>금액:</strong><input type="text" class="fixed-input"
+							<strong style="width: 300px">예약금액:</strong><input type="text" class="fixed-input"
 								value="${result.estimatePrice}" readonly style="padding-left:10px">
 						</div>
 						<%-- <div class="reservation-details-item">
@@ -60,11 +60,21 @@
 								value="${result.phoneNum}" readonly>
 						</div> --%>
 						<div class="reservation-details-item">
-							<strong>날짜:</strong><input type="text" class="fixed-input"
+							<strong style="width: 300px">날짜:</strong><input type="text" class="fixed-input"
 								value="${result.constStartDate}" readonly style="padding-left:10px">
 						</div>
 					</div>
+						<c:choose>
+							<c:when test="${item.constStatus == 'N'}">
+							</c:when>
+							<c:otherwise>
+								
+							</c:otherwise>
+						</c:choose>
 				</div>
+			</div>
+			<div  style=" display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+				<div style="background-color: #223455; color:#fff; width: 180px;  padding:14px; margin-top: 30px;text-align: center; font-size:20px; border-radius: 10px">결제 하기</div>
 			</div>
 			<a href="/purchase.do">
 				<h1>아아ㅏ</h1>
@@ -105,6 +115,14 @@
 							<strong style="width: 300px">시공 날짜 :</strong><input type="text" class="fixed-input"
 								value="${result.constStartDate}" readonly style="padding-left:10px">
 						</div>
+						<c:choose>
+							<c:when test="${item.constStatus == 'N'}">
+								<div>결제 하기</div>
+							</c:when>
+							<c:otherwise>
+								
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>

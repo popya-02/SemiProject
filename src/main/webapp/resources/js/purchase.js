@@ -2,11 +2,14 @@
  var IMP = window.IMP;
  IMP.init("imp67844376");   /* imp~ : 가맹점 식별코드*/
  
- let amount = document.getElementById("amount").value
- let userName = document.getElementById("name").value
- let copy = document.getElementById("company").value
- let goodsName = document.getElementById("goods").value
- 
+ let amount = document.getElementById("amount").value;
+ let userName = document.getElementById("name").value;
+ let copy = document.getElementById("company").value;
+ let goodsName = document.getElementById("goods").value;
+ let detailAddr = document.getElementById("detailAddr").value;
+ let addr = document.getElementById("address").value;
+
+  
 
 
 // $.ajax({
@@ -39,38 +42,33 @@
 		}, function(rsp) {
 			debugger;
 			console.log(rsp);
-			 $.ajax({
-				type: "POST",
-				url: "/complete.do",
-			});
-			 //결제 성공 시
-			if (rsp.success) {
-				var msg;
-				console.log("결제성공");
-			//    $.ajax({
-//		type: "POST",
-//		url: "/complete.do",
-//		data: { amount: amount,			// 금액 
-//				goodsName: goodsName,			// 상품명 
-//				userName: userName,			// 주문자 
-//			   },
-//		success: function(success){
-//			window.location.href='/views/etc/success.jsp';
-//			msg = '결제가 완료되었습니다.';
-//		},
-//		error: function(error){
-//			console.log("실패");
-//		}
-//	});
-			} else if(rsp.success == false) {
-				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
-			}
-
+		
+			$.ajax({
+                    url: '/complete.do',
+                    type: 'POST',
+					success: function(response) {
+                        if (response === 'success') {
+                            window.location.href = 'complete.jsp';
+							var msg;
+							console.log("결제성공");
+                        } else {
+                            window.location.href = 'error.jsp';
+							var msg = '결제에 실패하였습니다.';
+							msg += '에러내용 : ' + rsp.error_msg;
+                        }
+                    },
+                    error: function() {
+                        window.location.href = 'error.jsp';
+                    }
+			})
 			alert(msg);
 		});
 	});
-    
+	
+	
+	
+	
+	
     $(document).ready(function() {
     console.log("?");
         console.log($("#datepicker"));

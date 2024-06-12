@@ -30,6 +30,7 @@ public class MyPageDto {
 	private String estimatePrice;
 	private String sumPrice;
 	private int chattingNum;
+	private String constStatus;
 	
 	public MyPageDto() {
 		super();
@@ -230,6 +231,16 @@ public class MyPageDto {
 
 	public void setChattingNum(int chattingNum) {
 		this.chattingNum = chattingNum;
+	}
+
+
+	public String getConstStatus() {
+		return constStatus;
+	}
+
+
+	public void setConstStatus(String constStatus) {
+		this.constStatus = constStatus;
 	}
 
 

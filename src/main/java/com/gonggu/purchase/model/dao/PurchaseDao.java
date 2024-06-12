@@ -32,7 +32,6 @@ public class PurchaseDao {
         try {
             pstmt = con.prepareStatement(query);
 //            pstmt.setInt(1, chattingNo);
-            System.out.println("aaaaaaaaaaa");
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -44,8 +43,6 @@ public class PurchaseDao {
                 // 값 세팅
                 PurchaseDto dto = PurchaseDto.of(userName, phoneNum, copyName, price, oid);
                 
-                System.out.println("lklklk"+dto.getUserName());
-                System.out.println(userName);
                 return dto;
 
             }
@@ -57,8 +54,27 @@ public class PurchaseDao {
     }
     
     
-    public PurchaseDto order(PurchaseDto dto) {
-    	String query = "";
+    public int order(PurchaseDto dto) {
+    	String query = "insert into purchase"
+    			+ "		values(purchase_seq.nextval, sysdate, NULL, ?,  ?, ?)";
+    	int result = 0 ;
+    	try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, dto.getDetailAddr());
+			pstmt.setString(2, dto.getOid());
+			pstmt.setInt(3, dto.getChattingNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    			
+    	return result;
+    }
+    public PurchaseDto statusUpdate() {
+    	String query = "UPDATE  CONSTRUCT SET PURCHASE_STATUS = 'N'"
+    			+ "		WHERE CHATTING_NO = 1";
     	return null;
     }
 }

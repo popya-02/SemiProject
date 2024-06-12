@@ -71,7 +71,7 @@
 				                    	</c:choose>
 				                    </div>
 				                    <div class="reservation_number">
-					                    <button type="button" class="construct-btn">결제 요청</button>
+					                    <button type="button" class="construct-btn" id="construct-btn">결제 요청</button>
 				                    </div>
 				                    <c:choose>
 				                    	<c:when test="${item.endCheck == 'Y'}">

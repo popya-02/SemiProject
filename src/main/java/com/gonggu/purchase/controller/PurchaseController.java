@@ -25,7 +25,6 @@ public class PurchaseController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PurchaseServiceImpl myService = new PurchaseServiceImpl();
 
-		String oid = UUID.randomUUID().toString();
 
 		int chattingNo = 1;
 		
@@ -39,16 +38,17 @@ public class PurchaseController extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-//		PurchaseServiceImpl myService = new PurchaseServiceImpl();
-//		try {
-//		
-//			myService.order(PurchaseDto dto);
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/etc/order/success.jsp");
-//		} catch (Exception e) {
-//			// 이니시스 환불
-//			// 이니시스 환불 직접 호출 후 환불처리
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/etc/order/error.jsp");
-//		}
+		PurchaseServiceImpl myService = new PurchaseServiceImpl();
+		PurchaseDto dto = new PurchaseDto();
+		try {
+			myService.order();
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/etc/order/success.jsp");
+		} catch (Exception e) {
+			// 이니시스 환불
+			// 이니시스 환불 직접 호출 후 환불처리
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/etc/order/error.jsp");
+		}
 	}
 
 }
