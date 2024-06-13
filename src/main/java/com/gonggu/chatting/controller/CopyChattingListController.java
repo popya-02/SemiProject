@@ -15,6 +15,7 @@ import com.gonggu.chatting.model.dto.ChattingDTO;
 import com.gonggu.chatting.model.service.ChattingServiceImpl;
 import com.gonggu.common.PageInfo;
 import com.gonggu.common.Pagination;
+import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 
 @WebServlet("/MypageInfo/ChattingList.do")
 public class CopyChattingListController extends HttpServlet {
@@ -52,11 +53,14 @@ public class CopyChattingListController extends HttpServlet {
 			PageInfo pi = Pagination.getPageInfo(listCount, chatpage, pageLimit, boardLimit);
 			
 			List<ChattingDTO> chattingList = chatService.getCopyChattingList(pi, sessionCopyNum);
+			MyPageDtoImpl mypageDto = new  MyPageDtoImpl();
 			
+			System.out.println(mypageDto.getEstimatePrice());
 			
 			int row = listCount - (chatpage - 1) * pageLimit;
 			
 			request.setAttribute("chattingList", chattingList);
+			request.setAttribute("myPageDto", mypageDto);
 			request.setAttribute("row", row);
 			request.setAttribute("pi", pi);
 			

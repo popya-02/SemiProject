@@ -40,12 +40,17 @@
             acceptName: "SKIN(#5E2BB8)"
             
 		}, function(rsp) {
-			debugger;
-			console.log(rsp);
-		
+			// 결제가 성공됐을때 complete.do 가 호출되어야함
+							
+			// 결제가 실패되면 환불.do 가 호출되어야함
+			console.log(rsp.error_msg);
+			if(rsp.error_msg == null) {
 			$.ajax({
                     url: '/complete.do',
                     type: 'POST',
+					data: {
+						
+					},
 					success: function(response) {
                         if (response === 'success') {
                             window.location.href = 'complete.jsp';
@@ -60,7 +65,8 @@
                     error: function() {
                         window.location.href = 'error.jsp';
                     }
-			})
+				})
+			}
 			alert(msg);
 		});
 	});

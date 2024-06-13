@@ -1,5 +1,6 @@
 package com.gonggu.purchase.model.service;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import com.gonggu.common.DatabaseConnection;
@@ -10,28 +11,33 @@ public class PurchaseServiceImpl implements PurchaseService {
 	
 	
 	
-	PurchaseDao dao = new PurchaseDao();
+	PurchaseDao purchaseDao = new PurchaseDao();
 	
 	
     @Override
     public PurchaseDto purchaseInfo(int chattingNo) {
-        return dao.purchaseInfo(chattingNo);
+        return purchaseDao.purchaseInfo(chattingNo);
     }
     
     
     @Override
-    public String order() {
-    	
+    public String order(PurchaseDto purchaseDto) {
     	DatabaseConnection conn = new DatabaseConnection();
-    	PurchaseDto dto = new PurchaseDto();
-    	// DB 저장 
-    	// 주문 테이블 업데이트 (시간) 
-    	// 결제 테이블 (시간) 
     	
+    	Connection connection = conn.connDB();
     	try {
-			conn.connDB().setAutoCommit(false);
-			dao.order(dto);							// 결제 테이블 상태 인입 	
-			dao.statusUpdate();						// 주문테이블 업데이트
+    		// transaction 시작
+    		connection.setAutoCommit(false);
+			
+			// 결제 테이블 상태 인입
+			purchaseDao.order(purchaseDto); 	
+
+			// 주문테이블 업데이트
+			purchaseDao.statusUpdate(purchaseDto.getChattingNo());
+			
+			// transaction 커밋
+			connection.commit();
+			
 			return "success";
 		} catch (SQLException e) {
 			if (conn != null) {

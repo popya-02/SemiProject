@@ -118,6 +118,14 @@ public class PurchaseDto {
         this.constructPrice = constructPrice;
         this.oid = oid;
     }
+	
+	public PurchaseDto(int chattingNo, String oid, String goodsName, String detailAddress, int constructPrice) {
+		this.chattingNo = chattingNo;
+		this.oid = oid;
+		this.goodsName = goodsName;
+		this.detailAddr = detailAddress;
+        this.constructPrice = constructPrice;
+    }
     
     
 //    $.ajax({
@@ -143,4 +151,8 @@ public class PurchaseDto {
 	public static PurchaseDto of(String userName, String phoneNum, String copyName, int constructPrice, String oid) {
         return new PurchaseDto(userName, phoneNum, copyName, constructPrice, oid);
     }
+	
+	public static PurchaseDto of(int chattingNo, String oid, String goodsName, String detailAddress, int constructPrice) {
+		return new PurchaseDto(chattingNo, oid, goodsName, detailAddress, constructPrice);
+	}
 }

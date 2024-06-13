@@ -42,5 +42,7 @@ public interface MyPageService {
 	public ArrayList<MyPageDtoImpl> getCopyEstimateList(PageInfo pi, MyPageDtoImpl myDto);
 
 	public int getCopyEstimateListCount(MyPageDtoImpl myDto);
+	
+	int savePurchaseStatus(int chattingNo);
 
 }

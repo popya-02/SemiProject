@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.gonggu.common.DatabaseConnection;
-import com.gonggu.mypage.model.dto.MyPageDto;
 import com.gonggu.common.PageInfo;
+import com.gonggu.mypage.model.dto.MyPageDto;
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 
 
@@ -269,6 +269,7 @@ public class MyPageDao {
 		}
 		return 0;
 	}
+	
 
 	public int saveConstElement(MyPageDto constDto) {
 	    String query = "INSERT INTO CONSTRUCT VALUES("
@@ -282,7 +283,8 @@ public class MyPageDao {
 	            	+ " ?,"  // sumprice 7
 	            	+ " ?,"  // chatNum 8
 	            	+ " ?,"  // element 9
-	            	+ " ?"  // deposit 10
+	            	+ " ?,"	 // deposit 10
+	            	+ " default"	// purchaseStatus 
 	            	+ ")";
 
 //	    System.out.println(constDto.getConstructElement());
@@ -603,11 +605,13 @@ public class MyPageDao {
 	
 	public MyPageDtoImpl reserveCheck(int constructNum) {
 		
-		String query = "SELECT cd.copy_name, c.CONSTRUCT_NO, bu.ADDR,c.CONSTRUCT_ADDR, bu.PHONE_NUM , c.CONSTRUCT_PRICE, c.CONSTRUCT_START_DATE "
-				+ "		FROM COPY_DETAIL cd"
-				+ "		FULL JOIN CONSTRUCT c ON cd.COPY_NO = c.COPY_NO "
-				+ "		FULL JOIN BASIC_USER bu ON bu.USER_NO = c.USER_NO"
-				+ "		WHERE c.construct_no  = ?";
+		String query =  """
+						SELECT cd.copy_name, c.CONSTRUCT_NO, bu.ADDR,c.CONSTRUCT_ADDR, bu.PHONE_NUM , c.CONSTRUCT_PRICE, c.CONSTRUCT_START_DATE, c.PURCHASE_STATUS
+						FROM COPY_DETAIL cd
+						FULL JOIN CONSTRUCT c ON cd.COPY_NO = c.COPY_NO
+						FULL JOIN BASIC_USER bu ON bu.USER_NO = c.USER_NO
+						WHERE c.construct_no  = ?
+						""";
 		
 		
 		try {
@@ -623,6 +627,7 @@ public class MyPageDao {
 				String userAddr = rs.getString("CONSTRUCT_ADDR");
 				String constructPrice = rs.getString("CONSTRUCT_PRICE");
 				String startDate = rs.getString("CONSTRUCT_START_DATE");
+				String status = rs.getString("PURCHASE_STATUS");
 				
 				MyPageDtoImpl myDTO = new MyPageDtoImpl();
 				
@@ -633,6 +638,7 @@ public class MyPageDao {
 				myDTO.setConstAddr(userAddr);
 				myDTO.setEstimatePrice(constructPrice);
 				myDTO.setConstStartDate(startDate);
+				myDTO.setConstStatus(status);
 				
 				return myDTO;
 			}				
@@ -640,6 +646,33 @@ public class MyPageDao {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	/**
+	 * 결제 요청 
+	 */
+	public int savePurchaseStatus(int chattingNo) {
+		String query = """
+						SELECT PURCHASE_STATUS FROM CONSTRUCT c 
+						WHERE CHATTING_NO = ?
+						AND PURCHASE_STATUS = 'N'
+					   """;
+		int result = 0;
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, chattingNo);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				String purchaseStatus  = rs.getString("CONSTRUCT_NO");
+				
+				MyPageDtoImpl myDTO = new MyPageDtoImpl();
+				myDTO.setConstStatus(purchaseStatus);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }
 

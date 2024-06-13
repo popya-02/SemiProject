@@ -37,48 +37,54 @@
 				<div class="reservation-list-item">
 					<img src="/img/" alt="사진">
 					<!-- 사진 크기 조정 -->
-					<div class="reservation-details" >
+					<div class="reservation-details">
 						<div class="reservation-details-item">
-							<strong style="width: 300px">업체명:</strong><input type="text" class="fixed-input"
-								value="${result.copyName}" readonly style="padding-left:10px">
+							<strong style="width: 300px">업체명:</strong><input type="text"
+								class="fixed-input" value="${result.copyName}" readonly
+								style="padding-left: 10px">
 						</div>
 						<div class="reservation-details-item">
-							<strong style="width: 300px">예약번호:</strong><input type="text" class="fixed-input"
-								value="${result.constructNo}" readonly style="padding-left:10px">
+							<strong style="width: 300px">예약번호:</strong><input type="text"
+								class="fixed-input" value="${result.constructNo}" readonly
+								style="padding-left: 10px">
 						</div>
-						
+
 						<div class="reservation-details-item">
-							<strong style="width: 300px">상세주소:</strong><input type="text" class="fixed-input"
-								value="${result.address}" readonly style="padding-left:10px">
+							<strong style="width: 300px">상세주소:</strong><input type="text"
+								class="fixed-input" value="${result.address}" readonly
+								style="padding-left: 10px">
 						</div>
 						<div class="reservation-details-item">
-							<strong style="width: 300px">예약금액:</strong><input type="text" class="fixed-input"
-								value="${result.estimatePrice}" readonly style="padding-left:10px">
+							<strong style="width: 300px">예약금액:</strong><input type="text"
+								class="fixed-input" value="${result.estimatePrice}" readonly
+								style="padding-left: 10px">
 						</div>
 						<%-- <div class="reservation-details-item">
 							<strong>전화번호:</strong><input type="text" class="fixed-input"
 								value="${result.phoneNum}" readonly>
 						</div> --%>
 						<div class="reservation-details-item">
-							<strong style="width: 300px">날짜:</strong><input type="text" class="fixed-input"
-								value="${result.constStartDate}" readonly style="padding-left:10px">
+							<strong style="width: 300px">날짜:</strong><input type="text"
+								class="fixed-input" value="${result.constStartDate}" readonly
+								style="padding-left: 10px">
 						</div>
 					</div>
-						<c:choose>
-							<c:when test="${item.constStatus == 'N'}">
-							</c:when>
-							<c:otherwise>
-								
-							</c:otherwise>
-						</c:choose>
+
 				</div>
 			</div>
-			<div  style=" display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
-				<div style="background-color: #223455; color:#fff; width: 180px;  padding:14px; margin-top: 30px;text-align: center; font-size:20px; border-radius: 10px">결제 하기</div>
-			</div>
-			<a href="/purchase.do">
-				<h1>아아ㅏ</h1>
-			</a>
+			<c:choose>
+				<c:when test="${result.constStatus == 'N' && sessionScope.purchaseStatus == 'Y'}">
+					<div class="purchase-box">
+						<a href="/purchase.do">
+						<input type="hidden" name="chatttingNum" value="${cattingNum}"> 
+							<div class="purchase">결제 하기</div>
+						</a>
+					</div>
+				</c:when>
+				<c:otherwise>
+
+				</c:otherwise>
+			</c:choose>
 		</c:when>
 
 		<c:when test="${sessionScope.userType == 'copyUser'}">
@@ -116,7 +122,7 @@
 								value="${result.constStartDate}" readonly style="padding-left:10px">
 						</div>
 						<c:choose>
-							<c:when test="${item.constStatus == 'N'}">
+							<c:when test="${result.constStatus == 'N' && sessionScope.purchaseStatus == 'Y'}">
 								<div>결제 하기</div>
 							</c:when>
 							<c:otherwise>

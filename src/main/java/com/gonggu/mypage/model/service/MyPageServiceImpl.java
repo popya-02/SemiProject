@@ -105,5 +105,11 @@ public class MyPageServiceImpl implements MyPageService {
 	public int updateConstElement(MyPageDto constDto) {
 		return myPageDao.updateConstElement(constDto);
 	}
+	
+	@Override
+	public int savePurchaseStatus(int chattingNo) {
+		return myPageDao.savePurchaseStatus(chattingNo);
+	}
+	
 
 }

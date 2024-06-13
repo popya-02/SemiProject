@@ -71,7 +71,9 @@
 				                    	</c:choose>
 				                    </div>
 				                    <div class="reservation_number">
-					                    <button type="button" class="construct-btn" id="construct-btn">결제 요청</button>
+					                    <button type="button" class="construct-btn" id="construct-btn" onclick="checkPrice()" >결제 요청</button>
+						                 <input type="hidden" name="chattingNum" value="${item.chattingNum}">
+						                 <input type="hidden" name="estimatePrice" value="<c:out value=" ${myPageDto.estimatePrice}" />">
 				                    </div>
 				                    <c:choose>
 				                    	<c:when test="${item.endCheck == 'Y'}">
@@ -136,12 +138,24 @@
         <!-- Back to Top -->
         <a href="#" class="btn btn-point border-3 rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
 
-        
     <!-- JavaScript Libraries -->
     <%@ include file="/views/common/jsLib.jsp"%>
 
     <!-- Template Javascript -->
     <script src="/resources/js/main.js"></script>
+        <script>
+        
+        function checkPrice() {
+        	console.log("aaaaaaa")
+        	var price = document.getElementById("estimatePrice");
+            if (price == null || priceInput.value.trim() === '') {
+                alert("견적서에 예약금액을 입력해주세요.");
+            } else {
+                alert("요청 완료.   금액: " + price);
+                window.location.href = "/purchaseReq.do";
+            }
+        }
+        </script>
     </body>
 
 </html>

@@ -22,54 +22,38 @@ public class CompleteController extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+	/**
+	 * 주문처리 controller
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		PrintWriter out = response.getWriter();
 		PurchaseServiceImpl purchaseService = new PurchaseServiceImpl();
-		PurchaseDto dto = new PurchaseDto();
-		
 		HttpSession session = request.getSession(); 
 		
-		int chattingNo = (int)session.getAttribute("chattingNum");
-		String oid = UUID.randomUUID().toString();
-		String goodsName = request.getParameter("goods");
-		String detailAddr = request.getParameter("detailAddr");;
-		int constructPrice = Integer.parseInt(request.getParameter("price"));
-		
-		
-		
-		dto.setChattingNo(chattingNo);
-		dto.setOid(oid);
-		dto.setGoodsName(goodsName);
-		dto.setDetailAddr(detailAddr);
-		dto.setConstructPrice(constructPrice);
-		
-		
-		String result = purchaseService.order();
-		
+		PurchaseDto purchaseDto = of(request);
+		String result = purchaseService.order(purchaseDto);
 		
 		if ("success".equals(result)) {
             out.write("success");
         } else {
             out.write("error");
-        }
-//	
-//		int amount = Integer.parseInt(request.getParameter("amount"));
-//		String userName = request.getParameter("name");
-//		String goodsName = request.getParameter("goods");
+        }		
+	}
 
+	/**
+	 * 결제 후 응답받은 데이터로 DTO 생성
+	 * @param request
+	 * @return
+	 */
+	private PurchaseDto of(HttpServletRequest request) {
+		int chattingNo = Integer.parseInt(request.getParameter("chattingNum"));
+		String oid = UUID.randomUUID().toString();
+		String goodsName = request.getParameter("goods");
+		String detailAddr = request.getParameter("detailAddr");;
+		int constructPrice = Integer.parseInt(request.getParameter("price"));
 		
-		
-		
-		
-		
-		
-		
-		
+		PurchaseDto purchaseDto = PurchaseDto.of(chattingNo, oid, goodsName, detailAddr, constructPrice);
+		return purchaseDto;
 	}
 
 }

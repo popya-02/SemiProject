@@ -98,8 +98,10 @@ public class MyPageEstimateContoller extends HttpServlet {
 			
 			
 			if (result2 == 1) {
-	            session.setAttribute("approvalStatus", "B");
+				// 승인 성공
+	            session.setAttribute("approvalStatus", "B");   
 	        } else {
+	        	// 실패
 	            session.setAttribute("approvalStatus", "A");
 	        }
 			

@@ -89,6 +89,7 @@ function saveConstruct() {
 		alert("합계금을 입력해주세요.");
 		
 	}else{
+		console.log("aaaaaaa");
 		$.ajax({
 			type: "POST",	// method
 			url: "/construct/saveConstruct.do",

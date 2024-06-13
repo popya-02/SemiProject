@@ -20,13 +20,12 @@ public class PurchaseDao {
     }
 
     public PurchaseDto purchaseInfo(int chattingNo) {
-
         String query = "SELECT bu.name, bu.phone_num, cd.copy_name, c.construct_price FROM CONSTRUCT_STATUS cs "
         		+ "		FULL JOIN COPY_DETAIL cd ON cd.COPY_NO = cs.COPY_NO"
         		+ "		FULL JOIN BASIC_USER bu ON cs.USER_NO = bu.USER_NO"
         		+ "		FULL JOIN CONSTRUCT c ON c.CHATTING_NO = cs.CHATTING_NO"
         		+ "		where c.chatting_no = 1";
-
+        
         String oid = UUID.randomUUID().toString();
 
         try {
@@ -65,16 +64,26 @@ public class PurchaseDao {
 			pstmt.setInt(3, dto.getChattingNo());
 			
 			result = pstmt.executeUpdate();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
     			
     	return result;
     }
-    public PurchaseDto statusUpdate() {
+    public int statusUpdate(int chattingNo) {
     	String query = "UPDATE  CONSTRUCT SET PURCHASE_STATUS = 'N'"
     			+ "		WHERE CHATTING_NO = 1";
-    	return null;
+    	
+    	try {
+			pstmt = con.prepareStatement(query);
+//	    	pstmt.setString(1, chattingNo);
+			int result = pstmt.executeUpdate();
+			return result;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	return 0;
+    	
     }
 }

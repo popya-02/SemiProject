@@ -6,6 +6,6 @@ import com.gonggu.purchase.model.dto.PurchaseDto;
 public interface PurchaseService {
 	PurchaseDto purchaseInfo(int chattingNo);
 		
-	String order();
+	String order(PurchaseDto purchaseDto);
 
 }
