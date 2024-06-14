@@ -43,6 +43,11 @@ public class ConstructEnrollController extends HttpServlet {
 		String content = request.getParameter("content");
 		String indate = request.getParameter("indate");
 
+		String tagRemove = "<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>";
+        String nbspPattern = "&nbsp;";
+        
+		String removeContentTag = content.replaceAll(tagRemove, "");
+		String resultContent  = removeContentTag.replace(nbspPattern, "");
 		
 		request.setAttribute("copyNum", copyNum);
 		request.setAttribute("copyName", copyName);
@@ -59,8 +64,8 @@ public class ConstructEnrollController extends HttpServlet {
 		constructDto.setCategoryNo(category);
 		constructDto.setTitle(title);
 		constructDto.setContent(content);
+		constructDto.setTagRemoveContent(resultContent);
 		constructDto.setIndate(indate);
-		
 		
 		
 		Collection<Part> parts = request.getParts();

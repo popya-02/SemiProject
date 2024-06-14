@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.gonggu.common.AlertMethod;
 import com.gonggu.member.model.dto.MemberDTO;
 import com.gonggu.member.model.service.MemberServiceImpl;
 
@@ -32,15 +33,16 @@ public class LoginController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		
+		AlertMethod alert = new AlertMethod();
+		
 		String loginId = request.getParameter("id");
 		String loginPwd = request.getParameter("password");
 		
 		MemberServiceImpl memberService = new MemberServiceImpl();
-		
 		MemberDTO hashPwd = memberService.getHashPwd(loginId);
 		
 		if(Objects.isNull(hashPwd)) {
-			returnAlert(response, "아이디 또는 비밀번호가 잘못되었습니다.", "/form/loginForm.do");
+			alert.returnAlert(response, "로그인 실패","아이디 또는 비밀번호가 잘못되었습니다.", "warning", ""); ///form/loginForm.do
 			return;
 		}else {
 			if(hashPwd.getUserType() == "basicUser") {
@@ -51,9 +53,9 @@ public class LoginController extends HttpServlet {
 					session.setAttribute("userName", hashPwd.getUserName());
 					session.setAttribute("userType", hashPwd.getUserType());
 					
-					returnAlert(response, "로그인되었습니다.", "/");
+					alert.returnAlert(response, "로그인 성공","로그인되었습니다.","success", "/");
 				}else {
-					returnAlert(response, "아이디 또는 비밀번호가 잘못되었습니다.", "/form/loginForm.do");
+					alert.returnAlert(response, "로그인 실패","아이디 또는 비밀번호가 잘못되었습니다.", "warning","");
 					return;
 				}
 			}else if (hashPwd.getUserType() == "copyUser") {
@@ -63,25 +65,18 @@ public class LoginController extends HttpServlet {
 					session.setAttribute("copyName", hashPwd.getCopyName());
 					session.setAttribute("userType", hashPwd.getUserType());
 					
-					returnAlert(response, "로그인되었습니다.", "/");
+					alert.returnAlert(response, "로그인 성공","로그인되었습니다.","success", "/");
 					
 				}else {
-					returnAlert(response, "아이디 또는 비밀번호가 잘못되었습니다.", "/form/loginForm.do");
+					alert.returnAlert(response, "로그인 실패","아이디 또는 비밀번호가 잘못되었습니다.", "warning","");
 					return;
 				}
 			}else {
-				returnAlert(response, "아이디 또는 비밀번호가 잘못되었습니다.", "/form/loginForm.do");
+				alert.returnAlert(response, "로그인 실패","아이디 또는 비밀번호가 잘못되었습니다.", "warning","");
 				return;
 			}
 		}
 		
 	}
 	
-	private void returnAlert(HttpServletResponse response, String msg, String url) throws IOException {
-		response.getWriter().write("<script>"
-								  +"	alert('"+ msg +"');"
-  								  +"	location.href='"+ url + "';"
-								  +"</script>");	// js 코드로 넘겨주기
-	}
-
 }
