@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -39,7 +40,7 @@
 					            <td class="header">전화번호: </td><td><input type="text" id="tel"/></td>
 					        </tr>
 					        <tr>
-					            <td colspan="2" class="header">견적금액 (예약금): </td><td colspan="4"><input type="text" id="estimatePrice" name="reservePirce"/></td>
+					            <td colspan="2" class="header">견적금액 (예약금): </td><td colspan="4"><input type="text" id="estimatePrice"/></td>
 					        </tr>
 					    </table>
 					    <p>위와 같이 견적합니다</p>

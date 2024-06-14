@@ -21,63 +21,43 @@
 
 		        <h2 class="mypage_1">업체페이지</h2>
 		        <c:choose>
-			<c:when test="${sessionScope.approvalStatus == 'B'}">
-				 <nav class="mypage_list">
-            <ul>
-                <li class="mypage_list_1"><a href="/views/myPage/copyMyPageEstimate.jsp">견적/공사 내역</a></li>
-                <li class="mypage_list_2"><a href="/MypageInfo/ChattingList.do?copyNo=${sessionScope.copyNum}&chatpage=1">견적 상담 채팅</a></li>
-                <li class="mypage_list_2"><a href="/MypageInfo/copyInfo.do?copyNo=${sessionScope.copyNum}">정보 수정</a></li>
-            </ul>
-        </nav>
-        <div class="mypage_list_1_detail"> 
-            <p class="estimate_list">견적 상담 채팅목록</p>
-
-            <div class="reservation-list body">
-                <div class="reservation-list-header">
-                    <div class="user_name">상담자명</div>
-                    <div class="reservation_number">상담 시작일</div>
-                    <div class="reservation_number">종료 여부</div>
-                    <div class="reservation_number">결제 여부</div>
-                    <div class="reservation_number"></div>
-                </div>
-                <!-- <div class="reservation-list-header">
-                    <div class="reservation-photo">사진</div>
-                    <div class="reservation-name">업체명</div>
-                    <div class="reservation-number">예약번호</div>
-                </div> -->
-                <c:choose>
-                	<c:when test="${empty chattingList}">
-                		<p>진행중인 상담이 없습니다.</p>
-                	</c:when>
-                	<c:otherwise>
-                		<c:forEach var="item" items="${chattingList}">
-	                		<div class="reservation-list-item">
-			                	<form action="/construct/write.do?chatNum=${item.chattingNum}" method="POST" class="list-form">
-			                		<input type="hidden" value="${item.userNum}" name="user-num">
-			                		<input type="hidden" value="${item.userName}" name="user-name">
-			                		<input type="hidden" value="${item.endCheck}" name="end-check">
-				                    <div class="user_name" id="user-name" onclick="location.href='/chatting/connection.do?copyNum=${sessionScope.copyNum}&userNum=${item.userNum}'">${item.userName}</div>
-				                    <div class="reservation_number" onclick="location.href='/chatting/connection.do?copyNum=${sessionScope.copyNum}&userNum=${item.userNum}'">${item.chattingIndate}</div>
-				                    <div class="reservation_number" onclick="location.href='/chatting/connection.do?copyNum=${sessionScope.copyNum}&userNum=${item.userNum}'">
-				                    	<c:choose>
-				                    		<c:when test="${item.endCheck == 'Y'}">
-				                    			<input type="hidden" value="${item.endCheck}" name="endCheck">
-				                    			종료
-				                    		</c:when>
-				                    		<c:otherwise>
-				                    			<input type="hidden" value="${item.endCheck}" name="endCheck">
-				                    			진행중
-				                    		</c:otherwise>
-				                    	</c:choose>
-				                    </div>
-				                    <div class="reservation_number">
-					                    <button type="button" class="construct-btn" id="construct-btn" onclick="checkPrice()" >결제 요청</button>
-						                 <input type="hidden" name="chattingNum" value="${item.chattingNum}">
-						                 <input type="hidden" name="estimatePrice" value="<c:out value=" ${myPageDto.estimatePrice}" />">
-				                    </div>
-				                    <c:choose>
-				                    	<c:when test="${item.endCheck == 'Y'}">
-
+					<c:when test="${sessionScope.approvalStatus == 'B'}">
+					<nav class="mypage_list">
+			            <ul>
+			                <li class="mypage_list_1"><a href="/views/myPage/copyMyPageEstimate.jsp">견적/공사 내역</a></li>
+			                <li class="mypage_list_2"><a href="/MypageInfo/ChattingList.do?copyNo=${sessionScope.copyNum}&chatpage=1">견적 상담 채팅</a></li>
+			                <li class="mypage_list_2"><a href="/MypageInfo/copyInfo.do?copyNo=${sessionScope.copyNum}">정보 수정</a></li>
+			            </ul>
+			        </nav>
+			        <div class="mypage_list_1_detail"> 
+			            <p class="estimate_list">견적 상담 채팅목록</p>
+			
+		            	<div class="reservation-list body">
+			                <div class="reservation-list-header">
+			                    <div class="user_name">상담자명</div>
+			                    <div class="reservation_number">상담 시작일</div>
+			                    <div class="reservation_number">종료 여부</div>
+			                    <div class="reservation_number">결제 여부</div>
+			                    <div class="reservation_number">견적서</div>
+			            	</div>
+		                <!-- <div class="reservation-list-header">
+		                    <div class="reservation-photo">사진</div>
+		                    <div class="reservation-name">업체명</div>
+		                    <div class="reservation-number">예약번호</div>
+		                </div> -->
+		                <c:choose>
+		                	<c:when test="${empty chattingList}">
+		                		<p>진행중인 상담이 없습니다.</p>
+		                	</c:when>
+		                	<c:otherwise>
+		                		<c:forEach var="item" items="${chattingList}">
+			                		<div class="reservation-list-item">
+					                	<form action="/construct/write.do?chatNum=${item.chattingNum}" method="POST" class="list-form">
+					                		<input type="hidden" value="${item.userNum}" name="user-num">
+					                		<input type="hidden" value="${item.userName}" name="user-name">
+					                		<input type="hidden" value="${item.endCheck}" name="end-check">
+					                    	<c:choose>
+					                    		<c:when test="${item.endCheck == 'Y'}">
 								                    <div class="user_name" id="user-name" onclick="location.href='/chatting/endConnection.do?chatNum=${item.chattingNum}'">${item.userName}</div>
 								                    <div class="reservation_number" onclick="location.href='/chatting/endConnection.do?chatNum=${item.chattingNum}'">${item.chattingIndate}</div>
 					                    			<input type="hidden" value="${item.endCheck}" name="endCheck">
@@ -95,7 +75,8 @@
 					                    		</c:otherwise>
 					                    	</c:choose>
 						                    <div class="reservation_number">
-							                    <button type="button" class="construct-btn">결제 요청</button>
+						                    	<input type="hidden" name="estimatePrice" value="${result.estimatePrice }">
+							                    <button type="button" class="construct-btn" onclick="checkPrice()">결제 요청</button>
 						                    </div>
 						                    <c:choose>
 						                    	<c:when test="${item.endCheck == 'Y'}">
@@ -170,6 +151,7 @@
         function checkPrice() {
         	console.log("aaaaaaa")
         	var price = document.getElementById("estimatePrice");
+        	console.log(price)
             if (price == null || priceInput.value.trim() === '') {
                 alert("견적서에 예약금액을 입력해주세요.");
             } else {

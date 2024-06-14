@@ -45,6 +45,7 @@ public class ConstructSaveController extends HttpServlet {
 		
 		int result = constService.saveConstElement(constDto);
 		
+		System.out.println("save " + result);
 		if(result == 0) {
 			response.getWriter().print("fail");
 		}else {
