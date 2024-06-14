@@ -49,7 +49,12 @@
 							</div>
 						</div>
 						<div class="col-lg-6" style="padding-left: 122px; margin-top: 40px">
-							<h4 class="fw-bold mb-3">${copyDetail[0].copyName}</h4>
+							<div class="btn-box">
+								<h4 class="fw-bold">${copyDetail[0].copyName}</h4>
+								<c:if test="${sessionScope.userType == 'basicUser' }">
+							        <a href="/chatting/connection.do?copyNum=${copyDetail[0].copyNo}&userNum=${sessionScope.userNum}" class="tlrhd-border border border-secondary text-primary rounded-pill px-3 py-2">시공 상담하기</a>
+						        </c:if>							
+							</div>
 
 							<div class="d-flex mb-4">
 
@@ -72,18 +77,18 @@
 
 					<div class="owl-carousel vegetable-carousel justify-content-center">
 						<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-						<c:forEach var="copyDetail" items="${copyDetail}">
+						<c:forEach var="copyDetailEx" items="${copyDetailEx}">
 						<div class="border border-primary rounded position-relative vesitable-item">
 							<div class="vesitable-img">
-								<img src="/resources/img/${copyDetail.examPhoto}" class="img-fluid w-100 rounded-top" alt="">
+								<img src="/resources/img/${copyDetailEx.examPhoto}" class="img-fluid w-100 rounded-top" alt="">
 							</div>
 
 							<div class="p-4 pb-0 rounded-bottom">
 
-								<p>${copyDetail.examTitle}</p>
+								<p>${copyDetailEx.examTitle}</p>
 								<div class="d-flex justify-content-between flex-lg-wrap">
 
-									<a href="/constructDetail.do?examNo=${copyDetail.examNo}" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
+									<a href="/constructDetail.do?examNo=${copyDetailEx.examNo}" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
 								</div>
 							</div>
 						</div>

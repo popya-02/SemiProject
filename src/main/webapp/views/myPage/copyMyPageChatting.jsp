@@ -77,51 +77,73 @@
 				                    </div>
 				                    <c:choose>
 				                    	<c:when test="${item.endCheck == 'Y'}">
+
+								                    <div class="user_name" id="user-name" onclick="location.href='/chatting/endConnection.do?chatNum=${item.chattingNum}'">${item.userName}</div>
+								                    <div class="reservation_number" onclick="location.href='/chatting/endConnection.do?chatNum=${item.chattingNum}'">${item.chattingIndate}</div>
+					                    			<input type="hidden" value="${item.endCheck}" name="endCheck">
+					                    			<div class="reservation_number" onclick="location.href='/chatting/endConnection.do?chatNum=${item.chattingNum}'">
+						                    			종료
+					                    			</div>
+					                    		</c:when>
+					                    		<c:otherwise>
+								                    <div class="user_name" id="user-name" onclick="location.href='/chatting/connection.do?copyNum=${sessionScope.copyNum}&userNum=${item.userNum}'">${item.userName}</div>
+								                    <div class="reservation_number" onclick="location.href='/chatting/connection.do?copyNum=${sessionScope.copyNum}&userNum=${item.userNum}'">${item.chattingIndate}</div>
+					                    			<input type="hidden" value="${item.endCheck}" name="endCheck">
+					                    			<div class="reservation_number" onclick="location.href='/chatting/connection.do?copyNum=${sessionScope.copyNum}&userNum=${item.userNum}'">
+						                    			진행중
+					                    			</div>
+					                    		</c:otherwise>
+					                    	</c:choose>
 						                    <div class="reservation_number">
-							                    <button class="construct-btn">견적서 확인</button>
+							                    <button type="button" class="construct-btn">결제 요청</button>
 						                    </div>
-				                    	</c:when>
-				                    	<c:otherwise>
-						                    <div class="reservation_number">
-							                    <button class="construct-btn">견적서 작성</button>
-						                    </div>
-				                    	</c:otherwise>
-				                    </c:choose>
-			                    </form>
-			                </div>
-                			<c:set var="row" value="${row-1}"/>
-                		</c:forEach>
-                	</c:otherwise>
-                </c:choose>
-                
-            </div>
-			<div class="col-12">
-				<div class="pagination d-flex justify-content-center mt-5">
-				
-					<c:choose>
-						<c:when test="${pi.copypage == 1 }">
-							<a href="#" class="page-n rounded">&laquo;</a>
-						</c:when>
-						<c:otherwise>
-							<a href="/MypageInfo/ChattingList.do?copyNo=${sessionScope.copyNum}&chatpage=${pi.copypage-1}" class="page-n rounded">&laquo;</a>
-						</c:otherwise>
-					</c:choose>
-					
-					<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
-						<a href="/MypageInfo/ChattingList.do?copyNo=${sessionScope.copyNum}&chatpage=${page}" class="page-n rounded">${page}</a>
-					</c:forEach>
-					
-					<c:choose>
-						<c:when test="${pi.copypage == pi.maxPage }">
-							<a href="#" class="page-n rounded">&raquo;</a>
-						</c:when>
-						<c:otherwise>
-							<a href="/MypageInfo/ChattingList.do?copyNo=${sessionScope.copyNum}&chatpage=${pi.copypage+1}" class="page-n rounded">&raquo;</a>
-						</c:otherwise>
-					</c:choose>
-				</div>
-			</div>
-       	</div>
+						                    <c:choose>
+						                    	<c:when test="${item.endCheck == 'Y'}">
+								                    <div class="reservation_number">
+									                    <button class="construct-btn">견적서 확인</button>
+								                    </div>
+						                    	</c:when>
+						                    	<c:otherwise>
+								                    <div class="reservation_number">
+									                    <button class="construct-btn">견적서 작성</button>
+								                    </div>
+						                    	</c:otherwise>
+						                    </c:choose>
+					                    </form>
+					                </div>
+		                			<c:set var="row" value="${row-1}"/>
+		                		</c:forEach>
+		                	</c:otherwise>
+		                </c:choose>
+		                
+		            </div>
+					<div class="col-12">
+						<div class="pagination d-flex justify-content-center mt-5">
+						
+							<c:choose>
+								<c:when test="${pi.copypage == 1 }">
+									<a href="#" class="page-n rounded">&laquo;</a>
+								</c:when>
+								<c:otherwise>
+									<a href="/MypageInfo/ChattingList.do?copyNo=${sessionScope.copyNum}&chatpage=${pi.copypage-1}" class="page-n rounded">&laquo;</a>
+								</c:otherwise>
+							</c:choose>
+							
+							<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+								<a href="/MypageInfo/ChattingList.do?copyNo=${sessionScope.copyNum}&chatpage=${page}" class="page-n rounded">${page}</a>
+							</c:forEach>
+							
+							<c:choose>
+								<c:when test="${pi.copypage == pi.maxPage }">
+									<a href="#" class="page-n rounded">&raquo;</a>
+								</c:when>
+								<c:otherwise>
+									<a href="/MypageInfo/ChattingList.do?copyNo=${sessionScope.copyNum}&chatpage=${pi.copypage+1}" class="page-n rounded">&raquo;</a>
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</div>
+		       	</div>
 			</c:when>
 			<c:otherwise>
 				<div>
