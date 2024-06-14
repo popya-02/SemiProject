@@ -9,13 +9,7 @@ import com.gonggu.search.model.dto.SearchDtoImpl;
 
 public interface SearchService {
 
-	public int getConstSearchListCount(String category, String searchText);
+	public ArrayList<SearchDto> getSearchExamList(String searchText);
 
-	public ArrayList<SearchDtoImpl> getConstSearchList(PageInfo pi, String category, String searchText);
-
-	public int getCopySearchListCount(String category, String searchText);
-
-	public ArrayList<SearchDtoImpl> getCopySearchList(PageInfo pi, String category, String searchText);
-
-
+	public ArrayList<SearchDto> getSearchCopyList(String searchText);
 }

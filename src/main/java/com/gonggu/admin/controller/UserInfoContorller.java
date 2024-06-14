@@ -28,7 +28,6 @@ public class UserInfoContorller extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		InformationImpl infoService = new InformationImpl();
 		
 		int cpage = Integer.parseInt(request.getParameter("cpage"));
@@ -43,7 +42,6 @@ public class UserInfoContorller extends HttpServlet {
 		// 보여줄 수
 		int pageLimit = 5;
 				
-				
 		// 한페이지에 보여질 게시글 
 		int boardLimit = 8;
 		
@@ -54,8 +52,6 @@ public class UserInfoContorller extends HttpServlet {
 		
 		// 게시글 번호 구하기 
 		int row = listCount - (cpage-1) * boardLimit; 
-		
-		
 		
 //		for(InformationDto item : list) {
 //			System.out.println(item.get());

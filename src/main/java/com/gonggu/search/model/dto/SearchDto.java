@@ -11,7 +11,22 @@ public class SearchDto {
 	private String ExamContent;
 	private int CategoryNo;
 	private String CategoryName;
+	private String PicturePath;
+	private String ExamPicturePath;
 	
+	
+	public String getPicturePath() {
+		return PicturePath;
+	}
+	public void setPicturePath(String picturePath) {
+		PicturePath = picturePath;
+	}
+	public String getExamPicturePath() {
+		return ExamPicturePath;
+	}
+	public void setExamPicturePath(String examPicturePath) {
+		ExamPicturePath = examPicturePath;
+	}
 	public String getCopyNo() {
 		return CopyNo;
 	}
@@ -73,6 +88,13 @@ public class SearchDto {
 		CategoryName = categoryName;
 	}
 	
+	@Override
+	public String toString() {
+		return "SearchDto [CopyNo=" + CopyNo + ", CopyName=" + CopyName + ", PictureName=" + PictureName
+				+ ", ConstructNo=" + ConstructNo + ", ExamNo=" + ExamNo + ", ExamTitle=" + ExamTitle
+				+ ", ExamPictureName=" + ExamPictureName + ", ExamContent=" + ExamContent + ", CategoryNo=" + CategoryNo
+				+ ", CategoryName=" + CategoryName + "]";
+	}
 	
 	
 }

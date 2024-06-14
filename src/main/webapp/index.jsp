@@ -115,7 +115,7 @@
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane fade show p-4 active">
                             <div class="row g-4">
-                                <div class="col-md-6 col-lg-4 inte-pama">
+                                <a href="/searchForm.do?searchtext=Antique" class="col-md-6 col-lg-4 inte-pama">
                                     <div class="rounded position-relative picture-item">
                                         <div class="fruite-img">
                                             <img src="resources/img/antique_picture.jpg" class="img-fluid w-100 rounded-top" alt="앤틱">
@@ -124,8 +124,8 @@
                                             <h4>Antique</h4>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 inte-pama">
+                                </a>
+                                <a href="/searchForm.do?searchtext=Modern"  class="col-md-6 col-lg-4 inte-pama">
                                     <div class="rounded position-relative picture-item">
                                         <div class="fruite-img">
                                             <img src="resources/img/modern_picturejpeg.jpg" class="img-fluid w-100 rounded-top" alt="모던">
@@ -134,8 +134,8 @@
                                             <h4>Modern</h4>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 inte-pama">
+                                </a>
+                                <a href="/searchForm.do?searchtext=Natural" class="col-md-6 col-lg-4 inte-pama">
                                     <div class="rounded position-relative picture-item">
                                         <div class="fruite-img">
                                             <img src="resources/img/natural_picture.jpg" class="img-fluid w-100 rounded-top" alt="내추럴">
@@ -144,8 +144,8 @@
                                             <h4>Natural</h4>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 inte-pama">
+                                </a>
+                                <a href="/searchForm.do?searchtext=North Europe" class="col-md-6 col-lg-4 inte-pama">
                                     <div class="rounded position-relative picture-item">
                                         <div class="fruite-img">
                                             <img src="resources/img/north_europe_picture.jpg" class="img-fluid w-100 rounded-top" alt="북유럽">
@@ -154,9 +154,9 @@
                                             <h4>North Europe</h4>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 inte-pama">
-                                    <div class="rounded position-relative picture-item">
+                                </a>
+                                <a href="/searchForm.do?searchtext=Minimal" class="col-md-6 col-lg-4 inte-pama">
+                                    <div href="/searchForm.do?searchtext=Minimal" class="rounded position-relative picture-item">
                                         <div class="fruite-img">
                                             <img src="resources/img/simple_minimal_picture.jpg" class="img-fluid w-100 rounded-top" alt="미니멀">
                                         </div>
@@ -164,8 +164,8 @@
                                             <h4>Minimal</h4>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 inte-pama">
+                                </a>
+                                <a href="/searchForm.do?searchtext=Vintage" class="col-md-6 col-lg-4 inte-pama">
                                     <div class="rounded position-relative picture-item">
                                         <div class="fruite-img">
                                             <img src="resources/img/vintage_ratro_picture.jpg" class="img-fluid w-100 rounded-top" alt="빈티지">
@@ -174,7 +174,7 @@
                                             <h4>Vintage</h4>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>

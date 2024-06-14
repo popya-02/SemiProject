@@ -16,23 +16,14 @@ public class SearchServiceImpl implements SearchService{
 	}
 
 	@Override
-	public int getConstSearchListCount(String category, String searchText) {
-		return searchDao.getConstSearchListCount(category, searchText);
+	public ArrayList<SearchDto> getSearchExamList(String searchText) {
+		return searchDao.gerSearchExamList(searchText);
 	}
 
 	@Override
-	public ArrayList<SearchDtoImpl> getConstSearchList(PageInfo pi, String category, String searchText) {
-		return searchDao.getConstSearchList(pi, category, searchText);
+	public ArrayList<SearchDto> getSearchCopyList(String searchText) {
+		return searchDao.getSearchCopyList(searchText);
 	}
 
-	@Override
-	public int getCopySearchListCount(String category, String searchText) {
-		return searchDao.getCopySearchListCount(category, searchText);
-	}
-
-	@Override
-	public ArrayList<SearchDtoImpl> getCopySearchList(PageInfo pi, String category, String searchText) {
-		return searchDao.getCopySearchList(pi, category, searchText);
-	}
 
 }

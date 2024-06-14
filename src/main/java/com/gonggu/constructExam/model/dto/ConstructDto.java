@@ -9,6 +9,7 @@ public class ConstructDto {
 	private String copyName; // 업체 이름
 	private String title;  // 시공사례 제목
 	private String content; // 시공사례 내용
+	private String tagRemoveContent; // 시공사례 내용
 	private String indate;  // 작성일
 	private String update;  // 수정일
 	private String delete;
@@ -167,5 +168,11 @@ public class ConstructDto {
 	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+	public String getTagRemoveContent() {
+		return tagRemoveContent;
+	}
+	public void setTagRemoveContent(String tagRemoveContent) {
+		this.tagRemoveContent = tagRemoveContent;
 	}
 }

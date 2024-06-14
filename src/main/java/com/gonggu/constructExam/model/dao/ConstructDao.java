@@ -53,7 +53,7 @@ public class ConstructDao {
 	}
 
 	public int enroll(ConstructDtoImpl constructDto) {
-		String query = "INSERT INTO CONST_EXAM VALUES(exam_seq.nextval, ?, ?, ?, ?, default, null)";
+		String query = "INSERT INTO CONST_EXAM VALUES(exam_seq.nextval, ?, ?, ?, ?, default, null, ?)";
 		int result = 0;
 		
 		/* int result = SELECT MAX(EXAM_NO) FROM CONST_EXAM where */
@@ -65,6 +65,7 @@ public class ConstructDao {
 			pstmt.setInt(2, constructDto.getCategoryNo());
 			pstmt.setString(3, constructDto.getTitle());
 			pstmt.setString(4, constructDto.getContent());
+			pstmt.setString(5, constructDto.getTagRemoveContent());
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

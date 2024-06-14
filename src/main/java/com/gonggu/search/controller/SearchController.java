@@ -16,7 +16,7 @@ import com.gonggu.search.model.dto.SearchDto;
 import com.gonggu.search.model.dto.SearchDtoImpl;
 import com.gonggu.search.model.service.SearchServiceImpl;
 
-@WebServlet("/SearchForm.do")
+@WebServlet("/searchForm.do")
 public class SearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -25,41 +25,32 @@ public class SearchController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-		SearchServiceImpl searService = new SearchServiceImpl();
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
-		SearchDtoImpl searDto = new SearchDtoImpl();
+		SearchServiceImpl searchService = new SearchServiceImpl();
+		SearchDtoImpl searchDto = new SearchDtoImpl();
 		
-		int cpage = Integer.parseInt(request.getParameter("cpage"));
+		String examTitle = request.getParameter("examtitle");
+		String examContent = request.getParameter("examcontent");
+		String examPictureName = request.getParameter("exampicturename");
+		String copyName = request.getParameter("copyname");
+		String pictureName = request.getParameter("picturename");
 		
-		String category = request.getParameter("category");
-		String searchText = request.getParameter("search-text");
+		String searchText = request.getParameter("searchtext");
 		
-		// 전체 게시글 수
-		int listCount = searService.getConstSearchListCount(category, searchText);
-		searService.getCopySearchListCount(category, searchText);
-				
-		// 보여줄 수
-		int pageLimit = 5;
-				
-		// 한페이지에 보여질 게시글 
-		int boardLimit = 8;
+		if (searchText != null && !searchText.trim().isEmpty()) {
+		ArrayList<SearchDto> searchExamList	= searchService.getSearchExamList(searchText);
+		ArrayList<SearchDto> searchCopyList	= searchService.getSearchCopyList(searchText);
 		
-		PageInfo pi = Pagnation.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+		request.setAttribute("searchExamList", searchExamList);
+		request.setAttribute("searchCopyList", searchCopyList);		
+	
+		}
 		
-		ArrayList<SearchDtoImpl> constlist = searService.getConstSearchList(pi, category, searchText);
-		ArrayList<SearchDtoImpl> copylist = searService.getCopySearchList(pi, category, searchText);
-		
-		// 게시글 번호 구하기 
-		int row = listCount - (cpage-1) * boardLimit; 
-		
-		request.setAttribute("constlist" , constlist);
-		request.setAttribute("copylist" , copylist);
-		request.setAttribute("row", row);
-		request.setAttribute("pi", pi);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/etc/searchList.jsp");
-		dispatcher.forward(request, response);
+		RequestDispatcher view = request.getRequestDispatcher("/views/etc/searchList.jsp");
+		view.forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
