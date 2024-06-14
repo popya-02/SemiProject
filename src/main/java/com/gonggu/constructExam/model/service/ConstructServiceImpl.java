@@ -66,6 +66,21 @@ public class ConstructServiceImpl implements ConstructService {
 		 return constructDao.getExamNo(constructDto);
 	 }
 
+	 @Override
+	public List<ConstructDto> getCategory() {
+		return constructDao.getCategory();
+	}
+
+	 @Override
+	public List<ConstructDto> getConstructCategoryList(PageInfo pi, int categoryNum) {
+		return constructDao.getConstructCategoryList(pi, categoryNum);
+	}
+
+	@Override
+	public int getListCategoryCount(int categoryNum) {
+		return constructDao.getListCategoryCount(categoryNum);
+	}
+
 	
 //	@Override
 //	public ConstructDtoImpl selectNo(ConstructDtoImpl constructDto) {

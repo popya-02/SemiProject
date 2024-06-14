@@ -75,41 +75,48 @@ public class ConstructDao {
 	}
 
 	public List<ConstructDto> getConstructList(PageInfo pi) {
-		String query = "SELECT ce.DELETE_STATUS,cu.copy_name, ce.title, ce.exam_no, ep.path, ep.name, ep.EXAM_PICTURE_NO FROM COPY_USER cu"
-				+ "     FULL JOIN CONSTRUCT c ON cu.COPY_NO = c.COPY_NO"
-				+ "     FULL JOIN CONST_EXAM ce ON c.CONSTRUCT_NO = ce.CONSTRUCT_NO"
-				+ "     FULL JOIN EXAM_PICTURE ep ON ce.EXAM_NO = ep.EXAM_NO"
-				+ "     WHERE ce.DELETE_STATUS = 'N'"
-				+ "     ORDER BY ce.exam_no DESC"
-		        + "		OFFSET ? ROWS FETCH FIRST ? ROWS ONLY";
-
+		
+		
 		List<ConstructDto> list = new ArrayList<>();
+		
+		String	query = "SELECT ce.DELETE_STATUS,cu.copy_name, ce.title, ce.exam_no, ep.path, ep.name, ep.EXAM_PICTURE_NO, ce.CATEGORY_NO"
+					+ "		FROM COPY_USER cu"
+					+ "     FULL JOIN CONSTRUCT c ON cu.COPY_NO = c.COPY_NO"
+					+ "     FULL JOIN CONST_EXAM ce ON c.CONSTRUCT_NO = ce.CONSTRUCT_NO"
+					+ "     FULL JOIN EXAM_PICTURE ep ON ce.EXAM_NO = ep.EXAM_NO"
+					+ "     WHERE ce.DELETE_STATUS = 'N'"
+					+ "     ORDER BY ce.exam_no DESC"
+					+ "		OFFSET ? ROWS FETCH FIRST ? ROWS ONLY";
+			
 
-		try {
+			try {
 
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, pi.getOffSet());
-			pstmt.setInt(2, pi.getBoardLimit());
-			ResultSet rs = pstmt.executeQuery();
+				pstmt = con.prepareStatement(query);
+				pstmt.setInt(1, pi.getOffSet());
+				pstmt.setInt(2, pi.getBoardLimit());
+				ResultSet rs = pstmt.executeQuery();
 
-			rs = pstmt.executeQuery();
+				rs = pstmt.executeQuery();
 
-			while (rs.next()) {
-				ConstructDto dto = new ConstructDto();
-				dto.setCopyName(rs.getString("COPY_NAME"));
-				dto.setTitle(rs.getString("title"));
-				dto.setExamNo(rs.getInt("exam_no"));
-				dto.setFilePath(rs.getString("PATH"));
-				dto.setFileName(rs.getString("NAME"));
-				dto.setFileNo(rs.getInt("EXAM_PICTURE_NO"));
-				dto.setDeleteStatus(query);
-				list.add(dto);
+				while (rs.next()) {
+					ConstructDto dto = new ConstructDto();
+					dto.setCopyName(rs.getString("COPY_NAME"));
+					dto.setTitle(rs.getString("title"));
+					dto.setExamNo(rs.getInt("exam_no"));
+					dto.setFilePath(rs.getString("PATH"));
+					dto.setFileName(rs.getString("NAME"));
+					dto.setFileNo(rs.getInt("EXAM_PICTURE_NO"));
+					dto.setCategoryNo(rs.getInt("CATEGORY_NO"));
+					dto.setDeleteStatus(query);
+					list.add(dto);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+
 			}
+			
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-
-		}
 		return list;
 	}
 
@@ -271,19 +278,135 @@ public class ConstructDao {
 	 public int getExamNo(ConstructDtoImpl constructDto) {
 		 String query = "SELECT MAX(EXAM_NO) AS MAX FROM CONST_EXAM";
 		
-				 try {
-						pstmt = con.prepareStatement(query);
-						ResultSet rs = pstmt.executeQuery();
+		 try {
+				pstmt = con.prepareStatement(query);
+				ResultSet rs = pstmt.executeQuery();
 
-						while (rs.next()) {
-						int no = rs.getInt("MAX");
-						constructDto.setExamNo(no);
-						
-						}
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-
-					return 0;
+				while (rs.next()) {
+					int no = rs.getInt("MAX");
+					constructDto.setExamNo(no);
+				
 				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			return 0;
+		}
+
+	public List<ConstructDto> getCategory() {
+		
+		String query = "SELECT * FROM CATEGORY";
+		
+		List<ConstructDto> list = new ArrayList<>();
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ConstructDto conDto = new ConstructDto();
+				
+				int categoryNum = rs.getInt("CATEGORY_NO");
+				String categoryName = rs.getString("NAME");
+				
+				conDto.setCategoryNo(categoryNum);
+				conDto.setCategory(categoryName);
+				
+				list.add(conDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+	public List<ConstructDto> getConstructCategoryList(PageInfo pi, int categoryNum) {
+		
+		List<ConstructDto> list = new ArrayList<>();
+		
+		String	query = "SELECT ce.DELETE_STATUS,cu.copy_name, ce.title, ce.exam_no, ep.path, ep.name, ep.EXAM_PICTURE_NO, ce.CATEGORY_NO"
+				+ "		FROM COPY_USER cu"
+				+ "     FULL JOIN CONSTRUCT c ON cu.COPY_NO = c.COPY_NO"
+				+ "     FULL JOIN CONST_EXAM ce ON c.CONSTRUCT_NO = ce.CONSTRUCT_NO"
+				+ "     FULL JOIN EXAM_PICTURE ep ON ce.EXAM_NO = ep.EXAM_NO"
+				+ "		WHERE ce.DELETE_STATUS = 'N'";
+			if(categoryNum != 0) {
+				query += "	AND CATEGORY_NO = ?";
+			}
+			query += "     ORDER BY ce.exam_no DESC"
+				   + "		OFFSET ? ROWS FETCH FIRST ? ROWS ONLY";
+
+		try {
+
+			pstmt = con.prepareStatement(query);
+			
+			if(categoryNum != 0) {
+				pstmt.setInt(1, categoryNum);
+				pstmt.setInt(2, pi.getOffSet());
+				pstmt.setInt(3, pi.getBoardLimit());
+				
+			}else {
+				pstmt.setInt(1, pi.getOffSet());
+				pstmt.setInt(2, pi.getBoardLimit());
+
+			}
+			ResultSet rs = pstmt.executeQuery();
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ConstructDto dto = new ConstructDto();
+				dto.setCopyName(rs.getString("COPY_NAME"));
+				dto.setTitle(rs.getString("title"));
+				dto.setExamNo(rs.getInt("exam_no"));
+				dto.setFilePath(rs.getString("PATH"));
+				dto.setFileName(rs.getString("NAME"));
+				dto.setFileNo(rs.getInt("EXAM_PICTURE_NO"));
+				dto.setCategoryNo(rs.getInt("CATEGORY_NO"));
+				dto.setDeleteStatus(query);
+				list.add(dto);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+		
+		
+		return list;
+	}
+
+	public int getListCategoryCount(int categoryNum) {
+		String query = "SELECT COUNT(ce.EXAM_NO) AS CNT" 
+			    + "         FROM CONST_EXAM ce"; 
+	    if(categoryNum != 0) {
+	    	query += "	AND CATEGORY_NO = ?";
+	    }
+	    query += "         FULL JOIN EXAM_PICTURE ep"
+			   + "     	ON ce.EXAM_NO = ep.EXAM_NO";
+
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			if(categoryNum != 0) {
+				pstmt.setInt(1, categoryNum);
+			}
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int result = rs.getInt("CNT");
+
+				return result;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+	
+	}
 }

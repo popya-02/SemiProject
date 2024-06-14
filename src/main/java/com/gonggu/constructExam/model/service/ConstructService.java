@@ -28,8 +28,11 @@ public interface ConstructService {
 	
 	public int getExamNo(ConstructDtoImpl constructDto);
 	
+	public List<ConstructDto> getCategory();
 	
+	public List<ConstructDto> getConstructCategoryList(PageInfo pi, int categoryNum);
 
+	public int getListCategoryCount(int categoryNum);
 //	public ConstructDtoImpl selectNo(ConstructDtoImpl ConstructDto);
 //	public int fileUpload(ConstructDtoImpl ConstructDto);
 //	public void getFileName(ConstructDtoImpl result);

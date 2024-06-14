@@ -1,11 +1,11 @@
-let btnCnt = 0;
+let btnCntAdmin = 0;
 
 function adminLoginFunc(){
-	btnCnt += 1;
+	btnCntAdmin += 1;
 		
-	console.log(btnCnt);
-	if(btnCnt == 5){
-		btnCnt = 0;
+	console.log(btnCntAdmin);
+	if(btnCntAdmin == 5){
+		btnCntAdmin = 0;
 		location.href = '/form/adminLogin.do';
 	}
 }

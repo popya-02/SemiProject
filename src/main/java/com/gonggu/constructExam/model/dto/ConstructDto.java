@@ -175,4 +175,7 @@ public class ConstructDto {
 	public void setTagRemoveContent(String tagRemoveContent) {
 		this.tagRemoveContent = tagRemoveContent;
 	}
+	
+	
+
 }

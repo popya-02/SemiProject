@@ -36,47 +36,27 @@
 
 		<!-- 업체 -->
 		<div class="album py-5 bg-body-tertiary">
-			<div class="container">
-				<h2 class="point-text" style="z-index: 2;">예시 목록</h2>
+			<div class="container" id="construct-exam-box">
+				<h2 class="point-text exam-title">예시 목록</h2>
+				<input type="hidden" name="copypage"  id="copypage" value="${pi.copypage}">
 				<hr>
 				<div class="exam-box">
 					<div class="category-box">
 						<div class="form-check radio-cate">
-						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-						  <label class="form-check-label" for="flexRadioDefault1">
-						    Antique
+						  <input class="form-check-input" type="radio" name="categoryNo" id="categoryCheckid" value="0" checked>
+						  <label class="form-check-label" for="categoryCheckid">
+						    선택 안함
 						  </label>
 						</div>
-						<div class="form-check radio-cate">
-						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-						  <label class="form-check-label" for="flexRadioDefault2">
-						    Modern
-						  </label>
-						</div>
-						<div class="form-check radio-cate">
-						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-						  <label class="form-check-label" for="flexRadioDefault2">
-						    Natural
-						  </label>
-						</div>
-						<div class="form-check radio-cate">
-						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-						  <label class="form-check-label" for="flexRadioDefault2">
-						    North Europe
-						  </label>
-						</div>
-						<div class="form-check radio-cate">
-						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-						  <label class="form-check-label" for="flexRadioDefault2">
-						    Minimal
-						  </label>
-						</div>
-						<div class="form-check radio-cate">
-						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-						  <label class="form-check-label" for="flexRadioDefault2">
-						    Vintage
-						  </label>
-						</div>
+						<c:forEach var="category" items="${categoryList}" varStatus="status">
+							<div class="form-check radio-cate">
+							  <input class="form-check-input" type="radio" name="categoryNo" id="categoryCheckid" value="${category.categoryNo}">
+							  <label class="form-check-label" for="categoryCheckid">
+							    ${category.category}
+							  </label>
+							</div>
+							<c:set var="row" value="${row-1}" />
+						</c:forEach>
 					</div>
 					<div>
 						<c:if test="${sessionScope.userType == 'copyUser'}">
@@ -87,20 +67,21 @@
 								</a>
 							</div>
 						</c:if>
-						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="exam-result-box">
 							<c:choose>
 								<c:when test="${empty constructList}">
-									<h5>등록 되어있는 업체가 없습니다.</h5>
+									<h5 style="width: 600px;">등록 되어있는 업체가 없습니다.</h5>
 								</c:when>
 								<c:otherwise>
 									<c:forEach var="construct" items="${constructList}">
 										<form action="/constructExam/constructdelete.do" method="POST">
-										<input type="hidden" name="examNo" value="${construct.examNo}">
-										<input type="hidden" name="fileNo" value="${construct.fileNo}">
-										<input type="hidden" name="fileName" value="${construct.fileName}">
-										<input type="hidden" name="page" value="${pi.copypage}">
+											<input type="hidden" name="examNo" value="${construct.examNo}">
+											<input type="hidden" name="fileNo" value="${construct.fileNo}">
+											<input type="hidden" name="fileName" value="${construct.fileName}">
+											<input type="hidden" name="categoryNum" value="${construct.categoryNo}">
+											<input type="hidden" name="page" value="${pi.copypage}">
 											<div class="col">
-												<div class="card shadow-sm">
+												<div class="card shadow-sm he-min">
 													<a href="/constructDetail.do?examNo=${construct.examNo}" class="img-size ">
 													<img class="bd-placeholder-img card-img-top" src="/resources/img/${construct.fileName}" class="img-contain" fill="#55595c" />
 													</a>
@@ -135,7 +116,7 @@
 	</main>
 
 	<!-- ---------------------------------페이지네이션------------------------------------------ -->
-	<div class="col-12">
+	<div class="col-12" id="paginaetion-box">
 		<div class="pagination d-flex justify-content-center mt-5">
 
 			<c:choose>
@@ -183,6 +164,8 @@
 
 	<!-- Template Javascript -->
 	<script src="/resources/js/main.js"></script>
+	<script src="/resources/js/category.js"></script>
+	
 </body>
 
 </html>

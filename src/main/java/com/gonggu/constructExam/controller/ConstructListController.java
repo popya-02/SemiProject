@@ -46,10 +46,13 @@ public class ConstructListController extends HttpServlet {
 		
 		int row = listCount - (copypage - 1) * pageLimit;
 
+		List<ConstructDto> category = consturctService.getCategory();
 		
+		request.setAttribute("categoryList", category);
         request.setAttribute("constructList", constructList);
         request.setAttribute("row", row);
         request.setAttribute("pi", pi);
+
         
         RequestDispatcher view = request.getRequestDispatcher("/views/constructExam/constructList.jsp");
 		view.forward(request, response);
