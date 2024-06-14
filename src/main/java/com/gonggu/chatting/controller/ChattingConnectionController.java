@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.gonggu.chatting.model.dto.ChattingDTO;
 import com.gonggu.chatting.model.service.ChattingServiceImpl;
 
-@WebServlet("/chatting/connection.do")
+@WebServlet("/chatting/*")
 public class ChattingConnectionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,72 +32,99 @@ public class ChattingConnectionController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		HttpSession session = request.getSession();
-
-		int userNum = Integer.parseInt(request.getParameter("userNum"));
+		String action = request.getPathInfo();
 		String userType = (String)session.getAttribute("userType");
-		String copyNum = request.getParameter("copyNum");
 		
-		ChattingDTO chattingDto = new ChattingDTO();
-		chattingDto.setUserNum(userNum);
-		chattingDto.setCopyNum(copyNum);
-		ChattingServiceImpl chattingService = new ChattingServiceImpl();
-		
-		
-		ChattingDTO typeResult;
-		
-		if(userType.equals("copyUser") ) {	// 업체유저
-			String sessionCopyNum = (String) session.getAttribute("copyNum");
+		if(action.equals("/connection.do")) {
+			int userNum = Integer.parseInt(request.getParameter("userNum"));
+			String copyNum = request.getParameter("copyNum");
 			
-			typeResult = chattingService.getCopyType(chattingDto);
-			ChattingDTO copychattingSet = chattingService.setChatnum(chattingDto);
-			if(sessionCopyNum.equals(copyNum)) {	// 로그인한 업체유저의 채팅방인지
-				ArrayList<ChattingDTO> list = chattingService.getList(copychattingSet.getChattingNum());
+			ChattingDTO chattingDto = new ChattingDTO();
+			chattingDto.setUserNum(userNum);
+			chattingDto.setCopyNum(copyNum);
+			ChattingServiceImpl chattingService = new ChattingServiceImpl();
+			
+			
+			ChattingDTO typeResult;
+			
+			if(userType.equals("copyUser") ) {	// 업체유저
+				String sessionCopyNum = (String) session.getAttribute("copyNum");
 				
-				request.setAttribute("list", list);
-				request.setAttribute("nickName", copychattingSet.getUserNickName());
-				request.setAttribute("userId", copychattingSet.getUserId());
-				request.setAttribute("endCheck", copychattingSet.getEndCheck());
-				request.setAttribute("chattingNum", copychattingSet.getChattingNum());
-				request.setAttribute("userType",userType);
-				request.setAttribute("noCheck",typeResult.getUserNum());
-				RequestDispatcher view = request.getRequestDispatcher("/views/etc/chatting.jsp");
-				view.forward(request, response);
-			}
-		} else if (userType.equals("basicUser")){	// 일반 유저
-			int sessionUserNum = (int) session.getAttribute("userNum");
-			
-			typeResult = chattingService.getUserType(chattingDto);
-
-			
-			if(sessionUserNum == userNum) {	// 로그인한 일반유저의 채팅방인지
-				int result = chattingService.setChatting(chattingDto);	// 중복체크 없으면 생성
-				ChattingDTO userchattingSet = chattingService.setChatnum(chattingDto);
+				typeResult = chattingService.getCopyType(chattingDto);
+				ChattingDTO copychattingSet = chattingService.setChatnum(chattingDto);
+				if(sessionCopyNum.equals(copyNum)) {	// 로그인한 업체유저의 채팅방인지
+					ArrayList<ChattingDTO> list = chattingService.getList(copychattingSet.getChattingNum());
+					
+					request.setAttribute("list", list);
+					request.setAttribute("nickName", copychattingSet.getUserNickName());
+					request.setAttribute("userId", copychattingSet.getUserId());
+					request.setAttribute("endCheck", copychattingSet.getEndCheck());
+					request.setAttribute("chattingNum", copychattingSet.getChattingNum());
+					request.setAttribute("userType",userType);
+					request.setAttribute("noCheck",typeResult.getUserNum());
+					RequestDispatcher view = request.getRequestDispatcher("/views/etc/chatting.jsp");
+					view.forward(request, response);
+				}
+			} else if (userType.equals("basicUser")){	// 일반 유저
+				int sessionUserNum = (int) session.getAttribute("userNum");
 				
-				if(userchattingSet.getEndCheck() == "Y") {	// 상담 종료 여부
-					response.sendRedirect("/form/constructDetail.do");
-				}else {
-					if(result == 0) {
+				typeResult = chattingService.getUserType(chattingDto);
+				
+				
+				if(sessionUserNum == userNum) {	// 로그인한 일반유저의 채팅방인지
+					int result = chattingService.setChatting(chattingDto);	// 중복체크 없으면 생성
+					ChattingDTO userchattingSet = chattingService.setChatnum(chattingDto);
+					
+					if(userchattingSet.getEndCheck() == "Y") {	// 상담 종료 여부
 						response.sendRedirect("/form/constructDetail.do");
 					}else {
+						if(result != 0) {
+							ArrayList<ChattingDTO> list = chattingService.getList(userchattingSet.getChattingNum());
+							
+							request.setAttribute("list", list);
+							request.setAttribute("copyName", userchattingSet.getCopyName());
+							request.setAttribute("chattingNum", userchattingSet.getChattingNum());
+							request.setAttribute("userType",userType);
+							request.setAttribute("noCheck",typeResult.getUserNum());
+							RequestDispatcher view = request.getRequestDispatcher("/views/etc/chatting.jsp");
+							view.forward(request, response);
+						}else {
+							response.sendRedirect("/form/constructDetail.do");
+							
+						}
 						
-						ArrayList<ChattingDTO> list = chattingService.getList(userchattingSet.getChattingNum());
-						
-						request.setAttribute("list", list);
-						request.setAttribute("copyName", userchattingSet.getCopyName());
-						request.setAttribute("chattingNum", userchattingSet.getChattingNum());
-						request.setAttribute("userType",userType);
-						request.setAttribute("noCheck",typeResult.getUserNum());
-						RequestDispatcher view = request.getRequestDispatcher("/views/etc/chatting.jsp");
-						view.forward(request, response);
 					}
 					
 				}
+			}else{
+				response.sendRedirect("/form/constructDetail.do");
+				
 				
 			}
-		}else{
-			response.sendRedirect("/form/constructDetail.do");
 			
-			
+		}else if(action.equals("/endConnection.do")) {
+			if(userType.equals("copyUser") ) {	// 업체유저
+				
+				int chatNum = Integer.parseInt(request.getParameter("chatNum"));
+				
+				ChattingServiceImpl chattingService = new ChattingServiceImpl();
+				
+				ChattingDTO endchattingSet = chattingService.setEndChatSet(chatNum);
+				ArrayList<ChattingDTO> list = chattingService.getList(chatNum);
+					
+				request.setAttribute("list", list);
+				request.setAttribute("nickName", endchattingSet.getUserNickName());
+				request.setAttribute("userId", endchattingSet.getUserId());
+				request.setAttribute("endCheck", endchattingSet.getEndCheck());
+				request.setAttribute("chattingNum", chatNum);
+				request.setAttribute("userType",userType);
+				request.setAttribute("noCheck", endchattingSet.getUserNum());
+				
+				RequestDispatcher view = request.getRequestDispatcher("/views/etc/chatting.jsp");
+				view.forward(request, response);
+			}else {
+				response.sendRedirect("/form/constructDetail.do");
+			}
 		}
 		
 	}

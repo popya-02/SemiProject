@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.gonggu.common.AlertMethod;
 import com.gonggu.member.model.dto.MemberDTO;
 import com.gonggu.member.model.service.MemberServiceImpl;
 
@@ -31,6 +32,8 @@ public class SignupUserController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
+		
+		AlertMethod alert = new AlertMethod();
 		
 		String duplicate = request.getParameter("duplicateCheck");
 		String authenticate = request.getParameter("authenticationCheck");
@@ -52,7 +55,7 @@ public class SignupUserController extends HttpServlet {
 				authenticate.equals("unavailable") || 
 				confirmCheck.equals("unavailable") || 
 				effectiveNameCheck.equals("unavailable")) {
-			returnAlert(response, "회원가입 실패", "/form/signupuserForm.do");
+			alert.returnAlert(response, "회원가입 실패", "인증 및 빈칸을 올바르게 입력해주세요.", "warning", "");
 			return;
 		}
 		
@@ -71,19 +74,12 @@ public class SignupUserController extends HttpServlet {
 		
 		if(result == 1) {
 			//성공
-			returnAlert(response, "회원가입이 완료되었습니다.", "/");
+			alert.returnAlert(response, "회원가입 성공", "회원가입이 완료되었습니다.", "success",  "/");
 		}else{
 			// 실패
-			returnAlert(response, "회원가입 실패", "/form/signupuserForm.do");
+			alert.returnAlert(response, "회원가입 실패", "", "warning", "");
 		}
 		
-	}
-	
-	private void returnAlert(HttpServletResponse response, String msg, String url) throws IOException {
-		response.getWriter().write("<script>"
-								  +"	alert('"+ msg +"');"
-  								  +"	location.href='"+ url + "';"
-								  +"</script>");	// js 코드로 넘겨주기
 	}
 
 }

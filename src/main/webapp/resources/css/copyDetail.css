@@ -96,8 +96,10 @@ label {
 	max-width: 300px;
 }
 
-.col-lg-12{
-    /* margin-left: 300px */
+.btn-box{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .repl{

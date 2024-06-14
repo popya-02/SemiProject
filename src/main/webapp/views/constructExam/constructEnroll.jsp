@@ -57,7 +57,7 @@
 				
 				<!-- 메인이미지 업로드 -->
 				
-					<div class="tlrhd-img" id="container">
+					<div class="tlrhd-img" id="container-enroll">
 						<div class="image-upload" id="image-upload">
 
 							<div class="button">

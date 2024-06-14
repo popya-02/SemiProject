@@ -16,6 +16,7 @@ input{
 	margin-top: 120px;
 	min-height: 500px;
 	width: 100%;
+	min-width: 1071px;
 }
 
 .const-box{

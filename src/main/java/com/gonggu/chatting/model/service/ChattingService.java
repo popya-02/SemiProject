@@ -25,4 +25,6 @@ public interface ChattingService {
 	int getListCount(String copyNum);
 
 	List<ChattingDTO> getCopyChattingList(PageInfo pi, String sessionCopyNum);
+	
+	public ChattingDTO setEndChatSet(int chatNum);
 }
