@@ -282,7 +282,8 @@ public class MyPageDao {
 	            	+ " ?,"  // sumprice 7
 	            	+ " ?,"  // chatNum 8
 	            	+ " ?,"  // element 9
-	            	+ " ?"  // deposit 10
+	            	+ " ?,"  // deposit 10
+	            	+ " DEFAULT"
 	            	+ ")";
 
 //	    System.out.println(constDto.getConstructElement());
@@ -595,17 +596,6 @@ public class MyPageDao {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

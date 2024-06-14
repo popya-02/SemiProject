@@ -34,17 +34,19 @@
 								<c:otherwise>
 									<c:forEach var="item" items="${searchExamList}">
 									<input type="hidden" name="categoryname" values="${items.categoryName}">
-										<a class="example-div" href="/constructDetail.do?examNo=${item.examNo}"> 
-										<img src="/resources/img/${item.examPictureName}" name="exampicturename" class="search-img">
-											<div class="example-box">
+									<div class="example-div exam-margin">
+										<a class="" href="/constructDetail.do?examNo=${item.examNo}">
+										<img src="/resources/img/${item.examPictureName}" name="exampicturename" class="search-img img-hover">
+											<div class="example-div-div">
 												<div class="example-obj">
-												    <h4 name="copyname">${item.copyName}</h4>
-													<h5 name="examtitle">${item.examTitle}</h5>
+												    <h4>${item.copyName}</h4>
+													<h5 style="margin-top:5px;">${item.examTitle}</h5>
 												   <%--  <h4 name="categoryname">${item.categoryName}</h4> --%>
-													<p name="examcontent" class="example-content">${item.examContent}</p>
+													<p class="example-div3">${item.examContent}</p>
+													<a href="/constructDetail.do?examNo=${item.examNo}" style="margin-top: 15px; margin-left: 300px;" class="btn border border-secondary rounded-pill px-3 py-1 text-primary">자세히 보기</a>
 												</div>
 											</div>
-									</a>
+									     </div>
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
@@ -86,7 +88,7 @@
 								</c:when>
 								<c:otherwise>
 									<c:forEach var="item" items="${searchCopyList}">
-										<a href="/copyDetail.do?copyNo=${item.copyNo}"class="col-md-4 col-lg-3 inte-pama">
+										<a href="/copyDetail.do?copyNo=${item.copyNo}"class="inte-pama">
 											<div class="rounded position-relative copy-search">
 												<div class="">
 													<img src="resources/img/${item.pictureName}" name="copypicturename" style="width:250px; height:250px;" class="rounded-top" alt="사진">
