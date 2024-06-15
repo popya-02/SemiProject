@@ -55,7 +55,6 @@ public class CopyChattingListController extends HttpServlet {
 			List<ChattingDTO> chattingList = chatService.getCopyChattingList(pi, sessionCopyNum);
 			MyPageDtoImpl mypageDto = new  MyPageDtoImpl();
 			
-			System.out.println(mypageDto.getEstimatePrice());
 			
 			int row = listCount - (chatpage - 1) * pageLimit;
 			

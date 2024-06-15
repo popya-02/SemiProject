@@ -42,13 +42,10 @@ public class ConstructUpdateController extends HttpServlet {
 		
 		int result = constService.updateConstElement(constDto);
 		
-		System.out.println("update " + result);
-		System.out.println(constDto.getConstRange());
 		if(result == 0) {
 			response.getWriter().print("fail");
 		}else {
 			response.getWriter().print("success");
 		}
 	}
-
 }

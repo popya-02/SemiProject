@@ -10,6 +10,7 @@ import java.util.List;
 import com.gonggu.chatting.model.dto.ChattingDTO;
 import com.gonggu.common.DatabaseConnection;
 import com.gonggu.common.PageInfo;
+import com.gonggu.mypage.model.dto.MyPageDto;
 
 public class ChattingDAO {
 	private Connection con;
@@ -357,11 +358,13 @@ public class ChattingDAO {
 
 	public List<ChattingDTO> getCopyChattingList(PageInfo pi, String sessionCopyNum) {
 		
-		String query = "SELECT cs.CHATTING_NO , cs.COPY_NO , cs.USER_NO , cs.CREATE_DATE , cs.END_CHECK , bu.NAME"
+		String query = "SELECT cs.CHATTING_NO , cs.COPY_NO , cs.USER_NO , cs.CREATE_DATE , cs.END_CHECK , bu.NAME, c.CONSTRUCT_PRICE"
 					+ " FROM CONSTRUCT_STATUS cs"
 					+ " JOIN BASIC_USER bu"
 					+ "		ON cs.USER_NO = bu.USER_NO "
-					+ " WHERE COPY_NO = ?"
+					+ "	JOIN CONSTRUCT c"
+					+ "     ON cs.CHATTING_NO  = c.CHATTING_NO"
+					+ " WHERE cs.COPY_NO = ?"
 					+ " ORDER BY CREATE_DATE DESC"
 					+ " OFFSET ? ROWS FETCH FIRST ? ROWS ONLY";
 		
@@ -384,7 +387,10 @@ public class ChattingDAO {
 				dto.setUserName(rs.getString("NAME"));
 				dto.setChattingIndate(rs.getString("CREATE_DATE"));
 				dto.setEndCheck(rs.getString("END_CHECK"));
-				
+				dto.setEstimatePrice(rs.getString("CONSTRUCT_PRICE"));
+
+//				MyPageDto mdto = new MyPageDto();
+//				mdto.setEstimatePrice(rs.getString("CONSTRUCT_PRICE"));
 				list.add(dto);
 				
 			}

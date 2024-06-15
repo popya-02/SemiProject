@@ -24,7 +24,7 @@
 					<c:when test="${sessionScope.approvalStatus == 'B'}">
 					<nav class="mypage_list">
 			            <ul>
-			                <li class="mypage_list_1"><a href="/views/myPage/copyMyPageEstimate.jsp">견적/공사 내역</a></li>
+			                <li class="mypage_list_1"><a href="/MyPageEstimate/EstimateCopy.do?cpage=1">견적/공사 내역</a></li>
 			                <li class="mypage_list_2"><a href="/MypageInfo/ChattingList.do?copyNo=${sessionScope.copyNum}&chatpage=1">견적 상담 채팅</a></li>
 			                <li class="mypage_list_2"><a href="/MypageInfo/copyInfo.do?copyNo=${sessionScope.copyNum}">정보 수정</a></li>
 			            </ul>
@@ -50,7 +50,7 @@
 		                		<p>진행중인 상담이 없습니다.</p>
 		                	</c:when>
 		                	<c:otherwise>
-		                		<c:forEach var="item" items="${chattingList}">
+		                		<c:forEach var="item" items="${chattingList}" varStatus="status">
 			                		<div class="reservation-list-item">
 					                	<form action="/construct/write.do?chatNum=${item.chattingNum}" method="POST" class="list-form">
 					                		<input type="hidden" value="${item.userNum}" name="user-num">
@@ -75,8 +75,9 @@
 					                    		</c:otherwise>
 					                    	</c:choose>
 						                    <div class="reservation_number">
-						                    	<input type="hidden" name="estimatePrice" value="${result.estimatePrice }">
-							                    <button type="button" class="construct-btn" onclick="checkPrice()">결제 요청</button>
+						                    	<input type="hidden" name="estimatePrice" id="estimatePrice_${status.index}" value="${item.estimatePrice}">
+												<input type="hidden" name="chattingNum" id="chattingNum_${status.index}" class="chattingNum" value="${item.chattingNum}">
+				 								<button type="button" class="construct-btn" onclick="checkPrice()">결제 요청</button>
 						                    </div>
 						                    <c:choose>
 						                    	<c:when test="${item.endCheck == 'Y'}">
@@ -149,14 +150,16 @@
         <script>
         
         function checkPrice() {
-        	console.log("aaaaaaa")
-        	var price = document.getElementById("estimatePrice");
+        	var price = document.getElementById("estimatePrice_" + index);
+        	const chat = document.getElementById("chattingNum_" + index).value;
         	console.log(price)
-            if (price == null || priceInput.value.trim() === '') {
+            if (price == null) {
                 alert("견적서에 예약금액을 입력해주세요.");
             } else {
-                alert("요청 완료.   금액: " + price);
-                window.location.href = "/purchaseReq.do";
+                alert("요청 완료.   금액: " + price.value);
+                
+                window.location.href = "/purchaseReq.do?chattingNum=" + chat;
+                
             }
         }
         </script>

@@ -15,6 +15,13 @@ public class ChattingDTO {
 	private String userId;
 	private String userName;
 	
+	/**
+	 * 예약금  
+	 */
+	private String estimatePrice;
+	
+	
+	
 	public int getChattingNum() {
 		return chattingNum;
 	}
@@ -83,6 +90,10 @@ public class ChattingDTO {
 	}
 	
 	
-	
-	
+	public String getEstimatePrice() {
+		return estimatePrice;
+	}
+	public void setEstimatePrice(String estimatePrice) {
+		this.estimatePrice = estimatePrice;
+	}
 }
