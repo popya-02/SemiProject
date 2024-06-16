@@ -480,11 +480,19 @@ public class MyPageDao {
 	
 //  나의 견적/공사 내역
 	public int getUserEstimateListCount(MyPageDtoImpl myDto) {
-		String query = "SELECT COUNT(*) AS CNT"
-				+ "     FROM CONSTRUCT c"
-				+ "     JOIN COPY_DETAIL cd"
-				+ "     ON c.COPY_NO = cd.COPY_NO"
-				+ "     WHERE c.USER_NO = ?";
+		String query = """
+				SELECT COUNT(*) AS CNT
+				FROM CONSTRUCT_STATUS cs 
+				JOIN COPY_DETAIL cd
+				ON cs.COPY_NO = cd.COPY_NO
+				WHERE cs.USER_NO = ?
+				""";
+				
+//				"SELECT COUNT(*) AS CNT"
+//				+ "     FROM CONSTRUCT c"
+//				+ "     JOIN COPY_DETAIL cd"
+//				+ "     ON c.COPY_NO = cd.COPY_NO"
+//				+ "     WHERE c.USER_NO = ?";
 		   try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, myDto.getUserNo());
@@ -492,7 +500,7 @@ public class MyPageDao {
 			
 			while(rs.next()) {
 				int result = rs.getInt("CNT");
-				
+			System.out.println("NO : " + myDto.getUserNo());
 				return result;
 			}
 			
@@ -506,14 +514,15 @@ public class MyPageDao {
 //  나의 견적/공사 내역
 	public ArrayList<MyPageDtoImpl> getUserEstimateList(PageInfo pi, MyPageDtoImpl myDto) {
 		ArrayList<MyPageDtoImpl> result = new ArrayList<>();
-		String query = "SELECT cd.COPY_NO, NAME, COPY_NAME, CONSTRUCT_NO, c.PURCHASE_STATUS"
-				+ "     FROM COPY_DETAIL cd"
-				+ "     FULL JOIN COPY_PHOTO cp"
-				+ "        ON cd.COPY_NO = cp.COPY_NO"
-				+ "     FULL JOIN CONSTRUCT c"
-				+ "        ON c.COPY_NO = cd.COPY_NO"
-				+ "     WHERE c.USER_NO = ?"
-				+ "     OFFSET ? ROWS FETCH FIRST ? ROWS ONLY";
+		String query = """
+						SELECT cs.COPY_NO, cp.NAME, cd.COPY_NAME, c.CONSTRUCT_NO, c.PURCHASE_STATUS  
+						FROM CONSTRUCT_STATUS cs 
+						FULL JOIN COPY_DETAIL cd ON cs.COPY_NO = cd.COPY_NO
+						FULL JOIN CONSTRUCT c ON c.USER_NO = cs.USER_NO 
+						FULL JOIN COPY_PHOTO cp ON cp.COPY_NO = cd.COPY_NO
+						WHERE cs.USER_NO = ?
+						OFFSET ? ROWS FETCH FIRST ? ROWS ONLY
+					""";
 		
 		   try {
 			pstmt = con.prepareStatement(query);
@@ -663,10 +672,12 @@ public class MyPageDao {
 			pstmt.setInt(1, chattingNo);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				String purchaseStatus  = rs.getString("CONSTRUCT_NO");
+				String purchaseStatus = rs.getString("PURCHASE_STATUS");
 				
 				MyPageDtoImpl myDTO = new MyPageDtoImpl();
 				myDTO.setConstStatus(purchaseStatus);
+				
+				return 1;
 				
 			}
 		} catch (SQLException e) {

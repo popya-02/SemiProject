@@ -24,7 +24,7 @@
 					<c:when test="${sessionScope.approvalStatus == 'B'}">
 					<nav class="mypage_list">
 			            <ul>
-			                <li class="mypage_list_1"><a href="/MyPageEstimate/EstimateCopy.do?cpage=1">견적/공사 내역</a></li>
+			                <li class="mypage_list_1"><a href="/views/myPage/copyMyPageEstimate.jsp">견적/공사 내역</a></li>
 			                <li class="mypage_list_2"><a href="/MypageInfo/ChattingList.do?copyNo=${sessionScope.copyNum}&chatpage=1">견적 상담 채팅</a></li>
 			                <li class="mypage_list_2"><a href="/MypageInfo/copyInfo.do?copyNo=${sessionScope.copyNum}">정보 수정</a></li>
 			            </ul>
@@ -45,6 +45,7 @@
 		                    <div class="reservation-name">업체명</div>
 		                    <div class="reservation-number">예약번호</div>
 		                </div> -->
+		                <input type="hidden" name="copyNum" value="${sessionScope.copyNum}"> 
 		                <c:choose>
 		                	<c:when test="${empty chattingList}">
 		                		<p>진행중인 상담이 없습니다.</p>
@@ -75,9 +76,9 @@
 					                    		</c:otherwise>
 					                    	</c:choose>
 						                    <div class="reservation_number">
-						                    	<input type="hidden" name="estimatePrice" id="estimatePrice_${status.index}" value="${item.estimatePrice}">
+							                    <input type="hidden" name="estimatePrice" id="estimatePrice_${item.chattingNum}" value="${item.estimatePrice}">
 												<input type="hidden" name="chattingNum" id="chattingNum_${status.index}" class="chattingNum" value="${item.chattingNum}">
-				 								<button type="button" class="construct-btn" onclick="checkPrice()">결제 요청</button>
+				 								<button type="button" class="construct-btn" onclick="checkPrice(${status.index})">결제 요청</button>
 						                    </div>
 						                    <c:choose>
 						                    	<c:when test="${item.endCheck == 'Y'}">
@@ -142,24 +143,26 @@
         <!-- Back to Top -->
         <a href="#" class="btn btn-point border-3 rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
 
+        
     <!-- JavaScript Libraries -->
     <%@ include file="/views/common/jsLib.jsp"%>
 
     <!-- Template Javascript -->
     <script src="/resources/js/main.js"></script>
-        <script>
+     <script>
         
-        function checkPrice() {
-        	var price = document.getElementById("estimatePrice_" + index);
-        	const chat = document.getElementById("chattingNum_" + index).value;
-        	console.log(price)
-            if (price == null) {
+
+        function checkPrice(index) {
+        	var chat = document.getElementById("chattingNum_" + index).value;
+        	const price = document.getElementById("estimatePrice_" + chat).value;
+        	
+        	console.log(price);
+            if (price == null || price == 0) {
                 alert("견적서에 예약금액을 입력해주세요.");
             } else {
-                alert("요청 완료.   금액: " + price.value);
-                
-                window.location.href = "/purchaseReq.do?chattingNum=" + chat;
-                
+                alert("요청 완료.   금액: " + price);
+                console.log(chat);
+                window.location.href = "/purchaseReq.do;
             }
         }
         </script>

@@ -73,7 +73,7 @@
 				</div>
 			</div>
 			<c:choose>
-				<c:when test="${result.constStatus == 'N' && sessionScope.purchaseStatus == 'Y'}">
+				<c:when test="${sessionScope.purchaseStatus == 'S'}">
 					<div class="purchase-box">
 						<a href="/purchase.do">
 						<input type="hidden" name="chatttingNum" value="${cattingNum}"> 

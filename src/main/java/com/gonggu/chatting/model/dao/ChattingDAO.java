@@ -358,11 +358,11 @@ public class ChattingDAO {
 
 	public List<ChattingDTO> getCopyChattingList(PageInfo pi, String sessionCopyNum) {
 		
-		String query = "SELECT cs.CHATTING_NO , cs.COPY_NO , cs.USER_NO , cs.CREATE_DATE , cs.END_CHECK , bu.NAME, c.CONSTRUCT_PRICE"
+		String query = "SELECT cs.CHATTING_NO , cs.COPY_NO , cs.USER_NO , cs.CREATE_DATE , cs.END_CHECK , bu.NAME, c.CONSTRUCT_DEPOSIT"
 					+ " FROM CONSTRUCT_STATUS cs"
 					+ " JOIN BASIC_USER bu"
 					+ "		ON cs.USER_NO = bu.USER_NO "
-					+ "	JOIN CONSTRUCT c"
+					+ "	FULL JOIN CONSTRUCT c"						// price의 값이 null 인 값도 가져오게
 					+ "     ON cs.CHATTING_NO  = c.CHATTING_NO"
 					+ " WHERE cs.COPY_NO = ?"
 					+ " ORDER BY CREATE_DATE DESC"
@@ -387,11 +387,12 @@ public class ChattingDAO {
 				dto.setUserName(rs.getString("NAME"));
 				dto.setChattingIndate(rs.getString("CREATE_DATE"));
 				dto.setEndCheck(rs.getString("END_CHECK"));
-				dto.setEstimatePrice(rs.getString("CONSTRUCT_PRICE"));
+				dto.setEstimatePrice(rs.getString("CONSTRUCT_DEPOSIT"));
 
 //				MyPageDto mdto = new MyPageDto();
 //				mdto.setEstimatePrice(rs.getString("CONSTRUCT_PRICE"));
 				list.add(dto);
+				
 				
 			}
 			
