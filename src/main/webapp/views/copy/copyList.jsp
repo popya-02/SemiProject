@@ -17,22 +17,29 @@
 	<!-- Navbar start -->
 	<%@ include file="/views/common/header.jsp"%>
 	<!-- Navbar End -->
-
-	<div class="container-fluid py-5"
-		style="background-color: #223455; margin-top: 120px">
-		<h1 class="text-center text-white display-6">업체 목록</h1>
-		<!-- <ol class="breadcrumb justify-content-center mb-0">
-                
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active text-white">Shop</li>
-            </ol> -->
-	</div>
+	
+	<div class="banner-box banner">
+		<div class="padding-area1"></div>
+		<div id="carouselId" class="carousel slide position-relative img-banner" data-bs-ride="carousel">
+	        <div class="carousel-inner banner-size " role="listbox">
+	            <div class="carousel-item active">
+	                <img src="/resources/img/banner_modern_ing.jpg" class="img-fluid w-100 h-100" alt="First slide">
+	            </div>
+	            <div class="carousel-item">
+	                <img src="/resources/img/banner_vintage_ing.jpg" class="img-fluid w-100 h-100" alt="Second slide">
+	            </div>
+	        </div>
+	    </div>
+   		<div class="padding-area2"></div>
+    </div>
 
 	<main>
 
 		<!-- 업체 -->
 		<div class="album py-5 bg-body-tertiary">
 			<div class="container">
+			<h2 class="point-text" style="z-index: 2;">업체 목록</h2>
+			<hr>
 
 				<!-- ------------------------------------------------------------------------ -->
 

@@ -12,23 +12,23 @@ function sigupFailCopyFunc(){
 	const copyTel = document.getElementById("phonnum");
 	
 	if(copyId.value == ''){
-		alert("사업자등록번호를 입력해주세요.");
+		alertSwal("사업자등록번호를 입력해주세요.", "", "warning", "");
 	}else if(businessRegistorCheck.value == '' || businessRegistorCheck == 'unavailable'){
-		alert("사업자등록번호를 인증해주세요.");
+		alertSwal("사업자등록번호를 인증해주세요.", "", "warning", "");
 	}else if(copyPwd.value == ''){
-		alert("비밀번호를 올바르게 입력해주세요.");		
+		alertSwal("비밀번호를 올바르게 인증해주세요.", "", "warning", "");
 	}else if(confirmCheck.value == '' || confirmCheck.value == 'unavailable'){
-		alert("비밀번호확인란을 올바르게 입력해주세요.");
+		alertSwal("비밀번호확인란을 올바르게 인증해주세요.", "", "warning", "");
 	}else if(copyName.value == ''){
-		alert("업체명을 입력해주세요.");
+		alertSwal("업체명을 입력해주세요.", "", "warning", "");
 	}else if(ceoName.value == ''){
-		alert("대표자명을 입력해주세요.");
+		alertSwal("대표자명을 입력해주세요.", "", "warning", "");
 	}else if(copyAddr.value == ''){
-		alert("사업장주소를 입력해주세요.");
+		alertSwal("사업장주소를 입력해주세요.", "", "warning", "");
 	}else if(copyRange.value == ''){
-		alert("시공지역을 입력해주세요.");
+		alertSwal("시공지역을 입력해주세요.", "", "warning", "");
 	}else if(copyTel.value == ''){
-		alert("업체 전화번호를 입력해주세요.");
+		alertSwal("업체 전화번호를 입력해주세요.", "", "warning", "");
 	}
 	
 }
@@ -45,24 +45,39 @@ function sigupFailUserFunc(){
 	const phoneCheck = document.getElementById("authenticationCheck");
 	
 	if(userId.value == ''){
-		alert("아이디를 입력해주세요.");
+		alertSwal("아이디를 입력해주세요.", "", "warning", "");
 	}else if(duplicateCheck.value == '' || duplicateCheck.value == 'unavailable'){
-		alert("아이디중복확인을 완료해주세요.");
+		alertSwal("아이디중복확인을 완료해주세요.", "", "warning", "");
 	}else if(userPwd.value == ''){
-		alert("비밀번호를 입력해주세요.");
+		alertSwal("비밀번호를 입력해주세요.", "", "warning", "");
 	}else if(userconfirmCheck.value == '' || userconfirmCheck == 'unavailable'){
-		alert("비밀번호확인란을 올바르게 입력해주세요.");
+		alertSwal("비밀번호확인란을 올바르게 입력해주세요.", "", "warning", "");
 	}else if(userName.value == ''){
-		alert("성함을 입력해주세요.");
+		alertSwal("성함을 입력해주세요.", "", "warning", "");
 	}else if(userAddr.value == ''){
-		alert("주소를 입력해주세요.");
+		alertSwal("주소를 입력해주세요.", "", "warning", "");
 	}else if(nickName.value == ''){
-		alert("별명을 입력해주세요.");
+		alertSwal("별명을 입력해주세요.", "", "warning", "");
 	}else if(userPhone.value == ''){
-		alert("전화번호 입력해주세요.");
+		alertSwal("전화번호를 입력해주세요.", "", "warning", "");
 	}else if(phoneCheck.value == '' || phoneCheck == 'unavailable'){
-		alert("전화번호인증을 완료해주세요.");
+		alertSwal("전화번호인증을 완료해주세요.", "", "warning", "");
 	}
+}
+
+
+function alertSwal(titlee, msg, iconn, cUrl){
+    Swal.fire({
+        title:titlee,
+        text: msg,
+        icon: iconn,
+    }).then(() => {
+        if (cUrl === 'b') {
+            window.history.back();
+        } else if(cUrl === ''){
 	
-	
+		} else {
+            location.href = cUrl;
+        }
+    });
 }

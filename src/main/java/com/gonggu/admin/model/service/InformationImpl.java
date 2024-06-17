@@ -19,14 +19,14 @@ public class InformationImpl implements Information {
 	@Override
 	public ArrayList<InformationDto> getUserList(PageInfo pi, String category, String searchText) {
 	
-		System.out.println(infoDao);
+//		System.out.println(infoDao);
 		return infoDao.getUserList(pi, category, searchText);
 	}
 	
 	@Override
 	public ArrayList<InformationDto> getCopyList(PageInfo pi, String category, String searchText) {
 		
-		System.out.println(infoDao);
+//		System.out.println(infoDao);
 		return infoDao.getCopyList(pi, category, searchText);
 	}
 	
