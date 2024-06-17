@@ -1,6 +1,7 @@
 package com.gonggu.constructExam.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,10 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.gonggu.common.PageInfo;
 import com.gonggu.common.Pagination;
 import com.gonggu.constructExam.model.dto.ConstructDto;
+import com.gonggu.constructExam.model.dto.ConstructDtoImpl;
 import com.gonggu.constructExam.model.service.ConstructServiceImpl;
 
 @WebServlet("/constructExam/constructlist.do")
@@ -51,6 +54,12 @@ public class ConstructListController extends HttpServlet {
         request.setAttribute("row", row);
         request.setAttribute("pi", pi);
         
+        HttpSession session = request.getSession();
+		int userNum = (int)session.getAttribute("userNum");
+		ConstructDtoImpl constructDto = new ConstructDtoImpl();
+		constructDto.setUserNum(userNum);
+		ArrayList<ConstructDtoImpl> getLike = consturctService.getLike(constructDto);
+		request.setAttribute("getLike", getLike);
         RequestDispatcher view = request.getRequestDispatcher("/views/constructExam/constructList.jsp");
 		view.forward(request, response);
 	}

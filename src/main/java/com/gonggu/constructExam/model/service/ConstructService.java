@@ -26,9 +26,15 @@ public interface ConstructService {
 	
 	public int fileUpload(ConstructDtoImpl constructDto);
 	
+	public int fileEdit(ConstructDtoImpl constructDto);
+	
 	public int getExamNo(ConstructDtoImpl constructDto);
 	
+	public int selectLike(ConstructDtoImpl constructDto);
+	public void insertLike(ConstructDtoImpl constructDto);
+	public void deleteLike(ConstructDtoImpl constructDto);
 	
+	public ArrayList<ConstructDtoImpl> getLike(ConstructDtoImpl constructDto);
 
 //	public ConstructDtoImpl selectNo(ConstructDtoImpl ConstructDto);
 //	public int fileUpload(ConstructDtoImpl ConstructDto);
