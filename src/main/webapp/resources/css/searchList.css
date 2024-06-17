@@ -8,6 +8,10 @@
     height: 100%;
 }
 
+.exam-margin{
+	margin: 20px 0;
+}
+
 .example-div{
     display: flex;
     flex-direction: row;
@@ -128,11 +132,8 @@ img {
     
 }
 
-.exam-margin{
-	margin: 20px 0;
-}
-
 .example-div3{
+  padding-top:5px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -140,17 +141,3 @@ img {
   -webkit-box-orient: vertical;
 }
 
-.search-img img:hover {
-	
-}
-
-/* .img-hover {
-	overflow: hidden;
-} */
-
-.img-hover img{
-  transition: all 0.2s linear;
-}
-.img-hover :hover img {
-  transform: scale(1.4);
-}

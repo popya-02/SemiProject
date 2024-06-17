@@ -54,7 +54,7 @@ public class SearchDao {
 					examDto.setExamNo(rs.getInt("EXAM_NO"));
 					examDto.setCopyName(rs.getString("COPY_NAME"));
 					examDto.setExamTitle(rs.getString("TITLE"));
-					examDto.setExamContent(rs.getString("TAG_REMOVE_CONTENT"));
+					examDto.setTagRemoveContent(rs.getString("TAG_REMOVE_CONTENT"));
 					examDto.setExamPictureName(rs.getString("NAME"));
 					examDto.setCategoryNo(rs.getInt("CATEGORY_NO"));
 					examDto.setCategoryName(rs.getString("CATEGORY_NAME"));

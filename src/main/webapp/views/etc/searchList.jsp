@@ -24,7 +24,7 @@
 					<hr class="hr">
 					<div>
 						<h4>시공 예시</h4>
-			 			<div class="example-result row1">
+			 			<div class="example-result row1" >
 							<c:choose>
 								<c:when test="${empty searchExamList}">
 									<div>
@@ -33,49 +33,25 @@
 								</c:when>
 								<c:otherwise>
 									<c:forEach var="item" items="${searchExamList}">
-									<input type="hidden" name="categoryname" values="${items.categoryName}">
-									<div class="example-div exam-margin">
-										<a class="" href="/constructDetail.do?examNo=${item.examNo}">
-										<img src="/resources/img/${item.examPictureName}" name="exampicturename" class="search-img img-hover">
+									<input type="hidden" name="categoryname" values="${item.categoryName}">
+									<div class="example-div exam-margin copy-search">
+										<%-- <a class="" href="/constructDetail.do?examNo=${item.examNo}"> --%>
+										<img src="/resources/img/${item.examPictureName}" name="exampicturename" class="search-img">
 											<div class="example-div-div">
 												<div class="example-obj">
 												    <h4>${item.copyName}</h4>
 													<h5 style="margin-top:5px;">${item.examTitle}</h5>
 												   <%--  <h4 name="categoryname">${item.categoryName}</h4> --%>
-													<p class="example-div3">${item.examContent}</p>
+													<p class="example-div3">${item.tagRemoveContent}</p>
 													<a href="/constructDetail.do?examNo=${item.examNo}" style="margin-top: 15px; margin-left: 300px;" class="btn border border-secondary rounded-pill px-3 py-1 text-primary">자세히 보기</a>
 												</div>
 											</div>
+											<!-- </a> -->
 									     </div>
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
-
 						</div> 
-						<%-- <h4>업체</h4>
-						<div class="search-result row1">
-							<c:choose>
-								<c:when test="${empty searchExamList}">
-									<div>
-										<div style="text-align: center !important; padding: 30px;">등록된 글이 없습니다</div>
-									</div>
-								</c:when>
-								<c:otherwise>
-									<c:forEach var="item" items="${searchExamList}">
-										<a href="/constructDetail.do?examNo=${item.examNo}"class="col-md-4 col-lg-3 inte-pama">
-											<div class="rounded position-relative copy-search">
-												<div class="">
-													<img src="resources/img/${item.examPictureName}" name="exampicturename" style="width:250px; height:250px;" class="rounded-top" alt="사진">
-												</div>
-												<div class="p-3 border point-border border-top-0 rounded-bottom">
-													<h5 name="copyName">${item.copyName}</h5>
-												</div>
-											</div>
-										</a>
-									</c:forEach>
-								</c:otherwise>
-							</c:choose>
-						</div> --%>
 					</div>
 					<div>
 						<h4 style="padding-bottom: 5px">업체</h4>

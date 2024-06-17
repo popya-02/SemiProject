@@ -33,6 +33,7 @@ public class SearchController extends HttpServlet {
 		
 		String examTitle = request.getParameter("examtitle");
 		String examContent = request.getParameter("examcontent");
+		String tagRemoveContent = request.getParameter("tagremovecontent");
 		String examPictureName = request.getParameter("exampicturename");
 		String copyName = request.getParameter("copyname");
 		String pictureName = request.getParameter("picturename");

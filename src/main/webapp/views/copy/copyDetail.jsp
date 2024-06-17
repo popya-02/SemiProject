@@ -52,7 +52,7 @@
 							<div class="btn-box">
 								<h4 class="fw-bold">${copyDetail[0].copyName}</h4>
 								<c:if test="${sessionScope.userType == 'basicUser' }">
-							        <a href="/chatting/connection.do?copyNum=${copyDetail[0].copyNo}&userNum=${sessionScope.userNum}" class="tlrhd-border border border-secondary text-primary rounded-pill px-3 py-2">시공 상담하기</a>
+							        <a href="/chatting/connection.do?copyNum=${copyDetail[0].copyNo}&userNum=${sessionScope.userNum}" class="btn border border-secondary rounded-pill px-3 py-1 text-primary">시공 상담하기</a>
 						        </c:if>							
 							</div>
 

@@ -13,8 +13,16 @@ public class SearchDto {
 	private String CategoryName;
 	private String PicturePath;
 	private String ExamPicturePath;
+	private String TagRemoveContent;
 	
 	
+	
+	public String getTagRemoveContent() {
+		return TagRemoveContent;
+	}
+	public void setTagRemoveContent(String tagRemoveContent) {
+		TagRemoveContent = tagRemoveContent;
+	}
 	public String getPicturePath() {
 		return PicturePath;
 	}

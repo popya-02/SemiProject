@@ -233,14 +233,17 @@ public class ConstructDao {
 	    String query = "UPDATE CONST_EXAM ce"  
 	            +"      SET CATEGORY_NO=?,"
 	            +"      TITLE=?,"
-	            +"      CONTENT=?"
+	            +"      CONTENT=?,"
+	            +"      TAG_REMOVE_CONTENT=?"
 	            +"      WHERE EXAM_NO=?"; 
+	    
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, constructDto.getCategoryNo());
 			pstmt.setString(2, constructDto.getTitle());
 			pstmt.setString(3, constructDto.getContent());
-			pstmt.setInt(4, constructDto.getExamNo());
+			pstmt.setString(4, constructDto.getTagRemoveContent());
+			pstmt.setInt(5, constructDto.getExamNo());
 			int result = pstmt.executeUpdate();
 			return result;
 			
