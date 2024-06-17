@@ -48,7 +48,7 @@ public class CopyDao {
 			while (rs.next()) {
 				CopyDto dto = new CopyDto();
 				dto.setCopyName(rs.getString("COPY_NAME"));
-				dto.setCopyNo(rs.getString("COPY_NO"));
+				dto.setCopyNum(rs.getString("COPY_NO"));
 				dto.setCopyPhoto(rs.getString("NAME"));
 				list.add(dto);
 			}
@@ -79,7 +79,7 @@ public class CopyDao {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
             	CopyDto dto = new CopyDto();
-            	dto.setCopyNo(rs.getString("COPY_NO"));
+            	dto.setCopyNum(rs.getString("COPY_NO"));
                 dto.setCopyName(rs.getString("COPY_NAME"));
                 dto.setCopyContent(rs.getString("CONTENT"));
                 dto.setCopyAddress(rs.getString("COPY_ADDR"));
@@ -186,7 +186,7 @@ public class CopyDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, copyDto.getCopyNo());
+			pstmt.setString(1, copyDto.getCopyNum());
 			pstmt.setString(2, copyDto.getReview());
 			pstmt.setInt(3, copyDto.getUserNum());
 			result = pstmt.executeUpdate();
