@@ -61,7 +61,6 @@ public class ConstructCategoryController extends HttpServlet {
         jsonResponse.add("constructList", gson.toJsonTree(constructList));
         jsonResponse.add("categoryList", gson.toJsonTree(category));
         jsonResponse.addProperty("row", row);
-        request.setAttribute("pi", pi);
         jsonResponse.add("pi", gson.toJsonTree(pi));
 
         response.getWriter().write(jsonResponse.toString());

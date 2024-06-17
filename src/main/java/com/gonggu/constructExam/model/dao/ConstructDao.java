@@ -382,11 +382,11 @@ public class ConstructDao {
 	public int getListCategoryCount(int categoryNum) {
 		String query = "SELECT COUNT(ce.EXAM_NO) AS CNT" 
 			    + "         FROM CONST_EXAM ce"; 
-	    if(categoryNum != 0) {
-	    	query += "	AND CATEGORY_NO = ?";
-	    }
 	    query += "         FULL JOIN EXAM_PICTURE ep"
 			   + "     	ON ce.EXAM_NO = ep.EXAM_NO";
+	    if(categoryNum != 0) {
+	    	query += "	WHERE CATEGORY_NO = ?";
+	    }
 
 		try {
 			pstmt = con.prepareStatement(query);

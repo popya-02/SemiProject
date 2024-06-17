@@ -65,7 +65,8 @@
 }
 
 .img-contain{
-	object-fit: contain;
+	height: -webkit-fill-available;
+	
 }
 
 .banner-size{
@@ -143,4 +144,12 @@ hr{
 .exam-title{
 	z-index: 2;
 	margin-left: 30px;
+}
+
+.exam-list-box{
+	width: 100%;
+}
+
+.album{
+	padding-bottom: 25px !important;
 }

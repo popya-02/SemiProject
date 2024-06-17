@@ -38,7 +38,6 @@
 		<div class="album py-5 bg-body-tertiary">
 			<div class="container" id="construct-exam-box">
 				<h2 class="point-text exam-title">예시 목록</h2>
-				<input type="hidden" name="copypage"  id="copypage" value="${pi.copypage}">
 				<hr>
 				<div class="exam-box">
 					<div class="category-box">
@@ -58,7 +57,7 @@
 							<c:set var="row" value="${row-1}" />
 						</c:forEach>
 					</div>
-					<div>
+					<div class="exam-list-box">
 						<c:if test="${sessionScope.userType == 'copyUser'}">
 							<div class="submit-btn">
 								<a href="/form/constructEnroll.do">
@@ -83,7 +82,7 @@
 											<div class="col">
 												<div class="card shadow-sm he-min">
 													<a href="/constructDetail.do?examNo=${construct.examNo}" class="img-size ">
-													<img class="bd-placeholder-img card-img-top" src="/resources/img/${construct.fileName}" class="img-contain" fill="#55595c" />
+													<img class="bd-placeholder-img card-img-top img-contain" src="/resources/img/${construct.fileName}" />
 													</a>
 													<p class="djqcpaud">${construct.copyName}</p>
 					
@@ -116,37 +115,29 @@
 	</main>
 
 	<!-- ---------------------------------페이지네이션------------------------------------------ -->
-	<div class="col-12" id="paginaetion-box">
-		<div class="pagination d-flex justify-content-center mt-5">
-
+	<div class="col-12">
+		<div class="pagination d-flex justify-content-center mt-3" id="paginaetion-box">
 			<c:choose>
 				<c:when test="${pi.copypage == 1 }">
-					<a href="#" class="page-n rounded">&laquo;</a>
+					<a onclick="checkFunc()" id="categoryNo" class="page-n rounded" >&laquo;</a>
 				</c:when>
 				<c:otherwise>
-					<a
-						href="/constructExam/constructlist.do?constructpage=${pi.copypage-1}"
-						class="page-n rounded">&laquo;</a>
+					<a onclick="checkFunc(1)" id="categoryNo" class="page-n rounded" >&laquo;</a>
 				</c:otherwise>
 			</c:choose>
 
 			<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
-				<a href="/constructExam/constructlist.do?constructpage=${page}"
-					class="page-n rounded">${page}</a>
+				<a class="page-n rounded" id="copypageNum" name="copypageNum">${page}</a>
 			</c:forEach>
 
 			<c:choose>
 				<c:when test="${pi.copypage == pi.maxPage }">
-					<a href="#" class="page-n rounded">&raquo;</a>
+					<a onclick="checkFunc()" id="categoryNo" class="page-n rounded" >&raquo;</a>
 				</c:when>
 				<c:otherwise>
-					<a
-						href="/constructExam/constructlist.do?constructpage=${pi.copypage+1}"
-						class="page-n rounded">&raquo;</a>
+					<a onclick="checkFunc(2)" id="categoryNo" class="page-n rounded" >&raquo;</a>
 				</c:otherwise>
 			</c:choose>
-
-
 		</div>
 	</div>
 

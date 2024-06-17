@@ -52,7 +52,6 @@ public class ConstructListController extends HttpServlet {
         request.setAttribute("constructList", constructList);
         request.setAttribute("row", row);
         request.setAttribute("pi", pi);
-
         
         RequestDispatcher view = request.getRequestDispatcher("/views/constructExam/constructList.jsp");
 		view.forward(request, response);

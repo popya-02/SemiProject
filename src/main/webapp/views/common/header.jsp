@@ -27,7 +27,7 @@
 			</button>
 			<div class="collapse navbar-collapse nav-menu" id="navbarCollapse">
 				<div class="navbar-nav bg-white">
-					<a href="/constructExam/constructlist.do?constructpage=1&categoryNum=0"
+					<a href="/constructExam/constructlist.do?constructpage=1"
 						class="nav-item nav-link point-text">시공예시</a>
 						
 						<a href="/copy/copylist.do?copypage=1"
