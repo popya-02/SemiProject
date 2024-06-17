@@ -18,3 +18,6 @@
         <link href="/resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <!-- Customized Bootstrap Stylesheet -->
         <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+        
+        <!-- alert -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.gonggu.common.AlertMethod;
 import com.gonggu.member.model.dto.MemberDTO;
 import com.gonggu.member.model.service.MemberServiceImpl;
 
@@ -30,6 +31,8 @@ public class SignupCopyController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		
+		AlertMethod alert = new AlertMethod();
+		
 		String businessRegistorCheck = request.getParameter("businessRegistorCheck");
 		String confirmCheck = request.getParameter("confirmCheck");
 		
@@ -45,11 +48,11 @@ public class SignupCopyController extends HttpServlet {
 		String hashPassword = BCrypt.hashpw(copyPwd, salt);
 		
 		if(businessRegistorCheck.equals("unavailable")){
-			returnAlert(response, "사업자등록번호 인증을 완료해주세요.", "/form/signupcopyForm.do");
+			alert.returnAlert(response, "사업자등록번호 인증을 완료해주세요.", "", "warning", "");
 			return;
 			
 		}else if(confirmCheck.equals("unavailable")) {
-			returnAlert(response, "비밀번호재확인란을 올바르게 입력해주세요.", "/form/signupcopyForm.do");
+			alert.returnAlert(response, "비밀번호재확인란을 올바르게 입력해주세요.", "", "warning", "");
 			return;
 		}else {
 			MemberDTO memberDto = new MemberDTO();
@@ -67,22 +70,15 @@ public class SignupCopyController extends HttpServlet {
 			
 			if(result == 1) {
 				//성공
-				returnAlert(response, "회원가입이 완료되었습니다. 관리자의 승인을 기다려주세요.", "/");
+				alert.returnAlert(response, "회원가입이 완료","관리자의 승인을 기다려주세요.", "success", "/");
 			}else{
 				// 실패
-				returnAlert(response, "회원가입 실패", "/form/signupcopyForm.do");
+				alert.returnAlert(response, "회원가입 실패","정보를 올바르게 입력해주세요.", "warning", "");
 			}
 			
 		}
 		
 		
-	}
-	
-	private void returnAlert(HttpServletResponse response, String msg, String url) throws IOException {
-		response.getWriter().write("<script>"
-								  +"	alert('"+ msg +"');"
-  								  +"	location.href='"+ url + "';"
-								  +"</script>");	// js 코드로 넘겨주기
 	}
 
 }

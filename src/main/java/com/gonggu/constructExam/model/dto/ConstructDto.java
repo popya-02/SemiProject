@@ -9,8 +9,9 @@ public class ConstructDto {
 	private String copyName; // 업체 이름
 	private String title; // 시공사례 제목
 	private String content; // 시공사례 내용
-	private String indate; // 작성일
-	private String update; // 수정일
+	private String tagRemoveContent; // 시공사례 내용(태그 제거본)
+	private String indate;  // 작성일
+	private String update;  // 수정일
 	private String delete;
 	private int constructNo; // 시공 번호
 	private int categoryNo; // 카테고리 번호
@@ -220,5 +221,11 @@ public class ConstructDto {
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+	public String getTagRemoveContent() {
+		return tagRemoveContent;
+	}
+	public void setTagRemoveContent(String tagRemoveContent) {
+		this.tagRemoveContent = tagRemoveContent;
 	}
 }

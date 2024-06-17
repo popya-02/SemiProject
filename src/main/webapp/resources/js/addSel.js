@@ -53,42 +53,41 @@ function saveConstruct() {
 	const sumPrice = document.getElementById("sumPrice").value;
 	const chatNum = document.getElementById("chat-num").value;
 	
+	
 	const addBtn = document.getElementById("add-btn");
 	const removeSel = document.getElementById("remove-btn-2");
-	addBtn.remove();
-	if(removeSel){
-		removeSel.remove();		
-	}
 
 	let outerHtmlString = html.outerHTML;
 	
 	if(copyNum == ''){
-		alert("사업자등록번호를 입력해주세요.");
+		alertSwal("사업자등록번호를 입력해주세요.", "", "warning", "");
 	}else if(basicName == ''){
-		alert("고객명을 입력해주세요.");
-		
+		alertSwal("고객명을 입력해주세요.", "", "warning", "");
 	}else if(startDate == ''){
-		alert("시작일을 입력해주세요.");
-		
+		alertSwal("시작일을 입력해주세요.", "", "warning", "");
 	}else if(endDate == ''){
-		alert("마감일을 입력해주세요.");
-		
+		alertSwal("마감일을 입력해주세요.", "", "warning", "");
 	}else if(addr == ''){
-		alert("시공지 주소를 입력해주세요.");
-		
+		alertSwal("시공지 주소를 입력해주세요.", "", "warning", "");
 	}else if(range == ''){
-		alert("평수를 입력해주세요.");
-		
+		alertSwal("평수를 입력해주세요.", "", "warning", "");
 	}else if(tel == ''){
-		alert("전화번호를 입력해주세요.");
-		
+		alertSwal("전화번호를 입력해주세요.", "", "warning", "");
 	}else if(estimatePrice == ''){
-		alert("예약금을 입력해주세요.");
-		
+		alertSwal("예약금을 입력해주세요.", "", "warning", "");
 	}else if(sumPrice == ''){
-		alert("합계금을 입력해주세요.");
+		alertSwal("합계금을 입력해주세요.", "", "warning", "");
 		
 	}else{
+		
+		if(addBtn){
+			addBtn.remove();
+		}
+		
+		if(removeSel){
+			removeSel.remove();		
+		}
+		
 		$.ajax({
 			type: "POST",	// method
 			url: "/construct/saveConstruct.do",
@@ -107,14 +106,15 @@ function saveConstruct() {
 			},	// 전송할 데이터 {키 : 값}
 			success: function(data) {
 				if (data == 'success') {
-					alert("견적서가 저장되었습니다.");
-					window.history.back();
+					console.log("d");
+					alertSwal("저장 성공", "견적서가 저장되었습니다.", "success", "");
 				} else {
-					alert("저장실패");
-	
+					console.log("e");
+					alertSwal("저장 실패", "", "success", "");
 				}
 			},
 			error: function() {
+				console.log("f");
 				alert("error");
 			}
 		})
@@ -151,11 +151,10 @@ function updateConstruct(){
 		},	// 전송할 데이터 {키 : 값}
 		success: function(data) {
 			if (data == 'success') {
-				alert("견적서가 수정되었습니다.");
+				alertSwal("수정 성공", "견적서가 수정되었습니다.", "success", "");
 				window.history.back();
 			} else {
-				alert("수정실패");
-
+				alertSwal("수정 실패", "", "success", "");
 			}
 		},
 		error: function() {
@@ -164,14 +163,21 @@ function updateConstruct(){
 	})
 	
 }
-
-
-
-
-
-
-
-
+function alertSwal(titlee, msg, iconn, cUrl){
+    Swal.fire({
+        title:titlee,
+        text: msg,
+        icon: iconn,
+    }).then(() => {
+        if (cUrl === 'b') {
+            window.history.back();
+        } else if(cUrl === ''){
+	
+		} else {
+            location.href = cUrl;
+        }
+    });
+}
 
 
 
