@@ -9,9 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.gonggu.common.PageInfo;
 import com.gonggu.common.Pagination;
+import com.gonggu.constructExam.model.dto.ConstructDtoImpl;
+import com.gonggu.constructExam.model.service.ConstructServiceImpl;
 import com.gonggu.copy.model.dto.CopyDto;
 import com.gonggu.copy.model.service.CopyServiceImpl;
 
@@ -51,6 +54,14 @@ public class CopyListController extends HttpServlet {
         request.setAttribute("row", row);
         request.setAttribute("pi", pi);
         
+        ConstructServiceImpl consturctService = new ConstructServiceImpl();
+        HttpSession session = request.getSession();
+     		int userNum = (int)session.getAttribute("userNum");
+     		ConstructDtoImpl constructDto = new ConstructDtoImpl();
+     		constructDto.setUserNum(userNum);
+     		ArrayList<ConstructDtoImpl> getLike = consturctService.getLike(constructDto);
+     		request.setAttribute("getLike", getLike);
+     		
         RequestDispatcher view = request.getRequestDispatcher("/views/copy/copyList.jsp");
 		view.forward(request, response);
 	}

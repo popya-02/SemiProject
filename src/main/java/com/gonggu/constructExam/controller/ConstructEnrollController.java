@@ -70,7 +70,7 @@ public class ConstructEnrollController extends HttpServlet {
 		
 		Collection<Part> parts = request.getParts();
 		int getExamNo = 0;
-		String uploadDirectory = "C:\\greenAcademy\\dev\\workspace\\semiProject\\SemiProject\\src\\main\\webapp\\resources\\img";
+		String uploadDirectory = "C:\\dev\\work-space\\semiProject\\SemiProject\\src\\main\\webapp\\resources\\img";
 		 File filePath = new File(uploadDirectory);
 	        if (!filePath.exists()) {
 	            filePath.mkdir();

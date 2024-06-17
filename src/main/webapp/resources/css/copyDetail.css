@@ -1,3 +1,31 @@
+.btn{
+	margin-bottom:0px !important;
+}
+
+.tlrhd-like{
+    border: 2px solid red !important;
+    color: red !important;
+    background-color: #ffffff;
+    font-weight: bold;
+    transition: 0.3s;
+    font-size:30px;
+    
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    
+}
+.tlrhd-like:hover,
+.tlrhd-like.clicked {
+    background-color: red !important;
+    color: white !important;
+    transition: 0.3s;
+}
+
 .container {
     display: flex;
     height: 100%;

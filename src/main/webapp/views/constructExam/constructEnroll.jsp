@@ -71,8 +71,8 @@
 									<p>파일 명:</p>
 									<p id="fileName"></p>
 								</div>
-								<div class="buttonContainer">
-									<div class="submitButton" id="submitButton">등록</div>
+								<div class="buttonContainer" id="submitButton">
+									<div class="submitButton">등록</div>
 								</div>
 							</div>
 						</div>

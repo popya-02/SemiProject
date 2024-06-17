@@ -62,10 +62,34 @@ public class ConstructServiceImpl implements ConstructService {
 	    }
 	 
 	 @Override
+	 public int fileEdit(ConstructDtoImpl constructDto) {
+		 return constructDao.fileEdit(constructDto);
+	 }
+	 
+	 @Override
 	 public int getExamNo(ConstructDtoImpl constructDto) {
 		 return constructDao.getExamNo(constructDto);
 	 }
+	 
+	 @Override
+	    public int selectLike(ConstructDtoImpl constructDto) {
+	        return constructDao.selectLike(constructDto);
+	    }
 
+	    @Override
+	    public void insertLike(ConstructDtoImpl constructDto) {
+	        constructDao.insertLike(constructDto);
+	    }
+
+	    @Override
+	    public void deleteLike(ConstructDtoImpl constructDto) {
+	        constructDao.deleteLike(constructDto);
+	    }	
+
+	   @Override
+	   public ArrayList<ConstructDtoImpl> getLike(ConstructDtoImpl constructDto) {
+		   return constructDao.getLike(constructDto);
+	   };
 	
 //	@Override
 //	public ConstructDtoImpl selectNo(ConstructDtoImpl constructDto) {
