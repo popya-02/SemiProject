@@ -31,12 +31,16 @@ public class ConstructDetailController extends HttpServlet {
 		
 		request.setAttribute("detail", detail);
 		
-		 ConstructServiceImpl consturctService = new ConstructServiceImpl();
-		HttpSession session = request.getSession();
-		int userNum = (int)session.getAttribute("userNum");
-		ConstructDtoImpl constructDto = new ConstructDtoImpl();
-		constructDto.setUserNum(userNum);
-		ArrayList<ConstructDtoImpl> getLike = consturctService.getLike(constructDto);
+        ConstructDtoImpl constructDto = new ConstructDtoImpl();
+        try {
+        	HttpSession session = request.getSession();
+        	int userNum = (int)session.getAttribute("userNum");
+        	constructDto.setUserNum(userNum);
+        }catch(NullPointerException e){
+        	
+        }
+        
+        ArrayList<ConstructDtoImpl> getLike = constructService.getLike(constructDto);
 		request.setAttribute("getLike", getLike);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/constructExam/constructDetail.jsp");

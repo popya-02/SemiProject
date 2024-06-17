@@ -32,7 +32,7 @@ public class CopyListController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		CopyServiceImpl copyService = new CopyServiceImpl();
-		
+		ConstructServiceImpl constructService = new ConstructServiceImpl();
 		int copypage = Integer.parseInt(request.getParameter("copypage"));
 		
 		// 전체 게시글 수
@@ -54,13 +54,17 @@ public class CopyListController extends HttpServlet {
         request.setAttribute("row", row);
         request.setAttribute("pi", pi);
         
-        ConstructServiceImpl consturctService = new ConstructServiceImpl();
-        HttpSession session = request.getSession();
-     		int userNum = (int)session.getAttribute("userNum");
-     		ConstructDtoImpl constructDto = new ConstructDtoImpl();
-     		constructDto.setUserNum(userNum);
-     		ArrayList<ConstructDtoImpl> getLike = consturctService.getLike(constructDto);
-     		request.setAttribute("getLike", getLike);
+        ConstructDtoImpl constructDto = new ConstructDtoImpl();
+        try {
+        	HttpSession session = request.getSession();
+        	int userNum = (int)session.getAttribute("userNum");
+        	constructDto.setUserNum(userNum);
+        }catch(NullPointerException e){
+        	
+        }
+        
+        ArrayList<ConstructDtoImpl> getLike = constructService.getLike(constructDto);
+		request.setAttribute("getLike", getLike);
      		
         RequestDispatcher view = request.getRequestDispatcher("/views/copy/copyList.jsp");
 		view.forward(request, response);
