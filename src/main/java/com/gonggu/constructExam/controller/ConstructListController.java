@@ -30,12 +30,12 @@ public class ConstructListController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		ConstructServiceImpl consturctService = new ConstructServiceImpl();
+		ConstructServiceImpl constructService = new ConstructServiceImpl();
 		
 		int copypage = Integer.parseInt(request.getParameter("constructpage"));
 		
 		// 전체 게시글 수
-		int listCount = consturctService.getListCount();
+		int listCount = constructService.getListCount();
 		
 		// 보여질 페이지 수 
 		int pageLimit = 5;
@@ -45,7 +45,7 @@ public class ConstructListController extends HttpServlet {
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, copypage, pageLimit, boardLimit);
 				
-		List<ConstructDto> constructList = consturctService.getConstructList(pi);
+		List<ConstructDto> constructList = constructService.getConstructList(pi);
 		
 		int row = listCount - (copypage - 1) * pageLimit;
 
@@ -54,11 +54,16 @@ public class ConstructListController extends HttpServlet {
         request.setAttribute("row", row);
         request.setAttribute("pi", pi);
         
-        HttpSession session = request.getSession();
-		int userNum = (int)session.getAttribute("userNum");
-		ConstructDtoImpl constructDto = new ConstructDtoImpl();
-		constructDto.setUserNum(userNum);
-		ArrayList<ConstructDtoImpl> getLike = consturctService.getLike(constructDto);
+        ConstructDtoImpl constructDto = new ConstructDtoImpl();
+        try {
+        	HttpSession session = request.getSession();
+        	int userNum = (int)session.getAttribute("userNum");
+        	constructDto.setUserNum(userNum);
+        }catch(NullPointerException e){
+        	
+        }
+        
+        ArrayList<ConstructDtoImpl> getLike = constructService.getLike(constructDto);
 		request.setAttribute("getLike", getLike);
         RequestDispatcher view = request.getRequestDispatcher("/views/constructExam/constructList.jsp");
 		view.forward(request, response);
