@@ -26,7 +26,7 @@ public class CopyDetailController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+//
 		String copyNo = request.getParameter("copyNo");
 
 		CopyService copyService = new CopyServiceImpl();
