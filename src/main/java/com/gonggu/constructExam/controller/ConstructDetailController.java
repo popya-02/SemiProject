@@ -31,6 +31,18 @@ public class ConstructDetailController extends HttpServlet {
 		
 		request.setAttribute("detail", detail);
 		
+        ConstructDtoImpl constructDto = new ConstructDtoImpl();
+        try {
+        	HttpSession session = request.getSession();
+        	int userNum = (int)session.getAttribute("userNum");
+        	constructDto.setUserNum(userNum);
+        }catch(NullPointerException e){
+        	
+        }
+        
+        ArrayList<ConstructDtoImpl> getLike = constructService.getLike(constructDto);
+		request.setAttribute("getLike", getLike);
+		
 		RequestDispatcher view = request.getRequestDispatcher("/views/constructExam/constructDetail.jsp");
 		view.forward(request, response);
 	}

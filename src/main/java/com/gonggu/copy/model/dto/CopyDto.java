@@ -4,7 +4,7 @@ package com.gonggu.copy.model.dto;
 public class CopyDto {
 
 	private String copyName;
-	private String copyNo;
+	private String copyNum;
 	private String copyPhoto;
 	private String examPhoto;
 	private String copyContent;
@@ -91,11 +91,11 @@ public class CopyDto {
 	public void setCopyName(String copyName) {
 		this.copyName = copyName;
 	}
-	public String getCopyNo() {
-		return copyNo;
+	public String getCopyNum() {
+		return copyNum;
 	}
-	public void setCopyNo(String copyNo) {
-		this.copyNo = copyNo;
+	public void setCopyNum(String copyNum) {
+		this.copyNum = copyNum;
 	}
 	public String getCopyPhoto() {
 		return copyPhoto;

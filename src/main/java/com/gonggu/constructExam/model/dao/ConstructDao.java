@@ -75,8 +75,6 @@ public class ConstructDao {
 	}
 
 	public List<ConstructDto> getConstructList(PageInfo pi) {
-		
-		
 		List<ConstructDto> list = new ArrayList<>();
 		
 		String	query = "SELECT ce.DELETE_STATUS,cu.copy_name, ce.title, ce.exam_no, ep.path, ep.name, ep.EXAM_PICTURE_NO, ce.CATEGORY_NO"
@@ -113,7 +111,6 @@ public class ConstructDao {
 
 			} catch (SQLException e) {
 				e.printStackTrace();
-
 			}
 			
 
@@ -275,6 +272,26 @@ public class ConstructDao {
 	        return result;
 	    }
 	 
+	 public int fileEdit(ConstructDtoImpl constructDto) {
+	        String query = "UPDATE EXAM_PICTURE SET NAME = ?"
+	        		   +   "WHERE EXAM_NO = ?";
+	        int result = 0;
+	        
+	        try {
+	            pstmt = con.prepareStatement(query);
+	            pstmt.setString(1, constructDto.getFileName());
+	            pstmt.setInt(2, constructDto.getExamNo());
+	            System.out.println("파일네임:"+constructDto.getFileName());
+	            System.out.println("examNo:"+constructDto.getExamNo());
+	            
+	            result = pstmt.executeUpdate();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        
+	        return result;
+	    }
+	 
 	 public int getExamNo(ConstructDtoImpl constructDto) {
 		 String query = "SELECT MAX(EXAM_NO) AS MAX FROM CONST_EXAM";
 		
@@ -409,4 +426,67 @@ public class ConstructDao {
 		return 0;
 	
 	}
+	 
+
+		public int selectLike(ConstructDtoImpl constructDto) {
+			String query = "SELECT * FROM LIKE_COPY"
+					   + "  WHERE USER_NO = ? AND COPY_NO = ?";
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setInt(1, constructDto.getUserNum());
+				pstmt.setString(2, constructDto.getCopyNum());
+				ResultSet rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					return rs.getInt(1) > 0 ? 1 : 0;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return 0;
+		};
+		public void insertLike(ConstructDtoImpl constructDto) {
+			String query = "INSERT INTO LIKE_COPY VALUES(like_copy_seq.nextval,?,?)";
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setInt(1, constructDto.getUserNum());
+				pstmt.setString(2, constructDto.getCopyNum());
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		};
+		public void deleteLike(ConstructDtoImpl constructDto) {
+			String query = "DELETE FROM LIKE_COPY WHERE copy_no = ? AND user_no = ?";
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, constructDto.getCopyNum());
+				pstmt.setInt(2, constructDto.getUserNum());
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		};
+		public ArrayList<ConstructDtoImpl> getLike(ConstructDtoImpl constructDto) {
+			ArrayList<ConstructDtoImpl> result = new ArrayList<>();
+			String query = "SELECT * FROM LIKE_COPY"
+					+"      WHERE USER_NO=?";
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setInt(1, constructDto.getUserNum());
+				ResultSet rs = pstmt.executeQuery();
+				while(rs.next()) {
+					String copyNum = rs.getString("COPY_NO");
+					ConstructDtoImpl Dto = new ConstructDtoImpl();
+					Dto.setCopyNum(copyNum);
+					
+					result.add(Dto);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
+		
 }

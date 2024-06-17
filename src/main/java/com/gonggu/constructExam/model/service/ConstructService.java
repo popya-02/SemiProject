@@ -26,11 +26,21 @@ public interface ConstructService {
 	
 	public int fileUpload(ConstructDtoImpl constructDto);
 	
+	public int fileEdit(ConstructDtoImpl constructDto);
+	
 	public int getExamNo(ConstructDtoImpl constructDto);
 	
 	public List<ConstructDto> getCategory();
 	
+	public int selectLike(ConstructDtoImpl constructDto);
+	
+	public void insertLike(ConstructDtoImpl constructDto);
+	
+	public void deleteLike(ConstructDtoImpl constructDto);
+	
 	public List<ConstructDto> getConstructCategoryList(PageInfo pi, int categoryNum);
+	
+	public ArrayList<ConstructDtoImpl> getLike(ConstructDtoImpl constructDto);
 
 	public int getListCategoryCount(int categoryNum);
 //	public ConstructDtoImpl selectNo(ConstructDtoImpl ConstructDto);
