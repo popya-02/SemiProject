@@ -38,13 +38,18 @@ public class CopyDetailController extends HttpServlet {
 		request.setAttribute("getReview", getReview);
 		request.setAttribute("copyDetailEx", copyDetailEx);
 		
-		ConstructServiceImpl consturctService = new ConstructServiceImpl();
-		HttpSession session = request.getSession();
-		int userNum = (int)session.getAttribute("userNum");
+		ConstructServiceImpl constructService = new ConstructServiceImpl();
 		ConstructDtoImpl constructDto = new ConstructDtoImpl();
-		constructDto.setUserNum(userNum);
-		ArrayList<ConstructDtoImpl> getLike = consturctService.getLike(constructDto);
-		request.setAttribute("getLike", getLike);
+		 try {
+	        	HttpSession session = request.getSession();
+	        	int userNum = (int)session.getAttribute("userNum");
+	        	constructDto.setUserNum(userNum);
+	        }catch(NullPointerException e){
+	        	
+	        }
+	        
+	        ArrayList<ConstructDtoImpl> getLike = constructService.getLike(constructDto);
+			request.setAttribute("getLike", getLike);
 		
 		request.getRequestDispatcher("/views/copy/copyDetail.jsp").forward(request, response);
 	}
