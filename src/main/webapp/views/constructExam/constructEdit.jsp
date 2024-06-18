@@ -11,6 +11,7 @@
 <link href="/resources/css/style.css" rel="stylesheet">
 <link href="/resources/css/signup.css" rel="stylesheet">
 <link href="/resources/css/constructEnroll.css" rel="stylesheet">
+
 </head>
 <body>
 	<!-- Navbar start -->
@@ -130,6 +131,8 @@
 
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/nowtime.js"></script>
+	<script src="/resources/js/smarteditor.js"></script>
+	<script src="/resources/smarteditor2/js/HuskyEZCreator.js"></script>
 </body>
 
 </html>

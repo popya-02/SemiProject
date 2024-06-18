@@ -32,10 +32,14 @@ public class ConstructListController extends HttpServlet {
 		
 		ConstructServiceImpl constructService = new ConstructServiceImpl();
 		
+		
+			
 		int copypage = Integer.parseInt(request.getParameter("constructpage"));
 		
+		int categoryNum = Integer.parseInt(request.getParameter("categoryNum"));
+		
 		// 전체 게시글 수
-		int listCount = constructService.getListCount();
+		int listCount = constructService.getListCategoryCount(categoryNum);
 		
 		// 보여질 페이지 수 
 		int pageLimit = 5;
@@ -45,11 +49,16 @@ public class ConstructListController extends HttpServlet {
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, copypage, pageLimit, boardLimit);
 				
-		ArrayList<ConstructDto> constructList = constructService.getConstructList(pi);
+
+		List<ConstructDto> constructList = constructService.getConstructCategoryList(pi, categoryNum);
+
 		
 		int row = listCount - (copypage - 1) * pageLimit;
 
+		List<ConstructDto> category = constructService.getCategory();
 		
+		request.setAttribute("categoryList", category);
+		request.setAttribute("checkCategory", categoryNum);
         request.setAttribute("constructList", constructList);
         request.setAttribute("row", row);
         request.setAttribute("pi", pi);
@@ -58,6 +67,7 @@ public class ConstructListController extends HttpServlet {
         try {
         	HttpSession session = request.getSession();
         	int userNum = (int)session.getAttribute("userNum");
+        	
         	constructDto.setUserNum(userNum);
         }catch(NullPointerException e){
         	

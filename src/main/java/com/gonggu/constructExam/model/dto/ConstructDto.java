@@ -21,6 +21,8 @@ public class ConstructDto {
 	private String constructStartDate; // 시공 시작일
 	private String constructEndDate; // 시공 종료일
 	private String category; // 카테고리
+	private String categoryPictureName; // 카테고리 사진이름
+	private String categoryPicturePath; // 카테고리 사진경로
 	private int examNo;
 	private String deleteStatus;
 	private String deleteDate;
@@ -228,4 +230,22 @@ public class ConstructDto {
 	public void setTagRemoveContent(String tagRemoveContent) {
 		this.tagRemoveContent = tagRemoveContent;
 	}
+
+	public String getCategoryPictureName() {
+		return categoryPictureName;
+	}
+
+	public void setCategoryPictureName(String categoryPictureName) {
+		this.categoryPictureName = categoryPictureName;
+	}
+
+	public String getCategoryPicturePath() {
+		return categoryPicturePath;
+	}
+
+	public void setCategoryPicturePath(String categoryPicturePath) {
+		this.categoryPicturePath = categoryPicturePath;
+	}
+	
+
 }
