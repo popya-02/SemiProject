@@ -111,23 +111,22 @@
 	<br>
 	<br>
 	<br>
-	<br>
-	<div class="tlrhd-ruswjr border-secondary text-primary">시공 시작일 :
+	<div class="tlrhd-ruswjr border-secondary text-primary"> 시공 시작일 :
 		${detail.constructStartDate}</div>
 	<br>
-	<div class="tlrhd-ruswjr border-secondary text-primary">시공 종료일 :
+	<div class="tlrhd-ruswjr border-secondary text-primary"> 시공 종료일 :
 		${detail.constructEndDate}</div>
 	<br>
-	<div class="tlrhd-ruswjr border-secondary text-primary">시공지 주소 :
+	<div class="tlrhd-ruswjr border-secondary text-primary"> 시공지 주소 :
 		${detail.constructAddr}</div>
 	<br>
-	<div class="tlrhd-ruswjr border-secondary text-primary">시공 평수 :
+	<div class="tlrhd-ruswjr border-secondary text-primary"> 시공 평수 :
 		${detail.constructRange}평</div>
 	<br>
-	<div class="tlrhd-ruswjr border-secondary text-primary">시공 가격 :
+	<div class="tlrhd-ruswjr border-secondary text-primary"> 시공 가격 :
 		${detail.constructPrice}원</div>
 	<br>
-	<div class="tlrhd-ruswjr border-secondary text-primary">카테고리 :
+	<div class="tlrhd-ruswjr border-secondary text-primary"> 카테고리 :
 		${detail.category}</div>
 
 

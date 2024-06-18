@@ -124,11 +124,12 @@ label {
 }
 
 .img-size{
-	height: 300px;
-	width: 300px;
+	height: 350px;
+	width: 350px;
 	object-fit: cover;
 }
 
+.img-
 .btn-box{
 	display: flex;
 	align-items: center;

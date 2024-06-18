@@ -54,7 +54,7 @@
 							</div>
 						</div>
 						<div class="col-lg-6"
-							style="padding-left: 122px; margin-top: 40px">
+							style="padding-left: 80px; margin-top: 40px">
 							<div class="btn-box">
 								<h4 class="fw-bold">${copyDetail[0].copyName}</h4>
 
@@ -109,7 +109,7 @@
 
 				</div>
 
-				<h1 class="fw-bold mb-0">업체 시공예시</h1>
+				<h2 class="fw-bold mb-0">업체 시공예시</h2>
 				<div class="vesitable">
 
 					<div class="owl-carousel vegetable-carousel justify-content-center">
@@ -118,18 +118,16 @@
 							<div
 								class="border border-primary rounded position-relative vesitable-item">
 								<div class="vesitable-img">
-									<img src="/resources/img/${copyDetailEx.examPhoto}"
-										class="img-fluid w-100 rounded-top" alt="">
+									<img src="/resources/img/${copyDetailEx.examPhoto}" style="width:300px; height:200px;" class="img-fluid w-100 rounded-top" alt="">
 								</div>
 
 								<div class="p-4 pb-0 rounded-bottom">
 
 									<p>${copyDetailEx.examTitle}</p>
-									<div class="d-flex justify-content-between flex-lg-wrap">
+									<div class="d-flex justify-content-between flex-lg-wrap" style="padding-top: 20px; padding-bottom:20px;">
 
 										<a href="/constructDetail.do?examNo=${copyDetailEx.examNo}"
-											class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히
-											보기</a>
+											class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
 									</div>
 								</div>
 							</div>

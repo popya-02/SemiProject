@@ -19,7 +19,7 @@
 }
 
 .example-div-div{
-    padding-top: 40px;
+    padding-top: 30px;
     padding-left: 30px;
 }
 
@@ -29,8 +29,8 @@
 }
 
 img {
-	width: 250px;
-	height: 250px;
+	width: 270px;
+	height: 240px;
 	object-fit: cover;
 }
 
@@ -38,7 +38,7 @@ img {
     position: relative;
     /* width: 20%;
     height: 20%; */
-    border-radius: 5px;
+    border-radius: 10px;
     margin-right: 10px;
 }
 
@@ -139,5 +139,17 @@ img {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+
+.detail-link {
+	margin-top: 5px;
+	margin-left: 300px;
+} 
+ 
+ 
+@media(max-width: 1330px) {
+   .detail-link {
+        margin-left: 150px;
+    }
 }
 

@@ -43,7 +43,7 @@
 													<h5 style="margin-top:5px;">${item.examTitle}</h5>
 												   <%--  <h4 name="categoryname">${item.categoryName}</h4> --%>
 													<p class="example-div3">${item.tagRemoveContent}</p>
-													<a href="/constructDetail.do?examNo=${item.examNo}" style="margin-top: 15px; margin-left: 300px;" class="btn border border-secondary rounded-pill px-3 py-1 text-primary">자세히 보기</a>
+													<a href="/constructDetail.do?examNo=${item.examNo}" class="btn border border-secondary rounded-pill px-3 py-1 text-primary detail-link">자세히 보기</a>
 												</div>
 											</div>
 											<!-- </a> -->
@@ -54,7 +54,7 @@
 						</div> 
 					</div>
 					<div>
-						<h4 style="padding-bottom: 5px">업체</h4>
+						<h4 style="padding-bottom: 5px">시공 업체</h4>
 						<div class="search-result-1 row1">
 							<c:choose>
 								<c:when test="${empty searchCopyList}">

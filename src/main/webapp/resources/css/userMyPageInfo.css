@@ -30,13 +30,13 @@
 }
 
 .mypage_list_2 {
-    margin-left: 5px;
+    margin-left: 9px;
     width: 12%;
     height: 50px;
 }
 
 .mypage_list_3 {
-    margin-left: 5px;
+    margin-left: 9px;
     width: 12%;
     height: 50px;
 }
@@ -74,17 +74,18 @@
     
 
 .mypage_list_3_detail_id {
-    margin-left: 22%;
+    margin-left: 28%;
 }
 
 .id_box, .name_box, .nickname_box, .address_box {
-    margin-top: 20px;
-    width: 70%;
-    height: 40px;
+    margin-top: 18px;
+    padding-left: 15px;
+    width: 60%;
+    height: 50px;
     border: 0;
     border-radius: 5px;
     outline: none;
-    background-color: rgb(233, 233, 233);
+    background-color: #f7f7f7;
 }
 
 div div input {
@@ -96,17 +97,16 @@ div div input {
 .mypage_list_3_detail_name, .mypage_list_3_detail_nickname,
 .mypage_list_3_detail_address {
     margin-top: 25px;
-    margin-left: 22%;
+    margin-left: 28%;
 }
 
 .mypage_list_3_detail_complete button {
-    margin-top: 40px;
-    margin-left: 35%;
-    padding-top: 10px;
+    margin-top: 50px;
+    margin-left: 44%;
     border: 0px;
     display: inline-block;
-    width: 30%;
-    height: 40px;
+    width: 12%;
+    height: 50px;
     font-size: 15px;
     text-align: center;
     border-radius: 5px;
