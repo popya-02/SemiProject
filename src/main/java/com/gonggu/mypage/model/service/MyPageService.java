@@ -44,5 +44,7 @@ public interface MyPageService {
 	public int getCopyEstimateListCount(MyPageDtoImpl myDto);
 	
 	int savePurchaseStatus(int chattingNo);
+	
+	int purchaseReq(int constructNo);
 
 }

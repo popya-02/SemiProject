@@ -27,12 +27,22 @@ public class ReservationCheckController extends HttpServlet {
 		
 		
 		int constructNo = Integer.parseInt( request.getParameter("constructNum"));
+		System.out.println("constNo: " + constructNo);
 		
 		MyPageServiceImpl myService = new MyPageServiceImpl();
 		
 		MyPageDtoImpl result = myService.reserveCheck(constructNo);
 		
 		
+		HttpSession session = request.getSession();
+		int result1 = myService.savePurchaseStatus(constructNo);
+		// TODO : 눌렀을떄 작동할코드 
+		
+		if(result1 == 1) {
+			session.setAttribute("purchaseStatus", "S");
+		} else {
+			session.setAttribute("purchaseStatus", "F");
+		}
 		
 		
 		request.setAttribute("result", result);

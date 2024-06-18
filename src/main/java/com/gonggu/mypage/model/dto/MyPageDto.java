@@ -31,6 +31,7 @@ public class MyPageDto {
 	private String sumPrice;
 	private int chattingNum;
 	private String constStatus;
+	private int constDeposit;
 	
 	public MyPageDto() {
 		super();
@@ -244,5 +245,12 @@ public class MyPageDto {
 	}
 
 
-	
+	public int getConstDeposit() {
+		return constDeposit;
+	}
+
+
+	public void setConstDeposit(int constDeposit) {
+		this.constDeposit = constDeposit;
+	}
 }

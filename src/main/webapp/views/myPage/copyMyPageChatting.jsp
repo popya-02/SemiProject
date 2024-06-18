@@ -57,6 +57,7 @@
 					                		<input type="hidden" value="${item.userNum}" name="user-num">
 					                		<input type="hidden" value="${item.userName}" name="user-name">
 					                		<input type="hidden" value="${item.endCheck}" name="end-check">
+					                		
 					                    	<c:choose>
 					                    		<c:when test="${item.endCheck == 'Y'}">
 								                    <div class="user_name" id="user-name" onclick="location.href='/chatting/endConnection.do?chatNum=${item.chattingNum}'">${item.userName}</div>
@@ -77,8 +78,9 @@
 					                    	</c:choose>
 						                    <div class="reservation_number">
 							                    <input type="hidden" name="estimatePrice" id="estimatePrice_${item.chattingNum}" value="${item.estimatePrice}">
-												<input type="hidden" name="chattingNum" id="chattingNum_${status.index}" class="chattingNum" value="${item.chattingNum}">
-				 								<button type="button" class="construct-btn" onclick="checkPrice(${status.index})">결제 요청</button>
+												<input type="hidden" name="chattingNum" id="chattingNum_${item.chattingNum}" class="chattingNum" value="${item.chattingNum}">
+												<input type="hidden" name="constNum" id="constNum_${item.chattingNum}"  value="${item.constNo}">
+				 								<button type="button" class="construct-btn" onclick="checkPrice(${item.chattingNum})">결제 요청</button>
 						                    </div>
 						                    <c:choose>
 						                    	<c:when test="${item.endCheck == 'Y'}">
@@ -152,17 +154,48 @@
      <script>
         
 
-        function checkPrice(index) {
-        	var chat = document.getElementById("chattingNum_" + index).value;
+        function checkPrice(chattingNum) {
+        	var chat = document.getElementById("chattingNum_" + chattingNum).value;
         	const price = document.getElementById("estimatePrice_" + chat).value;
+        	const constNo = document.getElementById("constNum_" + chat).value;
         	
-        	console.log(price);
+        	
+        	console.log("price " + price);
+        	console.log("No " + constNo);
             if (price == null || price == 0) {
                 alert("견적서에 예약금액을 입력해주세요.");
             } else {
                 alert("요청 완료.   금액: " + price);
-                console.log(chat);
-                window.location.href = "/purchaseReq.do;
+                
+                var form = document.createElement('form');
+                form.method = 'GET';
+                form.action = '/purchaseReq.do'; // 서버의 서블릿 엔드포인트
+
+                // Create input elements
+                var chatInput = document.createElement('input');
+                chatInput.type = 'hidden';
+                chatInput.name = 'chattingNum';
+                chatInput.value = chat;
+                
+                var constNoInput = document.createElement('input');
+                constNoInput.type = 'hidden';
+                constNoInput.name = 'constNum';
+                constNoInput.value = constNo;
+                
+                var priceInput = document.createElement('input');
+                priceInput.type = 'hidden';
+                priceInput.name = 'price';
+                priceInput.value = price;
+
+                // Append inputs to the form
+                form.appendChild(chatInput);
+                form.appendChild(priceInput);
+                form.appendChild(constNoInput);
+
+                // Append the form to the body and submit it
+                document.body.appendChild(form);
+                form.submit();
+
             }
         }
         </script>

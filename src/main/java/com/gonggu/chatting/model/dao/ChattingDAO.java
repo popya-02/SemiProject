@@ -356,9 +356,9 @@ public class ChattingDAO {
 		return 0;
 	}
 
-	public List<ChattingDTO> getCopyChattingList(PageInfo pi, String sessionCopyNum) {
+	public List<ChattingDTO> getCopyChattingList(PageInfo pi, String sessionCopyNum) {								// 예약금 
 		
-		String query = "SELECT cs.CHATTING_NO , cs.COPY_NO , cs.USER_NO , cs.CREATE_DATE , cs.END_CHECK , bu.NAME, c.CONSTRUCT_DEPOSIT"
+		String query = "SELECT cs.CHATTING_NO , cs.COPY_NO , cs.USER_NO , cs.CREATE_DATE , cs.END_CHECK , bu.NAME, c.CONSTRUCT_DEPOSIT, c.CONSTRUCT_NO"
 					+ " FROM CONSTRUCT_STATUS cs"
 					+ " JOIN BASIC_USER bu"
 					+ "		ON cs.USER_NO = bu.USER_NO "
@@ -388,9 +388,8 @@ public class ChattingDAO {
 				dto.setChattingIndate(rs.getString("CREATE_DATE"));
 				dto.setEndCheck(rs.getString("END_CHECK"));
 				dto.setEstimatePrice(rs.getString("CONSTRUCT_DEPOSIT"));
+				dto.setConstNo(rs.getInt("CONSTRUCT_NO"));
 
-//				MyPageDto mdto = new MyPageDto();
-//				mdto.setEstimatePrice(rs.getString("CONSTRUCT_PRICE"));
 				list.add(dto);
 				
 				

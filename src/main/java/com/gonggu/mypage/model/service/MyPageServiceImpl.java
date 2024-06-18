@@ -111,5 +111,10 @@ public class MyPageServiceImpl implements MyPageService {
 		return myPageDao.savePurchaseStatus(chattingNo);
 	}
 	
+	@Override
+	public int purchaseReq(int constructNo) {
+		return myPageDao.purchaseReq(constructNo);
+	}
+	
 
 }

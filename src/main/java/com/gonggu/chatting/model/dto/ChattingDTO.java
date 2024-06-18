@@ -19,7 +19,7 @@ public class ChattingDTO {
 	 * 예약금  
 	 */
 	private String estimatePrice;
-	
+	private int constNo;
 	
 	
 	public int getChattingNum() {
@@ -95,5 +95,11 @@ public class ChattingDTO {
 	}
 	public void setEstimatePrice(String estimatePrice) {
 		this.estimatePrice = estimatePrice;
+	}
+	public int getConstNo() {
+		return constNo;
+	}
+	public void setConstNo(int constNo) {
+		this.constNo = constNo;
 	}
 }

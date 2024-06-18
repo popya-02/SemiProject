@@ -284,7 +284,8 @@ public class MyPageDao {
 	            	+ " ?,"  // chatNum 8
 	            	+ " ?,"  // element 9
 	            	+ " default, "	// purchaseStatus 
-	            	+ " ?"	 // deposit 10
+	            	+ " ?,"
+	            	+ " null"	 // deposit 10
 	            	+ ")";
 
 //	    System.out.println(constDto.getConstructElement());
@@ -612,10 +613,11 @@ public class MyPageDao {
 //	======================== 예약 확인 ===========================
 	
 	
+	// 예약 확인 조회 
 	public MyPageDtoImpl reserveCheck(int constructNum) {
 		
 		String query =  """
-						SELECT cd.copy_name, c.CONSTRUCT_NO, bu.ADDR,c.CONSTRUCT_ADDR, bu.PHONE_NUM , c.CONSTRUCT_PRICE, c.CONSTRUCT_START_DATE, c.PURCHASE_STATUS
+						SELECT cd.copy_name, c.CONSTRUCT_NO, bu.ADDR,c.CONSTRUCT_ADDR, bu.PHONE_NUM , c.CONSTRUCT_PRICE, c.CONSTRUCT_DEPOSIT, c.CONSTRUCT_START_DATE, c.PURCHASE_STATUS
 						FROM COPY_DETAIL cd
 						FULL JOIN CONSTRUCT c ON cd.COPY_NO = c.COPY_NO
 						FULL JOIN BASIC_USER bu ON bu.USER_NO = c.USER_NO
@@ -635,6 +637,7 @@ public class MyPageDao {
 				String phoneNum = rs.getString("PHONE_NUM");
 				String userAddr = rs.getString("CONSTRUCT_ADDR");
 				String constructPrice = rs.getString("CONSTRUCT_PRICE");
+				int deposit = rs.getInt("CONSTRUCT_DEPOSIT");
 				String startDate = rs.getString("CONSTRUCT_START_DATE");
 				String status = rs.getString("PURCHASE_STATUS");
 				
@@ -646,6 +649,7 @@ public class MyPageDao {
 				myDTO.setPhoneNum(phoneNum);
 				myDTO.setConstAddr(userAddr);
 				myDTO.setEstimatePrice(constructPrice);
+				myDTO.setConstDeposit(deposit);
 				myDTO.setConstStartDate(startDate);
 				myDTO.setConstStatus(status);
 				
@@ -660,30 +664,61 @@ public class MyPageDao {
 	/**
 	 * 결제 요청 
 	 */
-	public int savePurchaseStatus(int chattingNo) {
+	public int savePurchaseStatus(int constructNo) {
 		String query = """
-						SELECT PURCHASE_STATUS FROM CONSTRUCT c 
-						WHERE CHATTING_NO = ?
+						SELECT PURCHASE_REQUEST FROM CONSTRUCT c 
+						WHERE construct_deposit != 0
+						AND CONSTRUCT_NO = ?
 						AND PURCHASE_STATUS = 'N'
 					   """;
 		int result = 0;
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, chattingNo);
+			pstmt.setInt(1, constructNo);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				String purchaseStatus = rs.getString("PURCHASE_STATUS");
+				String purchaseRequest= rs.getString("PURCHASE_REQUEST");
+
+				if (purchaseRequest == null) {
+                    result = 0; 
+                    // PURCHASE_REQUEST가 null인 경우 0을 반환
+                } else if ("N".equals(purchaseRequest)) {
+                    result = 1; 
+                    // PURCHASE_REQUEST가 'N'인 경우 1을 반환
+                }
 				
-				MyPageDtoImpl myDTO = new MyPageDtoImpl();
-				myDTO.setConstStatus(purchaseStatus);
-				
-				return 1;
+				return result;
 				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return result;
+	}
+	
+	
+	// 결재 요청시 업데이트 
+	public int purchaseReq(int constructNo) {
+		String query = """
+						UPDATE construct
+						SET purchase_Request = 'N'
+						WHERE CONSTRUCT_NO = ?
+						""";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, constructNo);
+			
+			int result = pstmt.executeUpdate();
+			return result;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return 0;
+		
 	}
 }
 

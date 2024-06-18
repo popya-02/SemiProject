@@ -55,8 +55,13 @@
 								style="padding-left: 10px">
 						</div>
 						<div class="reservation-details-item">
+							<strong style="width: 300px">시공 금액:</strong><input type="text"
+								class="fixed-input" value="${result.estimatePrice} 원  " readonly
+								style="padding-left: 10px">
+						</div>
+						<div class="reservation-details-item">
 							<strong style="width: 300px">예약금액:</strong><input type="text"
-								class="fixed-input" value="${result.estimatePrice}" readonly
+								class="fixed-input" value="${result.constDeposit} 원  " readonly
 								style="padding-left: 10px">
 						</div>
 						<%-- <div class="reservation-details-item">
@@ -76,13 +81,13 @@
 				<c:when test="${sessionScope.purchaseStatus == 'S'}">
 					<div class="purchase-box">
 						<a href="/purchase.do">
-						<input type="hidden" name="chatttingNum" value="${cattingNum}"> 
+						<input type="hidden" name="chattingNum" value="${chattingNum}" /> 
 							<div class="purchase">결제 하기</div>
 						</a>
 					</div>
 				</c:when>
 				<c:otherwise>
-
+				
 				</c:otherwise>
 			</c:choose>
 		</c:when>
@@ -133,7 +138,6 @@
 				</div>
 			</div>
 		</c:when>
-
 	</c:choose>
 
         <%@ include file="/views/common/footer.jsp"%>
@@ -148,6 +152,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    
     </body>
 
 </html>
