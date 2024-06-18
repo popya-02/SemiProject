@@ -27,16 +27,6 @@ public class ConstructServiceImpl implements ConstructService {
 	}
 	
 	@Override
-	public List<ConstructDto> getConstructList(PageInfo pi){
-		return constructDao.getConstructList(pi);
-	};
-	
-	@Override
-	public int getListCount() {
-		return constructDao.getListCount();
-	};
-	
-	@Override
 	public ConstructDtoImpl getDeteil(int examNo){
 		return constructDao.getDetail(examNo);
 	};
@@ -56,40 +46,55 @@ public class ConstructServiceImpl implements ConstructService {
 		return constructDao.setEdit(constructDto);
 	};
 	
-	 @Override
-	    public int fileUpload(ConstructDtoImpl constructDto) {
+	@Override
+	public int fileUpload(ConstructDtoImpl constructDto) {
 	        return constructDao.fileUpload(constructDto);
-	    }
+    }
 	 
-	 @Override
-	 public int fileEdit(ConstructDtoImpl constructDto) {
+	@Override
+	public int fileEdit(ConstructDtoImpl constructDto) {
 		 return constructDao.fileEdit(constructDto);
-	 }
+	}
 	 
-	 @Override
-	 public int getExamNo(ConstructDtoImpl constructDto) {
-		 return constructDao.getExamNo(constructDto);
-	 }
+	@Override
+	public int getExamNo(ConstructDtoImpl constructDto) {
+		return constructDao.getExamNo(constructDto);
+	}
 	 
+	@Override
+	public int selectLike(ConstructDtoImpl constructDto) {
+	       return constructDao.selectLike(constructDto);
+	}
+
+	@Override
+	public List<ConstructDto> getCategory() {
+		return constructDao.getCategory();
+	}
+
 	 @Override
-	    public int selectLike(ConstructDtoImpl constructDto) {
-	        return constructDao.selectLike(constructDto);
-	    }
+	public List<ConstructDto> getConstructCategoryList(PageInfo pi, int categoryNum) {
+		return constructDao.getConstructCategoryList(pi, categoryNum);
+	}
 
-	    @Override
-	    public void insertLike(ConstructDtoImpl constructDto) {
-	        constructDao.insertLike(constructDto);
-	    }
+	@Override
+	public int getListCategoryCount(int categoryNum) {
+		return constructDao.getListCategoryCount(categoryNum);
+	}
 
-	    @Override
-	    public void deleteLike(ConstructDtoImpl constructDto) {
-	        constructDao.deleteLike(constructDto);
-	    }	
+    @Override
+    public void insertLike(ConstructDtoImpl constructDto) {
+        constructDao.insertLike(constructDto);
+    }
 
-	   @Override
-	   public ArrayList<ConstructDtoImpl> getLike(ConstructDtoImpl constructDto) {
-		   return constructDao.getLike(constructDto);
-	   };
+    @Override
+    public void deleteLike(ConstructDtoImpl constructDto) {
+        constructDao.deleteLike(constructDto);
+    }	
+
+   @Override
+   public ArrayList<ConstructDtoImpl> getLike(ConstructDtoImpl constructDto) {
+	   return constructDao.getLike(constructDto);
+   }
 	
 //	@Override
 //	public ConstructDtoImpl selectNo(ConstructDtoImpl constructDto) {
