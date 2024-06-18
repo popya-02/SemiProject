@@ -11,6 +11,12 @@ for (const ele of Array.from(mainCategoryEle)) {
     ele.addEventListener("click", categoryCheck);
 }
 
+var copypageNumChoice = document.getElementsByName("copypageNum");
+
+for (const ele of Array.from(copypageNumChoice)) {
+    ele.addEventListener("click", copypageNumFunc);
+}
+
 let cPage = 1;
 let categoryNum = 0;
 
@@ -119,12 +125,13 @@ function checkFunc(resultCategory, paginationNum) {
             } else {
                 paginationBox.innerHTML += `<a onclick="copypageNumFunc('R')" id="categoryNo" class="page-n rounded">&raquo;</a>`;
             }
+			
+			var copypageNumChoice = document.getElementsByName("copypageNum");
 
-            const copypageNumChoice = document.getElementsByName("copypageNum");
+			for (const ele of Array.from(copypageNumChoice)) {
+			    ele.addEventListener("click", copypageNumFunc);
+			}
 
-            for (const ele of Array.from(copypageNumChoice)) {
-                ele.addEventListener("click", copypageNumFunc);
-            }
         },
         error: function(error) {
             console.error('Error:', error);
