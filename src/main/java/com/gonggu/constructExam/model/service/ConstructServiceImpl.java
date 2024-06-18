@@ -27,16 +27,6 @@ public class ConstructServiceImpl implements ConstructService {
 	}
 	
 	@Override
-	public List<ConstructDto> getConstructList(PageInfo pi){
-		return constructDao.getConstructList(pi);
-	};
-	
-	@Override
-	public int getListCount() {
-		return constructDao.getListCount();
-	};
-	
-	@Override
 	public ConstructDtoImpl getDeteil(int examNo){
 		return constructDao.getDetail(examNo);
 	};
@@ -56,27 +46,27 @@ public class ConstructServiceImpl implements ConstructService {
 		return constructDao.setEdit(constructDto);
 	};
 	
-	 @Override
-	    public int fileUpload(ConstructDtoImpl constructDto) {
+	@Override
+	public int fileUpload(ConstructDtoImpl constructDto) {
 	        return constructDao.fileUpload(constructDto);
-	    }
+    }
 	 
-	 @Override
-	 public int fileEdit(ConstructDtoImpl constructDto) {
+	@Override
+	public int fileEdit(ConstructDtoImpl constructDto) {
 		 return constructDao.fileEdit(constructDto);
-	 }
+	}
 	 
-	 @Override
-	 public int getExamNo(ConstructDtoImpl constructDto) {
-		 return constructDao.getExamNo(constructDto);
-	 }
+	@Override
+	public int getExamNo(ConstructDtoImpl constructDto) {
+		return constructDao.getExamNo(constructDto);
+	}
 	 
-	 @Override
-	    public int selectLike(ConstructDtoImpl constructDto) {
-	        return constructDao.selectLike(constructDto);
-	    }
+	@Override
+	public int selectLike(ConstructDtoImpl constructDto) {
+	       return constructDao.selectLike(constructDto);
+	}
 
-	 @Override
+	@Override
 	public List<ConstructDto> getCategory() {
 		return constructDao.getCategory();
 	}

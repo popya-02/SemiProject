@@ -74,72 +74,6 @@ public class ConstructDao {
 		return result;
 	}
 
-	public List<ConstructDto> getConstructList(PageInfo pi) {
-		List<ConstructDto> list = new ArrayList<>();
-		
-		String	query = "SELECT ce.DELETE_STATUS,cu.copy_name, ce.title, ce.exam_no, ep.path, ep.name, ep.EXAM_PICTURE_NO, ce.CATEGORY_NO"
-					+ "		FROM COPY_USER cu"
-					+ "     FULL JOIN CONSTRUCT c ON cu.COPY_NO = c.COPY_NO"
-					+ "     FULL JOIN CONST_EXAM ce ON c.CONSTRUCT_NO = ce.CONSTRUCT_NO"
-					+ "     FULL JOIN EXAM_PICTURE ep ON ce.EXAM_NO = ep.EXAM_NO"
-					+ "     WHERE ce.DELETE_STATUS = 'N'"
-					+ "     ORDER BY ce.exam_no DESC"
-					+ "		OFFSET ? ROWS FETCH FIRST ? ROWS ONLY";
-			
-
-			try {
-
-				pstmt = con.prepareStatement(query);
-				pstmt.setInt(1, pi.getOffSet());
-				pstmt.setInt(2, pi.getBoardLimit());
-				ResultSet rs = pstmt.executeQuery();
-
-				rs = pstmt.executeQuery();
-
-				while (rs.next()) {
-					ConstructDto dto = new ConstructDto();
-					dto.setCopyName(rs.getString("COPY_NAME"));
-					dto.setTitle(rs.getString("title"));
-					dto.setExamNo(rs.getInt("exam_no"));
-					dto.setFilePath(rs.getString("PATH"));
-					dto.setFileName(rs.getString("NAME"));
-					dto.setFileNo(rs.getInt("EXAM_PICTURE_NO"));
-					dto.setCategoryNo(rs.getInt("CATEGORY_NO"));
-					dto.setDeleteStatus(query);
-					list.add(dto);
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-
-		return list;
-	}
-
-	public int getListCount() {
-
-		String query = "SELECT COUNT(ce.EXAM_NO) AS CNT" 
-		    + "         FROM CONST_EXAM ce" 
-		    + "         FULL JOIN EXAM_PICTURE ep"
-			+ "     	ON ce.EXAM_NO = ep.EXAM_NO";
-
-		try {
-			pstmt = con.prepareStatement(query);
-
-			ResultSet rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				int result = rs.getInt("CNT");
-
-				return result;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return 0;
-	}
 
 	public ConstructDtoImpl getDetail(int examNo) {
 		String query = "select ep.NAME as PICTURE_NAME,ce.EXAM_NO,c.CONSTRUCT_START_DATE,c.CONSTRUCT_END_DATE,c.CONSTRUCT_ADDR,c.CONSTRUCT_RANGE,c.CONSTRUCT_PRICE,"
@@ -327,9 +261,13 @@ public class ConstructDao {
 				
 				int categoryNum = rs.getInt("CATEGORY_NO");
 				String categoryName = rs.getString("NAME");
+				String pictureName = rs.getString("PICTURE_NAME");
+				String picturePath = rs.getString("PICTURE_PATH");
 				
 				conDto.setCategoryNo(categoryNum);
 				conDto.setCategory(categoryName);
+				conDto.setCategoryPictureName(pictureName);
+				conDto.setCategoryPicturePath(picturePath);
 				
 				list.add(conDto);
 			}

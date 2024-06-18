@@ -13,9 +13,6 @@ public interface ConstructService {
 
 	public int enroll(ConstructDtoImpl ConstructDto);
 	
-	public List<ConstructDto> getConstructList(PageInfo pi);
-	public int getListCount();
-	
 	public ConstructDtoImpl getDeteil(int examNo);
 
 	public int listDelete(int examNo);
