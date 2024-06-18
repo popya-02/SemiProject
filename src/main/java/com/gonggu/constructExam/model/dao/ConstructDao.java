@@ -218,8 +218,8 @@ public class ConstructDao {
 	            pstmt = con.prepareStatement(query);
 	            pstmt.setString(1, constructDto.getFileName());
 	            pstmt.setInt(2, constructDto.getExamNo());
-	            System.out.println("파일네임:"+constructDto.getFileName());
-	            System.out.println("examNo:"+constructDto.getExamNo());
+//	            System.out.println("파일네임:"+constructDto.getFileName());
+//	            System.out.println("examNo:"+constructDto.getExamNo());
 	            
 	            result = pstmt.executeUpdate();
 	        } catch (SQLException e) {
@@ -285,7 +285,7 @@ public class ConstructDao {
 		
 		List<ConstructDto> list = new ArrayList<>();
 		
-		String	query = "SELECT ce.DELETE_STATUS,cu.copy_name, ce.title, ce.exam_no, ep.path, ep.name, ep.EXAM_PICTURE_NO, ce.CATEGORY_NO"
+		String	query = "SELECT cu.COPY_NO, ce.DELETE_STATUS,cu.copy_name, ce.title, ce.exam_no, ep.path, ep.name, ep.EXAM_PICTURE_NO, ce.CATEGORY_NO"
 				+ "		FROM COPY_USER cu"
 				+ "     FULL JOIN CONSTRUCT c ON cu.COPY_NO = c.COPY_NO"
 				+ "     FULL JOIN CONST_EXAM ce ON c.CONSTRUCT_NO = ce.CONSTRUCT_NO"
@@ -324,6 +324,7 @@ public class ConstructDao {
 				dto.setFileName(rs.getString("NAME"));
 				dto.setFileNo(rs.getInt("EXAM_PICTURE_NO"));
 				dto.setCategoryNo(rs.getInt("CATEGORY_NO"));
+				dto.setCopyNo(rs.getString("COPY_NO"));
 				dto.setDeleteStatus(query);
 				list.add(dto);
 			}
@@ -338,12 +339,13 @@ public class ConstructDao {
 	}
 
 	public int getListCategoryCount(int categoryNum) {
-		String query = "SELECT COUNT(ce.EXAM_NO) AS CNT" 
-			    + "         FROM CONST_EXAM ce"; 
-	    query += "         FULL JOIN EXAM_PICTURE ep"
-			   + "     	ON ce.EXAM_NO = ep.EXAM_NO";
+		String query = "SELECT COUNT(DISTINCT ce.EXAM_NO) AS CNT" 
+			    	+ " FROM CONST_EXAM ce"
+	    			+ " FULL JOIN EXAM_PICTURE ep"
+	    			+ " ON ce.EXAM_NO = ep.EXAM_NO"
+	    			+ " WHERE DELETE_STATUS = 'N'";
 	    if(categoryNum != 0) {
-	    	query += "	WHERE CATEGORY_NO = ?";
+	    	query += "	AND CATEGORY_NO = ?";
 	    }
 
 		try {

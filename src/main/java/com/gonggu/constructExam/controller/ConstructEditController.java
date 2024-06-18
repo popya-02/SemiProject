@@ -37,8 +37,7 @@ public class ConstructEditController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		int examNo = Integer.parseInt(request.getParameter("examNo"));
-
-		int categoryNo = Integer.parseInt(request.getParameter("categoryNo"));
+		int categoryNo = Integer.parseInt(request.getParameter("categoryNum"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String examPhoto = request.getParameter("examPhoto");
@@ -86,6 +85,7 @@ public class ConstructEditController extends HttpServlet {
 	}
 	    private String getFileName(Part part) {
 	        String contentDisposition = part.getHeader("content-disposition");
+//	        System.out.println(contentDisposition);
 	        String[] tokens = contentDisposition.split(";");
 	        for (String token : tokens) {
 	            if (token.trim().startsWith("filename")) {

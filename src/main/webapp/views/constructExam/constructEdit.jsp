@@ -58,7 +58,7 @@
 				</div>
 				
 				<div>Category : ${getEdit.category}
-				<select name="categoryNo">
+				<select name="categoryNum">
 				<option value="1">Antique</option>
 				<option value="2">Modern</option>
 				<option value="3">Natural</option>

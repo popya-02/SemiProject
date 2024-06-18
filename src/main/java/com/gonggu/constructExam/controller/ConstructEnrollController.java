@@ -38,7 +38,7 @@ public class ConstructEnrollController extends HttpServlet {
 
 		int constructList =Integer.parseInt(request.getParameter("constructList"));
 
-		int category = Integer.parseInt(request.getParameter("category"));
+		int category = Integer.parseInt(request.getParameter("categoryNum"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String indate = request.getParameter("indate");
@@ -95,7 +95,7 @@ public class ConstructEnrollController extends HttpServlet {
             }
         }
 		if(result == 1) {
-		response.sendRedirect("/constructExam/constructlist.do?constructpage=1");
+		response.sendRedirect("/constructExam/constructlist.do?constructpage=1&categoryNum=0");
 
 	}
 }
