@@ -25,8 +25,6 @@ public class PurchaseReqController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String estimatePrice = request.getParameter("price");
-		int chattingNo = Integer.parseInt(request.getParameter("chattingNum"));
 		int constNo = Integer.parseInt(request.getParameter("constNum"));
 		
 		
