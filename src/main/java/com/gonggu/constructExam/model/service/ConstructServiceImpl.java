@@ -27,7 +27,7 @@ public class ConstructServiceImpl implements ConstructService {
 	}
 	
 	@Override
-	public List<ConstructDto> getConstructList(PageInfo pi){
+	public ArrayList<ConstructDto> getConstructList(PageInfo pi){
 		return constructDao.getConstructList(pi);
 	};
 	

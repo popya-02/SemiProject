@@ -74,7 +74,7 @@ public class ConstructDao {
 		return result;
 	}
 
-	public List<ConstructDto> getConstructList(PageInfo pi) {
+	public ArrayList<ConstructDto> getConstructList(PageInfo pi) {
 		String query = "SELECT cu.copy_no,ce.DELETE_STATUS,cu.copy_name, ce.title, ce.exam_no, ep.path, ep.name, ep.EXAM_PICTURE_NO FROM COPY_USER cu"
 				+ "     FULL JOIN CONSTRUCT c ON cu.COPY_NO = c.COPY_NO"
 				+ "     FULL JOIN CONST_EXAM ce ON c.CONSTRUCT_NO = ce.CONSTRUCT_NO"
@@ -83,7 +83,7 @@ public class ConstructDao {
 				+ "     ORDER BY ce.exam_no DESC"
 		        + "		OFFSET ? ROWS FETCH FIRST ? ROWS ONLY";
 
-		List<ConstructDto> list = new ArrayList<>();
+		ArrayList<ConstructDto> list = new ArrayList<>();
 
 		try {
 
@@ -103,7 +103,7 @@ public class ConstructDao {
 				dto.setFilePath(rs.getString("PATH"));
 				dto.setFileName(rs.getString("NAME"));
 				dto.setFileNo(rs.getInt("EXAM_PICTURE_NO"));
-				dto.setDeleteStatus(query);
+				dto.setDeleteStatus(rs.getString("DELETE_STATUS"));
 				list.add(dto);
 			}
 

@@ -164,15 +164,13 @@
 					<a href="#" class="page-n rounded">&laquo;</a>
 				</c:when>
 				<c:otherwise>
-					<a
-						href="/constructExam/constructlist.do?constructpage=${pi.copypage-1}"
+					<a href="/constructExam/constructlist.do?constructpage=${pi.copypage-1}"
 						class="page-n rounded">&laquo;</a>
 				</c:otherwise>
 			</c:choose>
 
 			<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
-				<a href="/constructExam/constructlist.do?constructpage=${page}"
-					class="page-n rounded">${page}</a>
+				<a href="/constructExam/constructlist.do?constructpage=${page}"	class="page-n rounded">${page}</a>
 			</c:forEach>
 
 			<c:choose>
@@ -180,8 +178,7 @@
 					<a href="#" class="page-n rounded">&raquo;</a>
 				</c:when>
 				<c:otherwise>
-					<a
-						href="/constructExam/constructlist.do?constructpage=${pi.copypage+1}"
+					<a href="/constructExam/constructlist.do?constructpage=${pi.copypage+1}"
 						class="page-n rounded">&raquo;</a>
 				</c:otherwise>
 			</c:choose>

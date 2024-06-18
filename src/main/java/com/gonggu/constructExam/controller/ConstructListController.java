@@ -45,7 +45,7 @@ public class ConstructListController extends HttpServlet {
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, copypage, pageLimit, boardLimit);
 				
-		List<ConstructDto> constructList = constructService.getConstructList(pi);
+		ArrayList<ConstructDto> constructList = constructService.getConstructList(pi);
 		
 		int row = listCount - (copypage - 1) * pageLimit;
 

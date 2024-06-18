@@ -92,7 +92,7 @@
 								<c:if test="${sessionScope.userType == 'basicUser' }">
 									<a
 										href="/chatting/connection.do?copyNum=${copyDetail[0].copyNum}&userNum=${sessionScope.userNum}"
-										class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">시공
+										class="btn btn2 border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">시공
 										상담하기</a>
 								</c:if>
 							</div>
@@ -167,13 +167,20 @@
 						<div class="d-flex">
 
 							<div class="">
-								<p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
+								<div class="copy-infor">
+					<p>
+						작성일 :	<span id="noew-time"></span>
+					</p>
+				</div>
 								<div class="d-flex justify-content-between">
 									<h5>${getReview.userId}</h5>
-								</div>
+								</div><br>
 								<p>${getReview.review}</p>
 							</div>
 						</div>
+						
+			<div class="nav nav-tabs mb-3" style="width: 1100px;"></div>
+					
 					</c:forEach>
 
 				</div>
@@ -224,6 +231,7 @@
 	<script src="/resources/js/main.js"></script>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/resources/js/nowtime.js"></script>
 <script>
 	// 페이지 로드 시 로컬 스토리지에서 상태 읽기
 	$(document).ready(function() {
