@@ -62,7 +62,7 @@ public class ConstructEditController extends HttpServlet {
 //		System.out.println("22222222 : "+constructDto.getContent());
 		
 		Collection<Part> parts = request.getParts();
-		String uploadDirectory = "C:\\dev\\work-space\\semiProject\\SemiProject\\src\\main\\webapp\\resources\\img";
+		String uploadDirectory = "C:\\dev\\File\\semiProject\\SemiProject\\src\\main\\webapp\\resources\\img";
 		File filePath = new File(uploadDirectory);
         if (!filePath.exists()) {
             filePath.mkdir();

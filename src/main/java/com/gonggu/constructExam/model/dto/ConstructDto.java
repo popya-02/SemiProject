@@ -246,6 +246,6 @@ public class ConstructDto {
 	public void setCategoryPicturePath(String categoryPicturePath) {
 		this.categoryPicturePath = categoryPicturePath;
 	}
-	
+
 
 }

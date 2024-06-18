@@ -84,8 +84,8 @@
     		url: "/SearchForm.do",
     		data: {searchText : searchText},
     		success:function(data) {
-    			if(data == 
-    		}
+    			/* if(data == */ 
+    		},
     		error:function(err){
     			
     		}

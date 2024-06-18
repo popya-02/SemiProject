@@ -27,7 +27,7 @@
                         <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
                             <div class="carousel-inner" role="listbox">
                                 <div class="carousel-item active rounded">
-                                    <img src="resources/img/modern_picturejpeg.jpg" class="img-fluid w-100 h-100 rounded" alt="First slide">
+                                    <img src="resources/img/modern_picture.jpg" class="img-fluid w-100 h-100 rounded" alt="First slide">
                                 </div>
                                 <div class="carousel-item rounded">
                                     <img src="resources/img/natural_picture.jpg" class="img-fluid w-100 h-100 rounded" alt="Second slide">
@@ -115,66 +115,6 @@
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane fade show p-4 active">
                             <div class="row g-4">
-                                <div class="col-md-6 col-lg-4 inte-pama">
-                                    <div class="rounded position-relative picture-item">
-                                        <div class="fruite-img">
-                                            <img src="resources/img/antique_picture.jpg" class="img-fluid w-100 rounded-top" alt="앤틱">
-                                        </div>
-                                        <div class="p-4 border point-border border-top-0 rounded-bottom">
-                                            <h4>Antique</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 inte-pama">
-                                    <div class="rounded position-relative picture-item">
-                                        <div class="fruite-img">
-                                            <img src="resources/img/modern_picturejpeg.jpg" class="img-fluid w-100 rounded-top" alt="모던">
-                                        </div>
-                                        <div class="p-4 border point-border border-top-0 rounded-bottom">
-                                            <h4>Modern</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 inte-pama">
-                                    <div class="rounded position-relative picture-item">
-                                        <div class="fruite-img">
-                                            <img src="resources/img/natural_picture.jpg" class="img-fluid w-100 rounded-top" alt="내추럴">
-                                        </div>
-                                        <div class="p-4 border point-border border-top-0 rounded-bottom">
-                                            <h4>Natural</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 inte-pama">
-                                    <div class="rounded position-relative picture-item">
-                                        <div class="fruite-img">
-                                            <img src="resources/img/north_europe_picture.jpg" class="img-fluid w-100 rounded-top" alt="북유럽">
-                                        </div>
-                                        <div class="p-4 border point-border border-top-0 rounded-bottom">
-                                            <h4>North Europe</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 inte-pama">
-                                    <div href="/searchForm.do?searchtext=Minimal" class="rounded position-relative picture-item">
-                                        <div class="fruite-img">
-                                            <img src="resources/img/simple_minimal_picture.jpg" class="img-fluid w-100 rounded-top" alt="미니멀">
-                                        </div>
-                                        <div class="p-4 border point-border border-top-0 rounded-bottom">
-                                            <h4>Minimal</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 inte-pama">
-                                    <div class="rounded position-relative picture-item">
-                                        <div class="fruite-img">
-                                            <img src="resources/img/vintage_ratro_picture.jpg" class="img-fluid w-100 rounded-top" alt="빈티지">
-                                        </div>
-                                        <div class="p-4 border point-border border-top-0 rounded-bottom">
-                                            <h4>Vintage</h4>
-                                        </div>
-                                    </div>
-                                </div>
                             	<c:forEach var="category" items="${categoryList}">
                             		<div class="col-md-6 col-lg-4 inte-pama">
 	                                    <div class="rounded position-relative picture-item" onclick="location.href='/constructExam/constructlist.do?constructpage=1&categoryNum=${category.categoryNo}'">
