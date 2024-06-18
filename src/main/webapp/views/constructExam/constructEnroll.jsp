@@ -44,13 +44,13 @@
 				</div>
 				
 				<div>Category :
-				<select name="category">
-				<option value="1">Antique</option>
-				<option value="2">Modern</option>
-				<option value="3">Natural</option>
-				<option value="4">North Europe</option>
-				<option value="5">Minimal</option>
-				<option value="6">Vintage</option>
+				<select name="categoryNum">
+					<option value="1">Antique</option>
+					<option value="2">Modern</option>
+					<option value="3">Natural</option>
+					<option value="4">North Europe</option>
+					<option value="5">Minimal</option>
+					<option value="6">Vintage</option>
 			
 				</select>
 				</div>

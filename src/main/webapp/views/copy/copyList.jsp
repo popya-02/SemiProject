@@ -36,7 +36,7 @@
 	<main>
 
 		<!-- 업체 -->
-		<div class="album py-5 bg-body-tertiary">
+		<div class="album py-5 bg-body-tertiary exam-list-box">
 			<div class="container">
 			<h2 class="point-text" style="z-index: 2;">업체 목록</h2>
 			<hr>
@@ -57,31 +57,38 @@
 								<div class="col">
 									<div class="card shadow-sm" >
 										<a href="/copyDetail.do?copyNo=${companyList.copyNum}" class="img-size">
-											<img class="bd-placeholder-img card-img-top img-contain"
-												src="/resources/img/${companyList.copyPhoto}" alt="업체 이미지"/>
+											<c:choose>
+												<c:when test="${companyList.copyPhoto == null }">
+													<img class="bd-placeholder-img card-img-top img-contain"
+														src="/resources/img/imgnone.png" alt="업체 이미지"/>
+												</c:when>
+												<c:otherwise>
+													<img class="bd-placeholder-img card-img-top img-contain"
+														src="/resources/img/${companyList.copyPhoto}" alt="업체 이미지"/>
+												</c:otherwise>
+											</c:choose>
 										</a>
 										<p class="djqcpaud">${companyList.copyName}</p>
-										
-										<c:choose>
-														<c:when test="${not empty getLike }">
-															<c:set var="count" value="1" />
-															<c:forEach var="item" items="${getLike}">
-																<c:if test="${companyList.copyNum == item.copyNum}">
-																	<button type="button" name="${companyList.copyName}" id="likeButton" class="likeButton bi bi-house-heart tlrhd-like border border-secondary text-primary rounded-pill clicked" onclick=""></button>
-																	<c:set var="count" value="${count+1 }" />
-																</c:if>
-															</c:forEach>
-																<c:if test="${count == 1}">
-																	<button type="button" name="${companyList.copyName}" id="likeButton" class="likeButton bi bi-house-heart tlrhd-like border border-secondary text-primary rounded-pill" onclick=""></button>
-																</c:if>
-														</c:when>
-														<c:otherwise>
-																<button type="button" name="${companyList.copyName}" id="likeButton" class="likeButton bi bi-house-heart tlrhd-like border border-secondary text-primary rounded-pill" onclick=""></button>
-														</c:otherwise>
-													</c:choose>
-													
+										<c:if test="${sessionScope.userType == 'basicUser' }">
+											<c:choose>
+												<c:when test="${not empty getLike }">
+													<c:set var="count" value="1" />
+													<c:forEach var="item" items="${getLike}">
+														<c:if test="${companyList.copyNum == item.copyNum}">
+															<button type="button" name="${companyList.copyName}" id="likeButton" class="likeButton bi bi-house-heart tlrhd-like border border-secondary text-primary rounded-pill clicked" onclick=""></button>
+															<c:set var="count" value="${count+1 }" />
+														</c:if>
+													</c:forEach>
+														<c:if test="${count == 1}">
+															<button type="button" name="${companyList.copyName}" id="likeButton" class="likeButton bi bi-house-heart tlrhd-like border border-secondary text-primary rounded-pill" onclick=""></button>
+														</c:if>
+												</c:when>
+												<c:otherwise>
+														<button type="button" name="${companyList.copyName}" id="likeButton" class="likeButton bi bi-house-heart tlrhd-like border border-secondary text-primary rounded-pill" onclick=""></button>
+												</c:otherwise>
+											</c:choose>
+										</c:if>
 									</div>
-									
 								</div>
 								<c:set var="row" value="${row-1}" />
 							</c:forEach>
@@ -151,65 +158,9 @@
 
 	<!-- Template Javascript -->
 	<script src="/resources/js/main.js"></script>
+	<script src="/resources/js/likeCopy.js"></script>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    // 페이지 로드 시 로컬 스토리지에서 상태 읽기
-    $(document).ready(function() {
-        const button = $('.likeButton');
-        /* const isClicked = localStorage.getItem('likeButtonClicked') === 'true';
-        if (isClicked) {
-        	console.log("a")
-        	console.log(button);
-            button.addClass('clicked');
-        } */
 
-        // 버튼 클릭 시 Ajax 요청
-        button.click(function() {
-            const isClicked = $(this).hasClass('clicked');
-            const myBtn = this; // 클릭이 발생한 버튼
-            const myBtnCopy = myBtn.name; // 클릭이 발생한 버튼의 name
-            const copyBtnList = document.getElementsByName(myBtnCopy);
-            const copyNum = document.getElementById(myBtnCopy).value; // 예시로 examNo를 하드코딩하거나 실제 동적으로 설정하는 방법으로 변경해야 합니다.
-            $.ajax({
-                type: 'GET',
-                url: '/LikeCopyController',
-                
-                data: {
-                    copyNum: copyNum,
-                    isClicked: !isClicked
-                },
-                success: function(response) {
-                    if (response === 'liked') {
-                        alert('관심 업체에 등록되었습니다.');
-                        for(var i=0; i<copyBtnList.length; i++){                       	
-                        copyBtnList[i].classList.add("clicked");
-                        }
-                        /* myBtn.classList.add("clicked"); */
-                       /*  button.addClass('clicked'); */
-                        localStorage.setItem('likeButtonClicked', 'true');
-                    } else if (response === 'unliked') {
-                        alert('관심 업체에서 제거되었습니다.');
-                        for(var i=0; i<copyBtnList.length; i++){                       	
-                            copyBtnList[i].classList.remove("clicked");
-                            }
-                        /* myBtn.classList.remove("clicked"); */
-;
-
-/*                         button.removeClass('clicked'); */
-                        localStorage.setItem('likeButtonClicked', 'false');
-                    } else {
-                        alert('처리 중 오류가 발생했습니다.');
-                    }
-                
-                },
-                error: function(xhr, status, error) {
-                    console.error('요청 실패: ' + status + ', ' + error);
-                    alert('서버 오류로 인해 요청을 처리할 수 없습니다.');
-                }
-            });
-        });
-    });
-</script>
 </html>

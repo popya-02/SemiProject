@@ -78,9 +78,7 @@ public class CopyDetailController extends HttpServlet {
 		
 		request.setAttribute("copyDetail", copyDetail);
 		request.setAttribute("getReview", getReview);
-		request.getRequestDispatcher("/views/copy/copyDetail.jsp").forward(request, response);
-
-	    
+		response.sendRedirect("/copyDetail.do?copyNo="+copyNo);
 
 	}
 
