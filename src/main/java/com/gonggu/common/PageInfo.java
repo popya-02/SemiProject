@@ -91,6 +91,13 @@ public class PageInfo {
 	public void setOffSet(int offSet) {
 		this.offSet = offSet;
 	}
+
+	@Override
+	public String toString() {
+		return "PageInfo [listCount=" + listCount + ", copypage=" + copypage + ", pageLimit=" + pageLimit
+				+ ", boardLimit=" + boardLimit + ", maxPage=" + maxPage + ", startPage=" + startPage + ", endPage="
+				+ endPage + ", offSet=" + offSet + "]";
+	}
 	
 	
 }

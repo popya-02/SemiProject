@@ -32,7 +32,7 @@ function categoryCheck() {
 
 /* 시공예시 화면의 카페고리 페이지네이션 할당 */
 function copypageNumFunc(sumPage) {
-
+	
     if (sumPage === 'L') {
         cPage -= 1;
     } else if (sumPage === 'R') {
@@ -109,7 +109,7 @@ function checkFunc(resultCategory, paginationNum) {
             } else {
                 paginationBox.innerHTML += `<a onclick="copypageNumFunc('L')" id="categoryNo" class="page-n rounded">&laquo;</a>`;
             }
-
+			
             for (let i = data.pi.startPage; i <= data.pi.endPage; i++) {
                 paginationBox.innerHTML += `<a class="page-n rounded" id="copypageNum" name="copypageNum">`+[i]+`</a>`;
             }

@@ -33,12 +33,12 @@ public class ConstructDeleteController extends HttpServlet {
 			
 			response.sendRedirect("/constructExam/constructlist.do?constructpage="+page);
 		} else if(result == 1 && fileNo > 0) { // 업로드한 파일이 있을때
-			String uploadDiretory ="C:\\dev\\work-space\\7.SERVLET\\semiProjec\\src\\main\\webapp\\resources\\img";
+			String uploadDiretory ="C:\\greenAcademy\\dev\\workspace\\semiProject\\SemiProject\\src\\main\\webapp\\resources\\img";
 			File file = new File(uploadDiretory + "\\" + fileName);
 			file.delete();
 			
 			int deleteResult = constructService.fileDelete(fileNo);
-			response.sendRedirect("/constructExam/constructlist.do?constructpage=1");
+			response.sendRedirect("/constructExam/constructlist.do?constructpage=1&categoryNum=0");
 		}
 	}
 
