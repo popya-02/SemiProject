@@ -111,7 +111,8 @@
 	<!-- Template Javascript -->
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/nowtime.js"></script>
-	<script src="index.js"></script>
+	<script src="/resources/js/smarteditor.js"></script>
+	<script src="/resources/smarteditor2/js/HuskyEZCreator.js"></script>
 <script>
 var submit = document.getElementById('submitButton');
 submit.onclick = showImage;     //Submit 버튼 클릭시 이미지 보여주기

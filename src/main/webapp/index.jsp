@@ -175,6 +175,18 @@
                                         </div>
                                     </div>
                                 </div>
+                            	<c:forEach var="category" items="${categoryList}">
+                            		<div class="col-md-6 col-lg-4 inte-pama">
+	                                    <div class="rounded position-relative picture-item" onclick="location.href='/constructExam/constructlist.do?constructpage=1&categoryNum=${category.categoryNo}'">
+	                                        <div class="fruite-img">
+	                                            <img src="resources/img/${category.categoryPictureName}" class="img-fluid w-100 rounded-top" alt="${category.category}"/>
+	                                        </div>
+	                                        <div class="p-4 border point-border border-top-0 rounded-bottom">
+	                                            <h4>${category.category}</h4>
+	                                        </div>
+	                                    </div>
+	                                </div>
+                            	</c:forEach>
                             </div>
                         </div>
                     </div>
@@ -207,7 +219,7 @@
     <%@ include file="/views/common/jsLib.jsp"%>
 
     <!-- Template Javascript -->
-    <script src="/resources/js/main.js"></script>
+	    <script src="/resources/js/main.js"></script>
     </body>
 
 </html>

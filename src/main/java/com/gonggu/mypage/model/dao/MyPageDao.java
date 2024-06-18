@@ -284,6 +284,7 @@ public class MyPageDao {
 	            	+ " ?,"  // element 9
 	            	+ " ?,"  // deposit 10
 	            	+ " DEFAULT"
+	            	+ " DEFAULT"  // deposit 10
 	            	+ ")";
 
 //	    System.out.println(constDto.getConstructElement());
