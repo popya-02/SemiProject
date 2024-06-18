@@ -1,6 +1,7 @@
 package com.gonggu.constructExam.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,10 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.gonggu.common.PageInfo;
 import com.gonggu.common.Pagination;
 import com.gonggu.constructExam.model.dto.ConstructDto;
+import com.gonggu.constructExam.model.dto.ConstructDtoImpl;
 import com.gonggu.constructExam.model.service.ConstructServiceImpl;
 
 @WebServlet("/constructExam/constructlist.do")
@@ -27,12 +30,12 @@ public class ConstructListController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		ConstructServiceImpl consturctService = new ConstructServiceImpl();
+		ConstructServiceImpl constructService = new ConstructServiceImpl();
 		
 		int copypage = Integer.parseInt(request.getParameter("constructpage"));
 		
 		// 전체 게시글 수
-		int listCount = consturctService.getListCount();
+		int listCount = constructService.getListCount();
 		
 		// 보여질 페이지 수 
 		int pageLimit = 5;
@@ -42,7 +45,7 @@ public class ConstructListController extends HttpServlet {
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, copypage, pageLimit, boardLimit);
 				
-		List<ConstructDto> constructList = consturctService.getConstructList(pi);
+		List<ConstructDto> constructList = constructService.getConstructList(pi);
 		
 		int row = listCount - (copypage - 1) * pageLimit;
 
@@ -51,6 +54,17 @@ public class ConstructListController extends HttpServlet {
         request.setAttribute("row", row);
         request.setAttribute("pi", pi);
         
+        ConstructDtoImpl constructDto = new ConstructDtoImpl();
+        try {
+        	HttpSession session = request.getSession();
+        	int userNum = (int)session.getAttribute("userNum");
+        	constructDto.setUserNum(userNum);
+        }catch(NullPointerException e){
+        	
+        }
+        
+        ArrayList<ConstructDtoImpl> getLike = constructService.getLike(constructDto);
+		request.setAttribute("getLike", getLike);
         RequestDispatcher view = request.getRequestDispatcher("/views/constructExam/constructList.jsp");
 		view.forward(request, response);
 	}

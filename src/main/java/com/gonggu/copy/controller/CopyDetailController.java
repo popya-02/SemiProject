@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.gonggu.constructExam.model.dto.ConstructDtoImpl;
+import com.gonggu.constructExam.model.service.ConstructServiceImpl;
 import com.gonggu.copy.model.dto.CopyDto;
 import com.gonggu.copy.model.dto.CopyDtoImpl;
 import com.gonggu.copy.model.service.CopyService;
@@ -24,7 +26,7 @@ public class CopyDetailController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+///
 		String copyNo = request.getParameter("copyNo");
 
 		CopyService copyService = new CopyServiceImpl();
@@ -35,6 +37,19 @@ public class CopyDetailController extends HttpServlet {
 		request.setAttribute("copyDetail", copyDetail);
 		request.setAttribute("getReview", getReview);
 		request.setAttribute("copyDetailEx", copyDetailEx);
+		
+		ConstructServiceImpl constructService = new ConstructServiceImpl();
+		ConstructDtoImpl constructDto = new ConstructDtoImpl();
+		 try {
+	        	HttpSession session = request.getSession();
+	        	int userNum = (int)session.getAttribute("userNum");
+	        	constructDto.setUserNum(userNum);
+	        }catch(NullPointerException e){
+	        	
+	        }
+	        
+	        ArrayList<ConstructDtoImpl> getLike = constructService.getLike(constructDto);
+			request.setAttribute("getLike", getLike);
 		
 		request.getRequestDispatcher("/views/copy/copyDetail.jsp").forward(request, response);
 	}
@@ -51,7 +66,7 @@ public class CopyDetailController extends HttpServlet {
 		
 	    CopyDtoImpl copyDto = new CopyDtoImpl();
 	    copyDto.setReview(content);
-	    copyDto.setCopyNo(copyNo);
+	    copyDto.setCopyNum(copyNo);
 	    copyDto.setUserNum(userNum);
 		
 	    CopyService copyService = new CopyServiceImpl();

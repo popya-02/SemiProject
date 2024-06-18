@@ -35,6 +35,7 @@ public class ChattingServiceImpl implements ChattingService{
 			
 			
 		}
+	
 		else  {
 			if(duplicete.getEndCheck().equals("Y")) {
 
@@ -44,7 +45,7 @@ public class ChattingServiceImpl implements ChattingService{
 			}
 		}
 		return result;
-	}
+	
 
 
 	@Override
