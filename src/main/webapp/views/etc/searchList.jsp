@@ -28,7 +28,7 @@
 							<c:choose>
 								<c:when test="${empty searchExamList}">
 									<div>
-										<div style="text-align: center !important; padding: 30px;">등록된 글이 없습니다</div>
+										<div style="padding: 30px;">등록된 글이 없습니다</div>
 									</div>
 								</c:when>
 								<c:otherwise>
@@ -55,16 +55,16 @@
 					</div>
 					<div>
 						<h4 style="padding-bottom: 5px">시공 업체</h4>
-						<div class="search-result-1 row1">
+						<div class="search-result-1 row1-1">
 							<c:choose>
 								<c:when test="${empty searchCopyList}">
 									<div>
-										<div style="text-align: center !important; display: inline-block !important; padding: 30px;">등록된 글이 없습니다</div>
+										<div style="margin-left: 15px; padding: 30px;">등록된 글이 없습니다</div>
 									</div>
 								</c:when>
 								<c:otherwise>
 									<c:forEach var="item" items="${searchCopyList}">
-										<a href="/copyDetail.do?copyNo=${item.copyNo}"class="inte-pama">
+										<a href="/copyDetail.do?copyNo=${item.copyNo}" class="searchcopy-list" >
 											<div class="rounded position-relative copy-search">
 												<div class="">
 													<img src="resources/img/${item.pictureName}" name="copypicturename" style="width:250px; height:250px;" class="rounded-top" alt="사진">
