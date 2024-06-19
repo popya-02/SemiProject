@@ -131,7 +131,7 @@ public class CopyDao {
         public ArrayList<CopyDto> getReview(String copyNo){
         	String query = "SELECT * FROM COPY_REVIEW cr"
         			   + "  JOIN BASIC_USER bu ON cr.USER_NO = bu.USER_NO"
-        			   + "  where copy_no = ?" 
+        			   + "  where copy_no = ? AND DELETE_STATUS = 'N'" 
         			   + "  ORDER BY REVIEW_NO DESC";
         	ArrayList<CopyDto> list = new ArrayList<>();	
         	try {
@@ -143,6 +143,7 @@ public class CopyDao {
 	        	   CopyDto dto = new CopyDto();
 	        	   dto.setUserId(rs.getString("USER_ID"));
 	        	   dto.setReview(rs.getString("REVIEW_CONTENT"));
+	        	   dto.setReviewNo(rs.getInt("REVIEW_NO"));
 	        	   list.add(dto);
 	           }
 			} catch (SQLException e) {
@@ -181,6 +182,7 @@ public class CopyDao {
 	public int reviewUpload(CopyDtoImpl copyDto) {
 		String query = "INSERT INTO COPY_REVIEW cr"
 				   +"   VALUES(review_seq.nextval, ?, ?, ?, DEFAULT)";
+
 		int result=0;
 		
 		try {
@@ -188,11 +190,31 @@ public class CopyDao {
 			pstmt.setString(1, copyDto.getCopyNum());
 			pstmt.setString(2, copyDto.getReview());
 			pstmt.setInt(3, copyDto.getUserNum());
+			System.out.println(copyDto.getCopyNum());
+			System.out.println(copyDto.getReview());
+			System.out.println(copyDto.getUserNum());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		return result;
+	}
+	
+	public int reviewDelete(int reviewNo) {
+		String query = "UPDATE COPY_REVIEW"
+				+"      SET DELETE_STATUS = 'Y'"
+				+"      WHERE REVIEW_NO = ?";
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, reviewNo);
+            int result = pstmt.executeUpdate();
+
+			
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

@@ -9,8 +9,7 @@ import com.gonggu.constructExam.model.dto.ConstructDtoImpl;
 
 public interface ConstructService {
 	
-	public ArrayList<ConstructDtoImpl> getList(String copyNum);
-
+	
 	public int enroll(ConstructDtoImpl ConstructDto);
 	
 	public ConstructDtoImpl getDeteil(int examNo);
@@ -40,6 +39,8 @@ public interface ConstructService {
 	public ArrayList<ConstructDtoImpl> getLike(ConstructDtoImpl constructDto);
 
 	public int getListCategoryCount(int categoryNum);
+	
+	public ArrayList<ConstructDtoImpl> getList(String copyNum);
 //	public ConstructDtoImpl selectNo(ConstructDtoImpl ConstructDto);
 //	public int fileUpload(ConstructDtoImpl ConstructDto);
 //	public void getFileName(ConstructDtoImpl result);

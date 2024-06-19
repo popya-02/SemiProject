@@ -56,8 +56,6 @@ public class ConstructDao {
 		String query = "INSERT INTO CONST_EXAM VALUES(exam_seq.nextval, ?, ?, ?, ?, default, null, ?)";
 		int result = 0;
 		
-		/* int result = SELECT MAX(EXAM_NO) FROM CONST_EXAM where */
-
 		try {
 			pstmt = con.prepareStatement(query);
 
@@ -73,6 +71,9 @@ public class ConstructDao {
 		}
 		return result;
 	}
+
+
+
 
 
 	public ConstructDtoImpl getDetail(int examNo) {
@@ -140,8 +141,7 @@ public class ConstructDao {
 			pstmt.setInt(1, examNo);
 			
 			int result = pstmt.executeUpdate();
-//			pstmt.close();
-//			con.close();
+
 			
 			return result;
 			
@@ -285,7 +285,9 @@ public class ConstructDao {
 		
 		List<ConstructDto> list = new ArrayList<>();
 		
+
 		String	query = "SELECT cu.COPY_NO, ce.DELETE_STATUS,cu.copy_name, ce.title, ce.exam_no, ep.path, ep.name, ep.EXAM_PICTURE_NO, ce.CATEGORY_NO"
+
 				+ "		FROM COPY_USER cu"
 				+ "     FULL JOIN CONSTRUCT c ON cu.COPY_NO = c.COPY_NO"
 				+ "     FULL JOIN CONST_EXAM ce ON c.CONSTRUCT_NO = ce.CONSTRUCT_NO"
@@ -324,6 +326,7 @@ public class ConstructDao {
 				dto.setFileName(rs.getString("NAME"));
 				dto.setFileNo(rs.getInt("EXAM_PICTURE_NO"));
 				dto.setCategoryNo(rs.getInt("CATEGORY_NO"));
+
 				dto.setCopyNo(rs.getString("COPY_NO"));
 				dto.setDeleteStatus(query);
 				list.add(dto);

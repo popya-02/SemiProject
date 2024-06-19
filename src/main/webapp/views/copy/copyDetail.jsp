@@ -59,8 +59,8 @@
 								<h4 class="fw-bold">${copyDetail[0].copyName}</h4>
 
 								<div>
-									<input type="hidden" id="${copyDetail[0].copyName}" name="copyNum"
-										value="${copyDetail[0].copyNum}">
+									<input type="hidden" id="${copyDetail[0].copyName}"
+										name="copyNum" value="${copyDetail[0].copyNum}">
 									<c:choose>
 										<c:when test="${not empty getLike }">
 											<c:set var="count" value="1" />
@@ -90,7 +90,14 @@
 								</div>
 
 								<c:if test="${sessionScope.userType == 'basicUser' }">
+<<<<<<< HEAD
 									<a href="/chatting/connection.do?copyNum=${copyDetail[0].copyNum}&userNum=${sessionScope.userNum}" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">시공 상담하기</a>
+=======
+									<a
+										href="/chatting/connection.do?copyNum=${copyDetail[0].copyNum}&userNum=${sessionScope.userNum}"
+										class="btn btn2 border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">시공
+										상담하기</a>
+>>>>>>> branch 'master' of https://github.com/popya-02/SemiProject.git
 								</c:if>
 							</div>
 
@@ -158,21 +165,37 @@
 
 				<div class="tab-pane" id="nav-mission" role="tabpanel"
 					aria-labelledby="nav-mission-tab">
-					<c:forEach var="getReview" items="${getReview}">
-						<div class="d-flex">
 
-							<div class="">
-								<p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-								<div class="d-flex justify-content-between">
-									<h5>${getReview.userId}</h5>
+					<c:forEach var="getReview" items="${getReview}">
+						<form action="/ReviewDeleteController" method="POST">
+							<input type="hidden" name="reviewNo"
+								value="${getReview.reviewNo}"> <input type="hidden"
+								name="copyNum" value="${copyDetail[0].copyNum}">
+							<div class="d-flex">
+
+								<div class="">
+									<div class="copy-infor">
+										<!-- 					<p>
+						작성일 :	<span id="noew-time"></span>
+					</p> -->
+									</div>
+									<div class="d-flex justify-content-between">
+										<h5>${getReview.userId}</h5>
+									</div>
+									<br>
+									<p>${getReview.review}</p>
 								</div>
-								<p>${getReview.review}</p>
 							</div>
-						</div>
+							<button type="submit"
+								class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>
+							<br>
+							<br>
+							<div class="nav nav-tabs mb-3" style="width: 1100px;"></div>
+
+						</form>
 					</c:forEach>
 
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -220,5 +243,8 @@
 	<script src="/resources/js/likeCopy.js"></script>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="/resources/js/nowtime.js"></script>
+
 
 </html>
