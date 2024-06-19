@@ -634,7 +634,7 @@ public class MyPageDao {
 				String phoneNum = rs.getString("PHONE_NUM");
 				String userAddr = rs.getString("CONSTRUCT_ADDR");
 				String constructPrice = rs.getString("CONSTRUCT_PRICE");
-				int deposit = rs.getInt("CONSTRUCT_DEPOSIT");
+				String deposit = rs.getString("CONSTRUCT_DEPOSIT");
 				String startDate = rs.getString("시작");
 				String endDate = rs.getString("끝");
 				String status = rs.getString("PURCHASE_STATUS");
