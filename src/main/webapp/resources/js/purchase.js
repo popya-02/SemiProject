@@ -1,3 +1,83 @@
+// 구매자 정보
+ var IMP = window.IMP;
+ IMP.init("imp67844376");   /* imp~ : 가맹점 식별코드*/
+ 
+ let amount = document.getElementById("amount").value;
+ let userName = document.getElementById("name").value;
+ let copy = document.getElementById("company").value;
+ let goodsName = document.getElementById("goods").value;
+ const detailAddr = document.getElementById("detailAddr");
+ let addr = document.getElementById("address").value;
+ const constNo = document.getElementById("constructNum").value;
+ const chatNo = document.getElementById("chattingNum").value;
+
+
+ $('#money-btn').click(function() {
+	console.log("12: " + detailAddr.value)
+		if (detailAddr && detailAddr.value == "") {
+			alert("상세주소를 입력해 주세요.");
+		} else {
+		IMP.request_pay({
+			pg: 'html5_inicis',
+			pay_method: 'card',				 /* 결제 수단방법 */
+
+			P_GOODS: '업체 명',
+			name: constNo,
+			amount: amount,
+            acceptName: "SKIN(#5E2BB8)"
+            
+		}, function(rsp) {
+			
+			// 결제가 성공됐을때 complete.do 가 호출되어야함
+							
+			// 결제가 실패되면 환불.do 가 호출되어야함
+			if(rsp.error_msg == null) {
+			$.ajax({
+                    url: '/complete.do',
+                    type: 'POST',
+					data: {
+						chatNo: chatNo,
+						detailAddr: detailAddr.value
+					},
+					success: function(response) {
+						var msg;
+                        if (response === 'success') {
+                            window.location.href = '/views/etc/complete.jsp';
+							msg;
+							console.log("결제성공");
+							alert(msg);
+                        } else {
+							msg = '결제에 실패하였습니다.';
+							msg += '에러내용 : ' + rsp.error_msg;
+							alert(msg);
+                        }
+                    },
+                    error: function() {
+                        window.location.href = 'error.jsp';
+                    }
+				})
+			}
+  
+		});
+	}
+	});
+	
+	
+	
+	
+	
+    $(document).ready(function() {
+    console.log("?");
+        console.log($("#datepicker"));
+        $( "#datepicker" ).datepicker({
+            changeMonth: true, 
+            dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+            dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+            monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+            monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+            dateFormat: 'yy년 MM d일'
+        });
+    });
 
     function execDaumPostcode() {
         new daum.Postcode({
@@ -46,16 +126,4 @@
             }
         }).open();
     }
-        
-    $(document).ready(function() {
-        
-        $( "#datepicker" ).datepicker({
-            changeMonth: true, 
-            dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-            dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-            monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-            monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-            dateFormat: 'yy년 MM d일'
-        });
-    });
-
+    

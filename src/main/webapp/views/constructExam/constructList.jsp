@@ -160,31 +160,31 @@
 	</main>
 
 	<!-- ---------------------------------페이지네이션------------------------------------------ -->
-	<div class="col-12">
-		<div class="pagination d-flex justify-content-center mt-3" id="paginaetion-box">
-			<c:choose>
-				<c:when test="${pi.copypage == 1 }">
-					<a onclick="copypageNumFunc()" id="categoryNo" class="page-n rounded" >&laquo;</a>
-				</c:when>
-				<c:otherwise>
-					<a onclick="copypageNumFunc('L')" id="categoryNo" class="page-n rounded" >&laquo;</a>
-				</c:otherwise>
-			</c:choose>
+   <div class="col-12">
+      <div class="pagination d-flex justify-content-center mt-3" id="paginaetion-box">
+         <c:choose>
+            <c:when test="${pi.copypage == 1 }">
+               <a onclick="copypageNumFunc()" id="categoryNo" class="page-n rounded" >&laquo;</a>
+            </c:when>
+            <c:otherwise>
+               <a onclick="copypageNumFunc('L')" id="categoryNo" class="page-n rounded" >&laquo;</a>
+            </c:otherwise>
+         </c:choose>
 
-			<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
-				<a class="page-n rounded" id="copypageNum" name="copypageNum">${page}</a>
-			</c:forEach>
+         <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+            <a class="page-n rounded" id="copypageNum" name="copypageNum">${page}</a>
+         </c:forEach>
 
-			<c:choose>
-				<c:when test="${pi.copypage == pi.maxPage }">
-					<a onclick="copypageNumFunc()" id="categoryNo" class="page-n rounded" >&raquo;</a>
-				</c:when>
-				<c:otherwise>
-					<a onclick="copypageNumFunc('R')" id="categoryNo" class="page-n rounded" >&raquo;</a>
-				</c:otherwise>
-			</c:choose>
-		</div>
-	</div>
+         <c:choose>
+            <c:when test="${pi.copypage == pi.maxPage }">
+               <a onclick="copypageNumFunc()" id="categoryNo" class="page-n rounded" >&raquo;</a>
+            </c:when>
+            <c:otherwise>
+               <a onclick="copypageNumFunc('R')" id="categoryNo" class="page-n rounded" >&raquo;</a>
+            </c:otherwise>
+         </c:choose>
+      </div>
+   </div>
 
 	<!-- Footer Start -->
 	<%@ include file="/views/common/footer.jsp"%>
@@ -206,4 +206,8 @@
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+const test = document.getElementById("${construct.copyName}").value;
+console.log(test);
+</script>
 </html>

@@ -90,7 +90,6 @@ public class InformationDao {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				String no = rs.getString("COPY_NO");
-//				System.out.println(no);
 				String copyName = rs.getString("COPY_NAME");
 				String ceo = rs.getString("CEO_NAME");
 				String addr = rs.getString("COPY_ADDR");

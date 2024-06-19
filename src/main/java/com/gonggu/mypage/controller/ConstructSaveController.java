@@ -25,7 +25,7 @@ public class ConstructSaveController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
+	
 		String element = request.getParameter("element");
 		String copyNum = request.getParameter("copyNum");
 		int basicNum = Integer.parseInt(request.getParameter("basicNum"));
@@ -45,6 +45,7 @@ public class ConstructSaveController extends HttpServlet {
 		
 		int result = constService.saveConstElement(constDto);
 		
+		System.out.println("save " + result);
 		if(result == 0) {
 			response.getWriter().print("fail");
 		}else {

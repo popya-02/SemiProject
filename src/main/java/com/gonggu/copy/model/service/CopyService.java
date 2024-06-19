@@ -19,6 +19,7 @@ public interface CopyService {
 	
 	public int reviewUpload(CopyDtoImpl copyDto);
 	
+	public int reviewDelete(int userNum);
 	
 	
 }

@@ -16,6 +16,7 @@ public class MyPageDto {
 	private String ConstructArea;
 	private int ConstructNo;
 	
+	
 	private int CopyPictureNo;
 	private String PictureName;
 	private String PicturePath;
@@ -29,6 +30,8 @@ public class MyPageDto {
 	private String estimatePrice;
 	private String sumPrice;
 	private int chattingNum;
+	private String constStatus;
+	private String constDeposit;
 	
 	public MyPageDto() {
 		super();
@@ -176,9 +179,11 @@ public class MyPageDto {
 	public void setConstructArea(String constructArea) {
 		ConstructArea = constructArea;
 	}
+	
 	public String getConstructElement() {
 		return constructElement;
 	}
+
 	public void setConstructElement(String constructElement) {
 		this.constructElement = constructElement;
 	}
@@ -230,5 +235,23 @@ public class MyPageDto {
 	}
 
 
+	public String getConstStatus() {
+		return constStatus;
+	}
+
+
+	public void setConstStatus(String constStatus) {
+		this.constStatus = constStatus;
+	}
+
+
+	public String getConstDeposit() {
+		return constDeposit;
+	}
+
+
+	public void setConstDeposit(String constDeposit) {
+		this.constDeposit = constDeposit;
+	}
 	
 }

@@ -26,7 +26,9 @@ public class ConstructServiceImpl implements ConstructService {
 		return constructDao.enroll(constructDto);
 	}
 	
+	
 	@Override
+
 	public ConstructDtoImpl getDeteil(int examNo){
 		return constructDao.getDetail(examNo);
 	};

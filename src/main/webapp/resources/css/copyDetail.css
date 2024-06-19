@@ -4,7 +4,28 @@
 
 .exam-btn{
 	margin-bottom: 20px !important;
+
+}
 	
+.tlrhd-border{
+    border: 1px solid #9AAAC9 !important;
+    color: #223455 !important;
+    background-color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+    left: 5%;
+}
+
+
+.tlrhd-border a:hover{
+    background-color: #223455 !important;
+    color: white !important;
+    transition: 0.3s;
+}
+
+.btn2{
+	margin-bottom:0px !important;
 }
 
 .tlrhd-like{

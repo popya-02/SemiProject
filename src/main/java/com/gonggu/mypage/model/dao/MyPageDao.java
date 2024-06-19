@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.gonggu.common.DatabaseConnection;
-import com.gonggu.mypage.model.dto.MyPageDto;
 import com.gonggu.common.PageInfo;
+import com.gonggu.mypage.model.dto.MyPageDto;
 import com.gonggu.mypage.model.dto.MyPageDtoImpl;
 
 
@@ -269,6 +269,7 @@ public class MyPageDao {
 		}
 		return 0;
 	}
+	
 
 	public int saveConstElement(MyPageDto constDto) {
 	    String query = "INSERT INTO CONSTRUCT VALUES("
@@ -282,9 +283,9 @@ public class MyPageDao {
 	            	+ " ?,"  // sumprice 7
 	            	+ " ?,"  // chatNum 8
 	            	+ " ?,"  // element 9
-	            	+ " ?,"  // deposit 10
-	            	+ " DEFAULT"  // PURCHASE_STATUS 11 결제상태여부
-	            	+ " DEFAULT"  // PURCHASE_REQUEST 12 결제요청여부
+	            	+ " ?,"
+	            	+ " default, "	// purchaseStatus 
+	            	+ " default"	 // deposit 10
 	            	+ ")";
 
 //	    System.out.println(constDto.getConstructElement());
@@ -480,11 +481,18 @@ public class MyPageDao {
 	
 //  나의 견적/공사 내역
 	public int getUserEstimateListCount(MyPageDtoImpl myDto) {
-		String query = "SELECT COUNT(*) AS CNT"
-				+ "     FROM CONSTRUCT c"
-				+ "     JOIN COPY_DETAIL cd"
-				+ "     ON c.COPY_NO = cd.COPY_NO"
-				+ "     WHERE c.USER_NO = ?";
+		String query = """
+				SELECT COUNT(*) AS CNT
+				FROM CONSTRUCT c 
+				JOIN COPY_DETAIL cd ON c.COPY_NO = cd.COPY_NO
+				WHERE c.USER_NO = ?
+				""";
+				
+//				"SELECT COUNT(*) AS CNT"
+//				+ "     FROM CONSTRUCT c"
+//				+ "     JOIN COPY_DETAIL cd"
+//				+ "     ON c.COPY_NO = cd.COPY_NO"
+//				+ "     WHERE c.USER_NO = ?";
 		   try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, myDto.getUserNo());
@@ -492,7 +500,6 @@ public class MyPageDao {
 			
 			while(rs.next()) {
 				int result = rs.getInt("CNT");
-				
 				return result;
 			}
 			
@@ -506,14 +513,13 @@ public class MyPageDao {
 //  나의 견적/공사 내역
 	public ArrayList<MyPageDtoImpl> getUserEstimateList(PageInfo pi, MyPageDtoImpl myDto) {
 		ArrayList<MyPageDtoImpl> result = new ArrayList<>();
-		String query = "SELECT cd.COPY_NO, NAME, COPY_NAME, CONSTRUCT_NO"
-				+ "     FROM COPY_DETAIL cd"
-				+ "     FULL JOIN COPY_PHOTO cp"
-				+ "        ON cd.COPY_NO = cp.COPY_NO"
-				+ "     FULL JOIN CONSTRUCT c"
-				+ "        ON c.COPY_NO = cd.COPY_NO"
-				+ "     WHERE c.USER_NO = ?"
-				+ "     OFFSET ? ROWS FETCH FIRST ? ROWS ONLY";
+		String query = """
+						SELECT c.COPY_NO, cp.name, cd.copy_name, c.CONSTRUCT_NO, c.PURCHASE_STATUS FROM CONSTRUCT c
+						JOIN COPY_DETAIL cd ON c.COPY_NO = cd.COPY_NO
+						FULL JOIN COPY_PHOTO cp ON cp.COPY_NO = c.COPY_NO
+						WHERE c.USER_NO = ?
+						OFFSET ? ROWS FETCH FIRST ? ROWS ONLY
+					""";
 		
 		   try {
 			pstmt = con.prepareStatement(query);
@@ -528,6 +534,7 @@ public class MyPageDao {
 				pageDto.setPictureName(rs.getString("NAME"));
 				pageDto.setCopyName(rs.getString("COPY_NAME"));
 				pageDto.setConstructNo(rs.getInt("CONSTRUCT_NO"));
+				pageDto.setConstStatus(rs.getString("PURCHASE_STATUS"));
 				
 				result.add(pageDto);
 			}
@@ -563,10 +570,11 @@ public class MyPageDao {
 		return 0;
 	}
 
+
 //  업체 견적/공사 내역
 	public ArrayList<MyPageDtoImpl> getCopyEstimateList(PageInfo pi, MyPageDtoImpl myDto) {
 		ArrayList<MyPageDtoImpl> result = new ArrayList<>();
-		String query = "SELECT bu.USER_NO, bu.NAME, bu.PHONE_NUM, c.CONSTRUCT_NO"
+		String query = "SELECT bu.USER_NO, bu.NAME, bu.PHONE_NUM, c.CONSTRUCT_NO, c.PURCHASE_STATUS"
 				+ "     FROM CONSTRUCT c"
 				+ "     FULL JOIN BASIC_USER bu"
 				+ "        ON c.USER_NO = bu.USER_NO"
@@ -586,6 +594,7 @@ public class MyPageDao {
 				pageDto.setName(rs.getString("NAME"));
 				pageDto.setPhoneNum(rs.getString("PHONE_NUM"));
 				pageDto.setConstructNo(rs.getInt("CONSTRUCT_NO"));
+				pageDto.setConstStatus(rs.getString("PURCHASE_STATUS"));
 				
 				result.add(pageDto);
 			}
@@ -595,7 +604,122 @@ public class MyPageDao {
 		}
 		return result;
 	}
+	
+	
+//	======================== 예약 확인 ===========================
+	
+	
+	// 예약 확인 조회 
+	public MyPageDtoImpl reserveCheck(int constructNum) {
+		
+		String query =  """
+						SELECT cd.copy_name, c.CONSTRUCT_NO, bu.ADDR,c.CONSTRUCT_ADDR, bu.PHONE_NUM , c.CONSTRUCT_PRICE, c.CONSTRUCT_DEPOSIT, TO_CHAR(c.CONSTRUCT_START_DATE, 'YYYY-MM-DD') AS 시작, TO_CHAR(c.CONSTRUCT_END_DATE, 'YYYY-MM-DD') AS 끝, c.PURCHASE_STATUS, c.CHATTING_NO, cp.NAME  
+						FROM COPY_DETAIL cd
+						JOIN CONSTRUCT c ON cd.COPY_NO = c.COPY_NO
+						JOIN BASIC_USER bu ON bu.USER_NO = c.USER_NO
+						FULL JOIN COPY_PHOTO cp ON cp.COPY_NO = c.COPY_NO 
+						WHERE c.construct_no  = ?
+						""";
+		
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, constructNum);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				
+				String copyName = rs.getString("COPY_NAME");
+				int constructNo = rs.getInt("CONSTRUCT_NO");
+				String addr = rs.getString("ADDR");
+				String phoneNum = rs.getString("PHONE_NUM");
+				String userAddr = rs.getString("CONSTRUCT_ADDR");
+				String constructPrice = rs.getString("CONSTRUCT_PRICE");
+				String deposit = rs.getString("CONSTRUCT_DEPOSIT");
+				String startDate = rs.getString("시작");
+				String endDate = rs.getString("끝");
+				String status = rs.getString("PURCHASE_STATUS");
+				int chattingNo = rs.getInt("CHATTING_NO");
+				String phothName = rs.getString("NAME");
+				
+				MyPageDtoImpl myDTO = new MyPageDtoImpl();
+				
+				myDTO.setCopyName(copyName);
+				myDTO.setConstructNo(constructNo);
+				myDTO.setAddress(addr);
+				myDTO.setPhoneNum(phoneNum);
+				myDTO.setConstAddr(userAddr);
+				myDTO.setEstimatePrice(constructPrice);
+				myDTO.setConstDeposit(deposit);
+				myDTO.setConstStartDate(startDate);
+				myDTO.setConstEndDate(endDate);
+				myDTO.setConstStatus(status);
+				myDTO.setChattingNum(chattingNo);
+				myDTO.setPictureName(phothName);
+				
+				return myDTO;
+			}				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * 결제 요청 
+	 */
+	public int savePurchaseStatus(int constructNo) {
+		String query = """
+						SELECT PURCHASE_REQUEST FROM CONSTRUCT c 
+						WHERE CONSTRUCT_NO = ?
+						AND PURCHASE_STATUS = 'N'
+					   """;
+		int result = 0;
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, constructNo);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				String purchaseRequest= rs.getString("PURCHASE_REQUEST");
 
+                    // PURCHASE_REQUEST가 null인 경우 0을 반환
+                if ("Y".equals(purchaseRequest)) {
+                    result = 1; 
+                    // PURCHASE_REQUEST가 'Y'인 경우 1을 반환
+                } else {
+                	result = 0; 
+                }
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	// 결제 요청시 업데이트 
+	public int purchaseReq(int constructNo) {
+		String query = """
+						UPDATE construct
+						SET purchase_Request = 'Y'
+						WHERE CONSTRUCT_NO = ?
+						""";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, constructNo);
+			
+			int result = pstmt.executeUpdate();
+			return result;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+		
+	}
+	
 }
 
 
