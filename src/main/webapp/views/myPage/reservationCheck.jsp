@@ -50,7 +50,7 @@
 						</div>
 
 						<div class="reservation-details-item">
-							<strong style="width: 300px">상세주소:</strong><input type="text"
+							<strong style="width: 300px">주소:</strong><input type="text"
 								class="fixed-input" value="${result.address}" readonly
 								style="padding-left: 10px">
 						</div>
@@ -69,8 +69,8 @@
 								value="${result.phoneNum}" readonly>
 						</div> --%>
 						<div class="reservation-details-item">
-							<strong style="width: 300px">날짜:</strong><input type="text"
-								class="fixed-input" value="${result.constStartDate}" readonly
+							<strong style="width: 300px">시공날짜:</strong><input type="text"
+								class="fixed-input" value="${result.constStartDate}  -  ${result.constEndDate}" readonly
 								style="padding-left: 10px">
 						</div>
 					</div>
@@ -80,10 +80,11 @@
 			<c:choose>
 				<c:when test="${sessionScope.purchaseStatus == 'S'}">
 					<div class="purchase-box">
-						<a href="/purchase.do">
-						<input type="hidden" name="chattingNum" value="${chattingNum}" /> 
-							<div class="purchase">결제 하기</div>
-						</a>
+						<form action="/purchase.do?chatNum=${result.chattingNum}" method="GET">
+							<input type="hidden" name="chattingNum" value="${result.chattingNum}" /> 
+							<input type="hidden" name="constructNum" value="${result.constructNo}" /> 
+							<button class="purchase" type="submit">결제 하기</button>
+						</form>
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -124,7 +125,7 @@
 						</div>
 						<div class="reservation-details-item">
 							<strong style="width: 300px">시공 날짜 :</strong><input type="text" class="fixed-input"
-								value="${result.constStartDate}" readonly style="padding-left:10px">
+								value="${result.constStartDate}  -  ${result.constEndDate}" readonly style="padding-left:10px">
 						</div>
 						<c:choose>
 							<c:when test="${result.constStatus == 'N' && sessionScope.purchaseStatus == 'Y'}">

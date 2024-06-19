@@ -43,11 +43,33 @@ public class PurchaseServiceImpl implements PurchaseService {
 			if (conn != null) {
                 try {
                     conn.connDB().rollback(); // 예외 발생 시 롤백
+                    return "error";
                 } catch (SQLException ex) {
                     e.printStackTrace();
                 }
-		} 
-    	return "error";
 		}
+    	return "error";
+    	
+		} catch (Exception e) { 
+			if (conn != null) {
+                try {
+                    conn.connDB().rollback(); // 예외 발생 시 롤백
+                    return "error";
+                } catch (SQLException ex) {
+                    e.printStackTrace();
+                }
+			}
+		}
+    	return "error";
+    }
+    
+    @Override
+    public PurchaseDto constructInfo(int chattingNo) {
+    	return purchaseDao.constructInfo(chattingNo);
+    }
+    
+    @Override
+    public int addressUpdate(int chattingNo, String detailAddress) {
+    	return purchaseDao.addressUpdate(chattingNo, detailAddress);
     }
  }

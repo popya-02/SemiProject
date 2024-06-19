@@ -5,12 +5,12 @@ public class PurchaseDto {
     private String userName;
     private String phoneNum;
     private String copyName;
-    private int constructPrice;
-    private String oid;                // 주문 번호
+    private int deposit;
     
     private String detailAddr;
     private String purchaseStatus;
-    private String constructDate;
+    private String constructStartDate;
+    private String constructEndDate;
     private String goodsName;
     private String refundDate;
     private int chattingNo;
@@ -39,24 +39,6 @@ public class PurchaseDto {
     public void setCopyName(String copyName) {
         this.copyName = copyName;
     }
-
-    public int getConstructPrice() {
-        return constructPrice;
-    }
-
-    public void setConstructPrice(int constructPrice) {
-        this.constructPrice = constructPrice;
-    }
-
-    public String getOid() {
-        return oid;
-    }
-
-    public void setOid(String oid) {
-        this.oid = oid;
-    }
-    
-    
 
     public String getDetailAddr() {
 		return detailAddr;
@@ -90,12 +72,30 @@ public class PurchaseDto {
 		this.refundDate = refundDate;
 	}
 	
-	public String getConstructDate() {
-		return constructDate;
-	}
 	
-	public void setConstructDate(String constructDate) {
-		this.constructDate = constructDate;
+
+	public int getDeposit() {
+		return deposit;
+	}
+
+	public void setDeposit(int deposit) {
+		this.deposit = deposit;
+	}
+
+	public String getConstructStartDate() {
+		return constructStartDate;
+	}
+
+	public void setConstructStartDate(String constructStartDate) {
+		this.constructStartDate = constructStartDate;
+	}
+
+	public String getConstructEndDate() {
+		return constructEndDate;
+	}
+
+	public void setConstructEndDate(String constructEndDate) {
+		this.constructEndDate = constructEndDate;
 	}
 
 	public int getChattingNo() {
@@ -111,48 +111,39 @@ public class PurchaseDto {
 	
 
 
-	public PurchaseDto(String userName, String phoneNum, String copyName, int constructPrice, String oid) {
+	public PurchaseDto(String userName, String phoneNum, String copyName, int deposit) {
         this.userName = userName;
         this.phoneNum = phoneNum;
         this.copyName = copyName;
-        this.constructPrice = constructPrice;
-        this.oid = oid;
+        this.deposit = deposit;
     }
 	
-	public PurchaseDto(int chattingNo, String oid, String goodsName, String detailAddress, int constructPrice) {
+	public PurchaseDto(int chattingNo, String goodsName, String detailAddress, int deposit) {
 		this.chattingNo = chattingNo;
-		this.oid = oid;
 		this.goodsName = goodsName;
 		this.detailAddr = detailAddress;
-        this.constructPrice = constructPrice;
+        this.deposit = deposit;
+    }
+	
+	public PurchaseDto(String constructStartDate, String constructEndDate, String addr) {
+		this.constructStartDate = constructStartDate;
+		this.constructEndDate = constructEndDate;
+		this.detailAddr = addr;
     }
     
-    
-//    $.ajax({
-//		type: "POST",
-//		url: "/complete.do",
-//		data: { amount: amount,			// 금액 
-//				goodsName: goodsName,			// 상품명 
-//				userName: userName,			// 주문자 
-//			   },
-//		success: function(success){
-//			window.location.href='/views/etc/success.jsp';
-//			msg = '결제가 완료되었습니다.';
-//		},
-//		error: function(error){
-//			console.log("실패");
-//		}
-//	});
-
     public PurchaseDto() {
 		super();
 	}
 
-	public static PurchaseDto of(String userName, String phoneNum, String copyName, int constructPrice, String oid) {
-        return new PurchaseDto(userName, phoneNum, copyName, constructPrice, oid);
+	public static PurchaseDto of(String userName, String phoneNum, String copyName, int deposit) {
+        return new PurchaseDto(userName, phoneNum, copyName, deposit);
     }
 	
-	public static PurchaseDto of(int chattingNo, String oid, String goodsName, String detailAddress, int constructPrice) {
-		return new PurchaseDto(chattingNo, oid, goodsName, detailAddress, constructPrice);
+	public static PurchaseDto of(int chattingNo, String goodsName, String detailAddress, int deposit) {
+		return new PurchaseDto(chattingNo, goodsName, detailAddress, deposit);
+	}
+	
+	public static PurchaseDto of(String constructStartDate, String constructEndDate, String addr) {
+		return new PurchaseDto(constructStartDate, constructEndDate, addr);
 	}
 }

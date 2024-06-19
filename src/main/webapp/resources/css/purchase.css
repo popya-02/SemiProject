@@ -76,3 +76,10 @@
             border: solid 2px black;
             border-radius: 5px;
         }
+        
+        .date-box {
+        width: 300px !important; 
+        font-size: 15px;  
+        color: rgb(73, 73, 73); 
+        border: 0 !important;
+        }

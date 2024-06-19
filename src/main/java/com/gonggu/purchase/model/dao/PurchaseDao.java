@@ -20,27 +20,27 @@ public class PurchaseDao {
     }
 
     public PurchaseDto purchaseInfo(int chattingNo) {
-        String query = "SELECT bu.name, bu.phone_num, cd.copy_name, c.construct_price FROM CONSTRUCT_STATUS cs "
+        String query = "SELECT bu.name, bu.phone_num, cd.copy_name, c.construct_deposit FROM CONSTRUCT_STATUS cs "
         		+ "		FULL JOIN COPY_DETAIL cd ON cd.COPY_NO = cs.COPY_NO"
         		+ "		FULL JOIN BASIC_USER bu ON cs.USER_NO = bu.USER_NO"
         		+ "		FULL JOIN CONSTRUCT c ON c.CHATTING_NO = cs.CHATTING_NO"
-        		+ "		where c.chatting_no = 1";
+        		+ "		where c.chatting_no = ?";
         
         String oid = UUID.randomUUID().toString();
 
         try {
             pstmt = con.prepareStatement(query);
-//            pstmt.setInt(1, chattingNo);
+            pstmt.setInt(1, chattingNo);
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 String userName = rs.getString("name");
                 String phoneNum = rs.getString("phone_num");
                 String copyName = rs.getString("copy_name");
-                int price = rs.getInt("construct_price");
+                int deposit = rs.getInt("construct_deposit");
 
                 // 값 세팅
-                PurchaseDto dto = PurchaseDto.of(userName, phoneNum, copyName, price, oid);
+                PurchaseDto dto = PurchaseDto.of(userName, phoneNum, copyName, deposit);
                 
                 return dto;
 
@@ -53,30 +53,21 @@ public class PurchaseDao {
     }
     
     
-    public int order(PurchaseDto dto) {
+    public void order(PurchaseDto dto) throws SQLException {
     	String query = "insert into purchase"
-    			+ "		values(purchase_seq.nextval, sysdate, NULL, ?,  ?, ?)";
-    	int result = 0 ;
-    	try {
+    			+ "		values(purchase_seq.nextval, sysdate, NULL, ?)";
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, dto.getDetailAddr());
-			pstmt.setString(2, dto.getOid());
-			pstmt.setInt(3, dto.getChattingNo());
+			pstmt.setInt(1, dto.getChattingNo());
 			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-    			
-    	return result;
+			pstmt.executeUpdate();
     }
     public int statusUpdate(int chattingNo) {
-    	String query = "UPDATE  CONSTRUCT SET PURCHASE_STATUS = 'N'"
-    			+ "		WHERE CHATTING_NO = 1";
+    	String query = "UPDATE  CONSTRUCT SET PURCHASE_STATUS = 'Y'"
+    			+ "		WHERE CHATTING_NO = ?";
     	
     	try {
 			pstmt = con.prepareStatement(query);
-//	    	pstmt.setString(1, chattingNo);
+	    	pstmt.setInt(1, chattingNo);
 			int result = pstmt.executeUpdate();
 			return result;
 			
@@ -84,6 +75,59 @@ public class PurchaseDao {
 			e.printStackTrace();
 		}
     	return 0;
+    }
+    
+    public PurchaseDto constructInfo(int chattingNo) {
+    	String query = """
+    					SELECT
+					    TO_CHAR(CONSTRUCT_START_DATE, 'YYYY-MM-DD') AS 시공시작, 
+					    TO_CHAR(CONSTRUCT_END_DATE, 'YYYY-MM-DD')  AS 시공끝,
+					    CONSTRUCT_ADDR 
+    					FROM CONSTRUCT c 
+    					WHERE CHATTING_NO = ?
+    				   """;
     	
+    	try {
+			pstmt = con.prepareStatement(query);
+	    	pstmt.setInt(1, chattingNo);
+	    	ResultSet rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+                String startDate = rs.getString("시공시작");
+                String endDate = rs.getString("시공끝");
+                String addr = rs.getString("CONSTRUCT_ADDR");
+
+                PurchaseDto dto = PurchaseDto.of(startDate, endDate, addr);
+                
+                return dto;
+
+            }
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	return null;
+    }
+    
+    
+    public int addressUpdate(int chattingNo, String detailAddress) {
+    	String query = """
+    					UPDATE CONSTRUCT SET CONSTRUCT_ADDR = ?
+    					WHERE CHATTING_NO = ?
+    				   """;
+    	
+    	try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, detailAddress);
+			pstmt.setInt(2, chattingNo);
+			int result = pstmt.executeUpdate(); 
+			System.out.println("" + result);
+			return result;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return 0;
     }
 }

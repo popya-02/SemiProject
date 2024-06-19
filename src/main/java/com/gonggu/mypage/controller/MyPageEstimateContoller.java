@@ -46,7 +46,7 @@ public class MyPageEstimateContoller extends HttpServlet {
 			
 			// 보여질 페이지 수
 			int pageLimit = 5;
-			
+				
 			// 한페이지에 보여질 기시글 수
 			int boardLimit = 5;
 			

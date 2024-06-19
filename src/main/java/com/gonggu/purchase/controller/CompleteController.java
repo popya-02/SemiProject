@@ -2,15 +2,14 @@ package com.gonggu.purchase.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import com.gonggu.mypage.model.service.MyPageServiceImpl;
 import com.gonggu.purchase.model.dto.PurchaseDto;
 import com.gonggu.purchase.model.service.PurchaseServiceImpl;
 
@@ -28,32 +27,26 @@ public class CompleteController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		PrintWriter out = response.getWriter();
 		PurchaseServiceImpl purchaseService = new PurchaseServiceImpl();
-		HttpSession session = request.getSession(); 
+		int chatNo = Integer.parseInt(request.getParameter("chatNo"));
+		String detailAddr = request.getParameter("detailAddr");
 		
-		PurchaseDto purchaseDto = of(request);
+		System.out.println(detailAddr);
+		PurchaseDto purchaseDto = new PurchaseDto();
+		
+		purchaseDto.setChattingNo(chatNo);
+		
 		String result = purchaseService.order(purchaseDto);
 		
 		if ("success".equals(result)) {
-            out.write("success");
+            int success = purchaseService.addressUpdate(chatNo ,detailAddr);
+            if (success == 1) {
+            	System.out.println("asasas");
+            	out.write("success");
+            } else {
+            	out.write("error");
+            }
         } else {
-            out.write("error");
-        }		
+        	out.write("error");
+        }
 	}
-
-	/**
-	 * 결제 후 응답받은 데이터로 DTO 생성
-	 * @param request
-	 * @return
-	 */
-	private PurchaseDto of(HttpServletRequest request) {
-		int chattingNo = Integer.parseInt(request.getParameter("chattingNum"));
-		String oid = UUID.randomUUID().toString();
-		String goodsName = request.getParameter("goods");
-		String detailAddr = request.getParameter("detailAddr");;
-		int constructPrice = Integer.parseInt(request.getParameter("price"));
-		
-		PurchaseDto purchaseDto = PurchaseDto.of(chattingNo, oid, goodsName, detailAddr, constructPrice);
-		return purchaseDto;
-	}
-
 }

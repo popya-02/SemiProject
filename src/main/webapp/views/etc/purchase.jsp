@@ -32,7 +32,10 @@
     </div>
     <div class="container-box container">
         <input type="hidden" name="goods" id="goods" value="${result.userName}">
-        <form>
+        <input type="hidden" name="chattingNum" id="goods" value="${result.userName}">
+        <input type="hidden" name="constructNum" id="constructNum" value="${mypageDto.constructNo}">
+        <input type="hidden" name="chattingNum" id="chattingNum" value="${mypageDto.chattingNum}">
+        <form action="purchaseSuccess.do" method="POST">
             <div class="form-group">
                 <label for="name">이름</label><br>
                 <input type="text" id="name" value="${result.userName}" readonly class="readonly-input">
@@ -47,8 +50,7 @@
             </div>
             <div class="form-group">
                 <label for="amount">결제 금액</label><br>
-                 <!-- TODO: 결제금액 내리고 크기키우  -->
-                <input type="number" id="amount" value="100"<%-- value="${result.constructPrice}" --%> readonly class="readonly-input">
+                <input type="number" id="amount" value="100"  readonly class="readonly-input">
             </div>
             <div class="form-group center-input location-box">
                 <label for="location">주소</label><br>
@@ -59,8 +61,8 @@
                 <input type="text" id="extraAddress" placeholder="참고항목">
             </div>
             <div class="form-group center-input location-box">
-                <label for="datepicker">날짜</label><br>
-                <input type="text" id="datepicker" name="date" style="width: 225px; text-align: center; color: rgb(73, 73, 73);" value="날짜 선택" required>
+                <label for="datepicker">시공 날짜</label><br>
+                <input class="date-box" type="text" name="date"  value="${date.constructStartDate}       ~        ${date.constructEndDate}" readonly>
             </div>  
             <button type="button"  class="btn" id="money-btn" >결제하기</button>
         </form>

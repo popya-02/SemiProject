@@ -46,5 +46,5 @@ public interface MyPageService {
 	int savePurchaseStatus(int chattingNo);
 	
 	int purchaseReq(int constructNo);
-
+	
 }

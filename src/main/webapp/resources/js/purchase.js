@@ -6,60 +6,50 @@
  let userName = document.getElementById("name").value;
  let copy = document.getElementById("company").value;
  let goodsName = document.getElementById("goods").value;
- let detailAddr = document.getElementById("detailAddr").value;
+ const detailAddr = document.getElementById("detailAddr");
  let addr = document.getElementById("address").value;
+ const constNo = document.getElementById("constructNum").value;
+ const chatNo = document.getElementById("chattingNum").value;
 
-  
-
-
-// $.ajax({
-//				type: "POST",
-//				url: "/payment/complete.do",
-//				data: { priceArr : priceArr[0],
-//						objectTitle : objectTitle,
-//						objectCeller : objectCeller,
-//					   },
-//				success: function(success){
-//					window.location.href='/views/payment/completeOrder.jsp';
-//				},
-//				error: function(error){
-//					console.log("실패");
-//				}
-//			});
 
  $('#money-btn').click(function() {
+	console.log("12: " + detailAddr.value)
+		if (detailAddr && detailAddr.value == "") {
+			alert("상세주소를 입력해 주세요.");
+		} else {
 		IMP.request_pay({
 			pg: 'html5_inicis',
 			pay_method: 'card',				 /* 결제 수단방법 */
 
-
-			name: "상품 명",					// 상품 명 
+			P_GOODS: '업체 명',
+			name: constNo,
 			amount: amount,
-			goods_name: "카테고리 명",
-            buyer_name: "sdfsdds",
             acceptName: "SKIN(#5E2BB8)"
             
 		}, function(rsp) {
+			
 			// 결제가 성공됐을때 complete.do 가 호출되어야함
 							
 			// 결제가 실패되면 환불.do 가 호출되어야함
-			console.log(rsp.error_msg);
 			if(rsp.error_msg == null) {
 			$.ajax({
                     url: '/complete.do',
                     type: 'POST',
 					data: {
-						
+						chatNo: chatNo,
+						detailAddr: detailAddr.value
 					},
 					success: function(response) {
+						var msg;
                         if (response === 'success') {
-                            window.location.href = 'complete.jsp';
-							var msg;
+                            window.location.href = '/views/etc/complete.jsp';
+							msg;
 							console.log("결제성공");
+							alert(msg);
                         } else {
-                            window.location.href = 'error.jsp';
-							var msg = '결제에 실패하였습니다.';
+							msg = '결제에 실패하였습니다.';
 							msg += '에러내용 : ' + rsp.error_msg;
+							alert(msg);
                         }
                     },
                     error: function() {
@@ -67,8 +57,9 @@
                     }
 				})
 			}
-			alert(msg);
+  
 		});
+	}
 	});
 	
 	

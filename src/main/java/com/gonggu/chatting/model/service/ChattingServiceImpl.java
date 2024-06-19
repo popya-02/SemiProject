@@ -45,7 +45,8 @@ public class ChattingServiceImpl implements ChattingService{
 			}
 		}
 		return result;
-	
+	}
+
 
 
 	@Override

@@ -7,5 +7,8 @@ public interface PurchaseService {
 	PurchaseDto purchaseInfo(int chattingNo);
 		
 	String order(PurchaseDto purchaseDto);
-
+	
+	PurchaseDto constructInfo(int chattingNo);
+	
+	int addressUpdate(int chattingNo, String detailAddress);
 }

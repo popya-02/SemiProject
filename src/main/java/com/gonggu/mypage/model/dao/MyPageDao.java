@@ -483,10 +483,9 @@ public class MyPageDao {
 	public int getUserEstimateListCount(MyPageDtoImpl myDto) {
 		String query = """
 				SELECT COUNT(*) AS CNT
-				FROM CONSTRUCT_STATUS cs 
-				JOIN COPY_DETAIL cd
-				ON cs.COPY_NO = cd.COPY_NO
-				WHERE cs.USER_NO = ?
+				FROM CONSTRUCT c 
+				JOIN COPY_DETAIL cd ON c.COPY_NO = cd.COPY_NO
+				WHERE c.USER_NO = ?
 				""";
 				
 //				"SELECT COUNT(*) AS CNT"
@@ -501,7 +500,6 @@ public class MyPageDao {
 			
 			while(rs.next()) {
 				int result = rs.getInt("CNT");
-			System.out.println("NO : " + myDto.getUserNo());
 				return result;
 			}
 			
@@ -516,12 +514,10 @@ public class MyPageDao {
 	public ArrayList<MyPageDtoImpl> getUserEstimateList(PageInfo pi, MyPageDtoImpl myDto) {
 		ArrayList<MyPageDtoImpl> result = new ArrayList<>();
 		String query = """
-						SELECT cs.COPY_NO, cp.NAME, cd.COPY_NAME, c.CONSTRUCT_NO, c.PURCHASE_STATUS  
-						FROM CONSTRUCT_STATUS cs 
-						FULL JOIN COPY_DETAIL cd ON cs.COPY_NO = cd.COPY_NO
-						FULL JOIN CONSTRUCT c ON c.USER_NO = cs.USER_NO 
-						FULL JOIN COPY_PHOTO cp ON cp.COPY_NO = cd.COPY_NO
-						WHERE cs.USER_NO = ?
+						SELECT c.COPY_NO, cp.name, cd.copy_name, c.CONSTRUCT_NO, c.PURCHASE_STATUS FROM CONSTRUCT c
+						JOIN COPY_DETAIL cd ON c.COPY_NO = cd.COPY_NO
+						FULL JOIN COPY_PHOTO cp ON cp.COPY_NO = c.COPY_NO
+						WHERE c.USER_NO = ?
 						OFFSET ? ROWS FETCH FIRST ? ROWS ONLY
 					""";
 		
@@ -617,7 +613,7 @@ public class MyPageDao {
 	public MyPageDtoImpl reserveCheck(int constructNum) {
 		
 		String query =  """
-						SELECT cd.copy_name, c.CONSTRUCT_NO, bu.ADDR,c.CONSTRUCT_ADDR, bu.PHONE_NUM , c.CONSTRUCT_PRICE, c.CONSTRUCT_DEPOSIT, c.CONSTRUCT_START_DATE, c.PURCHASE_STATUS
+						SELECT cd.copy_name, c.CONSTRUCT_NO, bu.ADDR,c.CONSTRUCT_ADDR, bu.PHONE_NUM , c.CONSTRUCT_PRICE, c.CONSTRUCT_DEPOSIT, TO_CHAR(c.CONSTRUCT_START_DATE, 'YYYY-MM-DD') AS 시작, TO_CHAR(c.CONSTRUCT_END_DATE, 'YYYY-MM-DD') AS 끝, c.PURCHASE_STATUS, c.CHATTING_NO
 						FROM COPY_DETAIL cd
 						FULL JOIN CONSTRUCT c ON cd.COPY_NO = c.COPY_NO
 						FULL JOIN BASIC_USER bu ON bu.USER_NO = c.USER_NO
@@ -638,8 +634,10 @@ public class MyPageDao {
 				String userAddr = rs.getString("CONSTRUCT_ADDR");
 				String constructPrice = rs.getString("CONSTRUCT_PRICE");
 				int deposit = rs.getInt("CONSTRUCT_DEPOSIT");
-				String startDate = rs.getString("CONSTRUCT_START_DATE");
+				String startDate = rs.getString("시작");
+				String endDate = rs.getString("끝");
 				String status = rs.getString("PURCHASE_STATUS");
+				int chattingNo = rs.getInt("CHATTING_NO");
 				
 				MyPageDtoImpl myDTO = new MyPageDtoImpl();
 				
@@ -651,7 +649,9 @@ public class MyPageDao {
 				myDTO.setEstimatePrice(constructPrice);
 				myDTO.setConstDeposit(deposit);
 				myDTO.setConstStartDate(startDate);
+				myDTO.setConstEndDate(endDate);
 				myDTO.setConstStatus(status);
+				myDTO.setChattingNum(chattingNo);
 				
 				return myDTO;
 			}				
@@ -720,6 +720,7 @@ public class MyPageDao {
 		return 0;
 		
 	}
+	
 }
 
 

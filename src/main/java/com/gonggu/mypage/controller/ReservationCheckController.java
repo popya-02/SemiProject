@@ -26,7 +26,7 @@ public class ReservationCheckController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		int constructNo = Integer.parseInt( request.getParameter("constructNum"));
+		int constructNo = Integer.parseInt(request.getParameter("constructNum"));
 		System.out.println("constNo: " + constructNo);
 		
 		MyPageServiceImpl myService = new MyPageServiceImpl();

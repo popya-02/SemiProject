@@ -116,5 +116,4 @@ public class MyPageServiceImpl implements MyPageService {
 		return myPageDao.purchaseReq(constructNo);
 	}
 	
-
 }
