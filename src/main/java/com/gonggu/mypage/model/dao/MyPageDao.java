@@ -613,10 +613,11 @@ public class MyPageDao {
 	public MyPageDtoImpl reserveCheck(int constructNum) {
 		
 		String query =  """
-						SELECT cd.copy_name, c.CONSTRUCT_NO, bu.ADDR,c.CONSTRUCT_ADDR, bu.PHONE_NUM , c.CONSTRUCT_PRICE, c.CONSTRUCT_DEPOSIT, TO_CHAR(c.CONSTRUCT_START_DATE, 'YYYY-MM-DD') AS 시작, TO_CHAR(c.CONSTRUCT_END_DATE, 'YYYY-MM-DD') AS 끝, c.PURCHASE_STATUS, c.CHATTING_NO
+						SELECT cd.copy_name, c.CONSTRUCT_NO, bu.ADDR,c.CONSTRUCT_ADDR, bu.PHONE_NUM , c.CONSTRUCT_PRICE, c.CONSTRUCT_DEPOSIT, TO_CHAR(c.CONSTRUCT_START_DATE, 'YYYY-MM-DD') AS 시작, TO_CHAR(c.CONSTRUCT_END_DATE, 'YYYY-MM-DD') AS 끝, c.PURCHASE_STATUS, c.CHATTING_NO, cp.NAME  
 						FROM COPY_DETAIL cd
-						FULL JOIN CONSTRUCT c ON cd.COPY_NO = c.COPY_NO
-						FULL JOIN BASIC_USER bu ON bu.USER_NO = c.USER_NO
+						JOIN CONSTRUCT c ON cd.COPY_NO = c.COPY_NO
+						JOIN BASIC_USER bu ON bu.USER_NO = c.USER_NO
+						FULL JOIN COPY_PHOTO cp ON cp.COPY_NO = c.COPY_NO 
 						WHERE c.construct_no  = ?
 						""";
 		
@@ -638,6 +639,7 @@ public class MyPageDao {
 				String endDate = rs.getString("끝");
 				String status = rs.getString("PURCHASE_STATUS");
 				int chattingNo = rs.getInt("CHATTING_NO");
+				String phothName = rs.getString("NAME");
 				
 				MyPageDtoImpl myDTO = new MyPageDtoImpl();
 				
@@ -652,6 +654,7 @@ public class MyPageDao {
 				myDTO.setConstEndDate(endDate);
 				myDTO.setConstStatus(status);
 				myDTO.setChattingNum(chattingNo);
+				myDTO.setPictureName(phothName);
 				
 				return myDTO;
 			}				
