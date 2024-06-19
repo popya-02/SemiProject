@@ -200,8 +200,8 @@
 
 	<!-- Template Javascript -->
 	<script src="/resources/js/main.js"></script>
-	<script src="/resources/js/category.js"></script>
 	<script src="/resources/js/likeCopy.js"></script>
+	<script src="/resources/js/category.js"></script>
 	
 </body>
 

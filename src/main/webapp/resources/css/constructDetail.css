@@ -12,8 +12,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
-    margin-top: 40px;
 }
 .tlrhd-liked:hover,
 .tlrhd-liked.clicked {
@@ -41,7 +39,6 @@
 
 .tlrhd-nav{
     text-align: center;
-    margin-top: 30px;
 }
 
 .tlrhd-content{
@@ -84,4 +81,17 @@
 	margin-left: 30% !important;
 	margin-right: 45% !Important;
 	text-align: left;
+}
+
+.like-btn-box{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-group-box{
+	display: inline-flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
 }

@@ -1,6 +1,7 @@
+	
+
 // 페이지 로드 시 로컬 스토리지에서 상태 읽기
-$(document).ready(function() {
-	const button = $('.likeButton');
+	let button = $('.likeButton');
 	/* const isClicked = localStorage.getItem('likeButtonClicked') === 'true';
 	if (isClicked) {
 		console.log("a")
@@ -9,9 +10,11 @@ $(document).ready(function() {
 	} */
 
 	// 버튼 클릭 시 Ajax 요청
-	button.click(function() {
-		const isClicked = $(this).hasClass('clicked');
-		const myBtn = this; // 클릭이 발생한 버튼
+
+// function likeCopyBtn(myBtn) {
+const likeCopyBtn = (e) => {
+		const isClicked = $(e.target).hasClass('clicked');
+		const myBtn = e.target; // 클릭이 발생한 버튼
 		const myBtnCopy = myBtn.name; // 클릭이 발생한 버튼의 name
 		const copyBtnList = document.getElementsByName(myBtnCopy);
 		const copyNum = document.getElementById(myBtnCopy).value; // 예시로 examNo를 하드코딩하거나 실제 동적으로 설정하는 방법으로 변경해야 합니다.
@@ -52,8 +55,8 @@ $(document).ready(function() {
 				alertSwal("서버 오류로 인해 요청을 처리할 수 없습니다.", "", "warning", "");
 			}
 		});
-	});
-});
+	}
+	button.click(likeCopyBtn);
 
 function alertSwal(titlee, msg, iconn, cUrl){
     Swal.fire({

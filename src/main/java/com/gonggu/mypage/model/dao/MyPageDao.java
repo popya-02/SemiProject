@@ -283,7 +283,8 @@ public class MyPageDao {
 	            	+ " ?,"  // chatNum 8
 	            	+ " ?,"  // element 9
 	            	+ " ?,"  // deposit 10
-	            	+ " DEFAULT"  // deposit 10
+	            	+ " DEFAULT"  // PURCHASE_STATUS 11 결제상태여부
+	            	+ " DEFAULT"  // PURCHASE_REQUEST 12 결제요청여부
 	            	+ ")";
 
 //	    System.out.println(constDto.getConstructElement());
