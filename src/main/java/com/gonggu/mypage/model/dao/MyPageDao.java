@@ -675,12 +675,8 @@ public class MyPageDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, constructNo);
 			ResultSet rs = pstmt.executeQuery();
-			System.out.println(constructNo);
-			System.out.println("aaaaa");
 			while (rs.next()) {
-				System.out.println("bbbb");
 				String purchaseRequest= rs.getString("PURCHASE_REQUEST");
-				System.out.println("ccccc");
 
                     // PURCHASE_REQUEST가 null인 경우 0을 반환
                 if ("Y".equals(purchaseRequest)) {
@@ -692,9 +688,6 @@ public class MyPageDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println(e.getMessage());
-		} catch (Exception e1) {
-			System.out.println("112 : " + e1.getMessage());
 		}
 		return result;
 	}

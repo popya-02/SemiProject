@@ -42,7 +42,6 @@ public class MyPageEstimateContoller extends HttpServlet {
 			
 			// 전체 게시글 수
 			int listCount = myService.getUserEstimateListCount(myDto);
-			System.out.println(listCount);
 			
 			// 보여질 페이지 수
 			int pageLimit = 5;
@@ -112,7 +111,6 @@ public class MyPageEstimateContoller extends HttpServlet {
 			request.setAttribute("pi", pi);
 			
 			nextPage = "/views/myPage/copyMyPageEstimate.jsp";
-			System.out.println(nextPage);
 		}
 		
 		if(nextPage != null && !nextPage.isEmpty()) {
