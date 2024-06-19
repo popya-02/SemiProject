@@ -35,7 +35,7 @@
 
 			<div class="reservation-list body">
 				<div class="reservation-list-item">
-					<img src="/img/" alt="사진">
+					<img src="/resources/img/${result.pictureName}" alt="사진">
 					<!-- 사진 크기 조정 -->
 					<div class="reservation-details">
 						<div class="reservation-details-item">
@@ -97,7 +97,7 @@
 		<c:when test="${sessionScope.userType == 'copyUser'}">
 			<div class="reservation-list body">
 				<div class="reservation-list-item">
-					<img src="/img/" alt="사진">
+					<img src="/resources/img/${result.pictureName}" alt="사진">
 					<!-- 사진 크기 조정 -->
 					<div class="reservation-details">
 						<div class="reservation-details-item">
