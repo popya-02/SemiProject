@@ -32,7 +32,6 @@
 						
 						<a href="/copy/copylist.do?copypage=1"
 						class="nav-item nav-link point-text">시공업체</a>
-
 					<c:choose>
 						<c:when test="${sessionScope.userType != null}">
 							<a href="/member/logoutForm.do" class="nav-item nav-link point-text">로그아웃</a>

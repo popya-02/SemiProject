@@ -19,7 +19,8 @@
 
      <h2 class="mypage_1">마이페이지</h2>
         <nav class="mypage_list">
-        <input type="hidden" name="userno" value="${result.userNo }">
+
+        <input type="hidden" name="userNo" value="${result.userNo }">
             <ul>
                <!--  <li class="mypage_list_1"><a href="/MyPageEstimate/EstimateUser.do?cpage=1">견적/공사 내역</a></li> -->
                 <li class="mypage_list_1"><a href="/MyPageEstimate/EstimateUser.do?cpage=1"">견적/공사 내역</a></li>
@@ -37,7 +38,9 @@
                     <div class="company_photo" name="pictureName">사진</div>
                     <div class="company_name" name="capyName">업체 이름</div>
                     <div class="reservation_number" name="constructno">예약 번호</div>
+                    <div>결제 현황</div>
                 </div>
+                
         		<c:choose>
 						<c:when test="${empty list}">
 							<div>
@@ -46,11 +49,19 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="item" items="${list}">
-								<a class="reservation-list-item" href='/copyDetail.do?copyNo=${item.copyNo}'">
+								<a class="reservation-list-item" href='/reserveCheck.do?constructNum=${item.constructNo}'>
 									<!-- 어떤 게시글에 들어가는지 알수있음 -->
 									<img src="/resources/img/${item.pictureName}"/>
 									<div class="company_name">${item.copyName}</div>
-									<div class="reservation_number">${item.constructNo}</div>
+									<div class="reservation_number" >${item.constructNo}</div>
+									<c:choose>
+										<c:when test="${item.constStatus == 'N'}">
+											<div>결제 대기중</div>
+										</c:when>
+										<c:otherwise>
+											<div>예약 확정</div>
+										</c:otherwise>
+									</c:choose>
 								</a>
 								<c:set var="row" value="${row-1}" />
 							</c:forEach>

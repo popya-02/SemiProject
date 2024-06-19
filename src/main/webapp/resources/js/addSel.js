@@ -178,13 +178,3 @@ function alertSwal(titlee, msg, iconn, cUrl){
         }
     });
 }
-
-
-
-
-
-
-
-
-
-

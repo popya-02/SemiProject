@@ -39,6 +39,7 @@
 							<div class="user_name" name="userName">고객 이름</div>
 							<div class="user_name" name="phoneNum">고객 번호</div>
 							<div class="reservation_number" name="constructNo">예약 번호</div>
+							<div>결제 현황</div>
 						</div>
 						<c:choose>
 							<c:when test="${empty list}">
@@ -48,10 +49,18 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach var="item" items="${list}">
-									<a class="reservation-list-item" href="/copyDetail.do?copyNo=${item.copyNo}"> <!-- 어떤 게시글에 들어가는지 알수있음 -->
+									<a class="reservation-list-item" href="/reserveCheck.do?constructNum=${item.constructNo}"> <!-- 어떤 게시글에 들어가는지 알수있음 -->
 										<div class="company_name">${item.name}</div>
 										<div class="company_name">${item.phoneNum}</div>
 										<div class="reservation_number">${item.constructNo}</div>
+										<c:choose>
+										<c:when test="${item.constStatus == 'N'}">
+											<div>결제 대기중</div>
+										</c:when>
+										<c:otherwise>
+											<div>예약 확정</div>
+										</c:otherwise>
+									</c:choose>
 									</a>
 									<c:set var="row" value="${row-1}" />
 								</c:forEach>

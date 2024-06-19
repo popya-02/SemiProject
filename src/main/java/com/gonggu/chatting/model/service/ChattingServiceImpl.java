@@ -26,8 +26,7 @@ public class ChattingServiceImpl implements ChattingService{
 		
 		if(Objects.isNull(duplicete)) {
 			result = chattingDao.setChatting(chattingDto);
-			
-		}else {
+			} else {
 			if(duplicete.getEndCheck().equals("Y")) {
 				result = chattingDao.setChatting(chattingDto);
 			}else {
@@ -36,6 +35,8 @@ public class ChattingServiceImpl implements ChattingService{
 		}
 		return result;
 	}
+
+
 
 	@Override
 	public ChattingDTO getUserType(ChattingDTO chattingDto) {
