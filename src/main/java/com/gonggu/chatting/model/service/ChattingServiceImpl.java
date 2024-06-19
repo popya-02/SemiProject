@@ -32,17 +32,6 @@ public class ChattingServiceImpl implements ChattingService{
 			}else {
 				result = 1;
 			}
-			
-			
-		}
-	
-		else  {
-			if(duplicete.getEndCheck().equals("Y")) {
-
-				result = chattingDao.setChatting(chattingDto);
-			}else {
-				result = 1;
-			}
 		}
 		return result;
 	}

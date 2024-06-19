@@ -89,8 +89,6 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 
-
-
 	@Override
 	public int saveConstElement(MyPageDto constDto) {
 		return myPageDao.saveConstElement(constDto);

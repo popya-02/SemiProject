@@ -44,13 +44,13 @@
 				</div>
 				
 				<div>Category :
-				<select name="category">
-				<option value="1">Antique</option>
-				<option value="2">Modern</option>
-				<option value="3">Natural</option>
-				<option value="4">North Europe</option>
-				<option value="5">Minimal</option>
-				<option value="6">Vintage</option>
+				<select name="categoryNum">
+					<option value="1">Antique</option>
+					<option value="2">Modern</option>
+					<option value="3">Natural</option>
+					<option value="4">North Europe</option>
+					<option value="5">Minimal</option>
+					<option value="6">Vintage</option>
 			
 				</select>
 				</div>
@@ -111,7 +111,8 @@
 	<!-- Template Javascript -->
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/nowtime.js"></script>
-	<script src="index.js"></script>
+	<script src="/resources/js/smarteditor.js"></script>
+	<script src="/resources/smarteditor2/js/HuskyEZCreator.js"></script>
 <script>
 var submit = document.getElementById('submitButton');
 submit.onclick = showImage;     //Submit 버튼 클릭시 이미지 보여주기

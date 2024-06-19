@@ -77,8 +77,9 @@
 
 				</div>
 			</div>
+			
 			<c:choose>
-				<c:when test="${sessionScope.purchaseStatus == 'S'}">
+				<c:when test="${result.constStatus == 'N' && sessionScope.purchaseStatus == 'S'}">
 					<div class="purchase-box">
 						<form action="/purchase.do?chatNum=${result.chattingNum}" method="GET">
 							<input type="hidden" name="chattingNum" value="${result.chattingNum}" /> 
@@ -127,14 +128,7 @@
 							<strong style="width: 300px">시공 날짜 :</strong><input type="text" class="fixed-input"
 								value="${result.constStartDate}  -  ${result.constEndDate}" readonly style="padding-left:10px">
 						</div>
-						<c:choose>
-							<c:when test="${result.constStatus == 'N' && sessionScope.purchaseStatus == 'Y'}">
-								<div>결제 하기</div>
-							</c:when>
-							<c:otherwise>
-								
-							</c:otherwise>
-						</c:choose>
+						
 					</div>
 				</div>
 			</div>

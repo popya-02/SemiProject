@@ -285,7 +285,7 @@ public class MyPageDao {
 	            	+ " ?,"  // element 9
 	            	+ " default, "	// purchaseStatus 
 	            	+ " ?,"
-	            	+ " null"	 // deposit 10
+	            	+ " default"	 // deposit 10
 	            	+ ")";
 
 //	    System.out.println(constDto.getConstructElement());
@@ -667,8 +667,7 @@ public class MyPageDao {
 	public int savePurchaseStatus(int constructNo) {
 		String query = """
 						SELECT PURCHASE_REQUEST FROM CONSTRUCT c 
-						WHERE construct_deposit != 0
-						AND CONSTRUCT_NO = ?
+						WHERE CONSTRUCT_NO = ?
 						AND PURCHASE_STATUS = 'N'
 					   """;
 		int result = 0;
@@ -676,32 +675,36 @@ public class MyPageDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, constructNo);
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
+			System.out.println(constructNo);
+			System.out.println("aaaaa");
+			while (rs.next()) {
+				System.out.println("bbbb");
 				String purchaseRequest= rs.getString("PURCHASE_REQUEST");
+				System.out.println("ccccc");
 
-				if (purchaseRequest == null) {
-                    result = 0; 
                     // PURCHASE_REQUEST가 null인 경우 0을 반환
-                } else if ("N".equals(purchaseRequest)) {
+                if ("Y".equals(purchaseRequest)) {
                     result = 1; 
-                    // PURCHASE_REQUEST가 'N'인 경우 1을 반환
+                    // PURCHASE_REQUEST가 'Y'인 경우 1을 반환
+                } else {
+                	result = 0; 
                 }
-				
-				return result;
-				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println(e.getMessage());
+		} catch (Exception e1) {
+			System.out.println("112 : " + e1.getMessage());
 		}
 		return result;
 	}
 	
 	
-	// 결재 요청시 업데이트 
+	// 결제 요청시 업데이트 
 	public int purchaseReq(int constructNo) {
 		String query = """
 						UPDATE construct
-						SET purchase_Request = 'N'
+						SET purchase_Request = 'Y'
 						WHERE CONSTRUCT_NO = ?
 						""";
 		

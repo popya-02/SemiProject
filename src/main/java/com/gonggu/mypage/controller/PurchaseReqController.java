@@ -1,6 +1,5 @@
 package com.gonggu.mypage.controller;
 
-import static org.mockito.Mockito.verifyNoInteractions;
 
 import java.io.IOException;
 
