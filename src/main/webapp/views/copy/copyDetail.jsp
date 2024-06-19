@@ -59,8 +59,8 @@
 								<h4 class="fw-bold">${copyDetail[0].copyName}</h4>
 
 								<div>
-									<input type="hidden" id="${copyDetail[0].copyName}" name="copyNum"
-										value="${copyDetail[0].copyNum}">
+									<input type="hidden" id="${copyDetail[0].copyName}"
+										name="copyNum" value="${copyDetail[0].copyNum}">
 									<c:choose>
 										<c:when test="${not empty getLike }">
 											<c:set var="count" value="1" />
@@ -163,28 +163,37 @@
 
 				<div class="tab-pane" id="nav-mission" role="tabpanel"
 					aria-labelledby="nav-mission-tab">
-					<c:forEach var="getReview" items="${getReview}">
-						<div class="d-flex">
 
-							<div class="">
-								<div class="copy-infor">
-					<p>
+					<c:forEach var="getReview" items="${getReview}">
+						<form action="/ReviewDeleteController" method="POST">
+							<input type="hidden" name="reviewNo"
+								value="${getReview.reviewNo}"> <input type="hidden"
+								name="copyNum" value="${copyDetail[0].copyNum}">
+							<div class="d-flex">
+
+								<div class="">
+									<div class="copy-infor">
+										<!-- 					<p>
 						작성일 :	<span id="noew-time"></span>
-					</p>
-				</div>
-								<div class="d-flex justify-content-between">
-									<h5>${getReview.userId}</h5>
-								</div><br>
-								<p>${getReview.review}</p>
+					</p> -->
+									</div>
+									<div class="d-flex justify-content-between">
+										<h5>${getReview.userId}</h5>
+									</div>
+									<br>
+									<p>${getReview.review}</p>
+								</div>
 							</div>
-						</div>
-						
-			<div class="nav nav-tabs mb-3" style="width: 1100px;"></div>
-					
+							<button type="submit"
+								class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>
+							<br>
+							<br>
+							<div class="nav nav-tabs mb-3" style="width: 1100px;"></div>
+
+						</form>
 					</c:forEach>
 
 				</div>
-
 			</div>
 		</div>
 	</div>

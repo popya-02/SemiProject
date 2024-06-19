@@ -43,4 +43,9 @@ public class CopyServiceImpl implements CopyService {
 	public ArrayList<CopyDto> getReview(String copyNo){
 		return copyDao.getReview(copyNo);
 	};
+	
+	@Override
+	public int reviewDelete(int userNum) {
+		return copyDao.reviewDelete(userNum);
+	};
 }

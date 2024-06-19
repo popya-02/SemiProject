@@ -13,11 +13,18 @@ public class CopyDto {
 	private String examTitle;
 	private int examNo;
 	private String review;
+	private int reviewNo;
 	private String userId;
 	private String constructNo;
 	private int userNum;
 	private String examPhotoName;
 	
+	public int getReviewNo() {
+		return reviewNo;
+	}
+	public void setReviewNo(int reviewNo) {
+		this.reviewNo = reviewNo;
+	}
 	
 	public String getExamPhotoName() {
 		return examPhotoName;
