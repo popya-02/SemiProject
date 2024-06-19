@@ -29,6 +29,7 @@ public class ConstructDeleteController extends HttpServlet {
 		int page = Integer.parseInt(request.getParameter("page"));
 		ConstructServiceImpl constructService = new ConstructServiceImpl();
 		int result = constructService.listDelete(examNo);
+		
         if(result == 1 && fileNo == 0) { // 업로드한 파일이 없을때
 			
 			response.sendRedirect("/constructExam/constructlist.do?constructpage="+page);
