@@ -54,6 +54,11 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 	@Override
+	public MyPageDtoImpl reserveCheck(int constructNum) {
+		return myPageDao.reserveCheck(constructNum);
+	}
+	
+	@Override
 	public ArrayList<MyPageDtoImpl> getLikeList(PageInfo pi, MyPageDtoImpl myDto) {
 		return myPageDao.getLikeList(pi, myDto);
 	}
@@ -98,5 +103,15 @@ public class MyPageServiceImpl implements MyPageService {
 	public int updateConstElement(MyPageDto constDto) {
 		return myPageDao.updateConstElement(constDto);
 	}
-
+	
+	@Override
+	public int savePurchaseStatus(int chattingNo) {
+		return myPageDao.savePurchaseStatus(chattingNo);
+	}
+	
+	@Override
+	public int purchaseReq(int constructNo) {
+		return myPageDao.purchaseReq(constructNo);
+	}
+	
 }

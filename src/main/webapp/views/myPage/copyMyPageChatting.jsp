@@ -45,17 +45,19 @@
 		                    <div class="reservation-name">업체명</div>
 		                    <div class="reservation-number">예약번호</div>
 		                </div> -->
+		                <input type="hidden" name="copyNum" value="${sessionScope.copyNum}"> 
 		                <c:choose>
 		                	<c:when test="${empty chattingList}">
 		                		<p>진행중인 상담이 없습니다.</p>
 		                	</c:when>
 		                	<c:otherwise>
-		                		<c:forEach var="item" items="${chattingList}">
+		                		<c:forEach var="item" items="${chattingList}" varStatus="status">
 			                		<div class="reservation-list-item">
 					                	<form action="/construct/write.do?chatNum=${item.chattingNum}" method="POST" class="list-form">
 					                		<input type="hidden" value="${item.userNum}" name="user-num">
 					                		<input type="hidden" value="${item.userName}" name="user-name">
 					                		<input type="hidden" value="${item.endCheck}" name="end-check">
+					                		
 					                    	<c:choose>
 					                    		<c:when test="${item.endCheck == 'Y'}">
 								                    <div class="user_name" id="user-name" onclick="location.href='/chatting/endConnection.do?chatNum=${item.chattingNum}'">${item.userName}</div>
@@ -75,7 +77,10 @@
 					                    		</c:otherwise>
 					                    	</c:choose>
 						                    <div class="reservation_number">
-							                    <button type="button" class="construct-btn">결제 요청</button>
+							                    <input type="hidden" name="estimatePrice" id="estimatePrice_${item.chattingNum}" value="${item.estimatePrice}">
+												<input type="hidden" name="chattingNum" id="chattingNum_${item.chattingNum}" class="chattingNum" value="${item.chattingNum}">
+												<input type="hidden" name="constNum" id="constNum_${item.chattingNum}"  value="${item.constNo}">
+				 								<button type="button" class="construct-btn" onclick="checkPrice(${item.chattingNum})">결제 요청</button>
 						                    </div>
 						                    <c:choose>
 						                    	<c:when test="${item.endCheck == 'Y'}">
@@ -145,6 +150,7 @@
     <%@ include file="/views/common/jsLib.jsp"%>
 
     <!-- Template Javascript -->
+     <script src="/resources/js/purchaseRequest.js"></script>
     <script src="/resources/js/main.js"></script>
     </body>
 
