@@ -45,7 +45,7 @@ public class MyPageEstimateContoller extends HttpServlet {
 			
 			// 보여질 페이지 수
 			int pageLimit = 5;
-			
+				
 			// 한페이지에 보여질 기시글 수
 			int boardLimit = 5;
 			
@@ -98,8 +98,10 @@ public class MyPageEstimateContoller extends HttpServlet {
 			
 			
 			if (result2 == 1) {
-	            session.setAttribute("approvalStatus", "B");
+				// 승인 성공
+	            session.setAttribute("approvalStatus", "B");   
 	        } else {
+	        	// 실패
 	            session.setAttribute("approvalStatus", "A");
 	        }
 			
@@ -109,7 +111,6 @@ public class MyPageEstimateContoller extends HttpServlet {
 			request.setAttribute("pi", pi);
 			
 			nextPage = "/views/myPage/copyMyPageEstimate.jsp";
-			
 		}
 		
 		if(nextPage != null && !nextPage.isEmpty()) {

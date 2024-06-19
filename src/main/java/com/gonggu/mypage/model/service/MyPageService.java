@@ -22,6 +22,9 @@ public interface MyPageService {
 	
 	public int setDelete(String copyNo);
 	
+	
+	public MyPageDtoImpl reserveCheck(int constructNum);
+	
 	public int saveConstElement(MyPageDto constDto);
 	
 	public MyPageDto getConstructDetail(int chattingNum);
@@ -39,5 +42,9 @@ public interface MyPageService {
 	public ArrayList<MyPageDtoImpl> getCopyEstimateList(PageInfo pi, MyPageDtoImpl myDto);
 
 	public int getCopyEstimateListCount(MyPageDtoImpl myDto);
-
+	
+	int savePurchaseStatus(int chattingNo);
+	
+	int purchaseReq(int constructNo);
+	
 }

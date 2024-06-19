@@ -39,6 +39,8 @@ public class ConstructSelectController extends HttpServlet {
 		
 		MyPageDto result = serviceImpl.getConstructDetail(chattingNum);
 		
+		
+		System.out.println("select " + result);
 		if(Objects.isNull(result)) {
 			
 			request.setAttribute("chattingNum", chattingNum);
