@@ -29,14 +29,6 @@ public class SearchController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		SearchServiceImpl searchService = new SearchServiceImpl();
-		SearchDtoImpl searchDto = new SearchDtoImpl();
-		
-		String examTitle = request.getParameter("examtitle");
-		String examContent = request.getParameter("examcontent");
-		String tagRemoveContent = request.getParameter("tagremovecontent");
-		String examPictureName = request.getParameter("exampicturename");
-		String copyName = request.getParameter("copyname");
-		String pictureName = request.getParameter("picturename");
 		
 		String searchText = request.getParameter("searchtext");
 		
