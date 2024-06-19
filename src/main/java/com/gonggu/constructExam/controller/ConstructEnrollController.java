@@ -38,7 +38,7 @@ public class ConstructEnrollController extends HttpServlet {
 
 		int constructList =Integer.parseInt(request.getParameter("constructList"));
 
-		int category = Integer.parseInt(request.getParameter("category"));
+		int category = Integer.parseInt(request.getParameter("categoryNum"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String indate = request.getParameter("indate");
@@ -70,7 +70,7 @@ public class ConstructEnrollController extends HttpServlet {
 		
 		Collection<Part> parts = request.getParts();
 		int getExamNo = 0;
-		String uploadDirectory = "C:\\dev\\work-space\\semiProject\\SemiProject\\src\\main\\webapp\\resources\\img";
+		String uploadDirectory = "C:\\greenAcademy\\dev\\workspace\\semiProject\\SemiProject\\src\\main\\webapp\\resources\\img";
 		 File filePath = new File(uploadDirectory);
 	        if (!filePath.exists()) {
 	            filePath.mkdir();
@@ -95,7 +95,7 @@ public class ConstructEnrollController extends HttpServlet {
             }
         }
 		if(result == 1) {
-		response.sendRedirect("/constructExam/constructlist.do?constructpage=1");
+		response.sendRedirect("/constructExam/constructlist.do?constructpage=1&categoryNum=0");
 
 	}
 }

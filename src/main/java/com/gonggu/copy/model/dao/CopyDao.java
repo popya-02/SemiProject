@@ -181,7 +181,8 @@ public class CopyDao {
 	
 	public int reviewUpload(CopyDtoImpl copyDto) {
 		String query = "INSERT INTO COPY_REVIEW cr"
-				   +"   VALUES(review_seq.nextval, ?, ?, ?,DEFAULT)";
+				   +"   VALUES(review_seq.nextval, ?, ?, ?, DEFAULT)";
+
 		int result=0;
 		
 		try {
