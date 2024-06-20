@@ -10,7 +10,6 @@
         <title>GONGGU</title>
         <!-- Template Stylesheet -->
         <link href="/resources/css/style.css" rel="stylesheet">
-        <!-- <link href="/resources/css/signup.css" rel="stylesheet"> -->
         
         
     </head>
