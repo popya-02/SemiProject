@@ -190,8 +190,10 @@
 									<p>${getReview.review}</p>
 								</div>
 							</div>
+							<c:if test="${sessionScope.userNum == getReview.userNum}">
 							<button type="submit"
 								class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>
+								</c:if>
 							<br>
 							<br>
 							<div class="nav nav-tabs mb-3" style="width: 1100px;"></div>
