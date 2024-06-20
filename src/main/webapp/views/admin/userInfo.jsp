@@ -36,8 +36,6 @@
                                 <option value="user_id">아이</option>
                             </select>
                             <input type="search" name="searchText" class=" inputSize form-control py-2 "  aria-describedby="search-icon-1" >
-                            <!-- <span id="search-icon-1" class="input-group-text search-i">
-                            <i class="fa fa-search"></i></span> -->
                             <button id="search-icon-1" class="input-group-text search-i" type="submit">
                             <i class="fa fa-search"></i></button>
                         </div>
