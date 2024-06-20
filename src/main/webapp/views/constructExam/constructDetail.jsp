@@ -76,15 +76,14 @@
 	<!-- 시공 nav -->
 	<div class="tlrhd-nav">
 
+		<c:if test="${sessionScope.userType == 'basicUser' }">
 		<a href=""
 			class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3"
 			onclick="shareKakao()">공유하기</a> &nbsp;&nbsp;
-		<c:if test="${sessionScope.userType == 'basicUser' }">
 			<a
 				href="/chatting/connection.do?copyNum=${detail.copyNum}&userNum=${sessionScope.userNum}"
 				class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">이
 				스타일로 상담하기</a>
-		</c:if>
 	</div>
 
 <div>
@@ -114,6 +113,7 @@
 		</c:otherwise>
 	</c:choose>
 </div>
+		</c:if>
 	<br>
 	<br>
 	<br>
