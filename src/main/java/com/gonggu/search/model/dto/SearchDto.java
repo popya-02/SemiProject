@@ -15,8 +15,6 @@ public class SearchDto {
 	private String ExamPicturePath;
 	private String TagRemoveContent;
 	
-	
-	
 	public String getTagRemoveContent() {
 		return TagRemoveContent;
 	}

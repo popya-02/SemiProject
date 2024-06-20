@@ -214,15 +214,11 @@ label {
 }
 
 .img {
-/* 	width: 250px;
-	height: 250px; */
-	/* object-fit: cover; */
     position: absolute;
 }
 
 .img-border{
-    border: 0px solid #dee2e6 !important;
-    margin-right: 50px;
+    border: 0px solid #dee2e6 !important
 }
 
 .img-size{
@@ -258,7 +254,6 @@ label {
 	
 }
 
-.img-
 .btn-box{
 	display: flex;
 	align-items: center;
