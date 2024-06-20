@@ -50,17 +50,15 @@
 						</c:when>
 						
 					<c:otherwise>
-						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
-							scope="row">
+						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" scope="row">
 							<c:forEach var="companyList" items="${companyList}">
 							<input type="hidden" id="${companyList.copyName}" name="copyNum" value="${companyList.copyNum}">
 								<div class="col">
 									<div class="card shadow-sm" >
-										<a href="/copyDetail.do?copyNo=${companyList.copyNum}" class="img-size">
+										<a href="/copyDetail.do?copyNo=${companyList.copyNum}" class="img-size img-hover-copy">
 											<c:choose>
 												<c:when test="${companyList.copyPhoto == null }">
-													<img class="bd-placeholder-img card-img-top img-contain"
-														src="/resources/img/imgnone.png" alt="업체 이미지"/>
+													<img class="bd-placeholder-img card-img-top img-contain" src="/resources/img/imgnone.png" alt="업체 이미지"/>
 												</c:when>
 												<c:otherwise>
 													<img class="bd-placeholder-img card-img-top img-contain"

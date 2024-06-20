@@ -27,7 +27,7 @@
                         <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
                             <div class="carousel-inner" role="listbox">
                                 <div class="carousel-item active rounded">
-                                    <img src="resources/img/modern_picturejpeg.jpg" class="img-fluid w-100 h-100 rounded" alt="First slide">
+                                    <img src="resources/img/modern_picture.jpg" class="img-fluid w-100 h-100 rounded" alt="First slide">
                                 </div>
                                 <div class="carousel-item rounded">
                                     <img src="resources/img/natural_picture.jpg" class="img-fluid w-100 h-100 rounded" alt="Second slide">
