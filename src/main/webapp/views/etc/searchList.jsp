@@ -35,7 +35,6 @@
 									<c:forEach var="item" items="${searchExamList}">
 									<input type="hidden" name="categoryname" values="${item.categoryName}">
 									<div class="example-div exam-margin copy-search">
-										<%-- <a class="" href="/constructDetail.do?examNo=${item.examNo}"> --%>
 										<img src="/resources/img/${item.examPictureName}" name="exampicturename" class="search-img">
 											<div class="example-div-div">
 												<div class="example-obj">
@@ -46,8 +45,7 @@
 													<a href="/constructDetail.do?examNo=${item.examNo}" class="btn border border-secondary rounded-pill px-3 py-1 text-primary detail-link">자세히 보기</a>
 												</div>
 											</div>
-											<!-- </a> -->
-									     </div>
+									  </div>
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>

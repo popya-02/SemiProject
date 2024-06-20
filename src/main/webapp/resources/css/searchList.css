@@ -174,3 +174,16 @@ img {
     }
 }
 
+.img-hover-search {
+    overflow: hidden;
+    transition: 0.5s;
+    border-radius: 10px 10px 0 0;
+}
+
+.img-hover-search img {
+    transition: 0.5s;
+}
+
+.img-hover-search img:hover {
+    transform: scale(1.3);
+}

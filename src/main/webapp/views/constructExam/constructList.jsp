@@ -100,7 +100,7 @@
 						                    <input type="hidden" name="userNum" value="${construct.userNum}">
 											<div class="col">
 												<div class="card shadow-sm he-min">
-													<a href="/constructDetail.do?examNo=${construct.examNo}" class="img-size ">
+													<a href="/constructDetail.do?examNo=${construct.examNo}" class="img-size img-hover-const">
 													<c:choose>
 														<c:when test="${construct.fileName == null}">
 															<img class="bd-placeholder-img card-img-top img-contain" src="/resources/img/imgnone.png" />
