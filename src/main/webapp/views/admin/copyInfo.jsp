@@ -30,7 +30,7 @@
                             <select name="category" id="">
                                 <option value="cu.copy_name">업체명</option>
                                 <option value="cu.copy_no">업체번호</option>
-                                <option value="cd.address">주소</option>
+                                <option value="cd.copy_addr">주소</option>
                             </select>
                             <input type="search" name="searchText" class=" inputSize form-control py-2 "  aria-describedby="search-icon-1">
                            <button id="search-icon-1" class="input-group-text search-i" type="submit">
