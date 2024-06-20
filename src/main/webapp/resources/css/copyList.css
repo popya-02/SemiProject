@@ -13,8 +13,7 @@
     display: flex;
 	justify-content: center;
 	align-items: center; 
-    
-
+   /*  margin-left: 380px; */
     margin-left: 88%;
 
 }
@@ -112,4 +111,26 @@ hr{
 .card-body{
 	padding-top: 8px;
     padding-bottom: 0 !important;	
+}
+
+/* .img-hover-shadow {
+    height: 100%;
+    transition: 0.5s;
+}
+.img-hover-shadow :hover {
+    box-shadow: 0 0 55px rgba(0, 0, 0, 0.4);
+} */
+
+.img-hover-copy {
+    overflow: hidden;
+    transition: 0.5s;
+    border-radius: 10px 10px 0 0;
+}
+
+.img-hover-copy img {
+    transition: 0.5s;
+}
+
+.img-hover-copy img:hover {
+    transform: scale(1.3);
 }

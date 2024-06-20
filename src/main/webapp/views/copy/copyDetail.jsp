@@ -117,7 +117,7 @@
 					</div>
 
 
-				<h1 class="fw-bold mb-0">업체 시공예시</h1>
+				<h2 class="fw-bold mb-0">업체 시공예시</h2>
 				<div class="vesitable">
 
 					<div class="owl-carousel vegetable-carousel justify-content-center exam-list-height">
@@ -132,9 +132,10 @@
 								<div class="p-4 pb-0 rounded-bottom">
 
 									<p>${copyDetailEx.examTitle}</p>
-									<div class="d-flex justify-content-between flex-lg-wrap">
+									<div class="d-flex justify-content-between flex-lg-wrap" style="padding-top: 20px; padding-bottom:20px;">
 
 										<a href="/constructDetail.do?examNo=${copyDetailEx.examNo}"
+										   class="btn exam-btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
 											class="btn exam-btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
 									</div>
 								</div>

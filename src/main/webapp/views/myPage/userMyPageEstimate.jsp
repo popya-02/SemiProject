@@ -37,7 +37,7 @@
                 <div class="reservation-list-header">
                     <div class="company_photo" name="pictureName">사진</div>
                     <div class="company_name" name="capyName">업체 이름</div>
-                    <div class="reservation_number" name="constructno" >예약번호</div>
+                    <div class="reservation_number" name="constructno">예약 번호</div>
                     <div>결제 현황</div>
                 </div>
                 

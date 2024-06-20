@@ -274,7 +274,7 @@ public class MyPageDao {
 	public int saveConstElement(MyPageDto constDto) {
 	    String query = "INSERT INTO CONSTRUCT VALUES("
 	            	+ " CONSTRUCT_SEQ.NEXTVAL,"
-	            	+ " ?,"  // copt_no 1
+	            	+ " ?,"  // copy_no 1
 	            	+ " ?,"  // user_no 2
 	            	+ " TO_DATE(?, 'YYYY-MM-DD'),"  // start 3
 	            	+ " TO_DATE(?, 'YYYY-MM-DD'),"  // end 4
@@ -283,9 +283,9 @@ public class MyPageDao {
 	            	+ " ?,"  // sumprice 7
 	            	+ " ?,"  // chatNum 8
 	            	+ " ?,"  // element 9
-	            	+ " ?,"
-	            	+ " default, "	// purchaseStatus 
-	            	+ " default"	 // deposit 10
+	            	+ " ?,"  // deposit 10
+	            	+ " DEFAULT," // purchase_status
+	            	+ " DEFAULT"  // purchase_request
 	            	+ ")";
 
 //	    System.out.println(constDto.getConstructElement());
@@ -721,17 +721,6 @@ public class MyPageDao {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
