@@ -30,7 +30,7 @@ public class CopyInfoController extends HttpServlet {
 		int cpage = Integer.parseInt(request.getParameter("cpage"));
 		
 		String category = request.getParameter("category");
-		String searchText = request.getParameter("search-text");
+		String searchText = request.getParameter("searchText");
 		
 		// 전체 게시글 수
 		int listCount = infoService.getCopyListCount(category, searchText);

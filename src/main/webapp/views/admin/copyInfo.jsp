@@ -23,17 +23,20 @@
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-md-12 col-lg-7">
-                        <h2 class="mb-3">업체 검색</h2>
+                        <a  href="/copyInfo.do?cpage=1&category=cu.copy_no&searchText="><h2 class="mb-3">업체 검색</h2></a>
+                        <form action="/copyInfo.do?cpage=${pi.copypage}" method="GET">
+                        <input type="hidden" name="cpage" value="1" />
                         <div class="input-group search-wid d-flex box-right" style="margin-left: 15%;">
-                            <select name="" id="">
-                                <option value="">옵션</option>
-                                <option value="">옵션</option>
-                                <option value="">옵션</option>
-                                <option value="">옵션</option>
+                            <select name="category" id="">
+                                <option value="cu.copy_name">업체명</option>
+                                <option value="cu.copy_no">업체번호</option>
+                                <option value="cd.address">주소</option>
                             </select>
-                            <input type="search" class="form-control py-2 " placeholder="" aria-describedby="search-icon-1" >
-                            <span id="search-icon-1" class="input-group-text search-i"><i class="fa fa-search"></i></span>
+                            <input type="search" name="searchText" class=" inputSize form-control py-2 "  aria-describedby="search-icon-1">
+                           <button id="search-icon-1" class="input-group-text search-i" type="submit">
+                            <i class="fa fa-search"></i></button>
                         </div>
+                        </form>
                     </div>
                     <div>
                         <table>
@@ -92,7 +95,7 @@
 
 					<c:otherwise>
 						<li class="page-item" style="margin-right: 0px"><a
-							class="rounded page-n" href="/copyInfo.do?cpage=${pi.copypage-1}"
+							class="rounded page-n" href="/copyInfo.do?cpage=${pi.copypage-1}&category=cu.copy_no&searchText="
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
 					</c:otherwise>
@@ -101,7 +104,7 @@
 
 				<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
 					<li class="page-item" style="margin-right: 0px"><a
-						class="rounded page-n" href="/copyInfo.do?cpage=${page}">${page}</a></li>
+						class="rounded page-n" href="/copyInfo.do?cpage=${page}&category=cu.copy_no&searchText=">${page}</a></li>
 				</c:forEach>
 
 
@@ -115,7 +118,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item" style="margin-right: 0px"><a
-							class="rounded page-n" href="/copyInfo.do?cpage=${pi.copypage+1}"
+							class="rounded page-n" href="/copyInfo.do?cpage=${pi.copypage+1}&category=cu.copy_no&searchText="
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 						</a></li>
 					</c:otherwise>
@@ -138,6 +141,7 @@
 
     <!-- Template Javascript -->
     <script src="/resources/js/main.js"></script>
+    
     </body>
 
 </html>

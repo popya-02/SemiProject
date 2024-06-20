@@ -6,7 +6,7 @@
  let userName = document.getElementById("name").value;
  let copy = document.getElementById("company").value;
  let goodsName = document.getElementById("goods").value;
- const detailAddr = document.getElementById("detailAddr");
+ const detailAddr = document.getElementById("detailAddress");
  let addr = document.getElementById("address").value;
  const constNo = document.getElementById("constructNum").value;
  const chatNo = document.getElementById("chattingNum").value;
@@ -123,7 +123,12 @@
                 document.getElementById("address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("detailAddress").focus();
+
+				window.close();
             }
         }).open();
     }
+
+// TODO : 1. js 에서 주소 팝업 내리기 
+//		  2. 시공 종료 시 결제요청 사라지기  
     
