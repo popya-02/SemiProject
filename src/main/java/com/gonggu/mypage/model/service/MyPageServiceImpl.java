@@ -88,7 +88,6 @@ public class MyPageServiceImpl implements MyPageService {
 		return myPageDao.getCopyEstimateListCount(myDto);
 	}
 
-
 	@Override
 	public int saveConstElement(MyPageDto constDto) {
 		return myPageDao.saveConstElement(constDto);

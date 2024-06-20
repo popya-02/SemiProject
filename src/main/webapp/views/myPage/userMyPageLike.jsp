@@ -32,7 +32,7 @@
 
 			 <div class="reservation-list body"> 
 			    <div class="reservation-list-header">
-					<div class="company_photo" name="picturepath">사진</div>
+					<div class="company_photo" name="pictureName">사진</div>
 					<div class="company_name" name="copyname">업체 이름</div>
 					<div class="company_num" name="telnum">업체 번호</div>
 					<div class="reservation_number" name="copyaddr">업체 주소</div>

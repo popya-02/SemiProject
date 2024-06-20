@@ -13,14 +13,14 @@
 			<a href="/" class="navbar-brand">
 				<h4 class="point-text display-6">GONGGU</h4>
 			</a>
+			<form action="/searchForm.do" method="GET" id="search-form">
 			<div class="input-group search-wid d-flex box-right">
-				<input type="search" class="form-control py-2 " placeholder="keywords" aria-describedby="search-icon-1">
-				<span id="search-icon-1" class="input-group-text search-i">
-					<a href="/views/etc/searchList.jsp">
-						<i class="fa fa-search"></i>
-					</a>
-				</span>
+				<input type="search" class="form-control py-2 " value="" name="searchtext" id="searchtext" placeholder="keywords" aria-describedby="search-icon-1">
+				<div id="search-icon-1" class="input-group-text search-i" style="cursor: pointer;" onclick="document.getElementById('search-form').submit();">
+					<button type="button" class="fa fa-search" style="border:none; background-color:#e9ecef;"></button>
+				</div>
 			</div>
+			</form>
 			<button class="navbar-toggler py-2 px-3" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
 				<span class="fa fa-bars point-text"></span>
@@ -72,3 +72,4 @@
 	</div>
 
 </div>
+

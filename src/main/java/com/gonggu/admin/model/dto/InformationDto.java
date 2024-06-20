@@ -21,8 +21,6 @@ public class InformationDto {
 	private String approve;
 	private int approveStatus = 0;
 	
-	
-	
 	public int getApproveStatus() {
 		return approveStatus;
 	}
@@ -112,9 +110,5 @@ public class InformationDto {
 	public void setCopyAddr(String copyAddr) {
 		this.copyAddr = copyAddr;
 	}
-
-	
-	
-	
 	 
 }
