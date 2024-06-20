@@ -136,6 +136,7 @@
 
 										<a href="/constructDetail.do?examNo=${copyDetailEx.examNo}"
 										   class="btn exam-btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
+											class="btn exam-btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
 									</div>
 								</div>
 							</div>
