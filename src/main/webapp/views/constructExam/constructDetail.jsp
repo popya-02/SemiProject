@@ -74,6 +74,7 @@
 		<p>${detail.copyName}</p>
 	</div>
 	<!-- 시공 nav -->
+
 	<div class="btn-group-box">
 		<div class="tlrhd-nav">
 	
@@ -86,6 +87,7 @@
 					class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">이
 					스타일로 상담하기</a>
 			</c:if>
+
 		</div>
 	
 		<div class="like-btn-box">

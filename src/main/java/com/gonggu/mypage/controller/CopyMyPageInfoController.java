@@ -48,7 +48,7 @@ public class CopyMyPageInfoController extends HttpServlet {
 		
 		// 파일 업로드
 		Collection<Part> parts = request.getParts();
-		String uploadDirectory = "C:\\greenAcademy\\dev\\workspace\\semiProject\\SemiProject\\src\\main\\webapp\\resources\\img";
+		String uploadDirectory = "C:\\dev\\work-space\\semiProject\\SemiProject\\src\\main\\webapp\\resources\\img";
 
 		// 파일 업로드 디렉토리가 존재하지않으면 생성
 		File PicturePath = new File(uploadDirectory);
