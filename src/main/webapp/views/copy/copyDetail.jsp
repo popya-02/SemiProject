@@ -188,8 +188,14 @@
 									<p>${getReview.review}</p>
 								</div>
 							</div>
-							<button type="submit"
+							<c:if test="${sessionScope.userNum == getReview.userNum}">
+								<button type="submit"
 								class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>
+							</c:if>
+							<c:if test="${sessionScope.userType == 'admin'}">
+								<button type="submit"
+								class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>
+							</c:if>
 							<br>
 							<br>
 							<div class="nav nav-tabs mb-3" style="width: 1100px;"></div>
@@ -217,10 +223,11 @@
 				</div>
 				<div class="col-lg-12">
 					<div class="d-flex justify-content-between py-3 mb-5">
-	
-						<button
-							class="page-n border border-secondary text-primary rounded-pill px-4 py-3"
-							type="submit">후기 남기기</button>
+						<c:if test="${sessionScope.userType == 'basicUser' }">
+							<button
+								class="page-n border border-secondary text-primary rounded-pill px-4 py-3"
+								type="submit">후기 남기기</button>
+						</c:if>
 					</div>
 				</div>
 			</div>
