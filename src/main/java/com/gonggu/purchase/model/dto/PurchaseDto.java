@@ -5,7 +5,7 @@ public class PurchaseDto {
     private String userName;
     private String phoneNum;
     private String copyName;
-    private int deposit;
+    private String deposit;
     
     private String detailAddr;
     private String purchaseStatus;
@@ -74,11 +74,11 @@ public class PurchaseDto {
 	
 	
 
-	public int getDeposit() {
+	public String getDeposit() {
 		return deposit;
 	}
 
-	public void setDeposit(int deposit) {
+	public void setDeposit(String deposit) {
 		this.deposit = deposit;
 	}
 
@@ -111,14 +111,14 @@ public class PurchaseDto {
 	
 
 
-	public PurchaseDto(String userName, String phoneNum, String copyName, int deposit) {
+	public PurchaseDto(String userName, String phoneNum, String copyName, String deposit) {
         this.userName = userName;
         this.phoneNum = phoneNum;
         this.copyName = copyName;
         this.deposit = deposit;
     }
 	
-	public PurchaseDto(int chattingNo, String goodsName, String detailAddress, int deposit) {
+	public PurchaseDto(int chattingNo, String goodsName, String detailAddress, String deposit) {
 		this.chattingNo = chattingNo;
 		this.goodsName = goodsName;
 		this.detailAddr = detailAddress;
@@ -135,11 +135,11 @@ public class PurchaseDto {
 		super();
 	}
 
-	public static PurchaseDto of(String userName, String phoneNum, String copyName, int deposit) {
+	public static PurchaseDto of(String userName, String phoneNum, String copyName, String deposit) {
         return new PurchaseDto(userName, phoneNum, copyName, deposit);
     }
 	
-	public static PurchaseDto of(int chattingNo, String goodsName, String detailAddress, int deposit) {
+	public static PurchaseDto of(int chattingNo, String goodsName, String detailAddress, String deposit) {
 		return new PurchaseDto(chattingNo, goodsName, detailAddress, deposit);
 	}
 	

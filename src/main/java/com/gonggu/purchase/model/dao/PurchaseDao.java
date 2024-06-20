@@ -26,7 +26,6 @@ public class PurchaseDao {
         		+ "		FULL JOIN CONSTRUCT c ON c.CHATTING_NO = cs.CHATTING_NO"
         		+ "		where c.chatting_no = ?";
         
-        String oid = UUID.randomUUID().toString();
 
         try {
             pstmt = con.prepareStatement(query);
@@ -37,7 +36,7 @@ public class PurchaseDao {
                 String userName = rs.getString("name");
                 String phoneNum = rs.getString("phone_num");
                 String copyName = rs.getString("copy_name");
-                int deposit = rs.getInt("construct_deposit");
+                String deposit = rs.getString("construct_deposit");
 
                 // 값 세팅
                 PurchaseDto dto = PurchaseDto.of(userName, phoneNum, copyName, deposit);
