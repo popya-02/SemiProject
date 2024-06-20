@@ -31,14 +31,14 @@
         <div class="mypage_list_1_detail"> 
           <form action="/MyPageEstimate/EstimateUser.do?cpage=${pi.copypage }" method="Get">
             <input type="hidden" name="cpage" value="1">
-             <p class="estimate_list">견적/공사 내역</p>
+             <p class="estimate_list">견적/상담 내역</p>
 
             <div class="reservation-list body">
                 <div class="reservation-list-header">
                     <div class="company_photo" name="pictureName">사진</div>
                     <div class="company_name" name="capyName">업체 이름</div>
                     <div class="reservation_number" name="constructno" >예약번호</div>
-                    <div>결제 현황</div>
+                    <div class="reservation_number">결제 현황</div>
                 </div>
                 
         		<c:choose>
@@ -49,26 +49,35 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="item" items="${list}">
-								<div class="reservation-list-item" onclick="location.href='/copyDetail.do?copyNo=${item.copyNo}'">
+									<div class="reservation-list-item pointer" onclick="location.href='/copyDetail.do?copyNo=${item.copyNo}'">
 									<!-- 어떤 게시글에 들어가는지 알수있음 -->
-									<img src="/resources/img/${item.pictureName}" class="company_photo"/>
+									<div class="company_photo_div">
+										<img src="/resources/img/${item.pictureName}" class="company_photo_img"/>
+									</div>
 									<div class="company_name">${item.copyName}</div>
 									<div class="reservation_number" >${item.constructNo}</div>
-									<c:choose>
-										<c:when test="${item.constStatus == 'N'}">
-											<div>결제 대기중</div>
-										</c:when>
-										<c:otherwise>
-											<div>예약 확정</div>
-										</c:otherwise>
-									</c:choose>
+									<div class="reservation_status">
+										<c:choose>
+											<c:when test="${item.constEndCehck == 'Y'}">
+												<p>상담 종료</p>
+											</c:when>
+											<c:when test="${item.constStatus == 'N'}">
+												<p>결제 대기중</p>
+												<div onclick="location.href='/chatting/connection.do?copyNum=${item.copyNo}&userNum=${sessionScope.userNum}'" class="btn construct-btn">채팅방 이동</div>
+											</c:when>
+											<c:otherwise>
+												<p>예약 확정</p>
+												<div onclick="location.href='/chatting/connection.do?copyNum=${item.copyNo}&userNum=${sessionScope.userNum}'" class="btn construct-btn">채팅방 이동</div>
+											</c:otherwise>
+										</c:choose>
+									</div>
 								</div>
 								<c:set var="row" value="${row-1}" />
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
-         </div>
-        </form>
+        		</div>
+       		</form>
        </div>
        
                  <!-- 페이지네이션 -->

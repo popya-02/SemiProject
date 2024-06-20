@@ -68,30 +68,21 @@ const likeCopyBtn = (e) => {
 
 function alertSwal(titlee, msg, iconn, cUrl){
 	
-	console.log('title: '+titlee);
-	console.log('msg: '+msg);
-	console.log('iconn: '+iconn);
-	console.log('cUrl: '+cUrl);
-	
 	const swalResult = Swal.fire({
 		title: titlee,
 		text: msg,
 		icon: iconn,
     });
 
-    console.log(swalResult);
-	console.log("out");
 	
     swalResult.then(() => {
         if (cUrl === 'b') {
             window.history.back();
         } else if(cUrl === ''){
-			console.log("in1");
+	
 		} else if(cUrl === 'R'){
-			console.log("in2");
 			window.location.reload();
 		} else {
-			console.log("in3");
             location.href = cUrl;
         }
     });

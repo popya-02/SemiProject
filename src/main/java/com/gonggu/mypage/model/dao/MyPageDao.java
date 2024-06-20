@@ -514,10 +514,12 @@ public class MyPageDao {
 	public ArrayList<MyPageDtoImpl> getUserEstimateList(PageInfo pi, MyPageDtoImpl myDto) {
 		ArrayList<MyPageDtoImpl> result = new ArrayList<>();
 		String query = """
-						SELECT c.COPY_NO, cp.name, cd.copy_name, c.CONSTRUCT_NO, c.PURCHASE_STATUS FROM CONSTRUCT c
+						SELECT c.COPY_NO, cp.NAME , cd.copy_name, c.CONSTRUCT_NO, c.PURCHASE_STATUS, cs.END_CHECK FROM CONSTRUCT c
 						JOIN COPY_DETAIL cd ON c.COPY_NO = cd.COPY_NO
 						FULL JOIN COPY_PHOTO cp ON cp.COPY_NO = c.COPY_NO
-						WHERE c.USER_NO = ?
+						JOIN CONSTRUCT_STATUS cs ON c.CHATTING_NO  = cs.CHATTING_NO 
+						WHERE cs.CHATTING_NO IN (SELECT CHATTING_NO FROM CONSTRUCT_STATUS
+						WHERE USER_NO = ?)
 						OFFSET ? ROWS FETCH FIRST ? ROWS ONLY
 					""";
 		
@@ -535,6 +537,7 @@ public class MyPageDao {
 				pageDto.setCopyName(rs.getString("COPY_NAME"));
 				pageDto.setConstructNo(rs.getInt("CONSTRUCT_NO"));
 				pageDto.setConstStatus(rs.getString("PURCHASE_STATUS"));
+				pageDto.setConstEndCehck(rs.getString("END_CHECK"));
 				
 				result.add(pageDto);
 			}
