@@ -52,9 +52,6 @@ public class CopyInfoController extends HttpServlet {
 		
 		
 		
-//		for(InformationDto item : list) {
-//			System.out.println(item.get());
-//		}
 				
 		// 게시물 목록 jsp에게 전달해주기
 		request.setAttribute("list" , list);
