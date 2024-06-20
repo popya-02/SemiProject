@@ -26,7 +26,7 @@ public class PurchaseController extends HttpServlet {
 		
 		int chattingNo = Integer.parseInt(request.getParameter("chattingNum"));
 		int constNo = Integer.parseInt(request.getParameter("constructNum"));
-		
+
 		PurchaseServiceImpl myService = new PurchaseServiceImpl();
 		PurchaseDto result = myService.purchaseInfo(chattingNo);
 		PurchaseDto date = myService.constructInfo(chattingNo);
@@ -38,7 +38,6 @@ public class PurchaseController extends HttpServlet {
 		request.setAttribute("result", result);
 		request.setAttribute("date", date);
 		request.setAttribute("mypageDto", mypageDto);
-		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/etc/purchase.jsp"); 
 		dispatcher.forward(request, response);

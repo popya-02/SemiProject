@@ -11,6 +11,12 @@ for (const ele of Array.from(mainCategoryEle)) {
     ele.addEventListener("click", categoryCheck);
 }
 
+var copypageNumChoice = document.getElementsByName("copypageNum");
+
+for (const ele of Array.from(copypageNumChoice)) {
+    ele.addEventListener("click", copypageNumFunc);
+}
+
 let cPage = 1;
 let categoryNum = 0;
 
@@ -24,7 +30,7 @@ function categoryCheck() {
     const categoryResultNum = this.value;
 
     if (categoryResultNum) {
-        categoryNum = parseInt(categoryResultNum, 10);
+        categoryNum = Number(categoryResultNum);
     }
 
     checkFunc(categoryNum, cPage);
@@ -77,12 +83,19 @@ function checkFunc(resultCategory, paginationNum) {
                 data.pi.endPage = 0;
             } else {
                 for (let i = 0; i < data.constructList.length; i++) {
-                    examBox.innerHTML += `<form action="/constructExam/constructdelete.do" method="POST">
+					const formEle = document.createElement("form");
+					let modifyBox = "";
+					
+					formEle.action = "/constructExam/constructdelete.do";
+					formEle.method = "POST";
+					
+                    modifyBox += `
                         <input type="hidden" name="examNo" value="${data.constructList[i].examNo}">
                         <input type="hidden" name="fileNo" value="${data.constructList[i].fileNo}">
                         <input type="hidden" name="fileName" value="${data.constructList[i].fileName}">
                         <input type="hidden" name="categoryNum" value="${data.constructList[i].categoryNo}">
                         <input type="hidden" name="page" value="${data.pi.copypage}">
+						<input type="hidden" id="${data.constructList[i].copyName}" name="copyNum" value="${data.constructList[i].copyNum}">
                         <div class="col">
                             <div class="card shadow-sm he-min">
                                 <a href="/constructDetail.do?examNo=${data.constructList[i].examNo}" class="img-size">
@@ -92,12 +105,47 @@ function checkFunc(resultCategory, paginationNum) {
                                 <div class="card-body">
                                     <p>${data.constructList[i].title}</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group"></div>
-                                    </div>
+                                        <div class="btn-group">`
+					if(data.copyName == data.constructList[i].copyName){
+
+						modifyBox += `<button type="button" class="tlrhd-border btn-sm btn-outline-secondary"
+												onclick="location.href='/constructExam/constructEdit.do?examNo=${data.constructList[i].examNo}'">
+												수정</button>
+												&nbsp;
+												<button type="submit" class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>`
+					}
+					modifyBox += `</div>
                                 </div>
-                            </div>
-                        </div>
-                    </form>`;
+                            </div>`
+					if(data.userType == 'basicUser'){
+						let count = 1;
+						if(data.getLike){
+							for(let j = 0; j < data.getLike.length; j++){
+								if(data.constructList[i].copyNum == data.getLike[j].copyNum){
+									modifyBox += `<button type="button" name="${data.constructList[i].copyName}" id="likeButton" class="likeButton bi bi-house-heart tlrhd-like border border-secondary text-primary rounded-pill clicked" ></button>`
+									count += 1;
+								}
+							}
+							
+							if(count == 1){
+								modifyBox += `<button type="button" name="${data.constructList[i].copyName}" id="likeButton" class="likeButton bi bi-house-heart tlrhd-like border border-secondary text-primary rounded-pill" ></button>`;
+							}
+							
+						}else{
+							modifyBox += `<button type="button" name="${data.constructList[i].copyName}" id="likeButton" class="likeButton bi bi-house-heart tlrhd-like border border-secondary text-primary rounded-pill"></button>`
+						}
+					}
+					
+                    modifyBox += `</div>
+                			</div>`;
+						
+					formEle.innerHTML = modifyBox;
+					examBox.appendChild(formEle);
+					
+					if(data.userType == 'basicUser'){
+						document.getElementsByClassName('likeButton')[i].addEventListener("click", likeCopyBtn);
+						
+					}
                 }
             }
 
@@ -119,12 +167,13 @@ function checkFunc(resultCategory, paginationNum) {
             } else {
                 paginationBox.innerHTML += `<a onclick="copypageNumFunc('R')" id="categoryNo" class="page-n rounded">&raquo;</a>`;
             }
+			
+			var copypageNumChoice = document.getElementsByName("copypageNum");
 
-            const copypageNumChoice = document.getElementsByName("copypageNum");
+			for (const ele of Array.from(copypageNumChoice)) {
+			    ele.addEventListener("click", copypageNumFunc);
+			}
 
-            for (const ele of Array.from(copypageNumChoice)) {
-                ele.addEventListener("click", copypageNumFunc);
-            }
         },
         error: function(error) {
             console.error('Error:', error);

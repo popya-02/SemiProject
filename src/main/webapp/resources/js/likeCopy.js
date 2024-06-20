@@ -1,6 +1,7 @@
+	
+
 // 페이지 로드 시 로컬 스토리지에서 상태 읽기
-$(document).ready(function() {
-	const button = $('.likeButton');
+	let button = $('.likeButton');
 	/* const isClicked = localStorage.getItem('likeButtonClicked') === 'true';
 	if (isClicked) {
 		console.log("a")
@@ -9,12 +10,22 @@ $(document).ready(function() {
 	} */
 
 	// 버튼 클릭 시 Ajax 요청
-	button.click(function() {
-		const isClicked = $(this).hasClass('clicked');
-		const myBtn = this; // 클릭이 발생한 버튼
-		const myBtnCopy = myBtn.name; // 클릭이 발생한 버튼의 name
-		const copyBtnList = document.getElementsByName(myBtnCopy);
-		const copyNum = document.getElementById(myBtnCopy).value; // 예시로 examNo를 하드코딩하거나 실제 동적으로 설정하는 방법으로 변경해야 합니다.
+
+// function likeCopyBtn(myBtn) {
+const likeCopyBtn = (e) => {
+		const isClicked = $(e.target).hasClass('clicked');
+	    const myBtn = e.target; // 클릭이 발생한 버튼
+	    const myBtnCopy = myBtn.name; // 클릭이 발생한 버튼의 name
+	    const copyBtnList = document.getElementsByName(myBtnCopy);
+	    const copyNumElement = document.getElementById(myBtnCopy); // 요소가 null인지 확인
+	
+	    if (!copyNumElement) {
+	        console.error(`Element with id ${myBtnCopy} not found.`);
+	        return;
+	    }
+	
+	    const copyNum = copyNumElement.value;
+		
 		$.ajax({
 			type : 'GET',
 			url : '/LikeCopyController',
@@ -52,22 +63,35 @@ $(document).ready(function() {
 				alertSwal("서버 오류로 인해 요청을 처리할 수 없습니다.", "", "warning", "");
 			}
 		});
-	});
-});
+	}
+	button.click(likeCopyBtn);
 
 function alertSwal(titlee, msg, iconn, cUrl){
-    Swal.fire({
-        title:titlee,
-        text: msg,
-        icon: iconn,
-    }).then(() => {
+	
+	console.log('title: '+titlee);
+	console.log('msg: '+msg);
+	console.log('iconn: '+iconn);
+	console.log('cUrl: '+cUrl);
+	
+	const swalResult = Swal.fire({
+		title: titlee,
+		text: msg,
+		icon: iconn,
+    });
+
+    console.log(swalResult);
+	console.log("out");
+	
+    swalResult.then(() => {
         if (cUrl === 'b') {
             window.history.back();
         } else if(cUrl === ''){
-	
+			console.log("in1");
 		} else if(cUrl === 'R'){
+			console.log("in2");
 			window.location.reload();
 		} else {
+			console.log("in3");
             location.href = cUrl;
         }
     });

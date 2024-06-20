@@ -74,48 +74,48 @@
 		<p>${detail.copyName}</p>
 	</div>
 	<!-- 시공 nav -->
-	<div class="tlrhd-nav">
-
-		<a href=""
-			class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3"
-			onclick="shareKakao()">공유하기</a> &nbsp;&nbsp;
-		<c:if test="${sessionScope.userType == 'basicUser' }">
-			<a
-				href="/chatting/connection.do?copyNum=${detail.copyNum}&userNum=${sessionScope.userNum}"
-				class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">이
-				스타일로 상담하기</a>
-		</c:if>
-	</div>
-
-<div>
-<input type="hidden" id="${detail.copyName}" name="copyNum" value="${detail.copyNum}">
-	<c:choose>
-		<c:when test="${not empty getLike }">
-			<c:set var="count" value="1" />
-			<c:forEach var="item" items="${getLike}">
-				<c:if test="${detail.copyNum == item.copyNum}">
-					<button type="button" name="${detail.copyName}"
-						id="likeButton"
-						class="likeButton bi bi-house-heart tlrhd-liked border border-secondary text-primary rounded-pill clicked"
-						onclick=""></button>
-					<c:set var="count" value="${count+1 }" />
-				</c:if>
-			</c:forEach>
-			<c:if test="${count == 1}">
-				<button type="button" name="${detail.copyName}" id="likeButton"
-					class="likeButton bi bi-house-heart tlrhd-liked border border-secondary text-primary rounded-pill"
-					onclick=""></button>
+	<div class="btn-group-box">
+		<div class="tlrhd-nav">
+	
+			<a href=""
+				class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3"
+				onclick="shareKakao()">공유하기</a> &nbsp;&nbsp;
+			<c:if test="${sessionScope.userType == 'basicUser' }">
+				<a
+					href="/chatting/connection.do?copyNum=${detail.copyNum}&userNum=${sessionScope.userNum}"
+					class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">이
+					스타일로 상담하기</a>
 			</c:if>
-		</c:when>
-		<c:otherwise>
-			<button type="button" name="${detail.copyName}" id="likeButton"
-				class="likeButton bi bi-house-heart tlrhd-liked border border-secondary text-primary rounded-pill"
-				onclick=""></button>
-		</c:otherwise>
-	</c:choose>
-</div>
-	<br>
-	<br>
+		</div>
+	
+		<div class="like-btn-box">
+		<input type="hidden" id="${detail.copyName}" name="copyNum" value="${detail.copyNum}">
+			<c:choose>
+				<c:when test="${not empty getLike }">
+					<c:set var="count" value="1" />
+					<c:forEach var="item" items="${getLike}">
+						<c:if test="${detail.copyNum == item.copyNum}">
+							<button type="button" name="${detail.copyName}"
+								id="likeButton"
+								class="likeButton bi bi-house-heart tlrhd-liked border border-secondary text-primary rounded-pill clicked"
+								onclick=""></button>
+							<c:set var="count" value="${count+1 }" />
+						</c:if>
+					</c:forEach>
+					<c:if test="${count == 1}">
+						<button type="button" name="${detail.copyName}" id="likeButton"
+							class="likeButton bi bi-house-heart tlrhd-liked border border-secondary text-primary rounded-pill"
+							onclick=""></button>
+					</c:if>
+				</c:when>
+				<c:otherwise>
+					<button type="button" name="${detail.copyName}" id="likeButton"
+						class="likeButton bi bi-house-heart tlrhd-liked border border-secondary text-primary rounded-pill"
+						onclick=""></button>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
 	<br>
 	<br>
 	<div class="tlrhd-ruswjr border-secondary text-primary">시공 시작일 :
@@ -128,7 +128,7 @@
 		${detail.constructAddr}</div>
 	<br>
 	<div class="tlrhd-ruswjr border-secondary text-primary">시공 평수 :
-		${detail.constructRange}평</div>
+		${detail.constructRange} m²</div>
 	<br>
 	<div class="tlrhd-ruswjr border-secondary text-primary">시공 가격 :
 		${detail.constructPrice}원</div>
@@ -139,7 +139,8 @@
 
 	</div>
 	<!-- 상세 설명 -->
-	<div class="tlrhd-content">${detail.content}</div>
+	<div class="tlrhd-content" id="content-result-box">${detail.content}</div>
+
 
 	<!-- Footer Start -->
 	<%@ include file="/views/common/footer.jsp"%>
@@ -156,6 +157,7 @@
 	<!-- Template Javascript -->
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/likeCopy.js"></script>
+	<script src="/resources/js/smarteditorModify.js"></script>
 	<!--     <script src="/resources/js/chatting.js"></script> -->
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
