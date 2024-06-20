@@ -87,7 +87,7 @@
     border: 0;
     border-radius: 5px;
     outline: none;
-    background-color: rgb(233, 233, 233);
+    background-color: #f7f7f7;
 }
 
 .id_box, .name_box, .nickname_box{
@@ -125,8 +125,8 @@ div div input {
     width: 100px !important;
     border: 0px;
     display: inline-block;
-    width: 30%;
-    height: 40px;
+    width: 12%;
+    height: 50px;
     font-size: 15px;
     text-align: center;
     border-radius: 7px;

@@ -45,16 +45,23 @@ public class ConstructEditController extends HttpServlet {
 		
 		ConstructDtoImpl constructDto = new ConstructDtoImpl();
 
+		String tagRemove = "<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>";
+        String nbspPattern = "&nbsp;";
+		
+        String removeContentTag = content.replaceAll(tagRemove, "");
+      	String resultContent  = removeContentTag.replace(nbspPattern, "");
+      	
 		constructDto.setExamNo(examNo); // const_exam
 		constructDto.setCategoryNo(categoryNo);  // const_exam
 		constructDto.setTitle(title); // const_exam
 		constructDto.setContent(content); // const_exam
+		constructDto.setTagRemoveContent(resultContent); // const_exam
 		ConstructServiceImpl constructService = new ConstructServiceImpl();
 		int result = constructService.setEdit(constructDto);
 //		System.out.println("22222222 : "+constructDto.getContent());
 		
 		Collection<Part> parts = request.getParts();
-		String uploadDirectory = "C:\\greenAcademy\\dev\\workspace\\semiProject\\SemiProject\\src\\main\\webapp\\resources\\img";
+		String uploadDirectory = "C:\\dev\\File\\semiProject\\SemiProject\\src\\main\\webapp\\resources\\img";
 		File filePath = new File(uploadDirectory);
         if (!filePath.exists()) {
             filePath.mkdir();
