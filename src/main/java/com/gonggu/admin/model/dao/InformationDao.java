@@ -102,7 +102,6 @@ public class InformationDao {
 				infoDto.setCopyAddr(addr);
 				infoDto.setApprove(approve);
 				
-				
 				result.add(infoDto);
 //				System.out.println(infoDto.getCopyNo());
 //				System.out.println(infoDto.getCopyName());

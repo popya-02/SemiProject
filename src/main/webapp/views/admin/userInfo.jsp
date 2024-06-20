@@ -26,7 +26,7 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-md-12 col-lg-7">
                         <a href="/userForm.do?cpage=1&category=name&searchText="><h2 class="mb-3">회원 검색</h2></a>
-                        <form action="userForm.do?cpage=${pi.copypage}" method="GET">
+                        <form action="/userForm.do?cpage=${pi.copypage}" method="GET">
                         <input type="hidden" name="cpage" value="1" />
                         
                         <div class="input-group search-wid d-flex box-right" style="margin-left: 15%;">

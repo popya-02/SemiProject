@@ -83,12 +83,12 @@
 						                    		</div>
 					                    		</c:when>
 					                    		<c:otherwise>
-								                    <div class="reservation_number">
+								                   <div class="reservation_number">
 									                    <input type="hidden" name="estimatePrice" id="estimatePrice_${item.chattingNum}" value="${item.estimatePrice}">
 														<input type="hidden" name="chattingNum" id="chattingNum_${item.chattingNum}" class="chattingNum" value="${item.chattingNum}">
 														<input type="hidden" name="constNum" id="constNum_${item.chattingNum}"  value="${item.constNo}">
-						 								<button type="button" class="construct-btn" onclick="checkPrice(${item.chattingNum})">결제 요청</button>
-								                    </div>
+						 								<div class="btn construct-btn" name="construct-price-btn" value="${item.chattingNum}">결제 요청</div>
+						                   	 		</div>
 					                    		</c:otherwise>
 					                    	</c:choose>
 						                    <c:choose>

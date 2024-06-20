@@ -116,7 +116,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item" style="margin-right: 0px"><a
-							class="rounded page-n" href="/copyCheck.do?cpage=${pi.copypages+1}"
+							class="rounded page-n" href="/copyCheck.do?cpage=${pi.copypage+1}"
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 						</a></li>
 					</c:otherwise>
