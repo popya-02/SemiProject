@@ -71,50 +71,50 @@
 		</c:choose>
 	</div>
 	<div class="tlrhddjqcpaud">
-		<p>${detail.copyName}</p>
+		<p style="margin-bottom: 40px;">${detail.copyName}</p>
 	</div>
 	<!-- 시공 nav -->
-	<div class="btn-group-box">
+	<div class="btn-group-box" style="margin-bottom: 40px;">
 		<div class="tlrhd-nav">
 	
 			<a href=""
 				class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3"
 				onclick="shareKakao()">공유하기</a> &nbsp;&nbsp;
 			<c:if test="${sessionScope.userType == 'basicUser' }">
-				<a
-					href="/chatting/connection.do?copyNum=${detail.copyNum}&userNum=${sessionScope.userNum}"
-					class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">이
-					스타일로 상담하기</a>
+				<a href="/chatting/connection.do?copyNum=${detail.copyNum}&userNum=${sessionScope.userNum}"
+				   class="tlrhd-border border border-secondary text-primary rounded-pill px-4 py-3">이 스타일로 상담하기</a>
 			</c:if>
 		</div>
-	
-		<div class="like-btn-box">
-		<input type="hidden" id="${detail.copyName}" name="copyNum" value="${detail.copyNum}">
-			<c:choose>
-				<c:when test="${not empty getLike }">
-					<c:set var="count" value="1" />
-					<c:forEach var="item" items="${getLike}">
-						<c:if test="${detail.copyNum == item.copyNum}">
-							<button type="button" name="${detail.copyName}"
-								id="likeButton"
-								class="likeButton bi bi-house-heart tlrhd-liked border border-secondary text-primary rounded-pill clicked"
+		
+		<c:if test="${sessionScope.userType == 'basicUser'}">
+			<div class="like-btn-box" style="margin-left: 20px;">
+			<input type="hidden" id="${detail.copyName}" name="copyNum" value="${detail.copyNum}">
+				<c:choose>
+					<c:when test="${not empty getLike }">
+						<c:set var="count" value="1" />
+						<c:forEach var="item" items="${getLike}">
+							<c:if test="${detail.copyNum == item.copyNum}">
+								<button type="button" name="${detail.copyName}"
+									id="likeButton"
+									class="likeButton bi bi-house-heart tlrhd-liked border border-secondary text-primary rounded-pill clicked"
+									onclick=""></button>
+								<c:set var="count" value="${count+1 }" />
+							</c:if>
+						</c:forEach>
+						<c:if test="${count == 1}">
+							<button type="button" name="${detail.copyName}" id="likeButton"
+								class="likeButton bi bi-house-heart tlrhd-liked border border-secondary text-primary rounded-pill"
 								onclick=""></button>
-							<c:set var="count" value="${count+1 }" />
 						</c:if>
-					</c:forEach>
-					<c:if test="${count == 1}">
+					</c:when>
+					<c:otherwise>
 						<button type="button" name="${detail.copyName}" id="likeButton"
 							class="likeButton bi bi-house-heart tlrhd-liked border border-secondary text-primary rounded-pill"
 							onclick=""></button>
-					</c:if>
-				</c:when>
-				<c:otherwise>
-					<button type="button" name="${detail.copyName}" id="likeButton"
-						class="likeButton bi bi-house-heart tlrhd-liked border border-secondary text-primary rounded-pill"
-						onclick=""></button>
-				</c:otherwise>
-			</c:choose>
-		</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</c:if>
 	</div>
 	<br>
 	<div class="tlrhd-ruswjr border-secondary text-primary"> 시공 시작일 :

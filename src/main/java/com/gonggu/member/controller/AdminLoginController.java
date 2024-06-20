@@ -42,7 +42,7 @@ public class AdminLoginController extends HttpServlet {
 		MemberDTO hashPwd = memberService.getHashPwdAdmin(adminId);
 		
 		if(Objects.isNull(hashPwd)) {
-			alert.returnAlert(response, "로그인 실패","아이디 또는 비밀번호가 잘못되었습니다.", "warning","/form/adminLoginForm.do");
+			alert.returnAlert(response, "로그인 실패","아이디 또는 비밀번호가 잘못되었습니다.", "warning","b");
 			return;
 		}else {
 			if(BCrypt.checkpw(adminPwd, hashPwd.getAdminPwd())) {
@@ -52,7 +52,7 @@ public class AdminLoginController extends HttpServlet {
 				
 				alert.returnAlert(response, "로그인 성공","로그인되었습니다.","success", "/");
 			}else {
-				alert.returnAlert(response, "로그인 실패","아이디 또는 비밀번호가 잘못되었습니다.", "warning","/form/adminLoginForm.do");
+				alert.returnAlert(response, "로그인 실패","아이디 또는 비밀번호가 잘못되었습니다.", "warning","b");
 				return;
 			}
 		}
