@@ -283,8 +283,8 @@ public class MyPageDao {
 	            	+ " ?,"  // sumprice 7
 	            	+ " ?,"  // chatNum 8
 	            	+ " ?,"  // element 9
-	            	+ " ?,"
 	            	+ " default, "	// purchaseStatus 
+	            	+ " ?,"
 	            	+ " default"	 // deposit 10
 	            	+ ")";
 

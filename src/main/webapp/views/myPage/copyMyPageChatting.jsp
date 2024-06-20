@@ -24,7 +24,7 @@
 					<c:when test="${sessionScope.approvalStatus == 'B'}">
 					<nav class="mypage_list">
 			            <ul>
-			                <li class="mypage_list_1"><a href="/views/myPage/copyMyPageEstimate.jsp">견적/공사 내역</a></li>
+			                <li class="mypage_list_1"><a href="/MyPageEstimate/EstimateCopy.do?cpage=1">견적/공사 내역</a></li>
 			                <li class="mypage_list_2"><a href="/MypageInfo/ChattingList.do?copyNo=${sessionScope.copyNum}&chatpage=1">견적 상담 채팅</a></li>
 			                <li class="mypage_list_2"><a href="/MypageInfo/copyInfo.do?copyNo=${sessionScope.copyNum}">정보 수정</a></li>
 			            </ul>
@@ -76,12 +76,21 @@
 					                    			</div>
 					                    		</c:otherwise>
 					                    	</c:choose>
-						                    <div class="reservation_number">
-							                    <input type="hidden" name="estimatePrice" id="estimatePrice_${item.chattingNum}" value="${item.estimatePrice}">
-												<input type="hidden" name="chattingNum" id="chattingNum_${item.chattingNum}" class="chattingNum" value="${item.chattingNum}">
-												<input type="hidden" name="constNum" id="constNum_${item.chattingNum}"  value="${item.constNo}">
-				 								<button type="button" class="construct-btn" onclick="checkPrice(${item.chattingNum})">결제 요청</button>
-						                    </div>
+					                    	<c:choose>
+					                    		<c:when test="${item.endCheck == 'Y'}">
+						                    		<div class="reservation_number">
+						                    			<button type="button" class="construct-end-btn">결제 종료</button>
+						                    		</div>
+					                    		</c:when>
+					                    		<c:otherwise>
+								                    <div class="reservation_number">
+									                    <input type="hidden" name="estimatePrice" id="estimatePrice_${item.chattingNum}" value="${item.estimatePrice}">
+														<input type="hidden" name="chattingNum" id="chattingNum_${item.chattingNum}" class="chattingNum" value="${item.chattingNum}">
+														<input type="hidden" name="constNum" id="constNum_${item.chattingNum}"  value="${item.constNo}">
+						 								<button type="button" class="construct-btn" onclick="checkPrice(${item.chattingNum})">결제 요청</button>
+								                    </div>
+					                    		</c:otherwise>
+					                    	</c:choose>
 						                    <c:choose>
 						                    	<c:when test="${item.endCheck == 'Y'}">
 								                    <div class="reservation_number">
