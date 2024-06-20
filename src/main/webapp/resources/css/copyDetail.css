@@ -43,6 +43,8 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+    position: relative;
+    left: -220%;
     
 }
 .tlrhd-like:hover,
@@ -65,6 +67,7 @@
 
 
 @media(max-width: 1400px){
+	.tlrhd-like,
 	.tlrhd-like:hover,
 	.tlrhd-like.clicked {
 	    left: -105%;
@@ -80,6 +83,7 @@
 }
 
 @media(max-width: 1200px){
+	.tlrhd-like,
 	.tlrhd-like:hover,
 	.tlrhd-like.clicked {
 	    left: 0%;

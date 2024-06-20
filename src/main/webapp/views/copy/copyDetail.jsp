@@ -95,7 +95,7 @@
 									
 									</c:when>
 									<c:otherwise>
-										<a class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"></a>
+										<a class="px-3 py-1 mb-4"></a>
 									</c:otherwise>
 								</c:choose>
 

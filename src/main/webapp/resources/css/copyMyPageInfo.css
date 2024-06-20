@@ -108,16 +108,28 @@
     border: 0;
     border-radius: 5px;
     outline: none;
+    background-color: white;
+    border: 1px solid rgb(233, 233, 233);
+}
+
+
+.c_id_box,
+.c_name_box,
+.c_number_box,
+.construction_area_box{
+	width: 60%;
+}
+
+.c_id_box,
+.c_name_box{
     background-color: rgb(233, 233, 233);
 }
 
 .introduce_box {
     margin-top: 20px;
-    height: 70px;
-    border: 0;
+    height: 250px;
     border-radius: 5px;
     outline: none;
-    background-color: rgb(233, 233, 233);
 }
 
 div div input {

@@ -55,13 +55,13 @@
 	            <label for="">업체 전화번호</label><br>
 	            <input class="c_number_box" type="text" name="telnum" id="" value="${result.telNum}">
 	        </div>
-	        <div class="mypage_list_3_detail_c_address">
-	            <label for="">업체 주소</label><br>
-	            <input class="c_address_box" type="text" name="copyaddr" id="" value="${result.copyAddr}">
-	        </div>
 	        <div class="mypage_list_3_detail_construction_area">
 	            <label for="">시공 지역</label><br>
 	            <input class="construction_area_box" type="text" name="constructarea" id="" value="${result.constructArea}">
+	        </div>
+	        <div class="mypage_list_3_detail_c_address">
+	            <label for="">업체 주소</label><br>
+	            <input class="c_address_box" type="text" name="copyaddr" id="" value="${result.copyAddr}">
 	        </div>
 	        <div class="mypage_list_3_detail_introduce">
 	            <label for="">소개글</label><br>

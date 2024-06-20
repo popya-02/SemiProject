@@ -1,21 +1,26 @@
 
+const cosntructBtn = document.getElementsByName('construct-price-btn');
 
-function checkPrice(chattingNum) {
+for (const ele of Array.from(cosntructBtn)) {
+    ele.addEventListener("click", checkPrice);
+}
+
+
+function checkPrice() {
+	
+	let chattingNum = this.getAttribute("value");
+	
 	var chat = document.getElementById("chattingNum_" + chattingNum).value;
 	const price = document.getElementById("estimatePrice_" + chat).value;
 	const constNo = document.getElementById("constNum_" + chat).value;
 	
-	let titlemsg = "";
-	let contentmsg = "";
-	let statusmsg = "";
+	
 	
 	
 	console.log("price " + price);
 	console.log("No " + constNo);
     if (price == null || price == 0) {
-		titlemsg = "견적서에 예약금액을 입력해주세요.";
-		contentmsg = "";
-		statusmsg = "warning";
+		alertSwal("견적서에 예약금액을 입력해주세요.", "", "warning", "");
     } else {
         var form = document.createElement('form');
         form.method = 'GET';
@@ -46,22 +51,23 @@ function checkPrice(chattingNum) {
         document.body.appendChild(form);
         form.submit();
 
-		titlemsg = "결제요청 완료!";
-		contentmsg = "요청 금액 : " + price + "";
-		statusmsg = "success";
-
     }
 
-	alertSwal(titlemsg, contentmsg , statusmsg, "");
+	
 }
 
 
 function alertSwal(titlee, msg, iconn, cUrl){
-    Swal.fire({
-        title:titlee,
+	
+	const swalResult = Swal.fire({
+        title: titlee,
         text: msg,
         icon: iconn,
-    }).then(() => {
+    });
+
+    console.log(swalResult);
+
+    swalResult.then(() => {
         if (cUrl === 'b') {
             window.history.back();
         } else if(cUrl === ''){

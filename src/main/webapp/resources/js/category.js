@@ -30,7 +30,7 @@ function categoryCheck() {
     const categoryResultNum = this.value;
 
     if (categoryResultNum) {
-        categoryNum = parseInt(categoryResultNum, 10);
+        categoryNum = Number(categoryResultNum);
     }
 
     checkFunc(categoryNum, cPage);
@@ -140,9 +140,12 @@ function checkFunc(resultCategory, paginationNum) {
                 			</div>`;
 						
 					formEle.innerHTML = modifyBox;
-					
 					examBox.appendChild(formEle);
-					document.getElementsByClassName('likeButton')[i].addEventListener("click", likeCopyBtn);
+					
+					if(data.userType == 'basicUser'){
+						document.getElementsByClassName('likeButton')[i].addEventListener("click", likeCopyBtn);
+						
+					}
                 }
             }
 
