@@ -144,6 +144,7 @@ public class CopyDao {
 	        	   dto.setUserId(rs.getString("USER_ID"));
 	        	   dto.setReview(rs.getString("REVIEW_CONTENT"));
 	        	   dto.setReviewNo(rs.getInt("REVIEW_NO"));
+	        	   dto.setUserNum(rs.getInt("USER_NO"));
 	        	   list.add(dto);
 	           }
 			} catch (SQLException e) {
