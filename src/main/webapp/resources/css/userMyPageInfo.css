@@ -14,32 +14,36 @@
     height: 150px;
 }
 
+
 .mypage_list ul li {
     margin-top: 5px;
-    float: left;
     list-style: none;
     background-color: #747d88;
     padding-top: 5px;
     border-radius: 5px;
 }
 
+.mypage_list{
+	width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.mypage_list ul{
+	padding: 0;
+	width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .mypage_list_1 {
-    margin-left: 30%;
-    width: 12%;
+	margin: 0 7px;
+  	width: 130px;
+  	min-width: 130px;
     height: 50px;
 }
 
-.mypage_list_2 {
-    margin-left: 9px;
-    width: 12%;
-    height: 50px;
-}
-
-.mypage_list_3 {
-    margin-left: 9px;
-    width: 12%;
-    height: 50px;
-}
 
 .mypage_list a:link {
     display: block;
@@ -61,31 +65,42 @@
 
 
 .mypage_list_3_detail {
-    margin-top: 90px;
-    padding-top: 30px;
+	padding: 20px 0;
+	display: flex;
+	justify-content: center;
     width: 100%;
-    height: 600px;
     font-size: 18px;
     color: #223455;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    align-items: center;
     }
-    
 
-.mypage_list_3_detail_id {
-    margin-left: 28%;
+.detail-label{
+	min-width: 100px;
 }
 
 .id_box, .name_box, .nickname_box, .address_box {
-    margin-top: 18px;
-    padding-left: 15px;
-    width: 60%;
-    height: 50px;
+    height: 40px;
     border: 0;
     border-radius: 5px;
     outline: none;
     background-color: #f7f7f7;
+}
+
+.id_box, .name_box, .nickname_box{
+	width: 40%;
+}
+
+.nickname_box, .address_box{
+	background-color: white;
+	border: 1px solid #a6a6a6;
+}
+
+.address_box{
+	width: 90%;
 }
 
 div div input {
@@ -94,22 +109,27 @@ div div input {
     gap:20px;
 }
 
-.mypage_list_3_detail_name, .mypage_list_3_detail_nickname,
+.mypage_list_3_detail_id,.mypage_list_3_detail_name, .mypage_list_3_detail_nickname,
 .mypage_list_3_detail_address {
-    margin-top: 25px;
-    margin-left: 28%;
+	display: flex;
+	align-items: center;
+}
+
+.mypage_list_3_detail_name, .mypage_list_3_detail_nickname,
+.mypage_list_3_detail_address{
+	margin-top: 30px;
 }
 
 .mypage_list_3_detail_complete button {
-    margin-top: 50px;
-    margin-left: 44%;
+    margin-top: 30px;
+    width: 100px !important;
     border: 0px;
     display: inline-block;
     width: 12%;
     height: 50px;
     font-size: 15px;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 7px;
     background-color: #747d88;
     color: white;
     text-decoration: none;
@@ -118,3 +138,26 @@ div div input {
 .mypage_list_3_detail_complete button:hover {
     background-color: #223455;
 } 
+
+.mypage_list_3_detail_complete{
+	display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.info-detail-box{
+	border: 1.5px solid #ebebeb;
+	border-radius: 10px;
+	padding: 40px;
+	display: inline-flex;
+	min-width: 560px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.form-box{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}

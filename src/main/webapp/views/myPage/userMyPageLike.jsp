@@ -21,8 +21,8 @@
 	<nav class="mypage_list">
 		<ul>
 			<li class="mypage_list_1"><a href="/MyPageEstimate/EstimateUser.do?cpage=1">견적/공사 내역</a></li>
-			<li class="mypage_list_2"><a href="/mypage/likecopy.do?cpage=1">관심 업체</a></li>
-			<li class="mypage_list_3"><a href="/MypageInfo/userInfo.do?userNo=${sessionScope.userNum}">정보 수정</a></li>
+			<li class="mypage_list_1"><a href="/mypage/likecopy.do?cpage=1">관심 업체</a></li>
+			<li class="mypage_list_1"><a href="/MypageInfo/userInfo.do?userNo=${sessionScope.userNum}">정보 수정</a></li>
 		</ul>
 	</nav>
 	<div class="mypage_list_1_detail">
@@ -34,7 +34,7 @@
 			    <div class="reservation-list-header">
 					<div class="company_photo" name="pictureName">사진</div>
 					<div class="company_name" name="copyname">업체 이름</div>
-					<div class="company_name" name="telnum">업체 번호</div>
+					<div class="company_num" name="telnum">업체 번호</div>
 					<div class="reservation_number" name="copyaddr">업체 주소</div>
 				</div> 
         		<c:choose>
@@ -45,13 +45,13 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="item" items="${likeList}">
-								<a class="reservation-list-item" href='/copyDetail.do?copyNo=${item.copyNo}'>
+								<div class="reservation-list-item" onclick="location.href='/copyDetail.do?copyNo=${item.copyNo}'">
 									<!-- 어떤 게시글에 들어가는지 알수있음 -->
-									<img src="/resources/img/${item.pictureName}"/>
+									<img src="/resources/img/${item.pictureName}" class="company_photo"/>
 									<div class="company_name">${item.copyName}</div>
-									<div class="company_name">${item.telNum}</div>
+									<div class="company_num">${item.telNum}</div>
 									<div class="reservation_number">${item.copyAddr}</div>
-								</a>
+								</div>
 								<c:set var="row" value="${row-1}" />
 							</c:forEach>
 						</c:otherwise>

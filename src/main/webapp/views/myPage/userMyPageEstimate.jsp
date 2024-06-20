@@ -24,8 +24,8 @@
             <ul>
                <!--  <li class="mypage_list_1"><a href="/MyPageEstimate/EstimateUser.do?cpage=1">견적/공사 내역</a></li> -->
                 <li class="mypage_list_1"><a href="/MyPageEstimate/EstimateUser.do?cpage=1"">견적/공사 내역</a></li>
-                <li class="mypage_list_2"><a href="/mypage/likecopy.do?cpage=1">관심 업체</a></li>
-                <li class="mypage_list_3"><a href="/MypageInfo/userInfo.do?userNo=${sessionScope.userNum}">정보 수정</a></li>
+                <li class="mypage_list_1"><a href="/mypage/likecopy.do?cpage=1">관심 업체</a></li>
+                <li class="mypage_list_1"><a href="/MypageInfo/userInfo.do?userNo=${sessionScope.userNum}">정보 수정</a></li>
             </ul>
         </nav>
         <div class="mypage_list_1_detail"> 
@@ -49,9 +49,9 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="item" items="${list}">
-								<a class="reservation-list-item" href='/reserveCheck.do?constructNum=${item.constructNo}'>
+								<div class="reservation-list-item" onclick="location.href='/copyDetail.do?copyNo=${item.copyNo}'">
 									<!-- 어떤 게시글에 들어가는지 알수있음 -->
-									<img src="/resources/img/${item.pictureName}"/>
+									<img src="/resources/img/${item.pictureName}" class="company_photo"/>
 									<div class="company_name">${item.copyName}</div>
 									<div class="reservation_number" >${item.constructNo}</div>
 									<c:choose>
@@ -62,7 +62,7 @@
 											<div>예약 확정</div>
 										</c:otherwise>
 									</c:choose>
-								</a>
+								</div>
 								<c:set var="row" value="${row-1}" />
 							</c:forEach>
 						</c:otherwise>
