@@ -53,7 +53,7 @@ function duplicateFunc(copyId){
 					conpyIdMsg.style.color = "blue";
 					conpyIdMsg.innerHTML = "사업자등록번호 인증 완료";
 					
-					copyIdInput.readOnly = true;
+					conpyIdMsg.readOnly = true;
 	                businessRegistorBtn.disabled = true;
 
             	} else {
