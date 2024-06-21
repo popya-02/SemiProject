@@ -35,17 +35,23 @@
 									<c:forEach var="item" items="${searchExamList}">
 									<input type="hidden" name="categoryname" values="${item.categoryName}">
 									<div class="example-div exam-margin copy-search">
-										<img src="/resources/img/${item.examPictureName}" name="exampicturename" class="search-img">
+										<c:choose>
+											<c:when test="${item.examPictureName == null}">
+												<img src="/resources/img/imgnone.png" name="exampicturename" class="search-img">
+											</c:when>
+											<c:otherwise>
+												<img src="/resources/img/${item.examPictureName}" name="exampicturename" class="search-img">
+											</c:otherwise>
+										</c:choose>
 											<div class="example-div-div">
 												<div class="example-obj">
 												    <h4>${item.copyName}</h4>
 													<h5 style="margin-top:5px;">${item.examTitle}</h5>
-												   <%--  <h4 name="categoryname">${item.categoryName}</h4> --%>
 													<p class="example-div3">${item.tagRemoveContent}</p>
 													<a href="/constructDetail.do?examNo=${item.examNo}" class="btn border border-secondary rounded-pill px-3 py-1 text-primary detail-link">자세히 보기</a>
 												</div>
 											</div>
-									  </div>
+									</div>
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
@@ -65,7 +71,14 @@
 										<a href="/copyDetail.do?copyNo=${item.copyNo}" class="searchcopy-list" >
 											<div class="rounded position-relative copy-search">
 												<div class="">
-													<img src="resources/img/${item.pictureName}" name="copypicturename" style="width:250px; height:250px;" class="rounded-top" alt="사진">
+													<c:choose>
+														<c:when test="${item.pictureName == null}">
+															<img src="/resources/img/imgnone.png" name="copypicturename" style="width:250px; height:250px;" class="rounded-top" alt="사진">
+														</c:when>
+														<c:otherwise>
+															<img src="/resources/img/${item.pictureName}" name="copypicturename" style="width:250px; height:250px;" class="rounded-top" alt="사진">
+														</c:otherwise>
+													</c:choose>
 												</div>
 												<div class="p-3 border point-border border-top-0 rounded-bottom">
 													<h5 name="copyName">${item.copyName}</h5>

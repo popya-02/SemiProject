@@ -55,39 +55,38 @@
 						<div class="col-lg-6 info-box-parent">
 							<div class="btn-box">
 								<h4 class="fw-bold">${copyDetail[0].copyName}</h4>
-
-								<div>
-									<input type="hidden" id="${copyDetail[0].copyName}"
-										name="copyNum" value="${copyDetail[0].copyNum}">
-										<c:if test="${sessionScope.userType == 'basicUser' }">
-									<c:choose>
-										<c:when test="${not empty getLike }">
-											<c:set var="count" value="1" />
-											<c:forEach var="item" items="${getLike}">
-												<c:if test="${copyDetail[0].copyNum == item.copyNum}">
+								<c:if test="${sessionScope.userType == 'basicUser'}">
+									<div>
+										<input type="hidden" id="${copyDetail[0].copyName}"
+											name="copyNum" value="${copyDetail[0].copyNum}">
+										<c:choose>
+											<c:when test="${not empty getLike }">
+												<c:set var="count" value="1" />
+												<c:forEach var="item" items="${getLike}">
+													<c:if test="${copyDetail[0].copyNum == item.copyNum}">
+														<button type="button" name="${copyDetail[0].copyName}"
+															id="likeButton"
+															class="likeButton bi bi-house-heart tlrhd-like border border-secondary text-primary rounded-pill clicked"
+															onclick=""></button>
+														<c:set var="count" value="${count+1 }" />
+													</c:if>
+												</c:forEach>
+												<c:if test="${count == 1}">
 													<button type="button" name="${copyDetail[0].copyName}"
 														id="likeButton"
-														class="likeButton bi bi-house-heart tlrhd-like border border-secondary text-primary rounded-pill clicked"
+														class="likeButton bi bi-house-heart tlrhd-like border border-secondary text-primary rounded-pill"
 														onclick=""></button>
-													<c:set var="count" value="${count+1 }" />
 												</c:if>
-											</c:forEach>
-											<c:if test="${count == 1}">
+											</c:when>
+											<c:otherwise>
 												<button type="button" name="${copyDetail[0].copyName}"
 													id="likeButton"
 													class="likeButton bi bi-house-heart tlrhd-like border border-secondary text-primary rounded-pill"
 													onclick=""></button>
-											</c:if>
-										</c:when>
-										<c:otherwise>
-											<button type="button" name="${copyDetail[0].copyName}"
-												id="likeButton"
-												class="likeButton bi bi-house-heart tlrhd-like border border-secondary text-primary rounded-pill"
-												onclick=""></button>
-										</c:otherwise>
-									</c:choose>
-									</c:if>
-								</div>
+											</c:otherwise>
+										</c:choose>
+									</div>
+								</c:if>
 								<c:choose>
 									<c:when test="${sessionScope.userType == 'basicUser' }">
 										<a
@@ -138,7 +137,6 @@
 
 										<a href="/constructDetail.do?examNo=${copyDetailEx.examNo}"
 										   class="btn exam-btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
-											class="btn exam-btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">자세히 보기</a>
 									</div>
 								</div>
 							</div>
@@ -191,9 +189,13 @@
 								</div>
 							</div>
 							<c:if test="${sessionScope.userNum == getReview.userNum}">
-							<button type="submit"
+								<button type="submit"
 								class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>
-								</c:if>
+							</c:if>
+							<c:if test="${sessionScope.userType == 'admin'}">
+								<button type="submit"
+								class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>
+							</c:if>
 							<br>
 							<br>
 							<div class="nav nav-tabs mb-3" style="width: 1100px;"></div>

@@ -114,6 +114,11 @@ function checkFunc(resultCategory, paginationNum) {
 												&nbsp;
 												<button type="submit" class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>`
 					}
+					
+					if(data.userType == 'admin'){
+						modifyBox += `<button type="submit" class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>`;
+					}
+					
 					modifyBox += `</div>
                                 </div>
                             </div>`

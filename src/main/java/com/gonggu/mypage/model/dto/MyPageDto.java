@@ -21,6 +21,8 @@ public class MyPageDto {
 	private String PictureName;
 	private String PicturePath;
 	
+	private String constEndCehck; // 상담 종료 여부
+
 	// 견적서 요소 추가
 	private String constructElement;
 	private String constAddr;
@@ -252,6 +254,16 @@ public class MyPageDto {
 
 	public void setConstDeposit(String constDeposit) {
 		this.constDeposit = constDeposit;
+	}
+
+
+	public String getConstEndCehck() {
+		return constEndCehck;
+	}
+
+
+	public void setConstEndCehck(String constEndCehck) {
+		this.constEndCehck = constEndCehck;
 	}
 	
 }

@@ -65,8 +65,6 @@ function alertSwal(titlee, msg, iconn, cUrl){
         icon: iconn,
     });
 
-    console.log(swalResult);
-
     swalResult.then(() => {
         if (cUrl === 'b') {
             window.history.back();

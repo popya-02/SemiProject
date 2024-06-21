@@ -123,6 +123,9 @@
 																	&nbsp;
 																<button type="submit" class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>
 															</c:if>
+															<c:if test="${sessionScope.userType == 'admin'}">
+																<button type="submit" class="tlrhd-border btn-sm btn-outline-secondary">삭제</button>
+															</c:if>
 															</div>
 														</div>
 													</div>
