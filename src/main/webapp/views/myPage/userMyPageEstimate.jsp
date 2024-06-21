@@ -49,7 +49,7 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="item" items="${list}">
-									<div class="reservation-list-item pointer" onclick="location.href='/copyDetail.do?copyNo=${item.copyNo}'">
+								<div class="reservation-list-item pointer" onclick="location.href='/reserveCheck.do?constructNum=${item.constructNo}'">
 									<!-- 어떤 게시글에 들어가는지 알수있음 -->
 									<div class="company_photo_div">
 										<img src="/resources/img/${item.pictureName}" class="company_photo_img"/>
