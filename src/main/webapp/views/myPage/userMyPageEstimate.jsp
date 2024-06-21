@@ -49,7 +49,7 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="item" items="${list}">
-								<div class="reservation-list-item" onclick="location.href='/copyDetail.do?copyNo=${item.copyNo}'">
+								<a class="reservation-list-item" href="/reserveCheck.do?constructNum=${item.constructNo}">
 									<!-- 어떤 게시글에 들어가는지 알수있음 -->
 									<img src="/resources/img/${item.pictureName}" class="company_photo"/>
 									<div class="company_name">${item.copyName}</div>
@@ -62,7 +62,7 @@
 											<div>예약 확정</div>
 										</c:otherwise>
 									</c:choose>
-								</div>
+								</a>
 								<c:set var="row" value="${row-1}" />
 							</c:forEach>
 						</c:otherwise>
