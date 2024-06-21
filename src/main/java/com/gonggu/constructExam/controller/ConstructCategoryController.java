@@ -41,7 +41,17 @@ public class ConstructCategoryController extends HttpServlet {
         JsonObject jsonResponse = new JsonObject();
         Gson gson = new Gson();
 		
-		String userType = (String)session.getAttribute("userType");
+        String userType = "";
+        
+		userType = (String)session.getAttribute("userType");
+		
+		
+		if(userType == null) {
+			userType = "";
+		}
+		
+		System.out.println(userType);
+		
 		String copyName = "";
 		int userNum = 0;
 		if(userType.equals("copyUser")) {

@@ -86,6 +86,7 @@ function checkFunc(resultCategory, paginationNum) {
 					const formEle = document.createElement("form");
 					let modifyBox = "";
 					
+					
 					formEle.action = "/constructExam/constructdelete.do";
 					formEle.method = "POST";
 					

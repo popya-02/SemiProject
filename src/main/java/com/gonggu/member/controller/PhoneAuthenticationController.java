@@ -35,19 +35,18 @@ public class PhoneAuthenticationController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		
-		String action = request.getPathInfo();
 		String checknum = "";
 		
 		String userPhone = request.getParameter("userPhone");
 		
 		checknum = randomNum();
-//		Message message = new Message();
-//		
-//		message.setFrom("01032445958");
-//		message.setTo(userPhone);
-//		message.setText("GONGGU 인증번호 [" + checknum + "]");
-//		
-//		this.messageService.sendOne(new SingleMessageSendingRequest(message));
+		Message message = new Message();
+		
+		message.setFrom("01032445958");
+		message.setTo(userPhone);
+		message.setText("GONGGU 인증번호 [" + checknum + "]");
+		
+		this.messageService.sendOne(new SingleMessageSendingRequest(message));
 		
 		response.getWriter().print(checknum);
 		

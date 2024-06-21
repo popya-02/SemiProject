@@ -1,7 +1,7 @@
 let num = 0;
 
 var timer = null;
-let count = 120;
+let count = 30;
 
 const sendBtn = document.getElementById("message-send");
 const phoneLabel = document.getElementById("phone-label");
@@ -82,6 +82,8 @@ function sendNumCheck(){
 		authenMsg.style.color = "red";
 		authenMsg.innerHTML = "번호가 일치하지 않습니다.";
         
+		count = 30;
+
 		checkNumBtn.disabled = false;
         
 		sendBtn.disabled = false;
