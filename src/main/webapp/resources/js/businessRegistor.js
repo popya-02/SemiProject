@@ -14,7 +14,7 @@ function businessRegistor(){
       b_no: [copyId], // 실제 존재하는 사업자 번호 10자리 (실제 번호 : 3549400342)
     };
 
-    let serviceKey ="T9bjuYz%2B3QDx85g8KoMzFEa5Ou5sNCQ3OAWkKwjz6QojRhZGh8b1ONk14GTfS4Haf98pchFMn7tFp0s%2FYbDP2A%3D%3D";
+    let serviceKey ="";
     $.ajax({
       url:
         "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=" +
