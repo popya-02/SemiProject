@@ -24,7 +24,7 @@ public class PhoneAuthenticationController extends HttpServlet {
 	
     public PhoneAuthenticationController() {
         super();
-        this.messageService = NurigoApp.INSTANCE.initialize("NCSV7MGP3SFPDTOQ", "R9O4RI7IGK8KC80ZMD0KLVLBBSFHBMGO", "https://api.coolsms.co.kr");
+        this.messageService = NurigoApp.INSTANCE.initialize("", "", "https://api.coolsms.co.kr");
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
